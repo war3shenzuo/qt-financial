@@ -1,0 +1,8 @@
+ spring:
+  application:
+    name: qt-financial-web
+    
+ server:
+   port: 8081
+   
+    
