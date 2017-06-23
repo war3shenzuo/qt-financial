@@ -1,0 +1,8 @@
+ spring:
+  application:
+    name: qt-financial-appserver
+    
+ server:
+   port: 8080
+   
+    

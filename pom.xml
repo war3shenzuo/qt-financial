@@ -43,5 +43,6 @@
 
 	<modules>
 		<module>qt-financial-common</module>
+		<module>qt-financial-appserver</module>
 	</modules>
 </project>
