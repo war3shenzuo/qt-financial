@@ -41,4 +41,7 @@
 	</build>
 
 
+	<modules>
+		<module>qt-financial-common</module>
+	</modules>
 </project>
