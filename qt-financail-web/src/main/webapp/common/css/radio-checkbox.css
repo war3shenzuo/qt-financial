@@ -1,0 +1,60 @@
+.radio,.checkbox,.radio-inline,.checkbox-inline {
+	position: relative;
+}
+
+.radio label,.checkbox label,.radio-inline label,.checkbox-inline label
+	{
+	font-weight: normal;
+	cursor: pointer;
+	padding-left: 8px;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+	margin-top: 1px;
+}
+
+.radio+.radio,.checkbox+.checkbox {
+	margin-top: 10px;
+}
+.radio-inline+.radio-inline, .checkbox-inline+.checkbox-inline {
+    margin-top: 0;
+    margin-left: 20px;
+}
+.checkbox input[type=checkbox],.checkbox-inline input[type=checkbox],.radio input[type=radio],.radio-inline input[type=radio]
+	{
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+}
+
+.checkbox i,.checkbox-inline i,.radio i,.radio-inline i {
+	cursor: pointer;
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-size: 24px;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+
+.checkbox input[type=checkbox]:checked+i:before,.checkbox-inline input[type=checkbox]:checked+i:before
+	{
+	content: "\f046";
+}
+
+.radio input[type=radio]:checked+i:before,.radio-inline input[type=radio]:checked+i:before
+	{
+	content: "\f192";
+}
+
+.form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+    min-height: inherit;
+    padding-top: 0;
+    margin-top: 7px;
+}
+.has-success .radio,.has-success .checkbox,.has-success .radio-inline,.has-success .checkbox-inline
+	{
+	color: #3c763d !important;
+}
