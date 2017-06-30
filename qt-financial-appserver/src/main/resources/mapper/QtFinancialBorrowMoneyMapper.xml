@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qtjf.appserver.mapper.QtFinancialBorrowMoneyMapper" >
-  <resultMap id="BaseResultMap" type="com.qtjf.appserver.entity.QtFinancialBorrowMoney" >
+<mapper namespace="com.qtjf.appserver.dao.QtFinancialBorrowMoneyMapper" >
+  <resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialBorrowMoney" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="productId" property="productid" jdbcType="VARCHAR" />
     <result column="couponId" property="couponid" jdbcType="VARCHAR" />
@@ -24,7 +24,7 @@
     delete from qt_financial_borrow_money
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.qtjf.appserver.entity.QtFinancialBorrowMoney" >
+  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -41,7 +41,7 @@
       #{rate,jdbcType=INTEGER}, #{managecost,jdbcType=DECIMAL}, #{reductionexemption,jdbcType=DECIMAL}, 
       #{applyat,jdbcType=TIMESTAMP}, #{createdat,jdbcType=TIMESTAMP})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.qtjf.appserver.entity.QtFinancialBorrowMoney" >
+  <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney" >
     update qt_financial_borrow_money
     set productId = #{productid,jdbcType=VARCHAR},
       couponId = #{couponid,jdbcType=VARCHAR},

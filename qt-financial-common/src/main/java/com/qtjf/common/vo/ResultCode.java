@@ -23,12 +23,6 @@ public class ResultCode implements Serializable{
 	/** 提示信息 */
 	private String msg;
 
-	/** IP地址 */
-	private String ipAddr;
-
-	/** 随机token */
-	private String randomStr;
-
 	/** 记录条数 */
 	private int dataNum;
 
@@ -49,22 +43,6 @@ public class ResultCode implements Serializable{
 
 	public void setMsg(String msg) {
 		this.msg = msg;
-	}
-
-	public String getIpAddr() {
-		return ipAddr;
-	}
-
-	public void setIpAddr(String ipAddr) {
-		this.ipAddr = ipAddr;
-	}
-
-	public String getRandomStr() {
-		return randomStr;
-	}
-
-	public void setRandomStr(String randomStr) {
-		this.randomStr = randomStr;
 	}
 
 	public int getDataNum() {

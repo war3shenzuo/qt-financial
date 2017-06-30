@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qtjf.appserver.mapper.QtFinancialUserMapper" >
-  <resultMap id="BaseResultMap" type="com.qtjf.appserver.entity.QtFinancialUser" >
+<mapper namespace="com.qtjf.appserver.dao.QtFinancialUserMapper" >
+  <resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialUser" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="userCode" property="usercode" jdbcType="VARCHAR" />
     <result column="userName" property="username" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
     delete from qt_financial_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.qtjf.appserver.entity.QtFinancialUser" >
+  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialUser" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -39,7 +39,7 @@
       #{avatarurl,jdbcType=VARCHAR}, #{inviteuser,jdbcType=VARCHAR}, #{createdat,jdbcType=TIMESTAMP}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.qtjf.appserver.entity.QtFinancialUser" >
+  <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialUser" >
     update qt_financial_user
     set userCode = #{usercode,jdbcType=VARCHAR},
       userName = #{username,jdbcType=VARCHAR},
