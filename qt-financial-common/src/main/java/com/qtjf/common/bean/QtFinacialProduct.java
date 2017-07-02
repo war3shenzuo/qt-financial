@@ -3,7 +3,7 @@ package com.qtjf.common.bean;
 import java.math.BigDecimal;
 
 public class QtFinacialProduct {
-    private Integer id;
+    private String id;
 
     private String productname;
 
@@ -11,7 +11,11 @@ public class QtFinacialProduct {
 
     private BigDecimal amount;
 
-    private BigDecimal factorage;
+    private BigDecimal factorageCost;
+    
+    private BigDecimal auditCost;
+    
+    private BigDecimal manageCost;
 
     private String rate;
 
@@ -28,16 +32,21 @@ public class QtFinacialProduct {
     private Long updatedat;
 
     private Integer updateby;
+    
+    private BigDecimal arriveAmount;//到账
+    
+    private BigDecimal repaymentAmount;//应还
+    
+    
+    public String getId() {
+		return id;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getProductname() {
+	public String getProductname() {
         return productname;
     }
 
@@ -61,15 +70,31 @@ public class QtFinacialProduct {
         this.amount = amount;
     }
 
-    public BigDecimal getFactorage() {
-        return factorage;
-    }
+    public BigDecimal getFactorageCost() {
+		return factorageCost;
+	}
 
-    public void setFactorage(BigDecimal factorage) {
-        this.factorage = factorage;
-    }
+	public void setFactorageCost(BigDecimal factorageCost) {
+		this.factorageCost = factorageCost;
+	}
 
-    public String getRate() {
+	public BigDecimal getAuditCost() {
+		return auditCost;
+	}
+
+	public void setAuditCost(BigDecimal auditCost) {
+		this.auditCost = auditCost;
+	}
+
+	public BigDecimal getManageCost() {
+		return manageCost;
+	}
+
+	public void setManageCost(BigDecimal manageCost) {
+		this.manageCost = manageCost;
+	}
+
+	public String getRate() {
         return rate;
     }
 
@@ -132,4 +157,23 @@ public class QtFinacialProduct {
     public void setUpdateby(Integer updateby) {
         this.updateby = updateby;
     }
+
+	public BigDecimal getArriveAmount() {
+		return arriveAmount;
+	}
+
+	public void setArriveAmount(BigDecimal arriveAmount) {
+		this.arriveAmount = arriveAmount;
+	}
+
+	public BigDecimal getRepaymentAmount() {
+		return repaymentAmount;
+	}
+
+	public void setRepaymentAmount(BigDecimal repaymentAmount) {
+		this.repaymentAmount = repaymentAmount;
+	}
+    
+    
+    
 }

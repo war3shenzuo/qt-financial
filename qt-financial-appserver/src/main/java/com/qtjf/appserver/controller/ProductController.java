@@ -3,6 +3,7 @@ package com.qtjf.appserver.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,20 +36,37 @@ public class ProductController {
 		return result;
 	}
 
+//	/**
+//	 * 获取所有产品及用户信息(次数，是否可以申请)
+//	 * @param userId 用户Id
+//	 * @return 产品集合
+//	 */
+//	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+//	public ResultCode getProducts(@PathVariable("userId") String userId) {
+//		ResultCode result = null;
+//		try {
+//			List<QtFinacialProduct> list = productserver.getProducts(userId);
+//			result = ResultCode.getSuccess("获取用户产品成功", list.size(), list);
+//		} catch (Exception e) {
+//			result = ResultCode.getFail("获取用户产品失败");
+//			e.printStackTrace();
+//		}
+//		return result;
+//	}
+	
 	/**
-	 * 获取所有产品及用户信息(次数，是否可以申请)
-	 * @param userId 用户Id
-	 * @return 产品集合
+	 * 获取产品详情
+	 * @param id 产品ID
+	 * @return 产品详情
 	 */
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-	public ResultCode getProducts(String userId) {
-		System.out.println("userId=" + userId);
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResultCode getProduct(@PathVariable("id") String id) {
 		ResultCode result = null;
 		try {
-			List<QtFinacialProduct> list = productserver.getProducts(userId);
-			result = ResultCode.getSuccess("获取用户产品成功", list.size(), list);
+			QtFinacialProduct product = productserver.getProduct(id);
+			result = ResultCode.getSuccess("获取产品详情成功", 1, product);
 		} catch (Exception e) {
-			result = ResultCode.getFail("获取用户产品失败");
+			result = ResultCode.getFail("获取产品详情失败");
 			e.printStackTrace();
 		}
 		return result;

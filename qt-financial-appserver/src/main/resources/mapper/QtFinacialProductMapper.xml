@@ -2,64 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qtjf.appserver.dao.QtFinacialProductMapper" >
 
-  <resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinacialProduct" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="productName" property="productname" jdbcType="VARCHAR" />
-    <result column="productCode" property="productcode" jdbcType="VARCHAR" />
-    <result column="amount" property="amount" jdbcType="DECIMAL" />
-    <result column="factorage" property="factorage" jdbcType="DECIMAL" />
-    <result column="rate" property="rate" jdbcType="VARCHAR" />
-    <result column="dayNum" property="daynum" jdbcType="VARCHAR" />
-    <result column="userLevel" property="userlevel" jdbcType="VARCHAR" />
-    <result column="isActivated" property="isactivated" jdbcType="VARCHAR" />
-    <result column="createdAt" property="createdat" jdbcType="BIGINT" />
-    <result column="createdBy" property="createdby" jdbcType="INTEGER" />
-    <result column="updatedAt" property="updatedat" jdbcType="BIGINT" />
-    <result column="updateBy" property="updateby" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from qt_finacial_product
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinacialProduct" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into qt_finacial_product (id, productName, productCode, 
-      amount, factorage, rate, 
-      dayNum, userLevel, isActivated, 
-      createdAt, createdBy, updatedAt, 
-      updateBy)
-    values (#{id,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{productcode,jdbcType=VARCHAR}, 
-      #{amount,jdbcType=DECIMAL}, #{factorage,jdbcType=DECIMAL}, #{rate,jdbcType=VARCHAR}, 
-      #{daynum,jdbcType=VARCHAR}, #{userlevel,jdbcType=VARCHAR}, #{isactivated,jdbcType=VARCHAR}, 
-      #{createdat,jdbcType=BIGINT}, #{createdby,jdbcType=INTEGER}, #{updatedat,jdbcType=BIGINT}, 
-      #{updateby,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinacialProduct" >
-    update qt_finacial_product
-    set productName = #{productname,jdbcType=VARCHAR},
-      productCode = #{productcode,jdbcType=VARCHAR},
-      amount = #{amount,jdbcType=DECIMAL},
-      factorage = #{factorage,jdbcType=DECIMAL},
-      rate = #{rate,jdbcType=VARCHAR},
-      dayNum = #{daynum,jdbcType=VARCHAR},
-      userLevel = #{userlevel,jdbcType=VARCHAR},
-      isActivated = #{isactivated,jdbcType=VARCHAR},
-      createdAt = #{createdat,jdbcType=BIGINT},
-      createdBy = #{createdby,jdbcType=INTEGER},
-      updatedAt = #{updatedat,jdbcType=BIGINT},
-      updateBy = #{updateby,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, productName, productCode, amount, factorage, rate, dayNum, userLevel, 
+  <select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinacialProduct" parameterType="java.lang.String" >
+    select id, productName, productCode, amount, factorageCost,auditCost,manageCost, rate, dayNum, userLevel, 
     isActivated, createdAt, createdBy, updatedAt, updateBy
     from qt_finacial_product
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select id, productName, productCode, amount, factorage, rate, dayNum, userLevel, 
+  
+  <select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialProduct" >
+    select id, productName, productCode, amount, factorageCost,auditCost,manageCost, rate, dayNum, userLevel, 
     isActivated, createdAt, createdBy, updatedAt, updateBy
     from qt_finacial_product
   </select>
