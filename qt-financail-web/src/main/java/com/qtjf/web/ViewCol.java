@@ -14,6 +14,6 @@ public class ViewCol {
 
 	@RequestMapping(value = "/index_info")
 	public String index_info() {
-		return "index_info";
+		return "ajax/index_info";
 	}
 }
