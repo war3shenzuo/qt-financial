@@ -174,4 +174,5 @@ public class QtFinancialBorrowMoney {
     public void setCreatedat(Date createdat) {
         this.createdat = createdat;
     }
+
 }

@@ -12,6 +12,11 @@ import com.qtjf.appserver.server.ProductServer;
 import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.vo.ResultCode;
 
+/**
+ * 产品Controller类
+ * @author 史贤杰
+ * 2017/07/01
+ */
 @RestController
 @RequestMapping("/products")
 public class ProductController {

@@ -1,4 +1,4 @@
-package com.qtjf.common.vo;
+package com.qtjf.common.emus;
 /** 
  * @author shixianjie
  * @version 创建时间：2016年3月22日 
