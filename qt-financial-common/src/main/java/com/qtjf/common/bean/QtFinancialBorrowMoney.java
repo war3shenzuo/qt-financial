@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class QtFinancialBorrowMoney {
-    private Integer id;
+    private String id;
 
-    private String productid;
+    private String productId;
 
-    private String couponid;
+    private String couponId;
 
-    private String userid;
+    private String userId;
 
     private BigDecimal amount;
 
@@ -38,39 +38,40 @@ public class QtFinancialBorrowMoney {
 
     private Date createdat;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public String getId() {
+		return id;
+	}
 
-    public String getProductid() {
-        return productid;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setProductid(String productid) {
-        this.productid = productid;
-    }
+	public String getProductId() {
+		return productId;
+	}
 
-    public String getCouponid() {
-        return couponid;
-    }
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
 
-    public void setCouponid(String couponid) {
-        this.couponid = couponid;
-    }
+	public String getCouponId() {
+		return couponId;
+	}
 
-    public String getUserid() {
-        return userid;
-    }
+	public void setCouponId(String couponId) {
+		this.couponId = couponId;
+	}
 
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public BigDecimal getAmount() {
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public BigDecimal getAmount() {
         return amount;
     }
 

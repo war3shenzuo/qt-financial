@@ -37,5 +37,13 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select id, borrowId, status, comment, updatedAt
     from qt_financial_borrow_money_flow
+    <where>
+    
+    	
+    
+    
+    </where>
+    
+    
   </select>
 </mapper>

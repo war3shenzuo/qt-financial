@@ -6,7 +6,7 @@
     select id, productName, productCode, amount, factorageCost,auditCost,manageCost, rate, dayNum, userLevel, 
     isActivated, createdAt, createdBy, updatedAt, updateBy
     from qt_finacial_product
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{value}
   </select>
   
   <select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialProduct" >

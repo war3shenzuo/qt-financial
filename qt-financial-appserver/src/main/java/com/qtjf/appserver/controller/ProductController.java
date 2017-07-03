@@ -36,23 +36,23 @@ public class ProductController {
 		return result;
 	}
 
-//	/**
-//	 * 获取所有产品及用户信息(次数，是否可以申请)
-//	 * @param userId 用户Id
-//	 * @return 产品集合
-//	 */
-//	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-//	public ResultCode getProducts(@PathVariable("userId") String userId) {
-//		ResultCode result = null;
-//		try {
-//			List<QtFinacialProduct> list = productserver.getProducts(userId);
-//			result = ResultCode.getSuccess("获取用户产品成功", list.size(), list);
-//		} catch (Exception e) {
-//			result = ResultCode.getFail("获取用户产品失败");
-//			e.printStackTrace();
-//		}
-//		return result;
-//	}
+	/**
+	 * 获取所有产品及用户信息(次数，是否可以申请)
+	 * @param userId 用户Id
+	 * @return 产品集合
+	 */
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+	public ResultCode getProducts(@PathVariable("userId") String userId) {
+		ResultCode result = null;
+		try {
+			List<QtFinacialProduct> list = productserver.getProducts(userId);
+			result = ResultCode.getSuccess("获取用户产品成功", list.size(), list);
+		} catch (Exception e) {
+			result = ResultCode.getFail("获取用户产品失败");
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	/**
 	 * 获取产品详情

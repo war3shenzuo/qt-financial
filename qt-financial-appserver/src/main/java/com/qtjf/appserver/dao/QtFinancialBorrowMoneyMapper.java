@@ -11,7 +11,7 @@ public interface QtFinancialBorrowMoneyMapper {
 
     QtFinancialBorrowMoney selectByPrimaryKey(Integer id);
 
-    List<QtFinancialBorrowMoney> selectAll();
+    List<QtFinancialBorrowMoney> selectAll(QtFinancialBorrowMoney bm);
 
     int updateByPrimaryKey(QtFinancialBorrowMoney record);
 }

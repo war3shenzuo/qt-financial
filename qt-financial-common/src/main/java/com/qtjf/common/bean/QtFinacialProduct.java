@@ -33,6 +33,8 @@ public class QtFinacialProduct {
 
     private Integer updateby;
     
+    private Integer succeeNum;//用户成功消费次数
+    
     private BigDecimal arriveAmount;//到账
     
     private BigDecimal repaymentAmount;//应还
@@ -172,6 +174,14 @@ public class QtFinacialProduct {
 
 	public void setRepaymentAmount(BigDecimal repaymentAmount) {
 		this.repaymentAmount = repaymentAmount;
+	}
+
+	public Integer getSucceeNum() {
+		return succeeNum;
+	}
+
+	public void setSucceeNum(Integer succeeNum) {
+		this.succeeNum = succeeNum;
 	}
     
     
