@@ -2,14 +2,14 @@ package com.qtjf.common.emus;
 
 public enum borrowStatus {
 	
-	LEVEL_1(1,"已经申请"),
-	LEVEL_2(2,"审核情况"),
-	LEVEL_3(3,"打款情况"),
-	LEVEL_4(4,"还款期限"),
-	LEVEL_5(5,"到期提醒"),
-	LEVEL_6(6,"逾期提醒"),
-	LEVEL_7(7,"延期成功"),
-	LEVEL_8(8,"还款成功");
+	APPLY(1,"已经申请"),
+	CHECK(2,"审核情况"),
+	PAY(3,"打款情况"),
+	REPAY(4,"还款期限"),
+	EXP(5,"到期提醒"),
+	OVERDUE(6,"逾期提醒"),
+	POSTPONE(7,"延期成功"),
+	FINISH(8,"还款成功");
 
 	
 	/** 返回状态码*/

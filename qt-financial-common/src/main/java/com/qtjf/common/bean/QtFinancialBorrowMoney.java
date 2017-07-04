@@ -36,7 +36,7 @@ public class QtFinancialBorrowMoney {
 
     private Date applyat;
 
-    private Date createdat;
+    private Long createdAt;
 
 
     public String getId() {
@@ -167,12 +167,14 @@ public class QtFinancialBorrowMoney {
         this.applyat = applyat;
     }
 
-    public Date getCreatedat() {
-        return createdat;
-    }
+	public Long getCreatedAt() {
+		return createdAt;
+	}
 
-    public void setCreatedat(Date createdat) {
-        this.createdat = createdat;
-    }
+	public void setCreatedAt(Long createdAt) {
+		this.createdAt = createdAt;
+	}
+
+
 
 }

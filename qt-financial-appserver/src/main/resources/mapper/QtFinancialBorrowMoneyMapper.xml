@@ -2,71 +2,96 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qtjf.appserver.dao.QtFinancialBorrowMoneyMapper">
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from qt_financial_borrow_money
+		delete from
+		qt_financial_borrow_money
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
+
 	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney">
-		<selectKey resultType="java.lang.Integer" keyProperty="id"
-			order="BEFORE">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-		insert into qt_financial_borrow_money (id, productId, couponId,
-		userId, amount, daynum,
+		insert into
+		qt_financial_borrow_money (id, productId, couponId,
+		userId, amount,
+		daynum,
 		status, repaymentDate, repaymentAmount,
-		arriveAmount, auditCost, factorageCost,
+		arriveAmount, auditCost,
+		factorageCost,
 		rate, manageCost, reductionExemption,
 		applyAt, createdAt)
-		values (#{id,jdbcType=INTEGER}, #{productid,jdbcType=VARCHAR},
+		values (#{id}, #{productid,jdbcType=VARCHAR},
 		#{couponid,jdbcType=VARCHAR},
-		#{userid,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{daynum,jdbcType=VARCHAR},
+		#{userid,jdbcType=VARCHAR},
+		#{amount,jdbcType=DECIMAL}, #{daynum,jdbcType=VARCHAR},
 		#{status,jdbcType=VARCHAR}, #{repaymentdate,jdbcType=TIMESTAMP},
 		#{repaymentamount,jdbcType=DECIMAL},
-		#{arriveamount,jdbcType=DECIMAL}, #{auditcost,jdbcType=DECIMAL}, #{factoragecost,jdbcType=DECIMAL},
+		#{arriveamount,jdbcType=DECIMAL},
+		#{auditcost,jdbcType=DECIMAL}, #{factoragecost,jdbcType=DECIMAL},
 		#{rate,jdbcType=INTEGER}, #{managecost,jdbcType=DECIMAL},
 		#{reductionexemption,jdbcType=DECIMAL},
-		#{applyat,jdbcType=TIMESTAMP}, #{createdat,jdbcType=TIMESTAMP})
+		#{applyat,jdbcType=TIMESTAMP},
+		#{createdat,jdbcType=TIMESTAMP})
 	</insert>
+
 	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney">
-		update qt_financial_borrow_money
-		set productId = #{productid,jdbcType=VARCHAR},
+		update
+		qt_financial_borrow_money
+		set productId =
+		#{productid,jdbcType=VARCHAR},
 		couponId = #{couponid,jdbcType=VARCHAR},
 		userId = #{userid,jdbcType=VARCHAR},
-		amount = #{amount,jdbcType=DECIMAL},
+		amount =
+		#{amount,jdbcType=DECIMAL},
 		daynum = #{daynum,jdbcType=VARCHAR},
-		status = #{status,jdbcType=VARCHAR},
-		repaymentDate = #{repaymentdate,jdbcType=TIMESTAMP},
-		repaymentAmount = #{repaymentamount,jdbcType=DECIMAL},
-		arriveAmount = #{arriveamount,jdbcType=DECIMAL},
-		auditCost = #{auditcost,jdbcType=DECIMAL},
-		factorageCost = #{factoragecost,jdbcType=DECIMAL},
+		status
+		= #{status,jdbcType=VARCHAR},
+		repaymentDate =
+		#{repaymentdate,jdbcType=TIMESTAMP},
+		repaymentAmount =
+		#{repaymentamount,jdbcType=DECIMAL},
+		arriveAmount =
+		#{arriveamount,jdbcType=DECIMAL},
+		auditCost =
+		#{auditcost,jdbcType=DECIMAL},
+		factorageCost =
+		#{factoragecost,jdbcType=DECIMAL},
 		rate = #{rate,jdbcType=INTEGER},
 		manageCost = #{managecost,jdbcType=DECIMAL},
-		reductionExemption = #{reductionexemption,jdbcType=DECIMAL},
-		applyAt = #{applyat,jdbcType=TIMESTAMP},
-		createdAt = #{createdat,jdbcType=TIMESTAMP}
+		reductionExemption =
+		#{reductionexemption,jdbcType=DECIMAL},
+		applyAt =
+		#{applyat,jdbcType=TIMESTAMP},
+		createdAt =
+		#{createdat,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialBorrowMoney" parameterType="String">
-		select id, productId, couponId, userId, amount, daynum, status,
+
+	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialBorrowMoney"
+		parameterType="String">
+		select id, productId, couponId, userId, amount, daynum,
+		status,
 		repaymentDate, repaymentAmount,
-		arriveAmount, auditCost, factorageCost, rate, manageCost, reductionExemption,
+		arriveAmount, auditCost,
+		factorageCost, rate, manageCost, reductionExemption,
 		applyAt,
 		createdAt
 		from qt_financial_borrow_money
-		where id = #{id,jdbcType=String}
+		where id = #{id}
 	</select>
-	<select id="selectAll" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney" resultType="com.qtjf.common.bean.QtFinancialBorrowMoney">
+
+	<select id="selectAll" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney"
+		resultType="com.qtjf.common.bean.QtFinancialBorrowMoney">
 		select id, productId, couponId, userId, amount, daynum, status,
 		repaymentDate, repaymentAmount,
-		arriveAmount, auditCost, factorageCost, rate, manageCost, reductionExemption,
+		arriveAmount, auditCost, factorageCost,
+		rate, manageCost, reductionExemption,
 		applyAt,
 		createdAt
-		from qt_financial_borrow_money
+		from
+		qt_financial_borrow_money
 		<where>
-			<if test="productId!=null && productId!=''">
+			<if test="productId!=null and productId!=''">
 				productId = #{productId}
 			</if>
-			<if test="userId!=null && userId!=''">
+			<if test="userId!=null and userId!=''">
 				userId = #{userId}
 			</if>
 		</where>
