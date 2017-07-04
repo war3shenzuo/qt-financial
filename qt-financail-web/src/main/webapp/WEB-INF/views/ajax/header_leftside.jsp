@@ -6,11 +6,11 @@
 
 	<!--logo and iconic logo start-->
 	<div class="logo">
-		<a href="index"><img src="${ctx}/common/img/logo.png" alt=""></a>
+		<a href="index">清投金服</a>
 	</div>
 
 	<div class="logo-icon text-center">
-		<a href="index"><img src="${ctx}/common/img/logo_icon.png" alt=""></a>
+		<a href="index">清投金服</a>
 	</div>
 	<!--logo and iconic logo end-->
 
