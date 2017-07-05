@@ -10,5 +10,13 @@ public interface BorrowMoneyServer {
 	 * @throws Exception
 	 */
 	void add(QtFinancialBorrowMoney bm) throws Exception;
+	
+	/**
+	 * 修改借钱记录
+	 * @param bm
+	 */
+	void update(QtFinancialBorrowMoney bm);
+
+	void updateStatus(String id, String status);
 
 }

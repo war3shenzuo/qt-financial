@@ -17,18 +17,18 @@
 		factorageCost,
 		rate, manageCost, reductionExemption,
 		applyAt, createdAt)
-		values (#{id}, #{productid,jdbcType=VARCHAR},
-		#{couponid,jdbcType=VARCHAR},
-		#{userid,jdbcType=VARCHAR},
+		values (#{id}, #{productId,jdbcType=VARCHAR},
+		#{couponId,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR},
 		#{amount,jdbcType=DECIMAL}, #{daynum,jdbcType=VARCHAR},
-		#{status,jdbcType=VARCHAR}, #{repaymentdate,jdbcType=TIMESTAMP},
-		#{repaymentamount,jdbcType=DECIMAL},
-		#{arriveamount,jdbcType=DECIMAL},
-		#{auditcost,jdbcType=DECIMAL}, #{factoragecost,jdbcType=DECIMAL},
-		#{rate,jdbcType=INTEGER}, #{managecost,jdbcType=DECIMAL},
-		#{reductionexemption,jdbcType=DECIMAL},
-		#{applyat,jdbcType=TIMESTAMP},
-		#{createdat,jdbcType=TIMESTAMP})
+		#{status,jdbcType=VARCHAR}, #{repaymentDate,jdbcType=TIMESTAMP},
+		#{repaymentAmount,jdbcType=DECIMAL},
+		#{arriveAmount,jdbcType=DECIMAL},
+		#{auditCost,jdbcType=DECIMAL}, #{factorageCost,jdbcType=DECIMAL},
+		#{rate,jdbcType=INTEGER}, #{manageCost,jdbcType=DECIMAL},
+		#{reductionExemption,jdbcType=DECIMAL},
+		#{applyAt,jdbcType=TIMESTAMP},
+		#{createdAt,jdbcType=TIMESTAMP})
 	</insert>
 
 	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney">

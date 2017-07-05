@@ -2,6 +2,7 @@ package com.qtjf.appserver.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,23 @@ public class BorrowMoneyController {
 			result = ResultCode.getSuccess("产品购买成功");
 		} catch (Exception e) {
 			result = ResultCode.getFail("产品购买失败");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
+	 * 修改购买产品记录
+	 * @return
+	 */
+	@RequestMapping( value = "/{id}/status/{status}",method = RequestMethod.PUT)
+	public ResultCode update(@PathVariable("id") String id, @PathVariable("status") String status) {
+		ResultCode result = null;
+		try {
+			borrowMoneytserver.updateStatus(id,status);
+			result = ResultCode.getSuccess("修改记录状态成功");
+		} catch (Exception e) {
+			result = ResultCode.getFail("修改记录状态失败");
 			e.printStackTrace();
 		}
 		return result;

@@ -20,9 +20,21 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 	@Override
 	public void add(QtFinancialBorrowMoney bm) throws Exception {
 		bm.setId(UUID.randomUUID().toString());
-		bm.setStatus(borrowStatus.APPLY.toString());
+		bm.setStatus(borrowStatus.APPLY.getStatus());
 		bm.setCreatedAt(new Date().getTime());
+		bm.setApplyAt(new Date().getTime());
 		bmdao.insert(bm);
+	}
+
+	@Override
+	public void update(QtFinancialBorrowMoney bm) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void updateStatus(String id, String status) {
+		// TODO Auto-generated method stub
 	}
 
 }
