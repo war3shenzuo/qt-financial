@@ -43,7 +43,7 @@
 	<modules>
 		<module>qt-financial-common</module>
 		<module>qt-financial-appserver</module>
-		<module>qt-financail-web</module>
+		<module>qt-financial-web</module>
 		<module>qt-financial-xdt</module>
 	</modules>
 </project>
