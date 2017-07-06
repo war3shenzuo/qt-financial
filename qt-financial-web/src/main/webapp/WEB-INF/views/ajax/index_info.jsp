@@ -18,15 +18,15 @@ margin-right:10px;
 }
 </style>
 <ul class="nav nav-pills">
-	<li><a href="index">审核中</a></li>
-	<li class="active"><a href="index">审核完毕</a></li>
+	<li><a href="#" onclick="getBorrow(1)">审核中</a></li>
+	<li class="active"><a href="#" onclick="getBorrow(2)">审核完毕</a></li>
 </ul>
 <div class="record">
 	<div class="row">
 		<div class="col-sm-2">头像</div>
 		<div class="col-sm-10">
 			<div class="row">
-				ID:<span>12313241432412341324</span>电话：<span>13737373737</span><span>普通客户</span>|<a>查看借款记录</a>
+				ID:<span>12313241432412341324</span>电话：<span>13737373737</span><span>普通客户</span>|<a style="margin-left: 10px;">查看借款记录</a>
 				<button type="button" class="btn btn-default" style="float:right;margin-right:15px;">拒绝申请</button>
 				<button type="button" class="btn btn-default" style="float:right;margin-right:15px;">同意申请</button>
 			</div>
@@ -58,7 +58,7 @@ margin-right:10px;
 		<div class="col-sm-2">相关数据：</div>
 		<div class="col-sm-10">
 			<div class="row">
-				<span>胡泊信用分：211</span>，<span>支付宝信用分：421</span>
+				<label>胡泊信用分：</label><span>211</span>，<label>支付宝信用分：</label><span>421</span>
 				<button type="button" class="btn btn-default" style="float:right;margin-right:15px;">查看资信报告</button>
 			</div>
 		</div> 
@@ -70,22 +70,8 @@ margin-right:10px;
 <div id="auth_id"></div>
 <div id="auth_wx"></div>
 <div id="auth_contact"></div>
+<script src="${ctx}/common/js/index_info.js"></script>
 <script type="text/javascript">
-	function showAuthPhone(){
-		$("#authPhone").modal("show");
-	}
-	function showAuthBase(){
-		$("#authBase").modal("show");
-	}
-	function showAuthId(){
-		$("#authId").modal("show");
-	}
-	function showAuthWx(){
-		$("#authWx").modal("show");
-	}	
-	function showAuthContact(){
-		$("#authContact").modal("show");
-	}
 	$(document).ready(function() {
 		var url = "${pageContext.request.contextPath}/view/modal/auth_phone";
 		LoadAjaxContent(url, "auth_phone");
@@ -171,68 +157,8 @@ margin-right:10px;
 		} catch (arr) {
 			console.log(arr);
 		}
-
 	}
-	function Select2Test() {
-		$("#selecttype").select2();
-		$("#integraltype").select2();
-	}
-	//审核js
-	function update(id, el, userId, state) {
-		$.ajax({
-			type : "POST",
-			url : "${pageContext.request.contextPath}/data/doctor_info_update",
-			data : "id=" + id + "&userId=" + userId + "&state=" + state,
-			context : el,
-			success : function(result) {
-				$(this).parent().html("已通过");
-				/*  $("#selecttype").attr("onchange","changeDoctorType("+userId+")") */
-				$("#giveDoctorQualityScore").attr("onclick",
-						"giveDoctorQualityScore(" + userId + ")")
-				$("#myModal").modal("show");
-
-			}
-		});
-	}
-	//拒绝js
-	function refuse(id, el, userId, state) {
-		$.ajax({
-			type : "POST",
-			url : "${pageContext.request.contextPath}/data/doctor_info_refuse",
-			data : "id=" + id + "&userId=" + userId + "&state=" + state,
-			context : el,
-			success : function(result) {
-				$(this).parent().html("已拒绝");
-			}
-		});
-	}
-	//给予医生申请资质成功之后的积分
-	function giveDoctorQualityScore(userId) {
-		$("#myModal").modal("hide");
-		var option = $("#integraltype option:selected").val();
-
-		$
-				.ajax({
-					url : "${pageContext.request.contextPath}/data/giveDoctorQualityScore",
-					type : "post",
-					data : "userId=" + userId + "&year=" + option,
-					success : function(data) {
-
-					}
-				});
-	}
-	function updateIntegraltype(el) {
-		$this = $(el);
-		var selectValue = $this.find("option :selected").val();
-		var integraltype = $("#integraltype");
-		var html = "";
-		if (selectValue == 'LICENSE_SCORE_GUIDEDOC') {
-			html = '<option value="重复提交不予积分">重复提交不予积分</option><option value="DOCTOR_GUIDE_LICENSE_DOWN_ONE">一年以内执照</option><option value="DOCTOR_GUIDE_LICENSE_ONE_THREE">一年到三年内</option><option value="DOCTOR_GUIDE_LICENSE_THREE_FIVE">三年到五年</option><option value="DOCTOR_GUIDE_LICENSE_UP_FIVE">五年以上</option>';
-			integraltype.html(html);
-		}
-		if (selectValue == 'LICENSE_SCORE_GUIDEDOC') {
-			html = '<option value="重复提交不予积分">重复提交不予积分</option><option value="DOCTOR_SIGN_LICENSE_DOWN_ONE">一年以内执照</option><option value="DOCTOR_SIGN_LICENSE_ONE_THREE">一年到三年内</option><option value="DOCTOR_SIGN_LICENSE_THREE_FIVE">三年到五年</option><option value="DOCTOR_SIGN_LICENSE_UP_FIVE">五年以上</option>';
-			integraltype.html(html);
-		}
-	}
+	function getBorrow(data){
+		console.log(data);
+	}  
 </script>

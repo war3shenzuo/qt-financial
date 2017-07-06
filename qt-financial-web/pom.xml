@@ -4,8 +4,8 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.qtjf</groupId>
-	<artifactId>qt-financail-web</artifactId>
-	<name>qt-financail-web</name>
+	<artifactId>qt-financial-web</artifactId>
+	<name>qt-financial-web</name>
 	<version>0.0.1</version>
 	<packaging>war</packaging>
 
