@@ -25,9 +25,6 @@ public class ResultCode implements Serializable{
 	/** 提示信息 */
 	private String msg;
 
-	/** 记录条数 */
-	private int dataNum;
-
 	/** 返回数据集，可以是各种类型 */
 	private Object data;
 	
@@ -47,14 +44,6 @@ public class ResultCode implements Serializable{
 		this.msg = msg;
 	}
 
-	public int getDataNum() {
-		return dataNum;
-	}
-
-	public void setDataNum(int dataNum) {
-		this.dataNum = dataNum;
-	}
-
 	public Object getData() {
 		return data;
 	}
@@ -66,17 +55,15 @@ public class ResultCode implements Serializable{
 	public ResultCode() {
 	}
 
-	public ResultCode(int status, String msg, int dataNum, Object data) {
+	public ResultCode(int status, String msg, Object data) {
 		this.status = status;
 		this.msg = msg;
-		this.dataNum = dataNum;
 		this.data = data;
 	}
 
 	public ResultCode(int status, String msg) {
 		this.status = status;
 		this.msg = msg;
-		this.dataNum = 0;
 		this.data = null;
 	}
 
@@ -94,12 +81,12 @@ public class ResultCode implements Serializable{
 		return new ResultCode(SysStatus.SUCCESS.getStatus(),msg);
 	}
 	
-	public static ResultCode getSuccess(int num, Object data) {
-		return new ResultCode(SysStatus.SUCCESS.getStatus(), SysStatus.SUCCESS.getMsg(), num, data);
+	public static ResultCode getSuccess(Object data) {
+		return new ResultCode(SysStatus.SUCCESS.getStatus(), SysStatus.SUCCESS.getMsg(), data);
 	}
 	
-	public static ResultCode getSuccess(String msg,int num, Object data) {
-		return new ResultCode(SysStatus.SUCCESS.getStatus(), msg, num, data);
+	public static ResultCode getSuccess(String msg,Object data) {
+		return new ResultCode(SysStatus.SUCCESS.getStatus(), msg, data);
 	}
 	
 	public static ResultCode getNoDataSuccess(String msg) {
@@ -118,7 +105,7 @@ public class ResultCode implements Serializable{
 	public static ResultCode getChatName(String chatName) {
 		Map<String, String> map = new HashMap<>();
 		map.put("chatName", chatName);
-		return new ResultCode(SysStatus.SUCCESS.getStatus(), "会话名称", 0, map);
+		return new ResultCode(SysStatus.SUCCESS.getStatus(), "会话名称", map);
 	}
 
 	/** 未查询到数据 */

@@ -31,5 +31,12 @@ public interface BorrowMoneyServer {
 	 * @return
 	 */
 	List<QtFinancialBorrowMoney> getBorrowMoneys(String userId);
+	
+	/**
+	 * 查询订单详细信息
+	 * @param id
+	 * @return
+	 */
+	QtFinancialBorrowMoney getBorrowMoneysInfo(String id);
 
 }

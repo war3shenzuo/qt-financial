@@ -33,7 +33,7 @@ public class ProductController {
 		ResultCode result = null;
 		try {
 			List<QtFinacialProduct> list = productserver.getProducts("");
-			result = ResultCode.getSuccess("获取所有产品成功", list.size(), list);
+			result = ResultCode.getSuccess("获取所有产品成功", list);
 		} catch (Exception e) {
 			result = ResultCode.getFail("获取所有产品失败");
 			e.printStackTrace();
@@ -51,7 +51,7 @@ public class ProductController {
 		ResultCode result = null;
 		try {
 			List<QtFinacialProduct> list = productserver.getProducts(userId);
-			result = ResultCode.getSuccess("获取用户产品成功", list.size(), list);
+			result = ResultCode.getSuccess("获取用户产品成功", list);
 		} catch (Exception e) {
 			result = ResultCode.getFail("获取用户产品失败");
 			e.printStackTrace();
@@ -69,7 +69,7 @@ public class ProductController {
 		ResultCode result = null;
 		try {
 			QtFinacialProduct product = productserver.getProduct(id);
-			result = ResultCode.getSuccess("获取产品详情成功", 1, product);
+			result = ResultCode.getSuccess("获取产品详情成功", product);
 		} catch (Exception e) {
 			result = ResultCode.getFail("获取产品详情失败");
 			e.printStackTrace();

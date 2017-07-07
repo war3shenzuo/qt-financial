@@ -9,7 +9,7 @@ public interface QtFinancialBorrowMoneyMapper {
 
     int insert(QtFinancialBorrowMoney record);
 
-    QtFinancialBorrowMoney selectByPrimaryKey(Integer id);
+    QtFinancialBorrowMoney selectByPrimaryKey(String id);
 
     List<QtFinancialBorrowMoney> selectAll(QtFinancialBorrowMoney bm);
 

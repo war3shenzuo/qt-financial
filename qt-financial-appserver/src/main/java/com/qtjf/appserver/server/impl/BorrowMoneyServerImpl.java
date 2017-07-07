@@ -63,4 +63,9 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		return bmdao.selectAll(bm);
 	}
 
+	@Override
+	public QtFinancialBorrowMoney getBorrowMoneysInfo(String id) {
+		return bmdao.selectByPrimaryKey(id);
+	}
+
 }

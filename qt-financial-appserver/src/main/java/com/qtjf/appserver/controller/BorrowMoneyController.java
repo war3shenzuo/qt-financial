@@ -27,7 +27,7 @@ public class BorrowMoneyController {
 	
 	
 	/**
-	 * 新增申请借款
+	 * 获取用户所有订单
 	 * @return
 	 */
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
@@ -35,9 +35,26 @@ public class BorrowMoneyController {
 		ResultCode result = null;
 		try {
 			List<QtFinancialBorrowMoney> list =  borrowMoneytserver.getBorrowMoneys(userId);
-			result = ResultCode.getSuccess("获取用户产品成功", list.size(), list);
+			result = ResultCode.getSuccess("获取用户订单成功", list);
 		} catch (Exception e) {
-			result = ResultCode.getSuccess("获取用户产品失败");
+			result = ResultCode.getSuccess("获取用户订单失败");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
+	 * 获取借款订单详情
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResultCode getBorrowMoneysInfo(@PathVariable("id") String id) {
+		ResultCode result = null;
+		try {
+			QtFinancialBorrowMoney bm =  borrowMoneytserver.getBorrowMoneysInfo(id);
+			result = ResultCode.getSuccess("获取借款订单详情成功", bm);
+		} catch (Exception e) {
+			result = ResultCode.getSuccess("获取借款订单详情失败");
 			e.printStackTrace();
 		}
 		return result;
