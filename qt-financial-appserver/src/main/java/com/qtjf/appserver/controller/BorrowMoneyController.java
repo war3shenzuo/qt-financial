@@ -1,6 +1,8 @@
 package com.qtjf.appserver.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +25,26 @@ public class BorrowMoneyController {
 	@Autowired
 	BorrowMoneyServer borrowMoneytserver;
 	
+	
 	/**
-	 * 购买产品
+	 * 新增申请借款
+	 * @return
+	 */
+	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
+	public ResultCode getBorrowMoneys(@PathVariable("userId") String userId) {
+		ResultCode result = null;
+		try {
+			List<QtFinancialBorrowMoney> list =  borrowMoneytserver.getBorrowMoneys(userId);
+			result = ResultCode.getSuccess("获取用户产品成功", list.size(), list);
+		} catch (Exception e) {
+			result = ResultCode.getSuccess("获取用户产品失败");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
+	 * 新增申请借款
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
@@ -41,7 +61,7 @@ public class BorrowMoneyController {
 	}
 	
 	/**
-	 * 修改购买产品记录
+	 * 修改订单状态
 	 * @return
 	 */
 	@RequestMapping( value = "/{id}/status/{status}",method = RequestMethod.PATCH)
@@ -49,13 +69,15 @@ public class BorrowMoneyController {
 		ResultCode result = null;
 		try {
 			borrowMoneytserver.updateStatus(id,status);
-			result = ResultCode.getSuccess("修改记录状态成功");
+			result = ResultCode.getSuccess("修改订单状态成功");
 		} catch (Exception e) {
-			result = ResultCode.getFail("修改记录状态失败");
+			result = ResultCode.getFail("修改订单状态失败");
 			e.printStackTrace();
 		}
 		return result;
 	}
+	
+	
 
 
 

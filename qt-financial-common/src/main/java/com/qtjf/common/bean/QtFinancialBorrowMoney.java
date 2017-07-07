@@ -2,6 +2,7 @@ package com.qtjf.common.bean;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class QtFinancialBorrowMoney {
     private String id;
@@ -37,6 +38,8 @@ public class QtFinancialBorrowMoney {
     private Long applyAt;
 
     private Long createdAt;
+    
+    private List<QtFinancialBorrowMoneyFlow> borrowMoneyFlow;
 
 
     public String getId() {
@@ -173,6 +176,14 @@ public class QtFinancialBorrowMoney {
 
 	public void setReductionExemption(BigDecimal reductionExemption) {
 		this.reductionExemption = reductionExemption;
+	}
+
+	public List<QtFinancialBorrowMoneyFlow> getBorrowMoneyFlow() {
+		return borrowMoneyFlow;
+	}
+
+	public void setBorrowMoneyFlow(List<QtFinancialBorrowMoneyFlow> borrowMoneyFlow) {
+		this.borrowMoneyFlow = borrowMoneyFlow;
 	}
 
 	

@@ -3,9 +3,9 @@ package com.qtjf.common.bean;
 import java.util.Date;
 
 public class QtFinancialBorrowMoneyFlow {
-    private Integer id;
+    private String id;
 
-    private String borrowid;
+    private String borrowId;
 
     private String status;
 
@@ -13,23 +13,25 @@ public class QtFinancialBorrowMoneyFlow {
 
     private Date updatedat;
 
-    public Integer getId() {
-        return id;
-    }
+    
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public String getId() {
+		return id;
+	}
 
-    public String getBorrowid() {
-        return borrowid;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setBorrowid(String borrowid) {
-        this.borrowid = borrowid;
-    }
+	public String getBorrowId() {
+		return borrowId;
+	}
 
-    public String getStatus() {
+	public void setBorrowId(String borrowId) {
+		this.borrowId = borrowId;
+	}
+
+	public String getStatus() {
         return status;
     }
 
