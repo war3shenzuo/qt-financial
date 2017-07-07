@@ -89,10 +89,10 @@
 		qt_financial_borrow_money
 		<where>
 			<if test="productId!=null and productId!=''">
-				productId = #{productId}
+				and productId = #{productId}
 			</if>
 			<if test="userId!=null and userId!=''">
-				userId = #{userId}
+				and  userId = #{userId}
 			</if>
 		</where>
 	</select>

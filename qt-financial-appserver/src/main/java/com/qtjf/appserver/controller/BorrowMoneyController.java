@@ -44,7 +44,7 @@ public class BorrowMoneyController {
 	 * 修改购买产品记录
 	 * @return
 	 */
-	@RequestMapping( value = "/{id}/status/{status}",method = RequestMethod.PUT)
+	@RequestMapping( value = "/{id}/status/{status}",method = RequestMethod.PATCH)
 	public ResultCode update(@PathVariable("id") String id, @PathVariable("status") String status) {
 		ResultCode result = null;
 		try {

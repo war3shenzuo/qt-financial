@@ -28,13 +28,15 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 
 	@Override
 	public void update(QtFinancialBorrowMoney bm) {
-		// TODO Auto-generated method stub
-
+		bmdao.updateByPrimaryKey(bm);
 	}
 
 	@Override
 	public void updateStatus(String id, String status) {
-		// TODO Auto-generated method stub
+		QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
+		bm.setId(id);
+		bm.setStatus(status);
+		update(bm);
 	}
 
 }
