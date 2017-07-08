@@ -2,16 +2,23 @@ package com.qtjf.common.emus;
 
 public enum borrowStatus {
 	
-	CANCEL("0","取消申请"),
-	APPLY("1","已经申请"),
-	CHECK("2","审核情况"),
-	PAY("3","打款情况"),
-	REPAY("4","还款期限"),
-	EXP("5","到期提醒"),
-	OVERDUE("6","逾期提醒"),
-	POSTPONE("7","延期成功"),
-	FINISH("8","还款成功"),
-	AHEAD("9","提前还款成功");
+	
+	APPLY("1r","已经申请"),
+	CHECK("2r","审核员审核情况"),
+	CHECK_M("3r","审核经理审核情况"),
+	PAY("4r","打款情况"),
+	REPAY("5r","还款期限"),
+	EXP("6r","到期提醒"),
+	OVERDUE("7r","逾期提醒"),
+	POSTPONE("8r","延期成功"),
+	
+	
+	CANCEL("1e","取消申请"),
+	NOCHECK("2e","审核员审核未通过"),
+	NOCHECK_M("3e","审核经理审核未通过"),
+	NOPAY("4e","打款未通过"),
+	FINISH("5e","还款成功"),
+	AHEAD("6e","提前还款成功");
 
 	
 	/** 返回状态码*/
