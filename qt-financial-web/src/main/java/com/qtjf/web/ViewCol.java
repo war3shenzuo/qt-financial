@@ -52,4 +52,10 @@ public class ViewCol {
 	public String borrow_list() {
 		return "ajax/modal/borrow_list";
 	}
+	
+	// 查看借款记录
+	@RequestMapping(value = "/borrow_info")
+	public String borrow_info() {
+		return "ajax/borrow_info";
+	}
 }

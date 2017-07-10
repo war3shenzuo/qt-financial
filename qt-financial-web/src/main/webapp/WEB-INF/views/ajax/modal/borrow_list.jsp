@@ -66,7 +66,7 @@ caption {
 						</tr>
 						<tr>
 							<td>订单记录</td>
-							<td>查看详情</td>
+							<td><a href="#" onclick="openBorrowInfo(id)">查看详情</a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -75,3 +75,14 @@ caption {
 	</div>
 </div>
 <!-- 模态框（Modal） -->
+
+<script>
+function openBorrowInfo(id){
+	$("#borrowList").modal("hide");
+	setTimeout(function(){
+		var url = "${pageContext.request.contextPath}/view/borrow_info";
+		LoadAjaxContent(url, "wrapper");
+	},300);
+	
+}
+</script>
