@@ -52,10 +52,22 @@ public class ViewCol {
 	public String borrow_list() {
 		return "ajax/modal/borrow_list";
 	}
-	
-	// 查看借款记录
+
+	// 查看借款详情
 	@RequestMapping(value = "/borrow_info")
 	public String borrow_info() {
 		return "ajax/borrow_info";
+	}
+
+	// 产品管理
+	@RequestMapping(value = "/product")
+	public String product() {
+		return "ajax/product";
+	}
+
+	// 新增产品
+	@RequestMapping(value = "/product_add")
+	public String product_add() {
+		return "ajax/product_add";
 	}
 }

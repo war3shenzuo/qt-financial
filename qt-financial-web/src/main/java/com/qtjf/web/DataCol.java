@@ -1,13 +1,23 @@
 package com.qtjf.web;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.qtjf.web.service.ProductService;
+import com.qtjf.web.util.StringUtil;
 
 @RestController
 @RequestMapping(value="data")
 public class DataCol {
+	
+	@Autowired
+	private ProductService productService;
 	
 	/**
 	 * 分页获取审核数据，类型分审核中和审核完毕的
@@ -91,5 +101,45 @@ public class DataCol {
 		return null;
 	}
 	
+	/**
+	 * 分页查看产品列表
+	 * 
+	 * @param aoData
+	 * @return
+	 */
+	@RequestMapping(value = "/product/all")
+	public String sign_info(String aoData) {
+        JSONArray jsonarray = JSONArray.parseArray(aoData);
+        String sEcho = null;// 对比数据
+        int iDisplayStart = 0; // 起始索引
+        int iDisplayLength = 0; // 每页显示的行数
+        String search = "";
+        for (int i = 0; i < jsonarray.size(); i++) {
+            JSONObject obj = (JSONObject) jsonarray.get(i);
+            if (obj.get("name").equals("sEcho"))
+                sEcho = obj.get("value").toString();
+
+            if (obj.get("name").equals("iDisplayStart"))
+                iDisplayStart = obj.getIntValue("value");
+
+            if (obj.get("name").equals("iDisplayLength"))
+                iDisplayLength = obj.getIntValue("value");
+
+            if (obj.get("name").equals("sSearch"))
+                search = obj.get("value").toString();
+        }
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("search", search);
+        paramMap.put("start", iDisplayStart);
+        paramMap.put("end", iDisplayLength);
+        Map<String, Object> map = productService
+                .selectAllByPage(paramMap);
+        JSONObject getObj = new JSONObject();
+        getObj.put("sEcho", sEcho);// 防止数据请求串线
+        getObj.put("iTotalRecords", map.get(StringUtil.pageCount));// 实际的行数
+        getObj.put("iTotalDisplayRecords", map.get(StringUtil.pageCount));//
+        getObj.put("aaData", map.get(StringUtil.pageData));// 要以JSON格式返回
+        return getObj.toString();
+    }
 	
 }

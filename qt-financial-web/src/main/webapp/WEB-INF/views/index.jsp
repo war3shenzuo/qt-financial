@@ -77,9 +77,6 @@
 <script type="text/javascript" language="javascript" src="${ctx}/common/js/advanced-datatable/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="${ctx}/common/js/data-tables/DT_bootstrap.js"></script>
 
-<!--dynamic table initialization -->
-<script src="${ctx}/common/js/dynamic_table_init.js"></script>
-
 <!-- 点击放大效果-->
 <script src="${ctx}/common/js/0_swh/lightbox/js/lightbox-2.6.min.js"></script>
 

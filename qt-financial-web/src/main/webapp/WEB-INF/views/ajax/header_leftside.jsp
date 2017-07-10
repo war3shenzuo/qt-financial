@@ -18,14 +18,18 @@
 
 		<!--sidebar nav start 左侧导航栏-->
 		<ul class="nav nav-pills nav-stacked custom-nav">
+			<li ><span>系统管理</span>	</li>
+				<li class="menu"><a href="#"
+				onclick="LoadAjaxContent('product','wrapper')">产品管理</a></li>
 			<li ><span>借款审核</span>
+			</li>
 			<li class="menu"><a href="#"
 				onclick="LoadAjaxContent('index_info','wrapper')">借款审核</a></li>
-			<li ><span>客户管理</span>
+			<li ><span>客户管理</span>	</li>
 			<li class="menu"><a href="#"
 				onclick="LoadAjaxContent('index_info','wrapper')">借款申请</a></li>
 	        </li>
-	        <li><span>活动管理</span>
+	        <li><span>活动管理</span>	</li>
 			<li class="menu"><a href="#"
 				onclick="LoadAjaxContent('index_info','wrapper')"> 借款申请</a></li>
 	        </li>

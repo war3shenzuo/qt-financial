@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.web.mapper.QtFinacialProductMapper">
+
+	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinacialProduct"
+		parameterType="java.lang.String">
+		select id, productName, productCode, amount,
+		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
+		isActivated, createdAt, createdBy, updatedAt, updateBy
+		from qt_finacial_product
+		where id = #{value}
+	</select>
+
+	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialProduct">
+		select id, productName, productCode, amount,
+		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
+		isActivated, createdAt, createdBy, updatedAt, updateBy
+		from qt_finacial_product
+	</select>
+
+	<select id="selectAllByPage" parameterType="java.util.Map"
+		resultType="com.qtjf.common.bean.QtFinacialProduct">
+		select id, productName, productCode, amount,
+		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
+		isActivated, createdAt, createdBy, updatedAt, updateBy
+		from qt_finacial_product
+		where id like '%${search}%' or productName like '%${search}%' or amount
+		like '%${search}%' or auditCost like '%${search}%' or manageCost like
+		'%${search}%' limit #{start},#{end}
+	</select>
+	
+	<select id="selectAllByPageCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1)
+		from qt_finacial_product
+		where id like '%${search}%' or productName like '%${search}%' or amount
+		like '%${search}%' or auditCost like '%${search}%' or manageCost like
+		'%${search}%' 
+	</select>
+</mapper>
