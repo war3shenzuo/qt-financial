@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.qtjf.xdt.util.CreditFlowUtil;
+
 @RestController
 public class CreditFlowController {
 
 	@Autowired
 	private RestTemplate template;
-
+	
 	@Value("${jdt.testHost}")
 	private String host;
 
@@ -42,14 +44,16 @@ public class CreditFlowController {
 	 * @return
 	 */
 	@RequestMapping(value = "AccessToken", method = RequestMethod.GET)
-	public Map<String, String> AccessToken(String org, String secret, HttpServletRequest req) {
+	public Map<String, Object> AccessToken(String org, String secret, HttpServletRequest req) {
 		
 		req.getSession().setAttribute("org", org);
 		req.getSession().setAttribute("secret", secret);
 
-		String url = host + "AccessToken?org=" + org + "&secret=" + secret;
-		@SuppressWarnings("unchecked")
-		Map<String, String> map = template.getForObject(url, Map.class);
+		//String url = host + "AccessToken?org=" + org + "&secret=" + secret;
+		
+		CreditFlowUtil util = new CreditFlowUtil(host,template);
+		
+		Map<String, Object> map = util.AccessToken(org, secret);
 
 		if (Objects.equals(map.get("result"), "SUCCESS")) {
 			req.getSession().setAttribute("accessToken", map.get("accessToken"));
