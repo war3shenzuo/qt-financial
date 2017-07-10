@@ -2,6 +2,8 @@ package com.qtjf.appserver.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,11 +31,13 @@ public class ProductController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ResultCode getProducts() {
+	public ResultCode getProducts( HttpServletResponse resp) {
+		
 		ResultCode result = null;
 		try {
 			List<QtFinacialProduct> list = productserver.getProducts("");
 			result = ResultCode.getSuccess("获取所有产品成功", list);
+			
 		} catch (Exception e) {
 			result = ResultCode.getFail("获取所有产品失败");
 			e.printStackTrace();

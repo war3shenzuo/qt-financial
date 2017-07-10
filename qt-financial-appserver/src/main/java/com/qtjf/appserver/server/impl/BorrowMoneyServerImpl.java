@@ -2,6 +2,7 @@ package com.qtjf.appserver.server.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,19 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		bm.setId(id);
 		bm.setStatus(status);
 		update(bm);
+		
+		QtFinancialBorrowMoneyFlow bmf = new QtFinancialBorrowMoneyFlow();
+		bmf.setId(UUID.randomUUID().toString());
+		bmf.setUpdatedat(new Date());
+		bmf.setBorrowId(bm.getId());
+		//增加流程进度记录
+		if(Objects.equals(status, borrowStatus.CANCEL.getStatus())){
+			bmf.setStatus(borrowStatus.CANCEL.getStatus());
+			bmf.setComment("用户已取消申请");
+		}
+		
+		bmfdao.insert(bmf);
+		
 	}
 
 	@Override

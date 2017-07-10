@@ -34,34 +34,8 @@
 	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney">
 		update
 		qt_financial_borrow_money
-		set productId =
-		#{productid,jdbcType=VARCHAR},
-		couponId = #{couponid,jdbcType=VARCHAR},
-		userId = #{userid,jdbcType=VARCHAR},
-		amount =
-		#{amount,jdbcType=DECIMAL},
-		daynum = #{daynum,jdbcType=VARCHAR},
-		status
-		= #{status,jdbcType=VARCHAR},
-		repaymentDate =
-		#{repaymentdate,jdbcType=TIMESTAMP},
-		repaymentAmount =
-		#{repaymentamount,jdbcType=DECIMAL},
-		arriveAmount =
-		#{arriveamount,jdbcType=DECIMAL},
-		auditCost =
-		#{auditcost,jdbcType=DECIMAL},
-		factorageCost =
-		#{factoragecost,jdbcType=DECIMAL},
-		rate = #{rate,jdbcType=INTEGER},
-		manageCost = #{managecost,jdbcType=DECIMAL},
-		reductionExemption =
-		#{reductionexemption,jdbcType=DECIMAL},
-		applyAt =
-		#{applyat,jdbcType=TIMESTAMP},
-		createdAt =
-		#{createdat,jdbcType=TIMESTAMP}
-		where id = #{id,jdbcType=INTEGER}
+		set status = #{status,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
 	</update>
 
 	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialBorrowMoney"
