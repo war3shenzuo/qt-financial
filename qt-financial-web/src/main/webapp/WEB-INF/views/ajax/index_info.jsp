@@ -26,7 +26,7 @@ margin-right:10px;
 		<div class="col-sm-2">头像</div>
 		<div class="col-sm-10">
 			<div class="row">
-				ID:<span>12313241432412341324</span>电话：<span>13737373737</span><span>普通客户</span>|<a style="margin-left: 10px;">查看借款记录</a>
+				ID:<span>12313241432412341324</span>电话：<span>13737373737</span><span>普通客户</span>|<a href="#" style="margin-left: 10px;" onclick="showBorrowList()">查看借款记录</a>
 				<button type="button" class="btn btn-default" style="float:right;margin-right:15px;">拒绝申请</button>
 				<button type="button" class="btn btn-default" style="float:right;margin-right:15px;">同意申请</button>
 			</div>
@@ -70,6 +70,7 @@ margin-right:10px;
 <div id="auth_id"></div>
 <div id="auth_wx"></div>
 <div id="auth_contact"></div>
+<div id="borrow_list"></div>
 <script src="${ctx}/common/js/index_info.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -84,80 +85,9 @@ margin-right:10px;
 		var url = "${pageContext.request.contextPath}/view/modal/auth_contact";
 		LoadAjaxContent(url, "auth_contact");
 		
+		var url = "${pageContext.request.contextPath}/view/modal/borrow_list";
+		LoadAjaxContent(url, "borrow_list");
 	});
-	function loadDoctorCheck(data) {
-		try {
-			var img_url = $("#img_url").val();
-			var htmlStr = "";
-			var dataList = data.objList;
-			for (var i = 0; i < dataList.length; i++) {
-				htmlStr += '<tr class="gradeX">'
-						+ ' <td><a class="example-image-link" data-lightbox="example-set1" href="'+img_url+dataList[i].userPic+'" title="'+dataList[i].userName+'"><img src="'
-						+ img_url
-						+ dataList[i].userPic
-						+ '?x-oss-process=image/resize,w_40" alt="头像" onerror="this.src=\'${pageContext.request.contextPath}/common/img/no_pic40.png\'" style="width: 40px; height: auto;" /></a>'
-						+ dataList[i].userName
-						+ '</td>'
-						+ '<td><a class="example-image-link" data-lightbox="example-set2" href="'+img_url+dataList[i].urlFront+'" title="身份证正面"><img src="'
-						+ img_url
-						+ dataList[i].urlFront
-						+ '?x-oss-process=image/resize,w_40" alt="身份证正面" onerror="this.src=\'${pageContext.request.contextPath}/common/img/no_pic40.png\'" style="width: 40px; height: auto;" /></a></td>'
-						+ '<td><a class="example-image-link" data-lightbox="example-set3" href="'+img_url+dataList[i].urlBack+'" title="身份证反面"><img src="'
-						+ img_url
-						+ dataList[i].urlBack
-						+ '?x-oss-process=image/resize,w_40" alt="身份证反面" onerror="this.src=\'${pageContext.request.contextPath}/common/img/no_pic40.png\'" style="width: 40px; height: auto;" /></a></td>'
-						+ '<td><a class="example-image-link" data-lightbox="example-set4" href="'+img_url+dataList[i].scUrl+'" title="手持身份证"><img src="'
-						+ img_url
-						+ dataList[i].scUrl
-						+ '?x-oss-process=image/resize,w_40" alt="手持身份证" onerror="this.src=\'${pageContext.request.contextPath}/common/img/no_pic40.png\'" style="width: 40px; height: auto;" /></a></td>'
-						+ ' <td>';
-				for (var j = 0; j < dataList[i].zgUrl.length; j++) {
-					htmlStr += '<a class="example-image-link" data-lightbox="example-set5" href="'+img_url+dataList[i].zgUrl[j]+'" title="医师资格证"><img src="'
-							+ img_url
-							+ dataList[i].zgUrl[j]
-							+ '?x-oss-process=image/resize,w_40" alt="医师资格证" onerror="this.src=\'${pageContext.request.contextPath}/common/img/no_pic40.png\'" style="width: 40px; height: auto;" /></a>';
-				}
-				htmlStr += '</td><td>';
-				for (var h = 0; h < dataList[i].content.length; h++) {
-					if (h == dataList[i].content.length - 1) {
-						if (dataList[i].content[h] == 'SIGN_DOC') {
-							htmlStr += '签约医生';
-						} else {
-							htmlStr += '指导医生';
-						}
-					} else {
-						if (dataList[i].content[h] == 'SIGN_DOC') {
-							htmlStr += '签约医生,';
-						} else {
-							htmlStr += '指导医生,';
-						}
-					}
-				}
-				htmlStr += '</td><td>';
-				if (dataList[i].state == 'CHECK_QUALITY_VERIFY') {
-					htmlStr += '资质申请';
-				}
-				if (dataList[i].state == 'CHECK_QUALITY_UPDATE_VERIFY') {
-					htmlStr += '更新资质';
-				}
-				htmlStr += ' </td>' + ' <td><a href="#" onclick="update('
-						+ dataList[i].id + ',this,' + dataList[i].userId
-						+ ',\'' + dataList[i].state
-						+ '\')">通过</a>|<a href="#" onclick="refuse('
-						+ dataList[i].id + ',this,' + dataList[i].userId
-						+ ',\'' + dataList[i].state + '\')">拒绝</a></td> '
-						+ '</tr>';
-			}
-			$("#content").html(htmlStr);
-
-			$('#dynamic-table').dataTable({
-				"aaSorting" : [ [ 4, "desc" ] ]
-			});
-
-		} catch (arr) {
-			console.log(arr);
-		}
-	}
 	function getBorrow(data){
 		console.log(data);
 	}  

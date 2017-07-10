@@ -13,3 +13,6 @@ function showAuthWx() {
 function showAuthContact() {
 	$("#authContact").modal("show");
 }
+function showBorrowList() {
+	$("#borrowList").modal("show");
+}

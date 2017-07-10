@@ -46,4 +46,10 @@ public class ViewCol {
 	public String auth_contact() {
 		return "ajax/modal/auth_contact";
 	}
+
+	// 查看借款记录
+	@RequestMapping(value = "/modal/borrow_list")
+	public String borrow_list() {
+		return "ajax/modal/borrow_list";
+	}
 }
