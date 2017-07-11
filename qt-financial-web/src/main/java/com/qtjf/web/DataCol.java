@@ -9,12 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.qtjf.common.bean.QtFinancialBorrowMoney;
+import com.qtjf.common.emus.borrowStatus;
+import com.qtjf.web.service.BorrowService;
 import com.qtjf.web.service.ProductService;
 import com.qtjf.web.util.StringUtil;
 
 @RestController
 @RequestMapping(value="data")
 public class DataCol {
+	
+	@Autowired
+	private BorrowService borrowService;
 	
 	@Autowired
 	private ProductService productService;
@@ -29,19 +35,24 @@ public class DataCol {
 	 */
 	@RequestMapping(value = "/all")
 	public Map<String,Object> all(String type,Integer start,Integer end) {
-		return null;
+		QtFinancialBorrowMoney qm = new QtFinancialBorrowMoney();
+		qm.setStatus(borrowStatus.APPLY.toString());
+		return borrowService.getBorrows(qm);
 	}
 	
 	/**
 	 * 是否同意借款
 	 * 
 	 * @param id
-	 * @param type 是否同意
+	 * @param type 是否同意 borrowStatus.NOCHECK表示不同意，CHECK表示同意
 	 * @return
 	 */
 	@RequestMapping(value = "/borrow/agree")
-	public Map<String,Object> borrowAgree(Integer id,String type) {
-		return null;
+	public Map<String,Object> borrowAgree(String id,String type) {
+		QtFinancialBorrowMoney qm = new QtFinancialBorrowMoney();
+		qm.setId(id);
+		qm.setStatus(type);
+		return borrowService.updateBorrows(qm);
 	}
 	
 	/**
