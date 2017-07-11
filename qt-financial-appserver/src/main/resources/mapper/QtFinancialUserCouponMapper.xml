@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.appserver.dao.QtFinancialUserCouponMapper" >
+  <resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialUserCoupon" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userId" property="userId" jdbcType="VARCHAR" />
+    <result column="couponId" property="couponId" jdbcType="VARCHAR" />
+    <result column="validStartTime" property="validstarTtime" jdbcType="TIMESTAMP" />
+    <result column="validEndTime" property="validendTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="createdAt" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <association  column="coupon" property="coupon" select="selectCouponInfo" javaType="com.qtjf.common.bean.QtFinancialCoupon"/>  
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from qt_financial_user_coupon
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialUserCoupon" >
+    insert into qt_financial_user_coupon (id, userId, couponId, 
+      validStartTime, validEndTime, status, 
+      createdAt, source)
+    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{couponid,jdbcType=VARCHAR}, 
+      #{validstarttime,jdbcType=TIMESTAMP}, #{validendtime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{createdat,jdbcType=TIMESTAMP}, #{source,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialUserCoupon" >
+    update qt_financial_user_coupon
+    set userId = #{userid,jdbcType=VARCHAR},
+      couponId = #{couponid,jdbcType=VARCHAR},
+      validStartTime = #{validstarttime,jdbcType=TIMESTAMP},
+      validEndTime = #{validendtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      createdAt = #{createdat,jdbcType=TIMESTAMP},
+      source = #{source,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, userId, couponId, validStartTime, validEndTime, status, createdAt, source
+    from qt_financial_user_coupon
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, userId, couponId, validStartTime, validEndTime, status, createdAt, source
+    from qt_financial_user_coupon
+  </select>
+  
+   <select id="selectCouponInfo" parameterType="com.qtjf.common.bean.QtFinancialCoupon" >
+    select * from qt_financial_coupon
+  </select>
+</mapper>

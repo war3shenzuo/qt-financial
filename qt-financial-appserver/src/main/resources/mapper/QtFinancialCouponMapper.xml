@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.appserver.dao;.QtFinancialCouponMapper">
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from qt_financial_coupon
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialCoupon">
+		insert into qt_financial_coupon (id, code, amount,
+		limitAmount, limitUserLevel, limitProduct,
+		comment, createdAt, createdBy,
+		updatedAt, updateBy)
+		values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+		#{amount,jdbcType=DECIMAL},
+		#{limitamount,jdbcType=DECIMAL}, #{limituserlevel,jdbcType=VARCHAR}, #{limitproduct,jdbcType=VARCHAR},
+		#{comment,jdbcType=VARCHAR}, #{createdat,jdbcType=TIMESTAMP},
+		#{createdby,jdbcType=VARCHAR},
+		#{updatedat,jdbcType=TIMESTAMP}, #{updateby,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialCoupon">
+		update qt_financial_coupon
+		set code = #{code,jdbcType=VARCHAR},
+		amount = #{amount,jdbcType=DECIMAL},
+		limitAmount = #{limitamount,jdbcType=DECIMAL},
+		limitUserLevel = #{limituserlevel,jdbcType=VARCHAR},
+		limitProduct = #{limitproduct,jdbcType=VARCHAR},
+		comment = #{comment,jdbcType=VARCHAR},
+		createdAt = #{createdat,jdbcType=TIMESTAMP},
+		createdBy = #{createdby,jdbcType=VARCHAR},
+		updatedAt = #{updatedat,jdbcType=TIMESTAMP},
+		updateBy = #{updateby,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialCoupon"
+		parameterType="java.lang.String">
+		select id, code, amount, limitAmount, limitUserLevel, limitProduct, comment,
+		createdAt,
+		createdBy, updatedAt, updateBy
+		from qt_financial_coupon
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinancialCoupon">
+		select id, code, amount, limitAmount, limitUserLevel, limitProduct,
+		comment, createdAt,
+		createdBy, updatedAt, updateBy
+		from qt_financial_coupon
+	</select>
+</mapper>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,8 @@ import com.qtjf.common.vo.ResultCode;
 @RequestMapping("/products")
 public class ProductController {
 
+    private final  Logger logger = LoggerFactory.getLogger(this.getClass());  
+	
 	@Autowired
 	ProductServer productserver;
 	
@@ -39,6 +43,7 @@ public class ProductController {
 			result = ResultCode.getSuccess("获取所有产品成功", list);
 			
 		} catch (Exception e) {
+			logger.error("获取所有产品失败",e);
 			result = ResultCode.getFail("获取所有产品失败");
 			e.printStackTrace();
 		}
@@ -57,6 +62,7 @@ public class ProductController {
 			List<QtFinacialProduct> list = productserver.getProducts(userId);
 			result = ResultCode.getSuccess("获取用户产品成功", list);
 		} catch (Exception e) {
+			logger.error("获取用户产品失败",e);
 			result = ResultCode.getFail("获取用户产品失败");
 			e.printStackTrace();
 		}
@@ -75,10 +81,14 @@ public class ProductController {
 			QtFinacialProduct product = productserver.getProduct(id);
 			result = ResultCode.getSuccess("获取产品详情成功", product);
 		} catch (Exception e) {
+			logger.error("获取产品详情失败",e);
 			result = ResultCode.getFail("获取产品详情失败");
 			e.printStackTrace();
 		}
 		return result;
 	}
+	
+	
+	
 
 }
