@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 public class QtFinacialProduct {
     private String id;
 
-    private String productname;
+    private String productName;
 
-    private String productcode;
+    private String productCode;
 
     private BigDecimal amount;
 
@@ -17,13 +17,11 @@ public class QtFinacialProduct {
     
     private BigDecimal manageCost;
 
-    private String rate;
-
     private String daynum;
 
     private String userlevel;
 
-    private String isactivated;
+    private String isActivated;
 
     private Long createdat;
 
@@ -37,8 +35,8 @@ public class QtFinacialProduct {
     
     private BigDecimal arriveAmount;//到账
     
-    private BigDecimal repaymentAmount;//应还
-    
+    private String usable;
+
     
     public String getId() {
 		return id;
@@ -48,27 +46,35 @@ public class QtFinacialProduct {
 		this.id = id;
 	}
 
-	public String getProductname() {
-        return productname;
-    }
+    public String getProductName() {
+		return productName;
+	}
 
-    public void setProductname(String productname) {
-        this.productname = productname;
-    }
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 
-    public String getProductcode() {
-        return productcode;
-    }
+	public String getProductCode() {
+		return productCode;
+	}
 
-    public void setProductcode(String productcode) {
-        this.productcode = productcode;
-    }
+	public void setProductCode(String productCode) {
+		this.productCode = productCode;
+	}
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+	public String getIsActivated() {
+		return isActivated;
+	}
 
-    public void setAmount(BigDecimal amount) {
+	public void setIsActivated(String isActivated) {
+		this.isActivated = isActivated;
+	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -96,14 +102,6 @@ public class QtFinacialProduct {
 		this.manageCost = manageCost;
 	}
 
-	public String getRate() {
-        return rate;
-    }
-
-    public void setRate(String rate) {
-        this.rate = rate;
-    }
-
     public String getDaynum() {
         return daynum;
     }
@@ -118,14 +116,6 @@ public class QtFinacialProduct {
 
     public void setUserlevel(String userlevel) {
         this.userlevel = userlevel;
-    }
-
-    public String getIsactivated() {
-        return isactivated;
-    }
-
-    public void setIsactivated(String isactivated) {
-        this.isactivated = isactivated;
     }
 
     public Long getCreatedat() {
@@ -168,20 +158,20 @@ public class QtFinacialProduct {
 		this.arriveAmount = arriveAmount;
 	}
 
-	public BigDecimal getRepaymentAmount() {
-		return repaymentAmount;
-	}
-
-	public void setRepaymentAmount(BigDecimal repaymentAmount) {
-		this.repaymentAmount = repaymentAmount;
-	}
-
 	public Integer getSucceeNum() {
 		return succeeNum;
 	}
 
 	public void setSucceeNum(Integer succeeNum) {
 		this.succeeNum = succeeNum;
+	}
+
+	public String getUsable() {
+		return usable;
+	}
+
+	public void setUsable(String usable) {
+		this.usable = usable;
 	}
     
     

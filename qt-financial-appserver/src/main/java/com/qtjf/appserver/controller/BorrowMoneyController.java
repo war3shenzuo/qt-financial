@@ -70,7 +70,7 @@ public class BorrowMoneyController {
 	 * 新增申请借款
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping( value = "/insetBorrowMoney" )
 	public ResultCode add(QtFinancialBorrowMoney bm) {
 		ResultCode result = null;
 		try {

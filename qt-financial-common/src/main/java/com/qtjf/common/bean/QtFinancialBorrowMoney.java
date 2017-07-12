@@ -19,17 +19,11 @@ public class QtFinancialBorrowMoney {
 
     private String status;
 
-    private Date repaymentDate;
-
-    private BigDecimal repaymentAmount;
-
     private BigDecimal arriveAmount;
 
     private BigDecimal auditCost;
 
     private BigDecimal factorageCost;
-
-    private Integer rate;
 
     private BigDecimal manageCost;
 
@@ -98,14 +92,6 @@ public class QtFinancialBorrowMoney {
         this.status = status;
     }
 
-    public Integer getRate() {
-        return rate;
-    }
-
-    public void setRate(Integer rate) {
-        this.rate = rate;
-    }
-
 	public Long getCreatedAt() {
 		return createdAt;
 	}
@@ -120,14 +106,6 @@ public class QtFinancialBorrowMoney {
 
 	public void setApplyAt(Long applyAt) {
 		this.applyAt = applyAt;
-	}
-
-	public BigDecimal getRepaymentAmount() {
-		return repaymentAmount;
-	}
-
-	public void setRepaymentAmount(BigDecimal repaymentAmount) {
-		this.repaymentAmount = repaymentAmount;
 	}
 
 	public BigDecimal getArriveAmount() {
@@ -160,14 +138,6 @@ public class QtFinancialBorrowMoney {
 
 	public void setManageCost(BigDecimal manageCost) {
 		this.manageCost = manageCost;
-	}
-
-	public Date getRepaymentDate() {
-		return repaymentDate;
-	}
-
-	public void setRepaymentDate(Date repaymentDate) {
-		this.repaymentDate = repaymentDate;
 	}
 
 	public BigDecimal getReductionExemption() {

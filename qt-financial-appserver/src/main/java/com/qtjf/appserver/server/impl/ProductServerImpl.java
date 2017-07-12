@@ -43,8 +43,7 @@ public class ProductServerImpl implements ProductServer {
 		QtFinacialProduct product = qtFinacialProductMapper.selectByPrimaryKey(id);
 		//计算实际到账的钱
 		product.setArriveAmount(product.getAmount().subtract(product.getFactorageCost()));
-		//计算归还的钱
-		product.setRepaymentAmount(product.getAmount().add(product.getManageCost()).add(product.getAuditCost()));
+		
 		return product;
 	}
 
