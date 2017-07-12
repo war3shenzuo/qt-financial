@@ -31,32 +31,12 @@ public class ProductController {
 	ProductServer productserver;
 	
 	/**
-	 * 获取所有产品
-	 * @return
-	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public ResultCode getProducts( HttpServletResponse resp) {
-		
-		ResultCode result = null;
-		try {
-			List<QtFinacialProduct> list = productserver.getProducts("");
-			result = ResultCode.getSuccess("获取所有产品成功", list);
-			
-		} catch (Exception e) {
-			logger.error("获取所有产品失败",e);
-			result = ResultCode.getFail("获取所有产品失败");
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	/**
 	 * 获取所有产品及用户信息(次数，是否可以申请)
 	 * @param userId 用户Id
 	 * @return 产品集合
 	 */
-	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-	public ResultCode getProducts(@PathVariable("userId") String userId) {
+	@RequestMapping("")
+	public ResultCode getProducts( String userId) {
 		ResultCode result = null;
 		try {
 			List<QtFinacialProduct> list = productserver.getProducts(userId);
@@ -74,8 +54,8 @@ public class ProductController {
 	 * @param id 产品ID
 	 * @return 产品详情
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResultCode getProduct(@PathVariable("id") String id) {
+	@RequestMapping(value = "/getProductInfo", method = RequestMethod.GET)
+	public ResultCode getProductInfo(String id) {
 		ResultCode result = null;
 		try {
 			QtFinacialProduct product = productserver.getProduct(id);
@@ -87,8 +67,6 @@ public class ProductController {
 		}
 		return result;
 	}
-	
-	
 	
 
 }
