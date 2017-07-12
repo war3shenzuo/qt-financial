@@ -8,4 +8,6 @@ public interface QtFinacialAuthenticationEmergencyContactMapper {
     int insert(QtFinacialAuthenticationEmergencyContact record);
 
     List<QtFinacialAuthenticationEmergencyContact> selectAll();
+    
+    QtFinacialAuthenticationEmergencyContact selectByUserId(String userId);
 }

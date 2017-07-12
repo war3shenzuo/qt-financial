@@ -8,4 +8,6 @@ public interface QtFinacialAuthenticationWxMapper {
     int insert(QtFinacialAuthenticationWx record);
 
     List<QtFinacialAuthenticationWx> selectAll();
+    
+    QtFinacialAuthenticationWx selectByUserId(String userId);
 }

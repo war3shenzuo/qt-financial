@@ -8,4 +8,6 @@ public interface QtFinacialAuthenticationBaseMapper {
     int insert(QtFinacialAuthenticationBase record);
 
     List<QtFinacialAuthenticationBase> selectAll();
+    
+    QtFinacialAuthenticationBase selectByUserId(String userId);
 }

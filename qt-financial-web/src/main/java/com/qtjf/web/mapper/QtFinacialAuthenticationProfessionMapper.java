@@ -8,4 +8,6 @@ public interface QtFinacialAuthenticationProfessionMapper {
     int insert(QtFinacialAuthenticationProfession record);
 
     List<QtFinacialAuthenticationProfession> selectAll();
+    
+    QtFinacialAuthenticationProfession selectByUserId(String userId);
 }
