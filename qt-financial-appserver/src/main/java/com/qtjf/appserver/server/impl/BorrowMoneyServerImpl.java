@@ -10,31 +10,57 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qtjf.appserver.dao.QtFinancialBorrowMoneyFlowMapper;
+import com.qtjf.appserver.dao.QtFinancialBorrowMoneyInstalmentMapper;
 import com.qtjf.appserver.dao.QtFinancialBorrowMoneyMapper;
+import com.qtjf.appserver.dao.QtFinancialProductInstalmentMapper;
 import com.qtjf.appserver.server.BorrowMoneyServer;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
 import com.qtjf.common.bean.QtFinancialBorrowMoneyFlow;
+import com.qtjf.common.bean.QtFinancialBorrowMoneyInstalment;
+import com.qtjf.common.bean.QtFinancialProductInstalment;
 import com.qtjf.common.emus.borrowStatus;
 
 @Service
 @Transactional
 public class BorrowMoneyServerImpl implements BorrowMoneyServer {
-	
+
 	@Autowired
 	QtFinancialBorrowMoneyMapper bmdao;
-	
+
 	@Autowired
 	QtFinancialBorrowMoneyFlowMapper bmfdao;
+	
+	@Autowired
+	QtFinancialBorrowMoneyInstalmentMapper bmidao;
+	
+	@Autowired
+	QtFinancialProductInstalmentMapper pidao;
 
 	@Override
-	public void add(QtFinancialBorrowMoney bm) throws Exception {
+	public synchronized void add(QtFinancialBorrowMoney bm) throws Exception {
 		bm.setId(UUID.randomUUID().toString());
 		bm.setStatus(borrowStatus.APPLY.getStatus());
 		bm.setCreatedAt(new Date().getTime());
 		bm.setApplyAt(new Date().getTime());
 		bmdao.insert(bm);
 		
-		//增加流程进度记录
+		// 增加借款流程分期计划
+		QtFinancialProductInstalment instalment = new QtFinancialProductInstalment();
+		instalment.setProductId(bm.getProductId());
+		List<QtFinancialProductInstalment> pis = pidao.selectAll(instalment);
+		QtFinancialBorrowMoneyInstalment bmi = null;
+		for(QtFinancialProductInstalment pi:pis){
+			bmi = new QtFinancialBorrowMoneyInstalment();
+			bmi.setId(UUID.randomUUID().toString());
+			bmi.setBorrowmoneyId(bm.getId());
+			bmi.setAmount(pi.getAmount());
+			bmi.setOverdueAmount(pi.getOverdueAmount());
+			bmi.setRepayAt(pi.getRepayAt());
+			bmi.setStatus(borrowStatus.INSTALMENT_RUN.getStatus());
+			bmidao.insert(bmi);
+		}
+
+		// 增加借款流程进度记录
 		QtFinancialBorrowMoneyFlow bmf = new QtFinancialBorrowMoneyFlow();
 		bmf.setId(UUID.randomUUID().toString());
 		bmf.setStatus(borrowStatus.APPLY.getStatus());
@@ -42,27 +68,28 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		bmf.setUpdatedat(new Date());
 		bmf.setBorrowId(bm.getId());
 		bmfdao.insert(bmf);
+
 	}
-	
+
 	@Override
 	public void updateStatus(String id, String status) {
 		QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
 		bm.setId(id);
 		bm.setStatus(status);
 		update(bm);
-		
+
 		QtFinancialBorrowMoneyFlow bmf = new QtFinancialBorrowMoneyFlow();
 		bmf.setId(UUID.randomUUID().toString());
 		bmf.setUpdatedat(new Date());
 		bmf.setBorrowId(bm.getId());
-		//增加流程进度记录
-		if(Objects.equals(status, borrowStatus.CANCEL.getStatus())){
+		// 增加流程进度记录
+		if (Objects.equals(status, borrowStatus.CANCEL.getStatus())) {
 			bmf.setStatus(borrowStatus.CANCEL.getStatus());
 			bmf.setComment("用户已取消申请");
 		}
-		
+
 		bmfdao.insert(bmf);
-		
+
 	}
 
 	@Override

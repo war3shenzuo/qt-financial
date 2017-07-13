@@ -6,9 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qtjf.appserver.server.BorrowMoneyServer;
@@ -34,8 +32,8 @@ public class BorrowMoneyController {
 	 * 获取用户所有订单
 	 * @return
 	 */
-	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-	public ResultCode getBorrowMoneys(@PathVariable("userId") String userId) {
+	@RequestMapping(value = "getBorrowMoneys")
+	public ResultCode getBorrowMoneys(String userId) {
 		ResultCode result = null;
 		try {
 			List<QtFinancialBorrowMoney> list =  borrowMoneytserver.getBorrowMoneys(userId);
@@ -52,8 +50,8 @@ public class BorrowMoneyController {
 	 * 获取借款订单详情
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResultCode getBorrowMoneysInfo(@PathVariable("id") String id) {
+	@RequestMapping(value = "getBorrowMoneysInfo")
+	public ResultCode getBorrowMoneysInfo(String id) {
 		ResultCode result = null;
 		try {
 			QtFinancialBorrowMoney bm =  borrowMoneytserver.getBorrowMoneysInfo(id);
@@ -67,11 +65,12 @@ public class BorrowMoneyController {
 	}
 	
 	/**
-	 * 新增申请借款
+	 * 新增借款流程
+	 * @param bm  借款详情
 	 * @return
 	 */
 	@RequestMapping( value = "/insetBorrowMoney" )
-	public ResultCode add(QtFinancialBorrowMoney bm) {
+	public ResultCode insetBorrowMoney(QtFinancialBorrowMoney bm) {
 		ResultCode result = null;
 		try {
 			borrowMoneytserver.add(bm);
@@ -88,8 +87,8 @@ public class BorrowMoneyController {
 	 * 修改订单状态
 	 * @return
 	 */
-	@RequestMapping( value = "/{id}/status/{status}",method = RequestMethod.PATCH)
-	public ResultCode update(@PathVariable("id") String id, @PathVariable("status") String status) {
+	@RequestMapping( value = "updateStatus")
+	public ResultCode updateStatus(String id, String status) {
 		ResultCode result = null;
 		try {
 			borrowMoneytserver.updateStatus(id,status);

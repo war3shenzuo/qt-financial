@@ -12,8 +12,8 @@
     insert into qt_financial_borrow_money_instalment (id, borrowmoneyId, amount, 
       repayAt, status, overdueAmount
       )
-    values (#{id,jdbcType=VARCHAR}, #{borrowmoneyid,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
-      #{repayat,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{overdueamount,jdbcType=DECIMAL}
+    values (#{id,jdbcType=VARCHAR}, #{borrowmoneyId,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{repayAt,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{overdueAmount,jdbcType=DECIMAL}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalment" >
