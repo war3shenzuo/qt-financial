@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.qtjf.appserver.dao.QtFinacialProductMapper;
 import com.qtjf.appserver.dao.QtFinancialBorrowMoneyMapper;
+import com.qtjf.appserver.dao.QtFinancialProductInstalmentMapper;
 import com.qtjf.appserver.server.ProductServer;
 import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
+import com.qtjf.common.bean.QtFinancialProductInstalment;
 
 @Service
 public class ProductServerImpl implements ProductServer {
@@ -19,6 +21,9 @@ public class ProductServerImpl implements ProductServer {
 	
 	@Autowired
 	QtFinancialBorrowMoneyMapper qtFinancialBorrowMoneyMapper;
+	
+	@Autowired
+	QtFinancialProductInstalmentMapper qtFinancialProductInstalmentMapper;
 
 	@Override
 	public List<QtFinacialProduct> getProducts(String userId) {
@@ -43,6 +48,10 @@ public class ProductServerImpl implements ProductServer {
 		QtFinacialProduct product = qtFinacialProductMapper.selectByPrimaryKey(id);
 		//计算实际到账的钱
 		product.setArriveAmount(product.getAmount().subtract(product.getFactorageCost()));
+		//获取分期
+		QtFinancialProductInstalment instalment = new QtFinancialProductInstalment();
+		instalment.setProductId(id);
+		product.setInstalments(qtFinancialProductInstalmentMapper.selectAll(instalment));
 		
 		return product;
 	}

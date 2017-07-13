@@ -11,7 +11,7 @@ public interface QtFinancialProductInstalmentMapper {
 
     QtFinancialProductInstalment selectByPrimaryKey(String id);
 
-    List<QtFinancialProductInstalment> selectAll();
+    List<QtFinancialProductInstalment> selectAll(QtFinancialProductInstalment instalment);
 
     int updateByPrimaryKey(QtFinancialProductInstalment record);
 }

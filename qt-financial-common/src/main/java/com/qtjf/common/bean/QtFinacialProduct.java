@@ -1,6 +1,7 @@
 package com.qtjf.common.bean;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class QtFinacialProduct {
     private String id;
@@ -36,6 +37,8 @@ public class QtFinacialProduct {
     private BigDecimal arriveAmount;//到账
     
     private String usable;
+    
+    private List<QtFinancialProductInstalment> instalments;
 
     
     public String getId() {
@@ -172,6 +175,14 @@ public class QtFinacialProduct {
 
 	public void setUsable(String usable) {
 		this.usable = usable;
+	}
+
+	public List<QtFinancialProductInstalment> getInstalments() {
+		return instalments;
+	}
+
+	public void setInstalments(List<QtFinancialProductInstalment> instalments) {
+		this.instalments = instalments;
 	}
     
     

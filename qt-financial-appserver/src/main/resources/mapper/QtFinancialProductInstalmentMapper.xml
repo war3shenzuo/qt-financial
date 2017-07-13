@@ -31,12 +31,17 @@
 	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialProductInstalment"
 		parameterType="java.lang.String">
 		select id, productId, amount, repayAt, overdueAmount
-		from qt_financial_product_instalment
+		from qt_financial_product_instalment,status
 		where id = #{id,jdbcType=VARCHAR}
 	</select>
 	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinancialProductInstalment">
 		select id, productId, amount,
-		repayAt, overdueAmount
+		repayAt, overdueAmount,status
 		from qt_financial_product_instalment
+		<where>
+			<if test="productId!=null and productId!=''">
+				and productId = #{productId}
+			</if>
+		</where>
 	</select>
 </mapper>
