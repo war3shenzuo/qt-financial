@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.appserver.dao.QtFinancialBorrowMoneyInstalmentMapper" >
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from qt_financial_borrow_money_instalment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalment" >
+    insert into qt_financial_borrow_money_instalment (id, borrowmoneyId, amount, 
+      repayAt, status, overdueAmount
+      )
+    values (#{id,jdbcType=VARCHAR}, #{borrowmoneyid,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
+      #{repayat,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{overdueamount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalment" >
+    update qt_financial_borrow_money_instalment
+    set borrowmoneyId = #{borrowmoneyid,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      repayAt = #{repayat,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      overdueAmount = #{overdueamount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalment" parameterType="java.lang.String" >
+    select id, borrowmoneyId, amount, repayAt, status, overdueAmount
+    from qt_financial_borrow_money_instalment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalment" >
+    select id, borrowmoneyId, amount, repayAt, status, overdueAmount
+    from qt_financial_borrow_money_instalment
+  </select>
+</mapper>

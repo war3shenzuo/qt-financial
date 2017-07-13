@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.appserver.dao.QtFinancialProductInstalmentMapper">
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		qt_financial_product_instalment
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialProductInstalment">
+		insert into
+		qt_financial_product_instalment (id, productId, amount,
+		repayAt,
+		overdueAmount)
+		values (#{id,jdbcType=VARCHAR},
+		#{productid,jdbcType=VARCHAR},
+		#{amount,jdbcType=DECIMAL},
+		#{repayat,jdbcType=TIMESTAMP}, #{overdueamount,jdbcType=DECIMAL})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialProductInstalment">
+		update
+		qt_financial_product_instalment
+		set productId =
+		#{productid,jdbcType=VARCHAR},
+		amount = #{amount,jdbcType=DECIMAL},
+		repayAt = #{repayat,jdbcType=TIMESTAMP},
+		overdueAmount =
+		#{overdueamount,jdbcType=DECIMAL}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialProductInstalment"
+		parameterType="java.lang.String">
+		select id, productId, amount, repayAt, overdueAmount
+		from qt_financial_product_instalment
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinancialProductInstalment">
+		select id, productId, amount,
+		repayAt, overdueAmount
+		from qt_financial_product_instalment
+	</select>
+</mapper>
