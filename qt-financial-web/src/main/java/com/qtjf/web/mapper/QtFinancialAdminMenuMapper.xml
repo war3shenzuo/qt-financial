@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.web.mapper.QtFinancialAdminMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.qtjf.web.entity.QtFinancialAdminMenu" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="onclick" property="onclick" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qt_financial_admin_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qtjf.web.entity.QtFinancialAdminMenu" >
+    insert into qt_financial_admin_menu (id, name, url, 
+      onclick, parent_id)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{onclick,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.qtjf.web.entity.QtFinancialAdminMenu" >
+    update qt_financial_admin_menu
+    set name = #{name,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      onclick = #{onclick,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, name, url, onclick, parent_id
+    from qt_financial_admin_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, name, url, onclick, parent_id
+    from qt_financial_admin_menu
+  </select>
+</mapper>
