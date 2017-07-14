@@ -42,7 +42,7 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 	@Override
 	public synchronized void add(QtFinancialBorrowMoney bm) throws Exception {
 		bm.setId(UUID.randomUUID().toString());
-		bm.setStatus(borrowStatus.APPLY.getStatus());
+		bm.setStatus(borrowStatus.BORROW_APPLY.getStatus());
 		bm.setCreatedAt(new Date().getTime());
 		bm.setApplyAt(new Date().getTime());
 		bmdao.insert(bm);
@@ -64,7 +64,7 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		}
 		
 		// 新增一条流程进度记录
-		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(), borrowStatus.APPLY.getStatus(),"请等待客服人员进行审核");
+		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(), borrowStatus.BORROW_APPLY.getStatus(),"请等待客服人员进行审核");
 		bmfdao.insert(bmf);
 
 	}
@@ -90,11 +90,11 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 	public void cancelBorrowMoney(String id) throws Exception {
 		QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
 		bm.setId(id);
-		bm.setStatus(borrowStatus.CANCEL.getStatus());
+		bm.setStatus(borrowStatus.BORROW_CANCEL.getStatus());
 		update(bm);
 
 		// 新增一条流程进度记录
-		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(), borrowStatus.CANCEL.getStatus(),
+		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(),borrowStatus.BORROW_CANCEL.getStatus(),
 				"用户已取消申请");
 		bmfdao.insert(bmf);
 
