@@ -84,18 +84,39 @@ public class BorrowMoneyController {
 	}
 	
 	/**
-	 * 修改订单状态
+	 * 取消订单
 	 * @return
 	 */
-	@RequestMapping( value = "updateStatus")
-	public ResultCode updateStatus(String id, String status) {
+	@RequestMapping( value = "cancelBorrowMoney")
+	public ResultCode cancelBorrowMoney(String id) {
 		ResultCode result = null;
 		try {
-			borrowMoneytserver.updateStatus(id,status);
-			result = ResultCode.getSuccess("修改订单状态成功");
+			borrowMoneytserver.cancelBorrowMoney(id);
+			result = ResultCode.getSuccess("取消成功");
 		} catch (Exception e) {
-			logger.error("修改订单状态失败",e);
-			result = ResultCode.getFail("修改订单状态失败");
+			logger.error("取消失败",e);
+			result = ResultCode.getFail("取消失败");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
+	 * 
+	 * @param id 借款流程Id
+	 * @param instalmentId 计划id
+	 * @param amount 金额
+	 * @return
+	 */
+	@RequestMapping( value = "immediatelyBorrowMoney")
+	public ResultCode immediatelyBorrowMoney(String id,String instalmentId,String amount) {
+		ResultCode result = null;
+		try {
+		//	borrowMoneytserver.immediatelyBorrowMoney(id);
+			result = ResultCode.getSuccess("提前还款成功");
+		} catch (Exception e) {
+			logger.error("提前还款失败",e);
+			result = ResultCode.getFail("提前还款失败");
 			e.printStackTrace();
 		}
 		return result;

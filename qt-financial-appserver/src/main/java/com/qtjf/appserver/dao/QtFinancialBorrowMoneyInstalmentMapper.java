@@ -12,7 +12,7 @@ public interface QtFinancialBorrowMoneyInstalmentMapper {
 
     QtFinancialBorrowMoneyInstalment selectByPrimaryKey(String id);
 
-    List<QtFinancialBorrowMoneyInstalment> selectAll();
+    List<QtFinancialBorrowMoneyInstalment> selectAll(QtFinancialBorrowMoneyInstalment instalment);
 
     int updateByPrimaryKey(QtFinancialBorrowMoneyInstalment record);
 

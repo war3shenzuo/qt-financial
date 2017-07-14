@@ -20,12 +20,6 @@ public interface BorrowMoneyServer {
 	void update(QtFinancialBorrowMoney bm) throws Exception;
 	
 	/**
-	 * 修改借钱订单记录状态
-	 * @param bm
-	 */
-	void updateStatus(String id, String status) throws Exception;
-	
-	/**
 	 * 查询我的借钱订单
 	 * @param userId
 	 * @return
@@ -38,5 +32,11 @@ public interface BorrowMoneyServer {
 	 * @return
 	 */
 	QtFinancialBorrowMoney getBorrowMoneysInfo(String id);
+	/**
+	 * 取消借钱流程
+	 * @param id
+	 */
+	void cancelBorrowMoney(String id) throws Exception;
+	
 
 }

@@ -1,9 +1,10 @@
 package com.qtjf.appserver.server.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,12 +30,14 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 
 	@Autowired
 	QtFinancialBorrowMoneyFlowMapper bmfdao;
-	
+
 	@Autowired
 	QtFinancialBorrowMoneyInstalmentMapper bmidao;
-	
+
 	@Autowired
 	QtFinancialProductInstalmentMapper pidao;
+
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 24h:mm:ss");
 
 	@Override
 	public synchronized void add(QtFinancialBorrowMoney bm) throws Exception {
@@ -43,13 +46,13 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		bm.setCreatedAt(new Date().getTime());
 		bm.setApplyAt(new Date().getTime());
 		bmdao.insert(bm);
-		
+
 		// 增加借款流程分期计划
 		QtFinancialProductInstalment instalment = new QtFinancialProductInstalment();
 		instalment.setProductId(bm.getProductId());
 		List<QtFinancialProductInstalment> pis = pidao.selectAll(instalment);
 		QtFinancialBorrowMoneyInstalment bmi = null;
-		for(QtFinancialProductInstalment pi:pis){
+		for (QtFinancialProductInstalment pi : pis) {
 			bmi = new QtFinancialBorrowMoneyInstalment();
 			bmi.setId(UUID.randomUUID().toString());
 			bmi.setBorrowmoneyId(bm.getId());
@@ -59,35 +62,9 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 			bmi.setStatus(borrowStatus.INSTALMENT_RUN.getStatus());
 			bmidao.insert(bmi);
 		}
-
-		// 增加借款流程进度记录
-		QtFinancialBorrowMoneyFlow bmf = new QtFinancialBorrowMoneyFlow();
-		bmf.setId(UUID.randomUUID().toString());
-		bmf.setStatus(borrowStatus.APPLY.getStatus());
-		bmf.setComment("请等待客服人员进行审核");
-		bmf.setUpdatedat(new Date());
-		bmf.setBorrowId(bm.getId());
-		bmfdao.insert(bmf);
-
-	}
-
-	@Override
-	public void updateStatus(String id, String status) {
-		QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
-		bm.setId(id);
-		bm.setStatus(status);
-		update(bm);
-
-		QtFinancialBorrowMoneyFlow bmf = new QtFinancialBorrowMoneyFlow();
-		bmf.setId(UUID.randomUUID().toString());
-		bmf.setUpdatedat(new Date());
-		bmf.setBorrowId(bm.getId());
-		// 增加流程进度记录
-		if (Objects.equals(status, borrowStatus.CANCEL.getStatus())) {
-			bmf.setStatus(borrowStatus.CANCEL.getStatus());
-			bmf.setComment("用户已取消申请");
-		}
-
+		
+		// 新增一条流程进度记录
+		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(), borrowStatus.APPLY.getStatus(),"请等待客服人员进行审核");
 		bmfdao.insert(bmf);
 
 	}
@@ -108,5 +85,43 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 	public QtFinancialBorrowMoney getBorrowMoneysInfo(String id) {
 		return bmdao.selectByPrimaryKey(id);
 	}
+
+	@Override
+	public void cancelBorrowMoney(String id) throws Exception {
+		QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
+		bm.setId(id);
+		bm.setStatus(borrowStatus.CANCEL.getStatus());
+		update(bm);
+
+		// 新增一条流程进度记录
+		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(), borrowStatus.CANCEL.getStatus(),
+				"用户已取消申请");
+		bmfdao.insert(bmf);
+
+		// 关闭借款流程分期计划
+		QtFinancialBorrowMoneyInstalment instalment = new QtFinancialBorrowMoneyInstalment();
+		instalment.setBorrowmoneyId(id);
+		List<QtFinancialBorrowMoneyInstalment> pis = bmidao.selectAll(instalment);
+		QtFinancialBorrowMoneyInstalment bmi = null;
+		for (QtFinancialBorrowMoneyInstalment pi : pis) {
+			bmi = new QtFinancialBorrowMoneyInstalment();
+			bmi.setId(pi.getId());
+			bmi.setStatus(borrowStatus.INSTALMENT_CLOSE.getStatus());
+			bmidao.updateByPrimaryKey(bmi);
+		}
+
+	}
+
+	
+	private QtFinancialBorrowMoneyFlow newQtFinancialBorrowMoneyFlow(String bid, String status, String comment) {
+		QtFinancialBorrowMoneyFlow bmf = new QtFinancialBorrowMoneyFlow();
+		bmf.setId(UUID.randomUUID().toString());
+		bmf.setUpdatedat(new Date());
+		bmf.setBorrowId(bid);
+		bmf.setStatus(status);
+		bmf.setComment(comment);
+		return bmf;
+	}
+	
 
 }
