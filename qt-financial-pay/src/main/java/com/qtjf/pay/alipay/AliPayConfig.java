@@ -1,4 +1,4 @@
-package cn.mrdear.pay.alipay;
+package com.qtjf.pay.alipay;
 
 
 import com.alipay.api.AlipayClient;
@@ -6,8 +6,8 @@ import com.alipay.api.DefaultAlipayClient;
 
 /**
  * 配置公共参数
- * @author Niu Li
- * @date 2016/10/29
+ * @author shixianjie
+ * @date 2017/07/15
  */
 public final class AliPayConfig {
     /**
