@@ -35,6 +35,6 @@
 		select user_id, education, marriage, children, province_id, city_id, domain,
 		qq,
 		email
-		from qt_finacial_authentication_base where user_id = #{userId}
+		from qt_finacial_authentication_base where user_id = #{_parameter}
 	</select>
 </mapper>

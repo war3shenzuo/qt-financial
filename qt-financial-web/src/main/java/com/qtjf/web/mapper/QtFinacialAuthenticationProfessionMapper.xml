@@ -27,10 +27,9 @@
 		select user_id, income, company, province_id, city_id, domain, company_phone
 		from qt_finacial_authentication_profession
 	</select>
-	<select id="selectByUserId" parameterType="java.lang.String "
-		resultMap="BaseResultMap">
+	<select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select user_id, income, company, province_id, city_id, domain, company_phone
 		from qt_finacial_authentication_profession
-		where user_id = #{userId}
+		where user_id = #{_parameter}
 	</select>
 </mapper>

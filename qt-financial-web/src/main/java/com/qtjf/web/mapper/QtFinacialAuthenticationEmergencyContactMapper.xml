@@ -24,10 +24,10 @@
 		select user_id, relationship, relationship_phone, social, social_phone
 		from qt_finacial_authentication_emergency_contact
 	</select>
-	<select id="selectByUserId" parameterType="java.lang.String "
+	<select id="selectByUserId" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select user_id, relationship, relationship_phone, social, social_phone
 		from qt_finacial_authentication_emergency_contact
-		where user_id = #{userId}
+		where user_id = #{_parameter}
 	</select>
 </mapper>

@@ -14,10 +14,9 @@
 		select user_id, pic
 		from qt_finacial_authentication_wx
 	</select>
-	<select id="selectByUserId" parameterType="java.lang.String "
-		resultMap="BaseResultMap">
+	<select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
 		select user_id, pic
 		from qt_finacial_authentication_wx
-		where user_id = #{userId}
+		where user_id = #{_parameter}
 	</select>
 </mapper>

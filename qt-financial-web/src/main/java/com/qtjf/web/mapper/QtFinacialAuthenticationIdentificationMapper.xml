@@ -22,10 +22,10 @@
 		select user_id, front, face, type
 		from qt_finacial_authentication_identification
 	</select>
-	<select id="selectByUserId" parameterType="java.lang.String "
+	<select id="selectByUserId" parameterType="java.lang.String"
 		resultMap="BaseResultMap">
 		select user_id, front, face, type
 		from qt_finacial_authentication_identification
-		where user_id = #{userId}
+		where user_id = #{_parameter}
 	</select>
 </mapper>

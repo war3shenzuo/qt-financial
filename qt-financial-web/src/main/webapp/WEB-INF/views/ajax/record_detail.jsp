@@ -6,17 +6,17 @@
 <link href="${ctx}/common/css/index_info.css" rel="stylesheet">
 <ul class="breadcrumb panel">
 	<li><a href="index"><i class="fa fa-home"></i>清投金服</a></li>
-	<li class="active">借款审核</li>
+	<li><a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/record_info', 'wrapper');">审核记录</a></li>
+	<li class="active">订单详情</li>
 </ul>
 <div class="row">
 	<div class="col-md-12">
 		<!--notification start-->
 		<section class="panel">
-			<header class="panel-heading">借款审核 </header>
+			<header class="panel-heading">订单详情 </header>
 			<div class="panel-body">
-				<div class="btn-group btn-group-lg">
-                    <button class="btn btn-default btn-info examine-state" type="button" onclick="getBorrow('1',this)">审核中</button>
-                    <button class="btn btn-default examine-state" type="button" onclick="getBorrow('2',this)">审核完毕</button>
+				<div class="col-sm-2">
+                    订单1241352463情况
                 </div>
                 <div class="examine-content">
                 	<div class="examine-box">
@@ -25,7 +25,7 @@
 								<img alt="" src="${ctx}/common/img/no_pic200.png" onerror="this.src='${ctx }/common/img/no_pic200.png'" 
 								style="width: 100%; height: auto; max-height: 150px; min-width: 70px;  border-radius: 50%; border: 1px solid #eee;">
 							</div>
-							<div class="col-sm-8">
+							<div class="col-sm-11">
 								<div class="row examine-news">
 									<span>ID:</span><span>12313241432412341324</span>
 									<span>电话：</span><span>13737373737</span>
@@ -34,10 +34,6 @@
 								<div class="row examine-news">
 									<span>申请借款：</span><span class="loan-amount">1000元</span><span>申请时间：</span><span>2017年06月26日 14:13</span>
 								</div>
-							</div>
-							<div class="col-sm-3">
-								<button type="button" class="btn btn-default" style="float: right;" onclick="AgainApply()">重新审核</button>
-								<span class="apply_state apply_agree">同意申请 </span>
 							</div>
 						</div>
 						<div class="row" style="margin-top: 15px;">
@@ -71,9 +67,25 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-sm-1 text-left" style="line-height: 34px;">初审结果：</div>
+							<div class="col-sm-11">
+								<div class="row examine-news">
+									<span>同意申请</span><span>初审评语：</span><span>除家庭信息外，信息确认无误，可以复审</span><span>操作员：</span><span>王丽</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-1 text-left" style="line-height: 34px;">复审结果：</div>
+							<div class="col-sm-11">
+								<div class="row examine-news">
+									<span>同意申请</span><span>复审评语：</span><span>复审通过，家庭信息问题已解决</span><span>操作员：</span><span>王丽</span>
+								</div>
+							</div>
+						</div>
 						<div class="row" style="margin-top: 15px;">
 							<div class="form-group">
-		                        <label class="col-sm-1 text-left control-label" style="line-height: 34px;">审核评语：</label>
+		                        <label class="col-sm-1 text-left control-label" style="line-height: 34px;">复审评语：</label>
 		                        <div class="col-sm-8" style="padding: 0px;">
 		                            <input type="text" class="form-control">
 		                        </div>
@@ -92,7 +104,7 @@
 								<img alt="" src="${ctx}/common/img/no_pic200.png" onerror="this.src='${ctx }/common/img/no_pic200.png'" 
 								style="width: 100%; height: auto; max-height: 150px; min-width: 70px;  border-radius: 50%; border: 1px solid #eee;">
 							</div>
-							<div class="col-sm-8">
+							<div class="col-sm-11">
 								<div class="row examine-news">
 									<span>ID:</span><span>12313241432412341324</span>
 									<span>电话：</span><span>13737373737</span>
@@ -101,10 +113,6 @@
 								<div class="row examine-news">
 									<span>申请借款：</span><span class="loan-amount">1000元</span><span>申请时间：</span><span>2017年06月26日 14:13</span>
 								</div>
-							</div>
-							<div class="col-sm-3">
-								<button type="button" class="btn btn-default" style="float: right;" onclick="AgainApply()">重新审核</button>
-								<span class="apply_state apply_refuse">拒绝申请 </span>
 							</div>
 						</div>
 						<div class="row" style="margin-top: 15px;">
@@ -132,25 +140,30 @@
 							<div class="col-sm-11">
 								<div class="row examine-news">
 									<span class="risk_low">低风险</span><span class="risk_medium">中风险</span><span class="risk_height">高风险</span>
-									<span>借贷通信用分：</span><span>211</span><span>支付宝信用分：</span><span>421</span>
+									<span>胡泊信用分：</span><span>211</span><span>支付宝信用分：</span><span>421</span>
 									<button type="button" class="btn btn-default"
 										style="float: right; margin-right: 15px;">查看资信报告</button>
 								</div>
 							</div>
 						</div>
-						<div class="row" style="margin-top: 15px;">
-							<div class="form-group">
-		                        <label class="col-sm-1 text-left control-label" style="line-height: 34px;">审核评语：</label>
-		                        <div class="col-sm-8" style="padding: 0px;">
-		                            <input type="text" class="form-control">
-		                        </div>
-		                        <div class="col-sm-3">
-									<button type="button" class="btn btn-default btn-danger"
-										style="float: right; margin-left: 15px;">拒绝申请</button>
-									<button type="button" class="btn btn-default btn-success"
-										style="float: right; margin-left: 15px;">同意申请</button>
+						<div class="row">
+							<div class="col-sm-1 text-left" style="line-height: 34px;">初审结果：</div>
+							<div class="col-sm-11">
+								<div class="row examine-news">
+									<span>同意申请</span><span>初审评语：</span><span>除家庭信息外，信息确认无误，可以复审</span><span>操作员：</span><span>王丽</span>
 								</div>
-		                    </div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-1 text-left" style="line-height: 34px;">复审结果：</div>
+							<div class="col-sm-11">
+								<div class="row examine-news">
+									<span>同意申请</span><span>复审评语：</span><span>复审通过，家庭信息问题已解决</span><span>操作员：</span><span>王丽</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 text-left" style="line-height: 34px;">终审完成，您无法继续操作</div>
 						</div>
                 	</div>
                 </div>
@@ -165,45 +178,7 @@
 <div id="auth_wx"></div>
 <div id="auth_contact"></div>
 <div id="borrow_list"></div>
-<div aria-hidden="false" aria-labelledby="authIdLabel" role="dialog"
-	tabindex="-1" id="apply_again" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button aria-hidden="true" data-dismiss="modal" class="close"
-					type="button">×</button>
-				<h4 class="modal-title">重新审核</h4>
-			</div>
-			<div class="modal-body">
-				<form class="cmxform form-horizontal adminex-form" role="form"
-					method="POST" id="applyForm" action="">
-					<div class="form-group">
-                        <label class="col-sm-4 col-sm-4 control-label">设置审核结果：</label>
-                        <div class="col-sm-6">
-                            <select id="examine_result" name="examine_result">
-								<option value="">信息审核</option>
-								<option value="">信息通过</option>
-								<option value="">信息驳回</option>
-							</select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 col-sm-4 control-label">审核意见：</label>
-						<div class="col-sm-6">
-							<textarea name="content" class="form-control" rows="6"></textarea>
-						</div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-offset-3 col-lg-10">
-                        	<button class="btn btn-default" data-dismiss="modal" style="padding: 6px 50px;">取消</button>
-							<button class="btn btn-primary" type="submit" style="padding: 6px 50px;">提交</button>
-						</div>
-                    </div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
+
 <script src="${ctx}/common/js/index_info.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -220,18 +195,5 @@
 		LoadAjaxContent(url, "auth_contact");
 		var url = "${pageContext.request.contextPath}/view/modal/borrow_list";
 		LoadAjaxContent(url, "borrow_list");
-		
-		Select2Test();
 	});
-	function getBorrow(data,obj) {
-		$(".examine-state").removeClass("btn-info");
-		$(obj).addClass("btn-info");
-		console.log(data);
-	}
-	function AgainApply(){
-		$("#apply_again").modal("show");
-	}
-	function Select2Test() {
-		$("#examine_result").select2();
-	}
 </script>

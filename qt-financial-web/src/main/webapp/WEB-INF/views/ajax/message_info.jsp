@@ -4,53 +4,37 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <ul class="breadcrumb panel">
 	<li><a href="index"><i class="fa fa-home"></i>清投金服</a></li>
-	<li><a href="index">借款审核</a></li>
-	<li class="active">借款记录</li>
+	<li class="active">CEO留言管理</li>
 </ul>
 <div class="row">
 	<div class="col-md-12">
 		<!--notification start-->
 		<section class="panel">
-			<header class="panel-heading">借款记录 </header>
+			<header class="panel-heading">CEO留言管理 </header>
 			<div class="panel-body">
 				<table class="display table table-bordered table-striped"
 					id="dynamic-table">
 					<thead>
 						<tr>
-							<th>操作时间</th>
-							<th>操作内容</th>
+							<th>留言内容</th>
+							<th>留言客户id</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>2017年06月26日16:41</td>
-							<td>客户申请借款</td>
-						</tr>
-						<tr>
-							<td>2017年06月26日16:41</td>
-							<td>客服同意申请</td>
-						</tr>
-						<tr>
-							<td>2017年06月26日16:41</td>
-							<td>打款员打款</td>
-						</tr>
-						<tr>
-							<td>2017年06月26日16:41</td>
-							<td>客户延期</td>
-						</tr>
-						<tr>
-							<td>2017年06月26日16:41</td>
-							<td>客户还款</td>
-						</tr>
-						<tr>
-							<td>2017年06月26日16:41</td>
-							<td>订单结束</td>
+							<td>请问这个到底怎么操作呢？客服电话是多少？</td>
+							<td>111313112a</td>
+							<td>
+								<a href="javascript:void(0)" onclick="">删除</a>
+							</td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
-							<th>操作时间</th>
-							<th>操作内容</th>
+							<th>留言内容</th>
+							<th>留言客户id</th>
+							<th>操作</th>
 						</tr>
 					</tfoot>
 				</table>
@@ -58,6 +42,7 @@
 		</section>
 	</div>
 </div>
+
 <!--dynamic table-->
 <script type="text/javascript"
 	src="${ctx}/common/js/advanced-datatable/js/jquery.dataTables.js"></script>
@@ -71,4 +56,5 @@
 		scrollTo(0,0);
 		
 	});
+	
 </script>

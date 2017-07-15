@@ -19,13 +19,13 @@
 <ul class="breadcrumb panel">
 	<li><a href="index"><i class="fa fa-home"></i>清投金服</a></li>
 	<li><a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/product_info', 'wrapper');">产品管理</a></li>
-	<li class="active">新增产品 </li>
+	<li class="active">编辑产品 </li>
 </ul>
 <div class="row">
 	<div class="col-md-12">
 		<!--notification start-->
 		<section class="panel">
-			<header class="panel-heading">新增产品 </header>
+			<header class="panel-heading">编辑产品 </header>
 			<div class="panel-body">
 				<form class="cmxform form-horizontal adminex-form" role="form"
 					method="POST" id="productForm" action="#"
