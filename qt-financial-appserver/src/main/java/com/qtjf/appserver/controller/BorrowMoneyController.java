@@ -102,7 +102,7 @@ public class BorrowMoneyController {
 	}
 	
 	/**
-	 * 
+	 * 提前还款
 	 * @param id 借款流程Id
 	 * @param instalmentId 计划id
 	 * @param amount 金额
@@ -111,8 +111,10 @@ public class BorrowMoneyController {
 	@RequestMapping( value = "immediatelyBorrowMoney")
 	public ResultCode immediatelyBorrowMoney(String id,String instalmentId,String amount) {
 		ResultCode result = null;
+		
+		logger.debug("aaaaaaa");
 		try {
-		//	borrowMoneytserver.immediatelyBorrowMoney(id);
+			borrowMoneytserver.immediatelyBorrowMoney(id,instalmentId,amount);
 			result = ResultCode.getSuccess("提前还款成功");
 		} catch (Exception e) {
 			logger.error("提前还款失败",e);

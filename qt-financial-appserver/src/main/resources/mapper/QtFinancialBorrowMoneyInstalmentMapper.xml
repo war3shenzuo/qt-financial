@@ -34,4 +34,16 @@
     select id, borrowmoneyId, amount, repayAt, status, overdueAmount
     from qt_financial_borrow_money_instalment
   </select>
+  
+   <select id="selectRunAll" resultType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalment" >
+    select id, borrowmoneyId, amount, repayAt, status, overdueAmount
+    from qt_financial_borrow_money_instalment
+    	<where>
+    			status like '%r%'
+			<if test="borrowmoneyId!=null and borrowmoneyId!=''">
+				and borrowmoneyId = #{borrowmoneyId}
+			</if>
+	</where>
+    
+  </select>
 </mapper>

@@ -14,6 +14,9 @@ public interface QtFinancialBorrowMoneyInstalmentMapper {
 
     List<QtFinancialBorrowMoneyInstalment> selectAll(QtFinancialBorrowMoneyInstalment instalment);
 
-    int updateByPrimaryKey(QtFinancialBorrowMoneyInstalment record);
+	int updateByPrimaryKey(QtFinancialBorrowMoneyInstalment record);
+
+	List<QtFinancialBorrowMoneyInstalment> selectRunAll(QtFinancialBorrowMoneyInstalment param);
+
 
 }

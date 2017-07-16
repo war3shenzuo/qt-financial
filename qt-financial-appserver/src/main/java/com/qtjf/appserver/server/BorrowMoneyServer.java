@@ -38,5 +38,13 @@ public interface BorrowMoneyServer {
 	 */
 	void cancelBorrowMoney(String id) throws Exception;
 	
+	/**
+	 * 提前还款
+	 * @param id
+	 * @param instalmentId
+	 * @param amount
+	 */
+	void immediatelyBorrowMoney(String id, String instalmentId, String amount);
+	
 
 }

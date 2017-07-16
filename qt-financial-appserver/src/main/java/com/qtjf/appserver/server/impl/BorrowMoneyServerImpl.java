@@ -3,8 +3,8 @@ package com.qtjf.appserver.server.impl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,9 +62,10 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 			bmi.setStatus(borrowStatus.INSTALMENT_RUN.getStatus());
 			bmidao.insert(bmi);
 		}
-		
+
 		// 新增一条流程进度记录
-		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(), borrowStatus.BORROW_APPLY.getStatus(),"请等待客服人员进行审核");
+		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(),
+				borrowStatus.BORROW_APPLY.getStatus(), borrowStatus.BORROW_APPLY.getMsg());
 		bmfdao.insert(bmf);
 
 	}
@@ -94,8 +95,8 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		update(bm);
 
 		// 新增一条流程进度记录
-		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(),borrowStatus.BORROW_CANCEL.getStatus(),
-				"用户已取消申请");
+		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(),
+				borrowStatus.BORROW_CANCEL.getStatus(),borrowStatus.BORROW_CANCEL.getMsg());
 		bmfdao.insert(bmf);
 
 		// 关闭借款流程分期计划
@@ -112,7 +113,6 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 
 	}
 
-	
 	private QtFinancialBorrowMoneyFlow newQtFinancialBorrowMoneyFlow(String bid, String status, String comment) {
 		QtFinancialBorrowMoneyFlow bmf = new QtFinancialBorrowMoneyFlow();
 		bmf.setId(UUID.randomUUID().toString());
@@ -121,6 +121,31 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		bmf.setStatus(status);
 		bmf.setComment(comment);
 		return bmf;
+	}
+
+	@Override
+	public void immediatelyBorrowMoney(String id, String instalmentId, String amount) {
+		// 修改分期计划状态
+		QtFinancialBorrowMoneyInstalment bmi = new QtFinancialBorrowMoneyInstalment();
+		bmi.setId(instalmentId);
+		bmi.setStatus(borrowStatus.INSTALMENT_AHEAD.getStatus());
+		// 新增一条流程进度记录
+		String msg = borrowStatus.INSTALMENT_AHEAD.getMsg();
+		msg = msg.replaceAll("%s", amount);
+		msg = msg.replaceAll("%date",sdf.format(new Date()));
+		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(id,
+				borrowStatus.INSTALMENT_AHEAD.getStatus(), msg);
+		bmfdao.insert(bmf);
+		// 判断借钱流程是否结束
+		QtFinancialBorrowMoneyInstalment param = new QtFinancialBorrowMoneyInstalment();
+		param.setBorrowmoneyId(id);
+		List<QtFinancialBorrowMoneyInstalment> instalmentList = bmidao.selectRunAll(param);
+		if(Objects.isNull(instalmentList)){
+			QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
+			bm.setId(id);
+			bm.setStatus(borrowStatus.BORROW_FINISH.getStatus());
+			bmdao.updateByPrimaryKey(bm);
+		}
 	}
 	
 
