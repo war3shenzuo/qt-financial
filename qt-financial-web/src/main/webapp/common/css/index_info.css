@@ -1,0 +1,71 @@
+.examine-content{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.examine-box{
+	width: 99%;
+	height: auto;
+	-webkit-box-shadow:0 0 10px #e5e5e5;  
+  	-moz-box-shadow:0 0 10px #e5e5e5;  
+  	box-shadow:0 0 10px #e5e5e5;  
+	margin: 20px 5px 5px 5px;
+	padding: 10px;
+	border-radius: 5px;
+}
+.examine-news span{
+	width: auto;
+	line-height: 35px;
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+.examine-news a{
+	width: auto;
+	line-height: 35px;
+	display: block;
+	float: left;
+}
+.loan-amount{
+	font-size: 20px;
+}
+.risk_low{
+	color: #5cb85c;
+}
+.risk_medium{
+	color: #f0ad4e;
+}
+.risk_height{
+	color: #d9534f;
+}
+.examine_news_state{
+	float: left; 
+	position: absolute; 
+	top: 10px; 
+	left: 100px;
+}
+.apply_state{
+	font-size: 18px;
+	line-height: 34px;
+	float: right;
+	margin-right: 15px;
+	display: block;
+}
+.apply_agree{
+	color: #5cb85c;
+}
+.apply_refuse{
+	color: #d9534f;
+}
+.div-table-box{
+	border: none;
+	border-top: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+	overflow: hidden;
+}
+.div-table-boxs{
+	border: none;
+	border-bottom: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	padding: 10px;
+}

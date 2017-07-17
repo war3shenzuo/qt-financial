@@ -35,7 +35,7 @@
 <!--common-->
 <link rel="stylesheet" type="text/css" href="${ctx}/common/css/style.css">
 <link rel="stylesheet" type="text/css" href="${ctx}/common/css/style-responsive.css">
-
+<link rel="stylesheet" type="text/css" href="${ctx}/common/css/radio-checkbox.css">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 <script src="${ctx}/common/js/html5shiv.js"></script>

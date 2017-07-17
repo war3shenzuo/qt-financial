@@ -7,6 +7,11 @@ function LoadAjaxContent(url, id) {
 		success : function(data) {
 			$('#' + id).html(data);
 			$('.preloader').hide();
+			setTimeout(function() {
+				//console.log($('#wrapper').outerHeight());
+				var wrapperHeight = $('#wrapper').outerHeight(true);
+				$('.main-content').css("height",wrapperHeight);
+			}, 800);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			// alert(errorThrown);
