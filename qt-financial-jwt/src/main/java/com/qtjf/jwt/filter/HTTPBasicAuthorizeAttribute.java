@@ -23,15 +23,12 @@ public class HTTPBasicAuthorizeAttribute implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
 		JwtResultMsg result;
-		jwtconfig = new JwtConfig();
-
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String auth = httpRequest.getHeader("Authorization");
 		if ((auth != null) && (auth.length() > 7)) {
 			String HeadStr = auth.substring(0, 6).toLowerCase();
-			if (HeadStr.compareTo("bearer") == 0) {
+			if (HeadStr.compareTo(jwtconfig.getTokenType()) == 0) {
 				auth = auth.substring(7, auth.length());
 
 				JwtResultMsg jrm = JwtTokenBuilder.decodeToken(auth, jwtconfig.getBase64Secret());
@@ -54,6 +51,9 @@ public class HTTPBasicAuthorizeAttribute implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
+		jwtconfig  = new JwtConfig();
+		jwtconfig.setBase64Secret(arg0.getInitParameter("base64Secret"));
+		jwtconfig.setTokenType(arg0.getInitParameter("tokenType"));
 	}
 
 	@Override

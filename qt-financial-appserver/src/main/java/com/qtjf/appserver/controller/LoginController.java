@@ -46,10 +46,8 @@ public class LoginController {
 
 		AccessToken token = new AccessToken();
 		token.setAccess_token(accessToken);
-		token.setToken_type("bearer");
+		token.setToken_type(jwtConfig.getTokenType());
 		token.setExpires_in(jwtConfig.getExpiresSecond());
-
-		// 存储到redis
 
 		return token;
 	}
