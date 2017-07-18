@@ -138,7 +138,7 @@ function uploadInit(dir, selectfilebtn, container, ossfile, postfile, fileValue,
 								+ file.percent + "%</span>";
 						var prog = d.getElementsByTagName('div')[0];
 						var progBar = prog.getElementsByTagName('div')[0];
-						progBar.style.width = 2 * file.percent + 'px';
+						progBar.style.width = file.percent + '%';
 						progBar.setAttribute('aria-valuenow', file.percent);
 					},
 
