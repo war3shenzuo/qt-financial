@@ -11,7 +11,7 @@ public class QtFinancialBorrowMoneyFlow {
 
     private String comment;
 
-    private Date updatedat;
+    private Date updatedAt;
 
     
 
@@ -47,11 +47,13 @@ public class QtFinancialBorrowMoneyFlow {
         this.comment = comment;
     }
 
-    public Date getUpdatedat() {
-        return updatedat;
-    }
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
 
-    public void setUpdatedat(Date updatedat) {
-        this.updatedat = updatedat;
-    }
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+   
 }

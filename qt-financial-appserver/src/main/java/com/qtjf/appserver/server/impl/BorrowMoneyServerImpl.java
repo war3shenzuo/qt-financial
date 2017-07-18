@@ -116,7 +116,7 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 	private QtFinancialBorrowMoneyFlow newQtFinancialBorrowMoneyFlow(String bid, String status, String comment) {
 		QtFinancialBorrowMoneyFlow bmf = new QtFinancialBorrowMoneyFlow();
 		bmf.setId(UUID.randomUUID().toString());
-		bmf.setUpdatedat(new Date());
+		bmf.setUpdatedAt(new Date());
 		bmf.setBorrowId(bid);
 		bmf.setStatus(status);
 		bmf.setComment(comment);
