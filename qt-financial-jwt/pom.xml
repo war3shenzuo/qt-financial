@@ -3,15 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-
 	<parent>
 		<groupId>com.qtjf</groupId>
 		<artifactId>qt-financial</artifactId>
 		<version>0.0.1</version>
 	</parent>
 
-	<artifactId>qt-financial-pay</artifactId>
-	<name>qt-financial-pay</name>
+	<artifactId>qt-financial-jwt</artifactId>
+	<name>qt-financial-jwt</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,10 +19,14 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>com.qtjf</groupId>
-			<artifactId>qt-financial-common</artifactId>
-			<version>0.0.1</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.7.0</version>
+		</dependency>
 	</dependencies>
 </project>

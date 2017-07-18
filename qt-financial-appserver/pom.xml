@@ -22,6 +22,12 @@
 			<artifactId>qt-financial-common</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>com.qtjf</groupId>
+			<artifactId>qt-financial-jwt</artifactId>			
+			<version>0.0.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -19,7 +19,12 @@ public enum SysStatus {
 	NOT_FOUND(404,"接口不存在"),
 	
 	/** 服务器错误 */
-	ERROR(500,"服务器错误！");
+	ERROR(500,"服务器错误！"),
+	
+	/** TOKEN格式有误 */
+	LAYOUT_INVALID_TOKEN(405,"TOKEN格式有误"),
+	/** TOKEN验证失败 */
+	CHECK_INVALID_TOKEN(406,"TOKEN验证失败");
 	
 	/** 返回状态码*/
 	private int status ;
