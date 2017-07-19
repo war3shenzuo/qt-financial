@@ -34,4 +34,10 @@ public class ProductServiceImpl implements ProductService {
 	        return map;
 	}
 
+	@Override
+	public Map<String, Object> addProduct(QtFinacialProduct qp) {
+		qtFinacialProductMapper.insert(qp);
+		return null;
+	}
+
 }

@@ -2,13 +2,16 @@ package com.qtjf.web;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
 import com.qtjf.common.emus.borrowStatus;
 import com.qtjf.web.service.BorrowService;
@@ -152,5 +155,12 @@ public class DataCol {
         getObj.put("aaData", map.get(StringUtil.pageData));// 要以JSON格式返回
         return getObj.toString();
     }
+	
+	@RequestMapping(value = "/product/add")
+	public String product_add(QtFinacialProduct qp, Model model) {
+		 qp.setId(UUID.randomUUID().toString());
+		 productService.addProduct(qp);
+		 return null;
+	}
 	
 }

@@ -7,7 +7,7 @@
 		select id, productName, productCode, amount,
 		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
 		isActivated, createdAt, createdBy, updatedAt, updateBy
-		from qt_finacial_product
+		from qt_financial_product
 		where id = #{value}
 	</select>
 
@@ -15,15 +15,30 @@
 		select id, productName, productCode, amount,
 		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
 		isActivated, createdAt, createdBy, updatedAt, updateBy
-		from qt_finacial_product
+		from qt_financial_product
 	</select>
-
+	
+  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinacialProduct" >
+    insert into qt_financial_product (id, productName, productCode, 
+      amount, factorageCost, auditCost, 
+      manageCost,  dayNum, 
+      userLevel,  isActivated, 
+      createdAt, createdBy, updatedAt, 
+      updateBy)
+    values (#{id,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{factorageCost,jdbcType=DECIMAL}, #{auditCost,jdbcType=DECIMAL}, 
+      #{manageCost,jdbcType=DECIMAL},  #{daynum,jdbcType=VARCHAR}, 
+      #{userlevel,jdbcType=VARCHAR},  #{isActivated,jdbcType=VARCHAR}, 
+      #{createdat,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{updatedat,jdbcType=TIMESTAMP}, 
+      #{updateby,jdbcType=VARCHAR})
+  </insert>
+  
 	<select id="selectAllByPage" parameterType="java.util.Map"
 		resultType="com.qtjf.common.bean.QtFinacialProduct">
 		select id, productName, productCode, amount,
 		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
 		isActivated, createdAt, createdBy, updatedAt, updateBy
-		from qt_finacial_product
+		from qt_financial_product
 		where id like '%${search}%' or productName like '%${search}%' or amount
 		like '%${search}%' or auditCost like '%${search}%' or manageCost like
 		'%${search}%' limit #{start},#{end}
@@ -32,7 +47,7 @@
 	<select id="selectAllByPageCount" parameterType="java.util.Map"
 		resultType="java.lang.Integer">
 		select count(1)
-		from qt_finacial_product
+		from qt_financial_product
 		where id like '%${search}%' or productName like '%${search}%' or amount
 		like '%${search}%' or auditCost like '%${search}%' or manageCost like
 		'%${search}%' 

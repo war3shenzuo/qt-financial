@@ -46,8 +46,8 @@
 							<td>0</td>
 							<td>青铜</td>
 							<td>使用中</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/product_edit', 'wrapper');">编辑</a>
+							<td><a href="javascript:void(0)"
+								onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/product_edit', 'wrapper');">编辑</a>
 							</td>
 						</tr>
 					</tbody>
@@ -77,61 +77,48 @@
 <script type="text/javascript"
 	src="${ctx}/common/js/data-tables/DT_bootstrap.js"></script>
 
-<!--dynamic table initialization -->
-<script src="${ctx}/common/js/dynamic_table_init.js"></script>
-
 <script type="text/javascript">
-	$(document).ready(function() {
-		scrollTo(0,0);
-// 						var sAjaxSource="${pageContext.request.contextPath}/data/product/all";
-// 						$('#dynamic-table')
-// 								.dataTable(
-// 										{
-// 											"bProcessing" : true,
-// 											"bServerSide" : true,
-// 											"aaSorting" : [ [ 4, "desc" ] ],
-// 											"sAjaxSource" : sAjaxSource,
-// 											"fnServerData" : retrieveData, // 获取数据的处理函数, 
-// 											"oLanguage" : {
-// 												"sPlaceholder" : ""
-// 											},
-// 											//列表表头字段
-// 											"aoColumns" : [
-// 													{
-// 														"mData" : "id"
-// 													},{
-// 														"mData" : "productname"
-// 													},{
-// 														"mData" : "id",
-// 														"mRender" : function(
-// 																data, type,
-// 																full) {
-// 															var str = "hehe";
-// 															return str;
-// 														}
-// 													},{
-// 														"mData" : "amount"
-// 													},{
-// 														"mData" : "auditCost"
-// 													},{
-// 														"mData" : "manageCost"
-// 													},{
-// 														"mData" : "userlevel"
-// 													},{
-// 														"mData" : "isactivated"
-// 													},{
-// 														"mData" : "id",
-// 														"mRender" : function(
-// 																data, type,
-// 																full) {
-// 															var str = "编辑";
-// 															return str;
-// 														}
-// 													}
-// 													]
-// 										});
-	});
-	
+	$(document)
+			.ready(
+					function() {
+						scrollTo(0, 0);
+						var sAjaxSource = "${pageContext.request.contextPath}/data/product/all";
+						$('#dynamic-table').dataTable({
+							"bProcessing" : true,
+							"bServerSide" : true,
+							"aaSorting" : [ [ 4, "desc" ] ],
+							"sAjaxSource" : sAjaxSource,
+							"fnServerData" : retrieveData, // 获取数据的处理函数, 
+							"oLanguage" : {
+								"sPlaceholder" : ""
+							},
+							//列表表头字段
+							"aoColumns" : [ {
+								"mData" : "productCode"
+							}, {
+								"mData" : "productName"
+							}, {
+								"mData" : "daynum"
+							}, {
+								"mData" : "amount"
+							}, {
+								"mData" : "auditCost"
+							}, {
+								"mData" : "manageCost"
+							}, {
+								"mData" : "userlevel"
+							}, {
+								"mData" : "isActivated"
+							}, {
+								"mData" : "id",
+								"mRender" : function(data, type, full) {
+									var str = "编辑";
+									return str;
+								}
+							} ]
+						});
+					});
+
 	// 3个参数的名字可以随便命名,但必须是3个参数,少一个都不行
 	function retrieveData(sSource, aoData, fnCallback) {
 		$.ajax({
@@ -150,5 +137,4 @@
 			}
 		});
 	}
-
 </script>

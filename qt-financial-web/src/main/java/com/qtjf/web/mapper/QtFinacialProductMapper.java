@@ -10,6 +10,8 @@ public interface QtFinacialProductMapper {
     QtFinacialProduct selectByPrimaryKey(String id);
 
     List<QtFinacialProduct> selectAll();
+    
+    int insert(QtFinacialProduct record);
 
     //分页查找产品数据
 	List<QtFinacialProduct> selectAllByPage(Map<String, Object> paramMap);
