@@ -48,11 +48,17 @@ public interface BorrowMoneyServer {
 	void immediatelyBorrowMoney(String id, String instalmentId, String amount);
 	
 	/**
-	 * 获取申请延期计划的信息
+	 * 获取申请延期计划的信息（下一期）
 	 * @param instalmentId
 	 * @return
 	 */
 	QtFinancialProductInstalmentPostpone getApplyPostponeInfo(String instalmentId);
+	
+	/**
+	 * 延期申请
+	 * @param postpone
+	 */
+	void applePostpone(QtFinancialProductInstalmentPostpone postpone, String borrowmoneyId) throws Exception;
 	
 
 }

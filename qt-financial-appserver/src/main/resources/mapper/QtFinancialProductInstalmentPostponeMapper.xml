@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="com.qtjf.appserver.dao.QtFinancialProductInstalmentPostponeMapper">
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from qt_financial_product_instalment_postpone
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+
+	<insert id="insert"
+		parameterType="com.qtjf.common.bean.QtFinancialProductInstalmentPostpone">
+		insert into qt_financial_product_instalment_postpone (id, productId,
+		instalmentId,
+		daynum, amount, rank
+		)
+		values (#{id,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR},
+		#{instalmentid,jdbcType=VARCHAR},
+		#{daynum,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{rank,jdbcType=INTEGER}
+		)
+	</insert>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.qtjf.common.bean.QtFinancialProductInstalmentPostpone">
+		update qt_financial_product_instalment_postpone
+		set productId = #{productid,jdbcType=VARCHAR},
+		instalmentId = #{instalmentid,jdbcType=VARCHAR},
+		daynum = #{daynum,jdbcType=VARCHAR},
+		amount = #{amount,jdbcType=DECIMAL},
+		rank = #{rank,jdbcType=INTEGER}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectByPrimaryKey"
+		resultType="com.qtjf.common.bean.QtFinancialProductInstalmentPostpone"
+		parameterType="java.lang.String">
+		select id, productId, instalmentId, daynum, amount, rank
+		from qt_financial_product_instalment_postpone
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectAll"
+		resultType="com.qtjf.common.bean.QtFinancialProductInstalmentPostpone">
+		select id, productId, instalmentId, daynum, amount, rank
+		from qt_financial_product_instalment_postpone
+	</select>
+
+	<select id="selectInfo"
+		resultType="com.qtjf.common.bean.QtFinancialProductInstalmentPostpone"
+		parameterType="com.qtjf.common.bean.QtFinancialProductInstalmentPostpone">
+		select id, productId, instalmentId, daynum, amount, rank
+		from qt_financial_product_instalment_postpone
+		<where>
+			<if test="id!=null and id!=''">
+				and id = #{id}
+			</if>
+			<if test="instalmentId!=null and instalmentId!=''">
+				and instalmentId = #{instalmentId}
+			</if>
+		</where>
+	</select>
+</mapper>

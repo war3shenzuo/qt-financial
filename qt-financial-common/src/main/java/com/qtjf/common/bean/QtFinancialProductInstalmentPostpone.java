@@ -3,49 +3,49 @@ package com.qtjf.common.bean;
 import java.math.BigDecimal;
 
 public class QtFinancialProductInstalmentPostpone {
-    private String id;
+	private String id;
 
-    private String productId;
+	private String productId;
 
-    private String instalmentId;
+	private String instalmentId;
 
-    private String daynum;
+	private String daynum;
 
-    private BigDecimal amount;
+	private BigDecimal amount;
 
-    private Integer sort;
+	private Integer rank;
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getDaynum() {
-        return daynum;
-    }
+	public String getDaynum() {
+		return daynum;
+	}
 
-    public void setDaynum(String daynum) {
-        this.daynum = daynum;
-    }
+	public void setDaynum(String daynum) {
+		this.daynum = daynum;
+	}
 
-    public BigDecimal getAmount() {
-        return amount;
-    }
+	public BigDecimal getAmount() {
+		return amount;
+	}
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
 
-    public Integer getSort() {
-        return sort;
-    }
+	public Integer getRank() {
+		return rank;
+	}
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
 
 	public String getProductId() {
 		return productId;
@@ -62,6 +62,5 @@ public class QtFinancialProductInstalmentPostpone {
 	public void setInstalmentId(String instalmentId) {
 		this.instalmentId = instalmentId;
 	}
-    
-    
+
 }

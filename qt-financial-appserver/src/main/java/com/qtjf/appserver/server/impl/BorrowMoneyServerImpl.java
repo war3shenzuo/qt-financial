@@ -12,12 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.qtjf.appserver.dao.QtFinancialBorrowMoneyFlowMapper;
 import com.qtjf.appserver.dao.QtFinancialBorrowMoneyInstalmentMapper;
+import com.qtjf.appserver.dao.QtFinancialBorrowMoneyInstalmentPostponeMapper;
 import com.qtjf.appserver.dao.QtFinancialBorrowMoneyMapper;
 import com.qtjf.appserver.dao.QtFinancialProductInstalmentMapper;
+import com.qtjf.appserver.dao.QtFinancialProductInstalmentPostponeMapper;
 import com.qtjf.appserver.server.BorrowMoneyServer;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
 import com.qtjf.common.bean.QtFinancialBorrowMoneyFlow;
 import com.qtjf.common.bean.QtFinancialBorrowMoneyInstalment;
+import com.qtjf.common.bean.QtFinancialBorrowMoneyInstalmentPostpone;
 import com.qtjf.common.bean.QtFinancialProductInstalment;
 import com.qtjf.common.bean.QtFinancialProductInstalmentPostpone;
 import com.qtjf.common.emus.borrowStatus;
@@ -37,6 +40,12 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 
 	@Autowired
 	QtFinancialProductInstalmentMapper pidao;
+
+	@Autowired
+	QtFinancialBorrowMoneyInstalmentPostponeMapper bmipdao;
+
+	@Autowired
+	QtFinancialProductInstalmentPostponeMapper pipdao;
 
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd 24h:mm:ss");
 
@@ -97,7 +106,7 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 
 		// 新增一条流程进度记录
 		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(bm.getId(),
-				borrowStatus.BORROW_CANCEL.getStatus(),borrowStatus.BORROW_CANCEL.getMsg());
+				borrowStatus.BORROW_CANCEL.getStatus(), borrowStatus.BORROW_CANCEL.getMsg());
 		bmfdao.insert(bmf);
 
 		// 关闭借款流程分期计划
@@ -133,15 +142,15 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		// 新增一条流程进度记录
 		String msg = borrowStatus.INSTALMENT_AHEAD.getMsg();
 		msg = msg.replaceAll("%s", amount);
-		msg = msg.replaceAll("%date",sdf.format(new Date()));
-		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(id,
-				borrowStatus.INSTALMENT_AHEAD.getStatus(), msg);
+		msg = msg.replaceAll("%date", sdf.format(new Date()));
+		QtFinancialBorrowMoneyFlow bmf = newQtFinancialBorrowMoneyFlow(id, borrowStatus.INSTALMENT_AHEAD.getStatus(),
+				msg);
 		bmfdao.insert(bmf);
 		// 判断借钱流程是否结束
 		QtFinancialBorrowMoneyInstalment param = new QtFinancialBorrowMoneyInstalment();
 		param.setBorrowmoneyId(id);
 		List<QtFinancialBorrowMoneyInstalment> instalmentList = bmidao.selectRunAll(param);
-		if(Objects.isNull(instalmentList)){
+		if (Objects.isNull(instalmentList)) {
 			QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
 			bm.setId(id);
 			bm.setStatus(borrowStatus.BORROW_FINISH.getStatus());
@@ -151,9 +160,30 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 
 	@Override
 	public QtFinancialProductInstalmentPostpone getApplyPostponeInfo(String instalmentId) {
-		// TODO Auto-generated method stub
-		return null;
+		// 获取本次计划的最后一次延期期数
+		QtFinancialBorrowMoneyInstalmentPostpone bmip = bmipdao.selectLastByInstalmentId(instalmentId);
+		QtFinancialProductInstalmentPostpone pip = new QtFinancialProductInstalmentPostpone();
+		if (bmip != null) {
+			pip.setRank(bmip.getRank() + 1);
+		}else{
+			//如果没有延期申请就从第一期开始
+			pip.setRank(1);
+		}
+		pip.setInstalmentId(instalmentId);
+		return pipdao.selectInfo(pip);
 	}
-	
+
+	@Override
+	public void applePostpone(QtFinancialProductInstalmentPostpone postpone,String borrowmoneyId) throws Exception {
+		
+		QtFinancialBorrowMoneyInstalmentPostpone bmip = new QtFinancialBorrowMoneyInstalmentPostpone();
+		bmip.setAmount(postpone.getAmount());
+		bmip.setBorrowmoneyId(borrowmoneyId);
+		bmip.setDaynum(postpone.getDaynum());
+		bmip.setId(UUID.randomUUID().toString());
+		bmip.setInstalmentId(postpone.getInstalmentId());
+		bmip.setRank(postpone.getRank());
+		bmipdao.insert(bmip);
+	}
 
 }
