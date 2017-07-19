@@ -10,11 +10,11 @@ public class QtFinancialCoupon {
 
     private BigDecimal amount;
 
-    private Long limitamount;
+    private Long limitAmount;
 
-    private String limituserlevel;
+    private String limituserLevel;
 
-    private String limitproduct;
+    private String limitProduct;
 
     private String comment;
 
@@ -25,7 +25,6 @@ public class QtFinancialCoupon {
     private Date updatedAt;
 
     private String updateBy;
-    
     
     private String userId;
 
@@ -53,31 +52,31 @@ public class QtFinancialCoupon {
         this.amount = amount;
     }
 
-    public Long getLimitamount() {
-        return limitamount;
-    }
+    public Long getLimitAmount() {
+		return limitAmount;
+	}
 
-    public void setLimitamount(Long limitamount) {
-        this.limitamount = limitamount;
-    }
+	public void setLimitAmount(Long limitAmount) {
+		this.limitAmount = limitAmount;
+	}
 
-    public String getLimituserlevel() {
-        return limituserlevel;
-    }
+	public String getLimituserLevel() {
+		return limituserLevel;
+	}
 
-    public void setLimituserlevel(String limituserlevel) {
-        this.limituserlevel = limituserlevel;
-    }
+	public void setLimituserLevel(String limituserLevel) {
+		this.limituserLevel = limituserLevel;
+	}
 
-    public String getLimitproduct() {
-        return limitproduct;
-    }
+	public String getLimitProduct() {
+		return limitProduct;
+	}
 
-    public void setLimitproduct(String limitproduct) {
-        this.limitproduct = limitproduct;
-    }
+	public void setLimitProduct(String limitProduct) {
+		this.limitProduct = limitProduct;
+	}
 
-    public String getComment() {
+	public String getComment() {
         return comment;
     }
 
