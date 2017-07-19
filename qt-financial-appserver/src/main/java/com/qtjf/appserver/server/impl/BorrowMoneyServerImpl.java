@@ -19,6 +19,7 @@ import com.qtjf.common.bean.QtFinancialBorrowMoney;
 import com.qtjf.common.bean.QtFinancialBorrowMoneyFlow;
 import com.qtjf.common.bean.QtFinancialBorrowMoneyInstalment;
 import com.qtjf.common.bean.QtFinancialProductInstalment;
+import com.qtjf.common.bean.QtFinancialProductInstalmentPostpone;
 import com.qtjf.common.emus.borrowStatus;
 
 @Service
@@ -54,7 +55,7 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		QtFinancialBorrowMoneyInstalment bmi = null;
 		for (QtFinancialProductInstalment pi : pis) {
 			bmi = new QtFinancialBorrowMoneyInstalment();
-			bmi.setId(UUID.randomUUID().toString());
+			bmi.setId(pi.getId());
 			bmi.setBorrowmoneyId(bm.getId());
 			bmi.setAmount(pi.getAmount());
 			bmi.setOverdueAmount(pi.getOverdueAmount());
@@ -146,6 +147,12 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 			bm.setStatus(borrowStatus.BORROW_FINISH.getStatus());
 			bmdao.updateByPrimaryKey(bm);
 		}
+	}
+
+	@Override
+	public QtFinancialProductInstalmentPostpone getApplyPostponeInfo(String instalmentId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

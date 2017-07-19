@@ -3,6 +3,7 @@ package com.qtjf.appserver.server;
 import java.util.List;
 
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
+import com.qtjf.common.bean.QtFinancialProductInstalmentPostpone;
 
 public interface BorrowMoneyServer {
 	
@@ -45,6 +46,13 @@ public interface BorrowMoneyServer {
 	 * @param amount
 	 */
 	void immediatelyBorrowMoney(String id, String instalmentId, String amount);
+	
+	/**
+	 * 获取申请延期计划的信息
+	 * @param instalmentId
+	 * @return
+	 */
+	QtFinancialProductInstalmentPostpone getApplyPostponeInfo(String instalmentId);
 	
 
 }

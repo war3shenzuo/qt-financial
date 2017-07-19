@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.appserver.dao.QtFinancialBorrowMoneyInstalmentPostponeMapper">
+	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from qt_financial_borrow_money_instalment_postpone
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalmentPostpone">
+		insert into qt_financial_borrow_money_instalment_postpone (id,
+		productId, instalmentId,
+		daynum, amount, rank
+		)
+		values (#{id,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR},
+		#{instalmentId,jdbcType=VARCHAR},
+		#{daynum,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{rank,jdbcType=INTEGER}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalmentPostpone">
+		update qt_financial_borrow_money_instalment_postpone
+		set productId = #{productid,jdbcType=VARCHAR},
+		instalmentId = #{instalmentId,jdbcType=VARCHAR},
+		daynum = #{daynum,jdbcType=VARCHAR},
+		amount = #{amount,jdbcType=DECIMAL},
+		rank = #{rank,jdbcType=INTEGER}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalmentPostpone"
+		parameterType="java.lang.String">
+		select id, instalmentId, borrowmoneyId, daynum, amount, rank
+		from qt_financial_borrow_money_instalment_postpone
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalmentPostpone">
+		select id, instalmentId, borrowmoneyId, daynum, amount, rank
+		from qt_financial_borrow_money_instalment_postpone
+	</select>
+	<select id="selectLastByInstalmentId" resultType="com.qtjf.common.bean.QtFinancialBorrowMoneyInstalmentPostpone">
+		select id, instalmentId, borrowmoneyId, daynum, amount, rank
+		from qt_financial_borrow_money_instalment_postpone
+		where instalmentId = #{value} 
+		order by rank desc
+		limit 0,1
+	</select>
+</mapper>

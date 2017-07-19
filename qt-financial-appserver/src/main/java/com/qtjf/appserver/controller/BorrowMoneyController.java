@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qtjf.appserver.server.BorrowMoneyServer;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
+import com.qtjf.common.bean.QtFinancialProductInstalmentPostpone;
 import com.qtjf.common.vo.ResultCode;
 
 
@@ -112,13 +113,32 @@ public class BorrowMoneyController {
 	public ResultCode immediatelyBorrowMoney(String id,String instalmentId,String amount) {
 		ResultCode result = null;
 		
-		logger.debug("aaaaaaa");
 		try {
 			borrowMoneytserver.immediatelyBorrowMoney(id,instalmentId,amount);
 			result = ResultCode.getSuccess("提前还款成功");
 		} catch (Exception e) {
 			logger.error("提前还款失败",e);
 			result = ResultCode.getFail("提前还款失败");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
+	 * 获取延期信息
+	 * @param instalmentId 计划id
+	 * @return
+	 */
+	@RequestMapping( value = "getApplyPostponeInfo")
+	public ResultCode getApplyPostponeInfo(String instalmentId) {
+		ResultCode result = null;
+		
+		try {
+			QtFinancialProductInstalmentPostpone postpones = borrowMoneytserver.getApplyPostponeInfo(instalmentId);
+			result = ResultCode.getSuccess("获取申请延期信息成功",postpones);
+		} catch (Exception e) {
+			logger.error("获取申请延期信息失败",e);
+			result = ResultCode.getFail("获取申请延期信息败");
 			e.printStackTrace();
 		}
 		return result;
