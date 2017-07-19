@@ -39,7 +39,7 @@ public class DataCol {
 	@RequestMapping(value = "/all")
 	public Map<String,Object> all(String type,Integer start,Integer end) {
 		QtFinancialBorrowMoney qm = new QtFinancialBorrowMoney();
-//		qm.setStatus(borrowStatus.APPLY.toString());
+		qm.setStatus(borrowStatus.BORROW_APPLY.getStatus());
 		return borrowService.getBorrows(qm);
 	}
 	

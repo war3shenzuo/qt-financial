@@ -11,21 +11,23 @@
 		insert into
 		qt_financial_borrow_money (id, productId, couponId,
 		userId, amount,
-		daynum,
-		status, repaymentDate, repaymentAmount,
+		daynum,status,
 		arriveAmount, auditCost,
 		factorageCost,
-		rate, manageCost, reductionExemption,
+		manageCost,
+		reductionExemption,
 		applyAt, createdAt)
-		values (#{id}, #{productId,jdbcType=VARCHAR},
+		values (#{id},
+		#{productId,jdbcType=VARCHAR},
 		#{couponId,jdbcType=VARCHAR},
 		#{userId,jdbcType=VARCHAR},
-		#{amount,jdbcType=DECIMAL}, #{daynum,jdbcType=VARCHAR},
-		#{status,jdbcType=VARCHAR}, #{repaymentDate,jdbcType=TIMESTAMP},
-		#{repaymentAmount,jdbcType=DECIMAL},
+		#{amount,jdbcType=DECIMAL},
+		#{daynum,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
 		#{arriveAmount,jdbcType=DECIMAL},
-		#{auditCost,jdbcType=DECIMAL}, #{factorageCost,jdbcType=DECIMAL},
-		#{rate,jdbcType=INTEGER}, #{manageCost,jdbcType=DECIMAL},
+		#{auditCost,jdbcType=DECIMAL},
+		#{factorageCost,jdbcType=DECIMAL},
+		#{manageCost,jdbcType=DECIMAL},
 		#{reductionExemption,jdbcType=DECIMAL},
 		#{applyAt,jdbcType=TIMESTAMP},
 		#{createdAt,jdbcType=TIMESTAMP})
@@ -35,16 +37,16 @@
 		update
 		qt_financial_borrow_money
 		set status = #{status,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=VARCHAR}
 	</update>
 
 	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialBorrowMoney"
 		parameterType="String">
 		select id, productId, couponId, userId, amount, daynum,
-		status,
-		repaymentDate, repaymentAmount,
-		arriveAmount, auditCost,
-		factorageCost, rate, manageCost, reductionExemption,
+		status,arriveAmount, auditCost,
+		factorageCost, manageCost,
+		reductionExemption,
 		applyAt,
 		createdAt
 		from qt_financial_borrow_money
@@ -54,21 +56,18 @@
 	<select id="selectAll" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney"
 		resultType="com.qtjf.common.bean.QtFinancialBorrowMoney">
 		select id, productId, couponId, userId, amount, daynum, status,
-		repaymentDate, repaymentAmount,
-		arriveAmount, auditCost, factorageCost,
-		rate, manageCost, reductionExemption,
-		applyAt,
-		createdAt
+		arriveAmount, auditCost, factorageCost,manageCost, reductionExemption,
+		applyAt,createdAt
 		from
 		qt_financial_borrow_money
 		<where>
-			<if test="productId != null and productId != ''">
+			<if test="productId!=null and productId!=''">
 				and productId = #{productId}
 			</if>
-			<if test="userId != null and userId != ''">
-				and  userId = #{userId}
+			<if test="userId!=null and userId!=''">
+				and userId = #{userId}
 			</if>
-				<if test="status != null and status != ''">
+			<if test="status != null and status != ''">
 				and  status = #{status}
 			</if>
 		</where>
