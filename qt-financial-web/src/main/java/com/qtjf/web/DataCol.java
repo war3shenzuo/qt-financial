@@ -13,9 +13,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
+import com.qtjf.common.bean.QtFinancialUserLevel;
 import com.qtjf.common.emus.borrowStatus;
 import com.qtjf.web.service.BorrowService;
 import com.qtjf.web.service.ProductService;
+import com.qtjf.web.service.UserService;
 import com.qtjf.web.util.StringUtil;
 
 @RestController
@@ -27,6 +29,9 @@ public class DataCol {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private UserService userService;
 	
 	/**
 	 * 分页获取审核数据，类型分审核中和审核完毕的
@@ -163,4 +168,18 @@ public class DataCol {
 		 return null;
 	}
 	
+	@RequestMapping(value = "/getUserLevel")
+	public Map<String,Object> getUserLevel() {
+		 return userService.getUserLevels();
+	}
+	
+	@RequestMapping(value = "/getUserLevelInfo")
+	public Map<String,Object> getUserLevelInfo(Integer id) {
+		 return userService.getUserLevelInfo(id);
+	}
+	
+	@RequestMapping(value = "/user/level/edit")
+	public Map<String,Object> editUserLevel(QtFinancialUserLevel qul) {
+		 return userService.editUserLevel(qul);
+	}
 }

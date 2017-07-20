@@ -21,56 +21,7 @@
 							<th>操作</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>青铜会员</td>
-							<td>4</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/upgrade_edit', 'wrapper');">编辑</a>
-							</td>
-						</tr>
-						<tr>
-							<td>白银会员</td>
-							<td>4</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/upgrade_edit', 'wrapper');">编辑</a>
-							</td>
-						</tr>
-						<tr>
-							<td>黄金会员</td>
-							<td>4</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/upgrade_edit', 'wrapper');">编辑</a>
-							</td>
-						</tr>
-						<tr>
-							<td>铂金会员</td>
-							<td>4</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/upgrade_edit', 'wrapper');">编辑</a>
-							</td>
-						</tr>
-						<tr>
-							<td>钻石会员</td>
-							<td>4</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/upgrade_edit', 'wrapper');">编辑</a>
-							</td>
-						</tr>
-						<tr>
-							<td>荣耀会员</td>
-							<td>4</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/upgrade_edit', 'wrapper');">编辑</a>
-							</td>
-						</tr>
-						<tr>
-							<td>特约会员</td>
-							<td>4</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/upgrade_edit', 'wrapper');">编辑</a>
-							</td>
-						</tr>
+					<tbody id="content">
 					</tbody>
 					<tfoot>
 						<tr>
@@ -96,7 +47,25 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
-		
+		var url ="${pageContext.request.contextPath}/data/getUserLevel";
+		LoadAjaxData(url,loadData);
+		function loadData(data){
+			try{
+				var htmlStr = '';
+				for(var i = 0 ;i < data.objList.length;i++){
+					htmlStr+='<tr>'
+						+'<td>'+data.objList[i].name+'</td>'
+						+'<td>'+data.objList[i].num+'</td>'
+						+'<td>'
+						+'	<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/upgrade_edit?id='+data.objList[i].id+'\', \'wrapper\');">编辑</a>'
+						+'</td>'
+						+'</tr>';
+				}
+				$("#content").html(htmlStr);
+			} catch(arr){
+				console.log(arr);
+			}
+		}
 	});
 	
 </script>

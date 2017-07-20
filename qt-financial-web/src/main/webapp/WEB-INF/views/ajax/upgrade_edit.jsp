@@ -15,16 +15,17 @@
 			<div class="panel-body">
 				<form class="cmxform form-horizontal adminex-form" role="form"
 					method="POST" id="gradeForm" action="">
+					<input type="hidden" value="${param.id}" name="id" id="id">
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">会员等级：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="member_grade" id="member_grade"> 
+							<input type="text" class="form-control" name="name" id="member_grade" readonly> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">需要次数：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="member_number" id="member_number">
+							<input type="text" class="form-control" name="num" id="member_number">
 						</div>
 					</div>
 					<div class="form-group">
@@ -39,25 +40,33 @@
 	</div>
 </div>
 
-<!-- 阿里云上传-->
-<script type="text/javascript"
-	src="${ctx}/common/js/chronic/lib/crypto1/crypto/crypto.js"></script>
-<script type="text/javascript"
-	src="${ctx}/common/js/chronic/lib/crypto1/hmac/hmac.js"></script>
-<script type="text/javascript"
-	src="${ctx}/common/js/chronic/lib/crypto1/sha1/sha1.js"></script>
-<script type="text/javascript"
-	src="${ctx}/common/js/chronic/lib/base64.js"></script>
-<script type="text/javascript"
-	src="${ctx}/common/js/chronic/lib/plupload-2.1.2/js/plupload.full.min.js"></script>
-<script type="text/javascript" src="${ctx}/common/js/chronic/upload.js"></script>
-<script type="text/javascript"
-	src="${ctx}/common/js/chronic/picUpdateAndShow.js"></script>
+
 	
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
+		var url ="${pageContext.request.contextPath}/data/getUserLevelInfo?id="+$("#id").val();
+		LoadAjaxData(url,loadData);
+		function loadData(data){
+			try{
+				console.log(data);
+				$("#member_grade").val(data.obj.name);
+				$("#member_number").val(data.obj.num);
+			} catch(arr){
+				console.log(arr);
+			}
+		}
 		$('#gradeForm').bootstrapValidator({
+			submitHandler : function(validator, form,
+					submitButton) {
+				var url = "${pageContext.request.contextPath}/data/user/level/edit";//或form.attr('action')
+				var param = form.serialize();//或者form.serialize()
+				console.log(param);
+				submitAjaxData(url, param, callback);
+				function callback(data) {
+					LoadAjaxContent('upgrade_info','wrapper');
+				}
+			},
 			feedbackIcons : {
 				valid : 'fa fa-check',
 				invalid : 'fa fa-times',

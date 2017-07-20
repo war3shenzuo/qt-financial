@@ -7,56 +7,10 @@
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 
-	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney">
-		insert into
-		qt_financial_borrow_money (id, productId, couponId,
-		userId, amount,
-		daynum,status,
-		arriveAmount, auditCost,
-		factorageCost,
-		manageCost,
-		reductionExemption,
-		applyAt, createdAt)
-		values (#{id},
-		#{productId,jdbcType=VARCHAR},
-		#{couponId,jdbcType=VARCHAR},
-		#{userId,jdbcType=VARCHAR},
-		#{amount,jdbcType=DECIMAL},
-		#{daynum,jdbcType=VARCHAR},
-		#{status,jdbcType=VARCHAR},
-		#{arriveAmount,jdbcType=DECIMAL},
-		#{auditCost,jdbcType=DECIMAL},
-		#{factorageCost,jdbcType=DECIMAL},
-		#{manageCost,jdbcType=DECIMAL},
-		#{reductionExemption,jdbcType=DECIMAL},
-		#{applyAt,jdbcType=TIMESTAMP},
-		#{createdAt,jdbcType=TIMESTAMP})
-	</insert>
-
-	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney">
-		update
-		qt_financial_borrow_money
-		set status = #{status,jdbcType=VARCHAR}
-		where
-		id = #{id,jdbcType=VARCHAR}
-	</update>
-
-	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialBorrowMoney"
-		parameterType="String">
-		select id, productId, couponId, userId, amount, daynum,
-		status,arriveAmount, auditCost,
-		factorageCost, manageCost,
-		reductionExemption,
-		applyAt,
-		createdAt
-		from qt_financial_borrow_money
-		where id = #{id}
-	</select>
-
 	<select id="selectAll" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney"
 		resultType="com.qtjf.common.bean.QtFinancialBorrowMoney">
 		select id, productId, couponId, userId, amount, daynum, status,
-		arriveAmount, auditCost, factorageCost,manageCost, reductionExemption,
+		arriveAmount, auditCost,manageCost, reductionExemption,
 		applyAt,createdAt
 		from
 		qt_financial_borrow_money
