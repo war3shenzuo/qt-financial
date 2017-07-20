@@ -30,7 +30,9 @@ public enum borrowStatus {
 	INSTALMENT_POSTPONE("5r","延期成功"),
 	//提前还款
 	INSTALMENT_AHEAD("1e","你已经还款%s元,还款时间%date"),
-	INSTALMENT_CLOSE("2e","正常还款成功");
+	INSTALMENT_CLOSE("2e","正常还款成功"),
+	//删除订单
+	DELETE("d","删除订单");
 	
 	
 	

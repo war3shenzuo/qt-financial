@@ -3,14 +3,14 @@
 <mapper namespace="com.qtjf.appserver.dao.QtFinacialProductMapper" >
 
   <select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinacialProduct" parameterType="java.lang.String" >
-    select id, productName, productCode, amount, factorageCost,auditCost,manageCost, dayNum, userLevel, 
+    select id, productName, productCode, amount,auditCost,manageCost, dayNum, userLevel, 
     isActivated, createdAt, createdBy, updatedAt, updateBy
     from qt_financial_product
     where id = #{value}
   </select>
   
   <select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialProduct" >
-    select id, productName, productCode, amount, factorageCost,auditCost,manageCost, dayNum, userLevel, 
+    select id, productName, productCode, amount,auditCost,manageCost, dayNum, userLevel, 
     isActivated, createdAt, createdBy, updatedAt, updateBy
     from qt_financial_product
   </select>

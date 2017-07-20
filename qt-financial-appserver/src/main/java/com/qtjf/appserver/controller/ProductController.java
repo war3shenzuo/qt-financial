@@ -2,11 +2,11 @@ package com.qtjf.appserver.controller;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qtjf.appserver.server.ProductServer;
@@ -22,47 +22,35 @@ import com.qtjf.common.vo.ResultCode;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final  Logger logger = LoggerFactory.getLogger(this.getClass());  
-	
 	@Autowired
 	ProductServer productserver;
 	
 	/**
 	 * 获取所有产品及用户信息(次数，是否可以申请)
-	 * @param userId 用户Id
+	 * 
+	 * @param userId
+	 *            用户Id
 	 * @return 产品集合
+	 * @throws Exception
 	 */
-	@RequestMapping("")
-	public ResultCode getProducts( String userId) {
-		ResultCode result = null;
-		try {
+	@RequestMapping("getProducts")
+	public ResultCode getProducts( @NotNull String userId) throws Exception {
 			List<QtFinacialProduct> list = productserver.getProducts(userId);
-			result = ResultCode.getSuccess("获取用户产品成功", list);
-		} catch (Exception e) {
-			logger.error("获取用户产品失败",e);
-			result = ResultCode.getFail("获取用户产品失败");
-			e.printStackTrace();
-		}
-		return result;
+			return ResultCode.getSuccess("获取用户产品成功", list);
 	}
 	
 	/**
 	 * 获取产品详情
-	 * @param id 产品ID
+	 * 
+	 * @param id
+	 *            产品ID
 	 * @return 产品详情
+	 * @throws Exception
 	 */
-	@RequestMapping(value = "/getProductInfo")
-	public ResultCode getProductInfo(String id) {
-		ResultCode result = null;
-		try {
+	@RequestMapping("getProductInfo")
+	public ResultCode getProductInfo( @NotNull(message = "产品id不能为空")  @RequestParam String id) throws Exception {
 			QtFinacialProduct product = productserver.getProduct(id);
-			result = ResultCode.getSuccess("获取产品详情成功", product);
-		} catch (Exception e) {
-			logger.error("获取产品详情失败",e);
-			result = ResultCode.getFail("获取产品详情失败");
-			e.printStackTrace();
-		}
-		return result;
+			return ResultCode.getSuccess("获取产品详情成功", product);
 	}
 	
 

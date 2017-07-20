@@ -3,6 +3,8 @@ package com.qtjf.appserver.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qtjf.common.vo.ResultCode;
 import com.qtjf.jwt.entity.AccessToken;
 import com.qtjf.jwt.entity.JwtConfig;
 import com.qtjf.jwt.token.JwtTokenBuilder;
@@ -17,8 +20,6 @@ import com.qtjf.jwt.token.JwtTokenBuilder;
 @RestController
 public class LoginController {
 	
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	private JwtConfig jwtConfig;
 	
@@ -51,4 +52,18 @@ public class LoginController {
 
 		return token;
 	}
+	
+	@RequestMapping(value = "/exp", method = RequestMethod.GET)
+	public ResultCode exp(HttpServletRequest request) throws Exception  {
+		
+		
+        throw new Exception("参数错误" + request.getAttribute("msg"));
+
+		
+		//return ResultCode.getSuccess(request.getAttribute("msg"));
+		
+	}
+		
+	
+	
 }

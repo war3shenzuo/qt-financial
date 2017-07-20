@@ -186,4 +186,12 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 		bmipdao.insert(bmip);
 	}
 
+	@Override
+	public void deleteBorrowmoney(String id) throws Exception {
+		QtFinancialBorrowMoney bm =  bmdao.selectByPrimaryKey(id);
+		bm.setStatus(borrowStatus.DELETE.getStatus());
+		update(bm);
+		
+	}
+
 }

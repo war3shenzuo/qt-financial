@@ -7,9 +7,7 @@
 		qt_financial_borrow_money (id, productId, couponId,
 		userId, amount,
 		daynum,status,
-		arriveAmount, auditCost,
-		factorageCost,
-		manageCost,
+		arriveAmount, auditCost,manageCost,
 		reductionExemption,
 		applyAt, createdAt)
 		values (#{id},
@@ -21,7 +19,6 @@
 		#{status,jdbcType=VARCHAR},
 		#{arriveAmount,jdbcType=DECIMAL},
 		#{auditCost,jdbcType=DECIMAL},
-		#{factorageCost,jdbcType=DECIMAL},
 		#{manageCost,jdbcType=DECIMAL},
 		#{reductionExemption,jdbcType=DECIMAL},
 		#{applyAt,jdbcType=TIMESTAMP},
@@ -39,8 +36,7 @@
 	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialBorrowMoney"
 		parameterType="String">
 		select id, productId, couponId, userId, amount, daynum,
-		status,arriveAmount, auditCost,
-		factorageCost, manageCost,
+		status,arriveAmount, auditCost,manageCost,
 		reductionExemption,
 		applyAt,
 		createdAt
@@ -51,7 +47,7 @@
 	<select id="selectAll" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney"
 		resultType="com.qtjf.common.bean.QtFinancialBorrowMoney">
 		select id, productId, couponId, userId, amount, daynum, status,
-		arriveAmount, auditCost, factorageCost,manageCost, reductionExemption,
+		arriveAmount, auditCost,manageCost, reductionExemption,
 		applyAt,createdAt
 		from
 		qt_financial_borrow_money
@@ -62,6 +58,7 @@
 			<if test="userId!=null and userId!=''">
 				and userId = #{userId}
 			</if>
+				and status != 'd'
 		</where>
 	</select>
 </mapper>

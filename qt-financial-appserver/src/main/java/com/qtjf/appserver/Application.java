@@ -29,17 +29,16 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-	public FilterRegistrationBean basicFilterRegistrationBean() {
-		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-		HTTPBasicAuthorizeAttribute httpBasicFilter = new HTTPBasicAuthorizeAttribute();
-		registrationBean.setFilter(httpBasicFilter);
-		registrationBean.addInitParameter("base64Secret", jwtconfig.getBase64Secret());
-		registrationBean.addInitParameter("tokenType", jwtconfig.getTokenType());
-		List<String> urlPatterns = new ArrayList<String>();
-		urlPatterns.add("/products/*");
-		registrationBean.setUrlPatterns(urlPatterns);
-		return registrationBean;
-	}
+//	@Bean
+//	public FilterRegistrationBean basicFilterRegistrationBean() {
+//		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+//		HTTPBasicAuthorizeAttribute httpBasicFilter = new HTTPBasicAuthorizeAttribute();
+//		registrationBean.setFilter(httpBasicFilter);
+//		registrationBean.addInitParameter("base64Secret", jwtconfig.getBase64Secret());
+//		registrationBean.addInitParameter("tokenType", jwtconfig.getTokenType());
+//		List<String> urlPatterns = new ArrayList<String>();
+// 		registrationBean.setUrlPatterns(urlPatterns);
+//		return registrationBean;
+//	}
 
 }

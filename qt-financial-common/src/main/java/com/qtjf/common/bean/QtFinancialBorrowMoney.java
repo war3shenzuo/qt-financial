@@ -22,8 +22,6 @@ public class QtFinancialBorrowMoney {
 
     private BigDecimal auditCost;
 
-    private BigDecimal factorageCost;
-
     private BigDecimal manageCost;
 
     private BigDecimal reductionExemption;
@@ -121,14 +119,6 @@ public class QtFinancialBorrowMoney {
 
 	public void setAuditCost(BigDecimal auditCost) {
 		this.auditCost = auditCost;
-	}
-
-	public BigDecimal getFactorageCost() {
-		return factorageCost;
-	}
-
-	public void setFactorageCost(BigDecimal factorageCost) {
-		this.factorageCost = factorageCost;
 	}
 
 	public BigDecimal getManageCost() {

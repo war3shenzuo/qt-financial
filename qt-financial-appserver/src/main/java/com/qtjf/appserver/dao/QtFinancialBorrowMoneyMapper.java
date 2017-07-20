@@ -5,7 +5,7 @@ import java.util.List;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
 
 public interface QtFinancialBorrowMoneyMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(QtFinancialBorrowMoney record);
 

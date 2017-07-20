@@ -12,8 +12,6 @@ public class QtFinacialProduct {
 
     private BigDecimal amount;
 
-    private BigDecimal factorageCost;
-    
     private BigDecimal auditCost;
     
     private BigDecimal manageCost;
@@ -80,14 +78,6 @@ public class QtFinacialProduct {
 	public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
-
-    public BigDecimal getFactorageCost() {
-		return factorageCost;
-	}
-
-	public void setFactorageCost(BigDecimal factorageCost) {
-		this.factorageCost = factorageCost;
-	}
 
 	public BigDecimal getAuditCost() {
 		return auditCost;
