@@ -63,12 +63,12 @@ public class CreditFlowController {
 	}
 
 	@RequestMapping(value = "GetSSPData", method = RequestMethod.GET)
-	public Map<String,Object> getSSPdata(HttpServletRequest req) {
+	public Map<String,Object> getSSPdata(HttpServletRequest req ,String accessToken ) {
 		
 		Map<String, String> map = getOrgInfo(req);
 
 		String url = host + "GetSSPData?org=" + map.get("orgName") + "&secret=" + map.get("secret")
-				+ "&accessToken=" + map.get("accessToken")+"&token="+ map.get("token");
+				+ "&accessToken=" + accessToken+"&token="+ map.get("token");
 		
 		System.out.println(url);
 		@SuppressWarnings("unchecked")
