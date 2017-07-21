@@ -21,7 +21,7 @@
   <!-- 文件保存日志的相关配置 --> 
   <appender name="ERROR-OUT" class="ch.qos.logback.core.rolling.RollingFileAppender">
      <!-- 保存日志文件的路径 -->
-    <file>/Users/moon/Documents/logs/qt-appserver/error.log</file>
+    <file>/home/project/qt-financial/logs/qt-appserver/error.log</file>
     <!-- 日志格式 -->
     <encoder>
        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>   
@@ -34,7 +34,7 @@
     <!-- 循环政策：基于时间创建日志文件 -->
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
       <!-- 日志文件名格式 -->
-      <fileNamePattern>/Users/moon/Documents/logs/qt-appserver/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <fileNamePattern>/home/project/qt-financial/logs/qt-appserver/error.%d{yyyy-MM-dd}.log</fileNamePattern>
       <!-- 最大保存时间：30天-->
       <maxHistory>30</maxHistory>
     </rollingPolicy>
