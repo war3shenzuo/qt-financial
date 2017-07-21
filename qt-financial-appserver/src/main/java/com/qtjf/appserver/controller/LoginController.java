@@ -3,26 +3,27 @@ package com.qtjf.appserver.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qtjf.appserver.server.BannerServer;
 import com.qtjf.common.vo.ResultCode;
 import com.qtjf.jwt.entity.AccessToken;
 import com.qtjf.jwt.entity.JwtConfig;
 import com.qtjf.jwt.token.JwtTokenBuilder;
 
 @RestController
+@RequestMapping(value = "/index")
 public class LoginController {
-	
+
 	@Autowired
 	private JwtConfig jwtConfig;
-	
+
+	@Autowired
+	private BannerServer bannerserver;
+
 	/**
 	 * 登录
 	 *
@@ -52,18 +53,11 @@ public class LoginController {
 
 		return token;
 	}
-	
-	@RequestMapping(value = "/exp", method = RequestMethod.GET)
-	public ResultCode exp(HttpServletRequest request) throws Exception  {
-		
-		
-        throw new Exception("参数错误" + request.getAttribute("msg"));
 
-		
-		//return ResultCode.getSuccess(request.getAttribute("msg"));
-		
+	@RequestMapping(value = "/getBanners", method = RequestMethod.GET)
+	public ResultCode getBanners() throws Exception {
+		return ResultCode.getSuccess("获取banner成功",bannerserver.getBanner());
+
 	}
-		
-	
-	
+
 }
