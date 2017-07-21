@@ -1,4 +1,4 @@
-package com.qtjf.xdt.controller;
+package com.qtjf.jdt.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.qtjf.xdt.util.CreditFlowUtil;
+import com.qtjf.jdt.util.CreditFlowUtil;
 
 @RestController
 public class CreditFlowController {

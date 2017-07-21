@@ -1,4 +1,4 @@
-package com.qtjf.xdt.util;
+package com.qtjf.jdt.util;
 
 import java.util.Map;
 

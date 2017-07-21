@@ -9,8 +9,8 @@
 		<version>0.0.1</version>
 	</parent>
 	
-	<artifactId>qt-financial-xdt</artifactId>
-	<name>qt-financial-xdt</name>
+	<artifactId>qt-financial-tpa</artifactId>
+	<name>qt-financial-tpa</name>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
