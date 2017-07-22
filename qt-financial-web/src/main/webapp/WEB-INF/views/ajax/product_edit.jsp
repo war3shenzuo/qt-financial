@@ -30,34 +30,35 @@
 				<form class="cmxform form-horizontal adminex-form" role="form"
 					method="POST" id="productForm" action="#"
 					enctype="multipart/form-data">
+					<input type="hidden" value="${param.id}" name="id" id="id">
 					<div class="form-group">
 						<label class="col-sm-2 control-label">前段排序号：</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="number" id="number">
+							<input type="text" class="form-control" name="productCode" id="number">
 						</div>
 						<label class="col-sm-2 control-label">产品名称：</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="name" id="name">
+							<input type="text" class="form-control" name="productName" id="name">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">借款金额：</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="money" id="money">
+							<input type="text" class="form-control" name="amount" id="money">
 						</div>
 						<label class="col-sm-2 control-label">借款时长：</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="time" id="time">
+							<input type="text" class="form-control" name="daynum" id="time">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">信用审核费/元：</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="money2" id="money2">
+							<input type="text" class="form-control" name="auditCost" id="money2">
 						</div>
 						<label class="col-sm-2 control-label">资产保管：</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="money3" id="money3">
+							<input type="text" class="form-control" name="manageCost" id="money3">
 						</div>
 					</div>
 					<div class="form-group">
@@ -204,7 +205,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-lg-offset-6 col-lg-10">
-							<button class="btn btn-primary" type="button"
+							<button class="btn btn-primary" type="submit"
 								onclick="">提交</button>
 						</div>
 					</div>
@@ -291,6 +292,52 @@
 	$(document).ready(function() {
 		scrollTo(0,0);
 		Select2Test();
+		
+		var url ="${pageContext.request.contextPath}/data/product/get?id="+$("#id").val();
+		LoadAjaxData(url,loadData);
+		function loadData(data){
+			try{
+				console.log(data);
+				$("input[name=productCode]").val(data.obj.productCode);
+				$("input[name=productName]").val(data.obj.productName);
+				$("input[name=amount]").val(data.obj.amount);
+				$("input[name=daynum]").val(data.obj.daynum);
+				$("input[name=auditCost]").val(data.obj.auditCost);
+				$("input[name=manageCost]").val(data.obj.manageCost);
+			} catch(arr){
+				console.log(arr);
+			}
+		}
+		
+		$('#productForm').bootstrapValidator(
+				{
+					submitHandler : function(validator, form,
+							submitButton) {
+						var url = "${pageContext.request.contextPath}/data/product/edit";//或form.attr('action')
+						var param = form.serialize();//或者form.serialize()
+						submitAjaxData(url, param, callback);
+						function callback(data) {
+							LoadAjaxContent('product_info','wrapper');
+						}
+					},
+					message : 'This value is not valid',
+					fields : {
+						productCode : {
+							validators : {
+								notEmpty : {
+									message : '输入不能为空'
+								}
+							}
+						},
+						productName: {
+							validators : {
+								notEmpty : {
+									message : '输入不能为空'
+								}
+							}
+						}
+					}
+				});
 	});
 	//新建还款计划
 	function repaymentAdd(){

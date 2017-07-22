@@ -1,55 +1,125 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qtjf.web.mapper.QtFinacialProductMapper">
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		qt_financial_product
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+
+	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinacialProduct">
+		update qt_financial_product
+		<set>
+			<if test="productName != null and productName != ''">
+				productName = #{productName},
+			</if>
+			<if test="productCode != null and productCode != ''">
+				productCode = #{productCode},
+			</if>
+			<if test="amount != null and amount != ''">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+<!-- 			<if test="factorageCost != null and factorageCost != ''"> -->
+<!-- 				factorageCost = #{factorageCost,jdbcType=DECIMAL}, -->
+<!-- 			</if> -->
+			<if test="auditCost != null and auditCost != ''">
+				auditCost = #{auditCost,jdbcType=DECIMAL},
+			</if>
+			<if test="manageCost != null and manageCost != ''">
+				manageCost = #{manageCost,jdbcType=DECIMAL},
+			</if>
+<!-- 			<if test="rate != null and rate != ''"> -->
+<!-- 				rate = #{rate,jdbcType=VARCHAR}, -->
+<!-- 			</if> -->
+			<if test="daynum != null and daynum != ''">
+				dayNum = #{daynum,jdbcType=VARCHAR},
+			</if>
+			<if test="userlevel != null and userlevel != ''">
+				userLevel = #{userlevel,jdbcType=VARCHAR},
+			</if>
+<!-- 			<if test="visibleLevel != null and visibleLevel != ''"> -->
+<!-- 				visibleLevel = #{visibleLevel,jdbcType=VARCHAR}, -->
+<!-- 			</if> -->
+			<if test="isActivated != null and isActivated != ''">
+				isActivated = #{isActivated,jdbcType=VARCHAR},
+			</if>
+			<if test="createdat != null and createdat != ''">
+				createdAt = #{createdat,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createdby != null and createdby != ''">
+				createdBy = #{createdby,jdbcType=VARCHAR},
+			</if>
+			<if test="updatedat != null and updatedat != ''">
+				updatedAt = #{updatedat,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateby != null and updateby != ''">
+				updateBy = #{updateby,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
 
 	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinacialProduct"
 		parameterType="java.lang.String">
 		select id, productName, productCode, amount,
 		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
 		isActivated, createdAt, createdBy, updatedAt, updateBy
-		from qt_financial_product
+		from
+		qt_financial_product
 		where id = #{value}
 	</select>
 
 	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialProduct">
-		select id, productName, productCode, amount,
-		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
+		select id, productName,
+		productCode, amount,
+		factorageCost,auditCost,manageCost, rate, dayNum,
+		userLevel,
 		isActivated, createdAt, createdBy, updatedAt, updateBy
-		from qt_financial_product
+		from
+		qt_financial_product
 	</select>
-	
-  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinacialProduct" >
-    insert into qt_financial_product (id, productName, productCode, 
-      amount, factorageCost, auditCost, 
-      manageCost,  dayNum, 
-      userLevel,  isActivated, 
-      createdAt, createdBy, updatedAt, 
-      updateBy)
-    values (#{id,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
-      #{amount,jdbcType=DECIMAL}, #{factorageCost,jdbcType=DECIMAL}, #{auditCost,jdbcType=DECIMAL}, 
-      #{manageCost,jdbcType=DECIMAL},  #{daynum,jdbcType=VARCHAR}, 
-      #{userlevel,jdbcType=VARCHAR},  #{isActivated,jdbcType=VARCHAR}, 
-      #{createdat,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, #{updatedat,jdbcType=TIMESTAMP}, 
-      #{updateby,jdbcType=VARCHAR})
-  </insert>
-  
+
+	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinacialProduct">
+		insert into
+		qt_financial_product (id, productName, productCode,
+		amount, auditCost,
+		manageCost, dayNum,
+		userLevel, isActivated,
+		createdAt, createdBy, updatedAt,
+		updateBy)
+		values
+		(#{id,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR},
+		#{productCode,jdbcType=VARCHAR},
+		#{amount,jdbcType=DECIMAL},#{auditCost,jdbcType=DECIMAL},
+		#{manageCost,jdbcType=DECIMAL}, #{daynum,jdbcType=VARCHAR},
+		#{userlevel,jdbcType=VARCHAR}, #{isActivated,jdbcType=VARCHAR},
+		#{createdat,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR},
+		#{updatedat,jdbcType=TIMESTAMP},
+		#{updateby,jdbcType=VARCHAR})
+	</insert>
+
 	<select id="selectAllByPage" parameterType="java.util.Map"
 		resultType="com.qtjf.common.bean.QtFinacialProduct">
 		select id, productName, productCode, amount,
 		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
 		isActivated, createdAt, createdBy, updatedAt, updateBy
-		from qt_financial_product
-		where id like '%${search}%' or productName like '%${search}%' or amount
-		like '%${search}%' or auditCost like '%${search}%' or manageCost like
+		from
+		qt_financial_product
+		where id like '%${search}%' or productName like
+		'%${search}%' or amount
+		like '%${search}%' or auditCost like
+		'%${search}%' or manageCost like
 		'%${search}%' limit #{start},#{end}
 	</select>
-	
+
 	<select id="selectAllByPageCount" parameterType="java.util.Map"
 		resultType="java.lang.Integer">
 		select count(1)
 		from qt_financial_product
-		where id like '%${search}%' or productName like '%${search}%' or amount
-		like '%${search}%' or auditCost like '%${search}%' or manageCost like
-		'%${search}%' 
+		where id like
+		'%${search}%' or productName like '%${search}%' or amount
+		like
+		'%${search}%' or auditCost like '%${search}%' or manageCost like
+		'%${search}%'
 	</select>
 </mapper>

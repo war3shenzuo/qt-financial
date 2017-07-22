@@ -10,8 +10,17 @@ public interface ProductService {
 	//分页查找产品
 	Map<String,Object> selectAllByPage(Map<String,Object> paramMap);
 	
+	//获取产品
+	Map<String,Object> getProduct(String id);
+	
 	//添加产品
 	Map<String,Object> addProduct(QtFinacialProduct qp);
+
+	//编辑产品
+	Map<String,Object> editProduct(QtFinacialProduct qp);
+	
+	//删除产品
+	Map<String,Object> deleteProduct(String id);
 	
 	//查找banner
 	Map<String,Object> getBanner();
@@ -24,5 +33,9 @@ public interface ProductService {
 	
 	//删除banner
 	Map<String,Object> deleteBanner(Integer id);
+
+
+
+	
 	
 }

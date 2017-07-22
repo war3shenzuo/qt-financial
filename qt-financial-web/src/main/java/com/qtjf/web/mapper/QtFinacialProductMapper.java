@@ -6,7 +6,11 @@ import java.util.Map;
 import com.qtjf.common.bean.QtFinacialProduct;
 
 public interface QtFinacialProductMapper {
+	
+	int deleteByPrimaryKey(String id);
 
+	int updateByPrimaryKey(QtFinacialProduct record);
+	
     QtFinacialProduct selectByPrimaryKey(String id);
 
     List<QtFinacialProduct> selectAll();

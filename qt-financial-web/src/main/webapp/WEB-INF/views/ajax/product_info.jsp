@@ -112,7 +112,10 @@
 							}, {
 								"mData" : "id",
 								"mRender" : function(data, type, full) {
-									var str = "编辑";
+									var str = '<a href="javascript:void(0)"'
+										+' onclick="editProduct(\''+data+'\')">编辑</a>'
+										+'&nbsp;&nbsp;<a href="javascript:void(0)"'
+										+' onclick="deleteProduct(\''+data+'\')">删除</a>';
 									return str;
 								}
 							} ]
@@ -135,6 +138,16 @@
 			error : function(msg) {
 				console.error("retrieveData:" + msg);
 			}
+		});
+	}
+	function editProduct(id){
+		LoadAjaxContent("${pageContext.request.contextPath}/view/product_edit?id="+id, "wrapper");
+	}
+	function deleteProduct(id){
+		var url = "${pageContext.request.contextPath}/data/product/delete";
+		var param = "id="+id;
+		submitAjaxData(url, param, function(data){
+			LoadAjaxContent('product_info','wrapper');
 		});
 	}
 </script>
