@@ -1,11 +1,13 @@
-package com.qtjf.jdt.util;
+package com.qtjf.tpa.jdt.server.impl;
 
 import java.util.Map;
 
 import org.springframework.web.client.RestTemplate;
 
+import com.qtjf.tpa.jdt.server.PullServer;
+
 @SuppressWarnings("unchecked")
-public class CreditFlowUtil {
+public class Dockservice implements PullServer {
 
 	private RestTemplate template;
 
@@ -15,7 +17,7 @@ public class CreditFlowUtil {
 	 * @param host 远程地址
 	 * @param template 自定义模版对象
 	 */
-	public CreditFlowUtil(String host, RestTemplate template) {
+	public Dockservice(String host, RestTemplate template) {
 
 		this.template = template;
 
