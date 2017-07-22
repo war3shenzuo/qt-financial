@@ -1,4 +1,4 @@
-package com.qtjf.jdt;
+package com.qtjf.tpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
