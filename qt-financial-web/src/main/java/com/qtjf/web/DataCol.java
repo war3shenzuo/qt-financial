@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
 import com.qtjf.common.bean.QtFinancialUserLevel;
+import com.qtjf.common.bean.QtFinanicalBanner;
 import com.qtjf.common.emus.borrowStatus;
 import com.qtjf.web.service.BorrowService;
 import com.qtjf.web.service.ProductService;
@@ -32,6 +33,7 @@ public class DataCol {
 	
 	@Autowired
 	private UserService userService;
+	
 	
 	/**
 	 * 分页获取审核数据，类型分审核中和审核完毕的
@@ -181,5 +183,25 @@ public class DataCol {
 	@RequestMapping(value = "/user/level/edit")
 	public Map<String,Object> editUserLevel(QtFinancialUserLevel qul) {
 		 return userService.editUserLevel(qul);
+	}
+	
+	@RequestMapping(value = "/getBanner")
+	public Map<String,Object> getBanner() {
+		 return productService.getBanner();
+	}
+	
+	@RequestMapping(value = "/banner/add")
+	public Map<String,Object> addBanner(QtFinanicalBanner qb) {
+		 return productService.addBanner(qb);
+	}
+	
+	@RequestMapping(value = "/banner/edit")
+	public Map<String,Object> editBanner(QtFinanicalBanner qb) {
+		 return productService.editBanner(qb);
+	}
+	
+	@RequestMapping(value = "/banner/delete")
+	public Map<String,Object> deleteBanner(Integer id) {
+		 return productService.deleteBanner(id);
 	}
 }

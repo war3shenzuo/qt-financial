@@ -50,6 +50,7 @@
 	    		<ul class="sub-menu-list">
 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('product_info','wrapper')">产品管理</a></li>
 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('upgrade_info','wrapper')">升级策略管理</a></li>
+	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('banner_info','wrapper')">banner管理</a></li>
 	            </ul>
 	    	</li>
 	    	<li class="menu-list"><a href=""><i class="fa fa-group"></i> <span>客户管理</span></a>

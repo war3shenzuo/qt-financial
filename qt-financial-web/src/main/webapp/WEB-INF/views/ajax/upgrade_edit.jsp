@@ -61,7 +61,6 @@
 					submitButton) {
 				var url = "${pageContext.request.contextPath}/data/user/level/edit";//或form.attr('action')
 				var param = form.serialize();//或者form.serialize()
-				console.log(param);
 				submitAjaxData(url, param, callback);
 				function callback(data) {
 					LoadAjaxContent('upgrade_info','wrapper');

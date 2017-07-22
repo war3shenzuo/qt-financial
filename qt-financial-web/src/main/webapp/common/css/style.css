@@ -5328,3 +5328,6 @@ ol.comment-list {
 .text-right{
 	text-align: right;
 }
+img{
+	max-width: 100px;
+}

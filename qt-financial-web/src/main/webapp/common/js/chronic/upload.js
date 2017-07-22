@@ -1,8 +1,12 @@
 function uploadInit(dir, selectfilebtn, container, ossfile, postfile, fileValue, preview) {
-	accessid = 'TWTxeXi6d2VQ6Yc9';
-	accesskey = 'pvxZ0w8m46Q105nb5oavdMdyKRTK6L';
-	host = 'http://mlnx-test.oss-cn-shanghai.aliyuncs.com';
+//	accessid = 'TWTxeXi6d2VQ6Yc9';
+//	accesskey = 'pvxZ0w8m46Q105nb5oavdMdyKRTK6L';
+//	host = 'http://mlnx-test.oss-cn-shanghai.aliyuncs.com';
 
+	accessid = 'LTAIPvn9pI0IgTHc';
+	accesskey = 'p8tGL8YpUi5Q8hMICTlygkUz9jmT4l';
+	host = 'http://tonghangimg.oss-cn-shanghai.aliyuncs.com';
+	
 	g_dirname = '';
 	g_object_name = '';
 	g_object_name_type = '';

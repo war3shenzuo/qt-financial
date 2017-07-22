@@ -1,11 +1,18 @@
 package com.qtjf.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "view")
 public class ViewCol {
+	
+	@ModelAttribute("img_url")
+	public String getItemTypes() {
+		return "http://tonghangimg.oss-cn-shanghai.aliyuncs.com/";// 阿里云oss的前缀
+	}
+
 
 	@RequestMapping(value = "/index")
 	public String index() {
@@ -148,7 +155,25 @@ public class ViewCol {
 	public String upgrade_info() {
 		return "ajax/upgrade_info";
 	}
-
+	
+	// banner管理
+	@RequestMapping(value = "/banner_info")
+	public String banner_info() {
+		return "ajax/banner_info";
+	}
+	
+	// banner添加
+	@RequestMapping(value = "/banner_add")
+	public String banner_add() {
+		return "ajax/banner_add";
+	}
+	
+	// banner编辑
+	@RequestMapping(value = "/banner_edit")
+	public String banner_edit() {
+		return "ajax/banner_edit";
+	}
+	
 	// 升级策略管理-编辑
 	@RequestMapping(value = "/upgrade_edit")
 	public String upgrade_edit() {
@@ -262,8 +287,7 @@ public class ViewCol {
 	public String edition_edit() {
 		return "ajax/edition_edit";
 	}
-	
-	
-	
-	
+
+
+
 }

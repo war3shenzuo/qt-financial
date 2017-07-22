@@ -26,6 +26,7 @@
 						<tr>
 							<th>图片</th>
 							<th>链接</th>
+							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody id="content">
@@ -34,6 +35,7 @@
 						<tr>
 							<th>图片</th>
 							<th>链接</th>
+							<th>操作</th>
 						</tr>
 					</tfoot>
 				</table>
@@ -48,15 +50,49 @@
 <script type="text/javascript"
 	src="${ctx}/common/js/data-tables/DT_bootstrap.js"></script>
 
-<!--dynamic table initialization -->
-<script src="${ctx}/common/js/dynamic_table_init.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		scrollTo(0,0);
-		var url="${pageContext.request.contextPath}/ data/getBanner";
-		LoadAjaxData(url,loadData);
-		function loadData(data){
-			console.log(data);
-		}
-	});
+	$(document)
+			.ready(
+					function() {
+						scrollTo(0, 0);
+						var url = "${pageContext.request.contextPath}/data/getBanner";
+						LoadAjaxData(url, loadData);
+						function loadData(data) {
+							try {
+								var htmlStr = '';
+								for (var i = 0; i < data.objList.length; i++) {
+									htmlStr += '<tr>'
+											+ '<td><img src="${img_url}' 
+											+ data.objList[i].pic
+											+ '"></td>'
+											+ '<td>'
+											+ data.objList[i].url
+											+ '</td>'
+											+ '<td><a href="#" onclick="editBanner('
+											+ data.objList[i].id
+											+ ')">编辑</a>&nbsp;&nbsp;<a href="#" onclick="deleteBanner('
+											+ data.objList[i].id
+											+ ')">删除</a></td>' 
+											+ '</tr>';
+								}
+								$("#content").html(htmlStr);
+							    $('#dynamic-table').dataTable();
+							} catch (arr) {
+								console.log(arr);
+							}
+
+						}
+					});
+	
+	function editBanner(id){
+		LoadAjaxContent('banner_edit?id='+id,'wrapper')
+	}
+	
+	function deleteBanner(id){
+		var url = "${pageContext.request.contextPath}/data/banner/delete";
+		var param = "id="+id;
+		submitAjaxData(url, param, function(data){
+			LoadAjaxContent('banner_info','wrapper');
+		});
+	}
 </script>
