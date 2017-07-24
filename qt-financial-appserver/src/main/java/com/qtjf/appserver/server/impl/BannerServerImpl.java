@@ -16,7 +16,7 @@ public class BannerServerImpl implements BannerServer {
 	@Autowired
 	QtFinanicalBannerMapper bannerDao;
 	
-	@Value(value = "picHost")
+	@Value(value = "${picHost}")
 	private String picHost;
 	
 	@Override
