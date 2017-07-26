@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.qtjf.tpa.jdt.util.CreditFlowUtil;
+import com.qtjf.tpa.jdt.server.JdtGenerateServer;
+import com.qtjf.tpa.jdt.server.JdtPullServer;
+import com.qtjf.tpa.jdt.server.PullServer;
+
 
 @RestController
 public class CreditFlowController {
@@ -23,7 +26,10 @@ public class CreditFlowController {
 	
 	@Value("${jdt.testHost}")
 	private String host;
-
+	
+	
+	@Value("${jdt.commitHost}")
+	private String host1;
 	/**
 	 * 实时通告接口
 	 * 
@@ -51,9 +57,9 @@ public class CreditFlowController {
 
 		//String url = host + "AccessToken?org=" + org + "&secret=" + secret;
 		
-		CreditFlowUtil util = new CreditFlowUtil(host,template);
+		PullServer server = JdtPullServer.getInstance(host, template);
 		
-		Map<String, Object> map = util.AccessToken(org, secret);
+		Map<String, Object> map = server.AccessToken(org, secret);
 
 		if (Objects.equals(map.get("result"), "SUCCESS")) {
 			req.getSession().setAttribute("accessToken", map.get("accessToken"));
@@ -143,6 +149,19 @@ public class CreditFlowController {
 
 		return map;
 
+	}
+	
+	/**
+	 * 账户下所有商户列表查询
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "reqToken", method = RequestMethod.GET)
+	public String reqToken() {
+		
+		JdtGenerateServer server = JdtGenerateServer.getInstance(host1, template);
+		
+		return server.reqToken("citabf9052bec2464daa", "asdadasd", "15258278176", "asdasdasdasd");
 	}
 
 }

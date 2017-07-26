@@ -1,23 +1,25 @@
-package com.qtjf.tpa.jdt.server.impl;
+package com.qtjf.tpa.jdt.server;
 
 import java.util.Map;
 
 import org.springframework.web.client.RestTemplate;
 
-import com.qtjf.tpa.jdt.server.PullServer;
-
 @SuppressWarnings("unchecked")
-public class Dockservice implements PullServer {
+public class JdtPullServer implements PullServer {
 
 	private RestTemplate template;
 
 	private String host;
-	
+
+	private volatile static JdtPullServer jdtPullServer = null;
+
 	/**
-	 * @param host 远程地址
-	 * @param template 自定义模版对象
+	 * @param host
+	 *            远程地址
+	 * @param template
+	 *            自定义模版对象
 	 */
-	public Dockservice(String host, RestTemplate template) {
+	public JdtPullServer(String host, RestTemplate template) {
 
 		this.template = template;
 
@@ -79,6 +81,17 @@ public class Dockservice implements PullServer {
 		Map<String, Object> result = template.getForObject(url, Map.class);
 
 		return result;
+	}
+
+	public static JdtPullServer getInstance(String host, RestTemplate template) {
+		if (jdtPullServer == null) {
+			synchronized (JdtPullServer.class) {
+				if (jdtPullServer == null) {
+					jdtPullServer = new JdtPullServer(host, template);
+				}
+			}
+		}
+		return jdtPullServer;
 	}
 
 }

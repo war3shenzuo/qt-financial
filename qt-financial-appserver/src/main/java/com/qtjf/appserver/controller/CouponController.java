@@ -2,8 +2,6 @@ package com.qtjf.appserver.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +21,6 @@ import com.qtjf.common.vo.ResultCode;
 @RequestMapping("/coupons")
 public class CouponController {
 	
-    private final  Logger logger = LoggerFactory.getLogger(this.getClass());  
-	
 	@Autowired
 	CouponServer couponserver;
 	/**
@@ -34,16 +30,8 @@ public class CouponController {
 	 */
 	@RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
 	public ResultCode getUserCoupon(@PathVariable("userId") String userId) {
-		ResultCode result = null;
-		try {
 			List<QtFinancialUserCoupon> list = couponserver.getCoupons(userId);
-			result = ResultCode.getSuccess("获取用户优惠劵成功", list);
-		} catch (Exception e) {
-			logger.error("获取用户优惠劵失败",e);
-			result = ResultCode.getFail("获取用户优惠劵失败");
-			e.printStackTrace();
-		}
-		return result;
+			return ResultCode.getSuccess("获取用户优惠劵成功", list);
 	}
 	
 	
