@@ -2,6 +2,9 @@ package com.qtjf.tpa.jdt.bean;
 
 import java.math.BigDecimal;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class UserInfo {
 
 	/**
@@ -15,25 +18,42 @@ public class UserInfo {
 	 * RequestAmount:借款额度（非必填） LovDurationType:还款周期类型（非必填） 0: 天 1: 月 2: 周
 	 * DurationNumber: 还款周期（非必填）
 	 */
-
+	@JSONField(name = "WechatNumber")
 	private String WechatNumber;
+	@JsonProperty("QqNumber")
 	private String QqNumber;
+	@JsonProperty("LovEducationType")
 	private Integer LovEducationType;
+	@JsonProperty("LovShebaoType")
 	private Integer LovShebaoType;
+	@JsonProperty("City")
 	private String City;
+	@JsonProperty("Province")
 	private String Province;
+	@JsonProperty("District")
 	private String District;
+	@JsonProperty("LivingAddress")
 	private String LivingAddress;
-	private String contact1_name;
-	private String contact1_type;
-	private String contact1_cell;
-	private String contact2_name;
-	private String contact2_type;
-	private String contact2_cell;
+	@JsonProperty("Contact1Name")
+	private String Contact1Name;
+	@JsonProperty("Contact1Type")
+	private Integer Contact1Type;
+	@JsonProperty("Contact1Cell")
+	private String Contact1Cell;
+	@JsonProperty("Contact2Name")
+	private String Contact2Name;
+	@JsonProperty("Contact2Type")
+	private Integer Contact2Type;
+	@JsonProperty("Contact2Cell")
+	private String Contact2Cell;
+	@JsonProperty("RequestAmount")
 	private BigDecimal RequestAmount;
+	@JsonProperty("LovDurationType")
 	private Integer LovDurationType;
+	@JsonProperty("DurationNumber")
 	private Integer DurationNumber;
 
+	@JSONField(name = "WechatNumber")
 	public String getWechatNumber() {
 		return WechatNumber;
 	}
@@ -42,6 +62,7 @@ public class UserInfo {
 		WechatNumber = wechatNumber;
 	}
 
+	@JSONField(name = "QqNumber")
 	public String getQqNumber() {
 		return QqNumber;
 	}
@@ -50,6 +71,7 @@ public class UserInfo {
 		QqNumber = qqNumber;
 	}
 
+	@JSONField(name = "LovEducationType")
 	public Integer getLovEducationType() {
 		return LovEducationType;
 	}
@@ -58,6 +80,7 @@ public class UserInfo {
 		LovEducationType = lovEducationType;
 	}
 
+	@JSONField(name = "LovShebaoType")
 	public Integer getLovShebaoType() {
 		return LovShebaoType;
 	}
@@ -66,6 +89,7 @@ public class UserInfo {
 		LovShebaoType = lovShebaoType;
 	}
 
+	@JSONField(name = "City")
 	public String getCity() {
 		return City;
 	}
@@ -74,6 +98,7 @@ public class UserInfo {
 		City = city;
 	}
 
+	@JSONField(name = "Province")
 	public String getProvince() {
 		return Province;
 	}
@@ -82,6 +107,7 @@ public class UserInfo {
 		Province = province;
 	}
 
+	@JSONField(name = "District")
 	public String getDistrict() {
 		return District;
 	}
@@ -90,6 +116,7 @@ public class UserInfo {
 		District = district;
 	}
 
+	@JSONField(name = "LivingAddress")
 	public String getLivingAddress() {
 		return LivingAddress;
 	}
@@ -98,54 +125,7 @@ public class UserInfo {
 		LivingAddress = livingAddress;
 	}
 
-	public String getContact1_name() {
-		return contact1_name;
-	}
-
-	public void setContact1_name(String contact1_name) {
-		this.contact1_name = contact1_name;
-	}
-
-	public String getContact1_type() {
-		return contact1_type;
-	}
-
-	public void setContact1_type(String contact1_type) {
-		this.contact1_type = contact1_type;
-	}
-
-	public String getContact1_cell() {
-		return contact1_cell;
-	}
-
-	public void setContact1_cell(String contact1_cell) {
-		this.contact1_cell = contact1_cell;
-	}
-
-	public String getContact2_name() {
-		return contact2_name;
-	}
-
-	public void setContact2_name(String contact2_name) {
-		this.contact2_name = contact2_name;
-	}
-
-	public String getContact2_type() {
-		return contact2_type;
-	}
-
-	public void setContact2_type(String contact2_type) {
-		this.contact2_type = contact2_type;
-	}
-
-	public String getContact2_cell() {
-		return contact2_cell;
-	}
-
-	public void setContact2_cell(String contact2_cell) {
-		this.contact2_cell = contact2_cell;
-	}
-
+	@JSONField(name = "RequestAmount")
 	public BigDecimal getRequestAmount() {
 		return RequestAmount;
 	}
@@ -154,6 +134,7 @@ public class UserInfo {
 		RequestAmount = requestAmount;
 	}
 
+	@JSONField(name = "LovDurationType")
 	public Integer getLovDurationType() {
 		return LovDurationType;
 	}
@@ -162,12 +143,67 @@ public class UserInfo {
 		LovDurationType = lovDurationType;
 	}
 
+	@JSONField(name = "DurationNumber")
 	public Integer getDurationNumber() {
 		return DurationNumber;
 	}
 
 	public void setDurationNumber(Integer durationNumber) {
 		DurationNumber = durationNumber;
+	}
+
+	@JSONField(name = "Contact1Name")
+	public String getContact1Name() {
+		return Contact1Name;
+	}
+
+	public void setContact1Name(String contact1Name) {
+		Contact1Name = contact1Name;
+	}
+
+	@JSONField(name = "Contact1Cell")
+	public String getContact1Cell() {
+		return Contact1Cell;
+	}
+
+	public void setContact1Cell(String contact1Cell) {
+		Contact1Cell = contact1Cell;
+	}
+
+	@JSONField(name = "Contact2Name")
+	public String getContact2Name() {
+		return Contact2Name;
+	}
+
+	public void setContact2Name(String contact2Name) {
+		Contact2Name = contact2Name;
+	}
+
+	@JSONField(name = "Contact2Cell")
+	public String getContact2Cell() {
+		return Contact2Cell;
+	}
+
+	public void setContact2Cell(String contact2Cell) {
+		Contact2Cell = contact2Cell;
+	}
+
+	@JSONField(name = "Contact1Type")
+	public Integer getContact1Type() {
+		return Contact1Type;
+	}
+
+	public void setContact1Type(Integer contact1Type) {
+		Contact1Type = contact1Type;
+	}
+
+	@JSONField(name = "getContact2Type")
+	public Integer getContact2Type() {
+		return Contact2Type;
+	}
+
+	public void setContact2Type(Integer contact2Type) {
+		Contact2Type = contact2Type;
 	}
 
 }
