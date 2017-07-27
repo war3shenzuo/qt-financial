@@ -17,29 +17,32 @@
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>com.qtjf</groupId>
+			<artifactId>qt-financial-tpa</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.qtjf</groupId>
 			<artifactId>qt-financial-common</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.qtjf</groupId>
-			<artifactId>qt-financial-jwt</artifactId>			
+			<artifactId>qt-financial-jwt</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.qtjf</groupId>
-			<artifactId>qt-financial-tpa</artifactId>			
-			<version>0.0.1</version>
-		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
