@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.web.mapper.QtFinancialProductUserLevelMapper" >
+  <resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialProductUserLevel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="user_level_id" property="userLevelId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qt_financial_product_user_level
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialProductUserLevel" >
+    insert into qt_financial_product_user_level (id, product_id, user_level_id, 
+      type)
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=VARCHAR}, #{userLevelId,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialProductUserLevel" >
+    update qt_financial_product_user_level
+    set product_id = #{productId,jdbcType=VARCHAR},
+      user_level_id = #{userLevelId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, product_id, user_level_id, type
+    from qt_financial_product_user_level
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, product_id, user_level_id, type
+    from qt_financial_product_user_level
+  </select>
+</mapper>
