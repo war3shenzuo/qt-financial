@@ -1,10 +1,7 @@
 package com.qtjf.tpa.jdt.server;
 
-import java.util.Map;
-
 import org.springframework.web.client.RestTemplate;
 
-@SuppressWarnings("unchecked")
 public class JdtPullServer implements PullServer {
 
 	private RestTemplate template;
@@ -26,59 +23,54 @@ public class JdtPullServer implements PullServer {
 		this.host = host;
 	}
 
-	public String Communication(String token, String demandId, String dmandKey, String dataTime) {
-
-		return "hi! " + token;
-	}
-
 	/** accessToken获取接口 */
-	public Map<String, Object> AccessToken(String org, String secret) {
+	public String AccessToken(String org, String secret) {
 
 		String url = host + "AccessToken?org=" + org + "&secret=" + secret;
 
-		Map<String, Object> map = template.getForObject(url, Map.class);
+		String result = template.getForObject(url, String.class);
 
-		return map;
+		return result;
 	}
 
 	/** getSSPdata获取报告 */
-	public Map<String, Object> getSSPdata(String org, String secret, String accessToken, String token) {
+	public String getSSPdata(String org, String secret, String accessToken, String token) {
 
 		String url = host + "GetSSPData?org=" + org + "&secret=" + secret + "&accessToken=" + accessToken + "&token="
 				+ token;
 
-		Map<String, Object> result = template.getForObject(url, Map.class);
+		String result = template.getForObject(url, String.class);
 
 		return result;
 	}
 
 	/** 未拉取报告查询接口 */
-	public Map<String, Object> QueryOustandingTokens(String org, String secret, String accessToken) {
+	public String QueryOustandingTokens(String org, String secret, String accessToken) {
 
 		String url = host + "QueryOustandingTokens?org=" + org + "&secret=" + secret + "&accessToken=" + accessToken;
 
-		Map<String, Object> result = template.getForObject(url, Map.class);
+		String result = template.getForObject(url, String.class);
 
 		return result;
 	}
 
 	/** 商户3日流量查询接口 */
-	public Map<String, Object> QueryTokensByDemand(String org, String secret, String accessToken, String demandKey) {
+	public String QueryTokensByDemand(String org, String secret, String accessToken, String demandKey) {
 
 		String url = host + "QueryTokensByDemand??org=" + org + "&secret=" + secret + "&accessToken=" + accessToken
 				+ "&demandKey=" + demandKey;
 
-		Map<String, Object> result = template.getForObject(url, Map.class);
+		String result = template.getForObject(url, String.class);
 
 		return result;
 	}
 
 	/** 账户下所有商户列表查询 */
-	public Map<String, Object> QueryConsume(String org, String secret, String accessToken) {
+	public String QueryConsume(String org, String secret, String accessToken) {
 
 		String url = host + "QueryConsume?org=" + org + "&secret=" + secret + "&accessToken=" + accessToken;
 
-		Map<String, Object> result = template.getForObject(url, Map.class);
+		String result = template.getForObject(url, String.class);
 
 		return result;
 	}
