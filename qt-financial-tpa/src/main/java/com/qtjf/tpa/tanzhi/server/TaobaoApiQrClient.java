@@ -18,7 +18,6 @@ public class TaobaoApiQrClient {
 	private static final String secret = "x4X7G6E5HfHvpnMaRE2mGrLlzX68h6QR";
 	private static final String version = "1.0.0";
 
-	
 
 	/**
 	 * 提交淘宝查询的业务请求

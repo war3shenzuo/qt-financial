@@ -1,55 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qtjf.appserver.dao.QtFinancialAuthenticationMapper" >
-  <resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialAuthentication" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="userId" property="userid" jdbcType="VARCHAR" />
-    <result column="authType" property="authtype" jdbcType="VARCHAR" />
-    <result column="authStatus" property="authstatus" jdbcType="VARCHAR" />
-    <result column="authenticationId" property="authenticationid" jdbcType="INTEGER" />
-    <result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
-    <result column="createdBy" property="createdby" jdbcType="VARCHAR" />
-    <result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
-    <result column="updatedBy" property="updatedby" jdbcType="VARCHAR" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from qt_financial_authentication
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialAuthentication" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into qt_financial_authentication (id, userId, authType, 
-      authStatus, authenticationId, createdAt, 
-      createdBy, updatedAt, updatedBy
-      )
-    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR}, #{authtype,jdbcType=VARCHAR}, 
-      #{authstatus,jdbcType=VARCHAR}, #{authenticationid,jdbcType=INTEGER}, #{createdat,jdbcType=TIMESTAMP}, 
-      #{createdby,jdbcType=VARCHAR}, #{updatedat,jdbcType=TIMESTAMP}, #{updatedby,jdbcType=VARCHAR}
-      )
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialAuthentication" >
-    update qt_financial_authentication
-    set userId = #{userid,jdbcType=VARCHAR},
-      authType = #{authtype,jdbcType=VARCHAR},
-      authStatus = #{authstatus,jdbcType=VARCHAR},
-      authenticationId = #{authenticationid,jdbcType=INTEGER},
-      createdAt = #{createdat,jdbcType=TIMESTAMP},
-      createdBy = #{createdby,jdbcType=VARCHAR},
-      updatedAt = #{updatedat,jdbcType=TIMESTAMP},
-      updatedBy = #{updatedby,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, userId, authType, authStatus, authenticationId, createdAt, createdBy, 
-    updatedAt, updatedBy
-    from qt_financial_authentication
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select id, userId, authType, authStatus, authenticationId, createdAt, createdBy, 
-    updatedAt, updatedBy
-    from qt_financial_authentication
-  </select>
+<mapper namespace="com.qtjf.appserver.dao.QtFinancialAuthenticationMapper">
+	<resultMap id="BaseResultMap"
+		type="com.qtjf.common.bean.QtFinancialAuthentication">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userId" property="userid" jdbcType="VARCHAR" />
+		<result column="authType" property="authtype" jdbcType="VARCHAR" />
+		<result column="authStatus" property="authstatus" jdbcType="VARCHAR" />
+		<result column="authenticationId" property="authenticationid"
+			jdbcType="INTEGER" />
+		<result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
+		<result column="createdBy" property="createdby" jdbcType="VARCHAR" />
+		<result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
+		<result column="updatedBy" property="updatedby" jdbcType="VARCHAR" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		qt_financial_authentication
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialAuthentication">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into qt_financial_authentication (id, userId, authType,
+		authStatus, authenticationId, createdAt,
+		createdBy, updatedAt,
+		updatedBy
+		)
+		values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR},
+		#{authtype,jdbcType=VARCHAR},
+		#{authstatus,jdbcType=VARCHAR},
+		#{authenticationid,jdbcType=INTEGER},
+		#{createdat,jdbcType=TIMESTAMP},
+		#{createdby,jdbcType=VARCHAR}, #{updatedat,jdbcType=TIMESTAMP},
+		#{updatedby,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialAuthentication">
+		update
+		qt_financial_authentication
+		set userId = #{userid,jdbcType=VARCHAR},
+		authType = #{authtype,jdbcType=VARCHAR},
+		authStatus =
+		#{authstatus,jdbcType=VARCHAR},
+		authenticationId =
+		#{authenticationid,jdbcType=INTEGER},
+		createdAt =
+		#{createdat,jdbcType=TIMESTAMP},
+		createdBy =
+		#{createdby,jdbcType=VARCHAR},
+		updatedAt =
+		#{updatedat,jdbcType=TIMESTAMP},
+		updatedBy =
+		#{updatedby,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, userId, authType, authStatus,
+		authenticationId, createdAt,
+		createdBy,
+		updatedAt, updatedBy
+		from
+		qt_financial_authentication
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, userId, authType,
+		authStatus, authenticationId, createdAt,
+		createdBy,
+		updatedAt, updatedBy
+		from qt_financial_authentication
+	</select>
+
+	<select id="saveTaobaoQrMsg" parameterType="Map">
+		insert into
+		qt_financial_taobao_qr (userId,qrMsg,createdAt) values
+		(#{userId},#{msg},#{createdAt})
+	</select>
+
+	<delete id="deleteTaobaoQrMsgByUserId" parameterType="String">
+		delete from
+		qt_financial_taobao_qr
+		where userId = #{value}
+	</delete>
+
+	<select id="getQRMsg" resultType="Map" parameterType="String">
+		select *
+		from
+		qt_financial_taobao_qr
+		where userId = #{value}
+	</select>
+
+
 </mapper>
