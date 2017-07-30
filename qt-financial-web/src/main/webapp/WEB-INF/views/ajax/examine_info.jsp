@@ -19,149 +19,7 @@
 						<option value="">选择审核员</option>
 					</select>
                 </div>
-                <div class="examine-content">
-                	<div class="examine-box">
-						<div class="row">
-							<div class="col-sm-1">
-								<img alt="" src="${ctx}/common/img/no_pic200.png" onerror="this.src='${ctx }/common/img/no_pic200.png'" 
-								style="width: 100%; height: auto; max-height: 150px; min-width: 70px;  border-radius: 50%; border: 1px solid #eee;">
-							</div>
-							<div class="col-sm-11">
-								<div class="row examine-news">
-									<span>ID:</span><span>12313241432412341324</span>
-									<span>电话：</span><span>13737373737</span>
-									<span>普通客户</span><span>|</span><a href="#" onclick="showBorrowList()">查看借款记录</a>
-								</div>
-								<div class="row examine-news">
-									<span>申请借款：</span><span class="loan-amount">1000元</span><span>申请时间：</span><span>2017年06月26日 14:13</span>
-								</div>
-							</div>
-						</div>
-						<div class="row" style="margin-top: 15px;">
-							<div class="col-sm-1 text-left" style="line-height: 34px;">认证情况：</div>
-							<div class="col-sm-11">
-								<div class="row">
-									<button type="button" class="btn btn-default btn-success"
-										onclick="showAuthPhone()">手机认证</button>
-									<button type="button" class="btn btn-default btn-warning"
-										onclick="showAuthBase()">个人信息</button>
-									<button type="button" class="btn btn-default btn-success" onclick="showAuthId()">身份证认证</button>
-									<button type="button" class="btn btn-default btn-success">银行卡认证</button>
-									<button type="button" class="btn btn-default btn-info" onclick="showAuthWx()">微信认证</button>
-									<button type="button" class="btn btn-default btn-info"
-										onclick="showAuthContact()">授权通讯录</button>
-									<button type="button" class="btn btn-default btn-info">支付宝认证</button>
-									<button type="button" class="btn btn-default btn-info">京东认证</button>
-									<button type="button" class="btn btn-default btn-info">问卷认证</button>
-									<button type="button" class="btn btn-default btn-info">学信认证</button>
-								</div>
-							</div>
-						</div>
-						<div class="row" style="margin-top: 15px;">
-							<div class="col-sm-1 text-left" style="line-height: 34px;">相关数据：</div>
-							<div class="col-sm-11">
-								<div class="row examine-news">
-									<span class="risk_low">低风险</span><span class="risk_medium">中风险</span><span class="risk_height">高风险</span>
-									<span>借贷通信用分：</span><span>211</span><span>支付宝信用分：</span><span>421</span>
-									<button type="button" class="btn btn-default"
-										style="float: right; margin-right: 15px;">查看资信报告</button>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-1 text-left" style="line-height: 34px;">初审结果：</div>
-							<div class="col-sm-11">
-								<div class="row examine-news">
-									<span>同意申请</span><span>初审评语：</span><span>除家庭信息外，信息确认无误，可以复审</span><span>操作员：</span><span>王丽</span>
-								</div>
-							</div>
-						</div>
-						<div class="row" style="margin-top: 15px;">
-							<div class="form-group">
-		                        <label class="col-sm-1 text-left control-label" style="line-height: 34px;">复审评语：</label>
-		                        <div class="col-sm-8" style="padding: 0px;">
-		                            <input type="text" class="form-control">
-		                        </div>
-		                        <div class="col-sm-3">
-									<button type="button" class="btn btn-default btn-danger"
-										style="float: right; margin-left: 15px;">拒绝申请</button>
-									<button type="button" class="btn btn-default btn-success"
-										style="float: right; margin-left: 15px;">同意申请</button>
-								</div>
-		                    </div>
-						</div>
-                	</div>
-                	<div class="examine-box">
-						<div class="row">
-							<div class="col-sm-1">
-								<img alt="" src="${ctx}/common/img/no_pic200.png" onerror="this.src='${ctx }/common/img/no_pic200.png'" 
-								style="width: 100%; height: auto; max-height: 150px; min-width: 70px;  border-radius: 50%; border: 1px solid #eee;">
-							</div>
-							<div class="col-sm-11">
-								<div class="row examine-news">
-									<span>ID:</span><span>12313241432412341324</span>
-									<span>电话：</span><span>13737373737</span>
-									<span>普通客户</span><span>|</span><a href="#" onclick="showBorrowList()">查看借款记录</a>
-								</div>
-								<div class="row examine-news">
-									<span>申请借款：</span><span class="loan-amount">1000元</span><span>申请时间：</span><span>2017年06月26日 14:13</span>
-								</div>
-							</div>
-						</div>
-						<div class="row" style="margin-top: 15px;">
-							<div class="col-sm-1 text-left" style="line-height: 34px;">认证情况：</div>
-							<div class="col-sm-11">
-								<div class="row">
-									<button type="button" class="btn btn-default btn-success"
-										onclick="showAuthPhone()">手机认证</button>
-									<button type="button" class="btn btn-default btn-warning"
-										onclick="showAuthBase()">个人信息</button>
-									<button type="button" class="btn btn-default btn-success" onclick="showAuthId()">身份证认证</button>
-									<button type="button" class="btn btn-default btn-success">银行卡认证</button>
-									<button type="button" class="btn btn-default btn-info" onclick="showAuthWx()">微信认证</button>
-									<button type="button" class="btn btn-default btn-info"
-										onclick="showAuthContact()">授权通讯录</button>
-									<button type="button" class="btn btn-default btn-info">支付宝认证</button>
-									<button type="button" class="btn btn-default btn-info">京东认证</button>
-									<button type="button" class="btn btn-default btn-info">问卷认证</button>
-									<button type="button" class="btn btn-default btn-info">学信认证</button>
-								</div>
-							</div>
-						</div>
-						<div class="row" style="margin-top: 15px;">
-							<div class="col-sm-1 text-left" style="line-height: 34px;">相关数据：</div>
-							<div class="col-sm-11">
-								<div class="row examine-news">
-									<span class="risk_low">低风险</span><span class="risk_medium">中风险</span><span class="risk_height">高风险</span>
-									<span>胡泊信用分：</span><span>211</span><span>支付宝信用分：</span><span>421</span>
-									<button type="button" class="btn btn-default"
-										style="float: right; margin-right: 15px;">查看资信报告</button>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-1 text-left" style="line-height: 34px;">初审结果：</div>
-							<div class="col-sm-11">
-								<div class="row examine-news">
-									<span>同意申请</span><span>初审评语：</span><span>除家庭信息外，信息确认无误，可以复审</span><span>操作员：</span><span>王丽</span>
-								</div>
-							</div>
-						</div>
-						<div class="row" style="margin-top: 15px;">
-							<div class="form-group">
-		                        <label class="col-sm-1 text-left control-label" style="line-height: 34px;">复审评语：</label>
-		                        <div class="col-sm-8" style="padding: 0px;">
-		                            <input type="text" class="form-control">
-		                        </div>
-		                        <div class="col-sm-3">
-									<button type="button" class="btn btn-default btn-danger"
-										style="float: right; margin-left: 15px;">拒绝申请</button>
-									<button type="button" class="btn btn-default btn-success"
-										style="float: right; margin-left: 15px;">同意申请</button>
-								</div>
-		                    </div>
-						</div>
-                	</div>
+                <div class="examine-content" id="borrowContent">
                 </div>
 			</div>
 		</section>
@@ -192,9 +50,101 @@
 		var url = "${pageContext.request.contextPath}/view/modal/borrow_list";
 		LoadAjaxContent(url, "borrow_list");
 		
+		
+		var url = "${pageContext.request.contextPath}/data/all?borrowType=2r";
+		LoadAjaxData(url, loadBorrowList);
+		
 		Select2Test();
 	});
 	function Select2Test() {
 		$("#examine_choice").select2();
+	}
+	
+	function loadBorrowList(data){
+		console.log(data);
+		try{
+			var list = data.objList;
+			var htmlStr = "";
+			for(var i= 0;i<list.length;i++){
+				htmlStr+='<div class="examine-box">'
+					+'<div class="row">'
+					+'<div class="col-sm-1">'
+					+'<img alt="" src="${ctx}/common/img/no_pic200.png" onerror="this.src=\'${ctx }/common/img/no_pic200.png\'" '
+					+'style="width: 100%; height: auto; max-height: 150px; min-width: 70px;  border-radius: 50%; border: 1px solid #eee;">'
+					+'</div>'
+					+'<div class="col-sm-8">'
+					+'<div class="row examine-news">'
+					+'	<span>ID:</span><span>'+list[i].id+'</span>'
+					+'<span>电话：</span><span>13737373737</span>'
+					+'	<span>普通客户</span><span>|</span><a href="#" onclick="showBorrowList()">查看借款记录</a>'
+					+'</div>'
+					+'<div class="row examine-news">'
+					+'	<span>申请借款：</span><span class="loan-amount">'+list[i].amount+'元</span><span>申请时间：</span><span>'+formatDatetime(list[i].applyAt)+'</span>'
+					+'</div>'
+					+'</div>'
+					+'<div class="col-sm-3">'
+// 					+'<button type="button" class="btn btn-default" style="float: right;" onclick="AgainApply()">重新审核</button>'
+// 					+'<span class="apply_state apply_agree">同意申请 </span>'
+					+'</div>'
+					+'</div>'
+					+'<div class="row" style="margin-top: 15px;">'
+					+'<div class="col-sm-1 text-left" style="line-height: 34px;">认证情况：</div>'
+					+'<div class="col-sm-11">'
+					+'<div class="row">'
+					+'	<button type="button" class="btn btn-default btn-success"'
+					+'		onclick="showAuthPhone()">手机认证</button>'
+					+'	<button type="button" class="btn btn-default btn-warning"'
+					+'		onclick="showAuthBase()">个人信息</button>'
+					+'	<button type="button" class="btn btn-default btn-success" onclick="showAuthId()">身份证认证</button>'
+					+'	<button type="button" class="btn btn-default btn-success">银行卡认证</button>'
+					+'	<button type="button" class="btn btn-default btn-info" onclick="showAuthWx()">微信认证</button>'
+					+'	<button type="button" class="btn btn-default btn-info"'
+					+'		onclick="showAuthContact()">授权通讯录</button>'
+					+'	<button type="button" class="btn btn-default btn-info">支付宝认证</button>'
+					+'	<button type="button" class="btn btn-default btn-info">京东认证</button>'
+					+'	<button type="button" class="btn btn-default btn-info">问卷认证</button>'
+					+'	<button type="button" class="btn btn-default btn-info">学信认证</button>'
+					+'</div>'
+					+'</div>'
+					+'</div>'
+					+'<div class="row" style="margin-top: 15px;">'
+					+'<div class="col-sm-1 text-left" style="line-height: 34px;">相关数据：</div>'
+					+'<div class="col-sm-11">'
+					+'<div class="row examine-news">'
+					+'	<span class="risk_low">低风险</span><span class="risk_medium">中风险</span><span class="risk_height">高风险</span>'
+					+'	<span>借贷通信用分：</span><span>211</span><span>支付宝信用分：</span><span>421</span>'
+					+'	<button type="button" class="btn btn-default"'
+					+'		style="float: right; margin-right: 15px;">查看资信报告</button>'
+					+'</div>'
+					+'</div>'
+					+'</div>'
+					+'<div class="row" style="margin-top: 15px;">'
+					+'<div class="form-group">'
+					+' <label class="col-sm-1 text-left control-label" style="line-height: 34px;">审核评语：</label>'
+					+'<div class="col-sm-8" style="padding: 0px;">'
+					+'   <input type="text" class="form-control">'
+					+'</div>'
+					+'<div class="col-sm-3">'
+					+'	<button type="button" class="btn btn-default btn-danger"'
+					+'		style="float: right; margin-left: 15px;">拒绝申请</button>'
+					+'	<button type="button" class="btn btn-default btn-success"'
+					+'		style="float: right; margin-left: 15px;" onclick="agreeBorrow(\''+list[i].id+'\')">同意申请</button>'
+					+'</div>'
+					+' </div>'
+					+'</div>'
+					+'</div>';
+			}
+		} catch(arr){
+			console.log(arr);
+		}
+		
+		$("#borrowContent").html(htmlStr);
+	}
+	function agreeBorrow(id){
+		var url = "${pageContext.request.contextPath}/data/borrow/agree";
+		var param = "id="+id+"&type=3r";
+		submitAjaxData(url,param,function(data){
+			LoadAjaxContent('${pageContext.request.contextPath}/view/index_info','wrapper');
+		});
 	}
 </script>

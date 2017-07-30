@@ -37,19 +37,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>001</td>
-							<td>001</td>
-							<td>7</td>
-							<td>1000</td>
-							<td>50</td>
-							<td>0</td>
-							<td>青铜</td>
-							<td>使用中</td>
-							<td><a href="javascript:void(0)"
-								onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/product_edit', 'wrapper');">编辑</a>
-							</td>
-						</tr>
 					</tbody>
 					<tfoot>
 						<tr>

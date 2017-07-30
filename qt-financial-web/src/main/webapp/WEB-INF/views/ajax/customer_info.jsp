@@ -124,15 +124,62 @@
 <script type="text/javascript"
 	src="${ctx}/common/js/data-tables/DT_bootstrap.js"></script>
 
-<!--dynamic table initialization -->
-<script src="${ctx}/common/js/dynamic_table_init.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
-		var url = "${pageContext.request.contextPath}/view/modal/borrow_list";
-		LoadAjaxContent(url, "borrow_list");
 		Select2Test();
+		var sAjaxSource = "${pageContext.request.contextPath}/data/user/all";
+		$('#dynamic-table').dataTable({
+			"bProcessing" : true,
+			"bServerSide" : true,
+			"aaSorting" : [ [ 4, "desc" ] ],
+			"sAjaxSource" : sAjaxSource,
+			"fnServerData" : retrieveData, // 获取数据的处理函数, 
+			"oLanguage" : {
+				"sPlaceholder" : ""
+			},
+			//列表表头字段
+			"aoColumns" : [ {
+				"mData" : "turename"
+			}, {
+				"mData" : "usermobile"
+			}, {
+				"mData" : "userlevel"
+			}, {
+				"mData" : "usercode"
+			}, {
+				"mData" : "userstatus"
+			}, {
+				"mData" : "id"
+			}, {
+				"mData" : "id",
+				"mRender" : function(data, type, full) {
+					var str = '<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/customer_detail\', \'wrapper\');">客户信息</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" onclick="showBorrowList()">借款记录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" onclick="customer_edit()">客户设置</a>';
+					return str;
+				}
+			} ]
+		});
+		
 	});
+	
+	// 3个参数的名字可以随便命名,但必须是3个参数,少一个都不行
+	function retrieveData(sSource, aoData, fnCallback) {
+		$.ajax({
+			url : sSource,//这个就是请求地址对应sAjaxSource
+			data : {
+				"aoData" : JSON.stringify(aoData)
+			},//这个是把datatable的一些基本数据传给后台,比如起始位置,每页显示的行数
+			type : 'post',
+			dataType : 'json',
+			async : false,
+			success : function(result) {
+				fnCallback(result);//把返回的数据传给这个方法就可以了,datatable会自动绑定数据的
+			},
+			error : function(msg) {
+				console.error("retrieveData:" + msg);
+			}
+		});
+	}
 	function customer_edit(){
 		$("#apply_again").modal("show");
 	}

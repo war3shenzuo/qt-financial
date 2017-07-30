@@ -23,6 +23,11 @@ public class ViewCol {
 	public String index_info() {
 		return "ajax/index_info";
 	}
+	
+	@RequestMapping(value = "/index_info_2")
+	public String index_info_2() {
+		return "ajax/index_info_2";
+	}
 
 	// 手机认证
 	@RequestMapping(value = "/modal/auth_phone")

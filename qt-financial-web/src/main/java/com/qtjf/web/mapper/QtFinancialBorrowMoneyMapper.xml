@@ -26,4 +26,7 @@
 			</if>
 		</where>
 	</select>
+	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney">
+		update qt_financial_borrow_money set status = #{status} where id = #{id}
+	</update>
 </mapper>
