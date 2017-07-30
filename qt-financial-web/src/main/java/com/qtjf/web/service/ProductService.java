@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.bean.QtFinanicalBanner;
+import com.qtjf.web.vo.QtFinacialProductVo;
 
 public interface ProductService {
 	
@@ -14,7 +15,7 @@ public interface ProductService {
 	Map<String,Object> getProduct(String id);
 	
 	//添加产品
-	Map<String,Object> addProduct(QtFinacialProduct qp);
+	Map<String,Object> addProduct(QtFinacialProductVo qp, String[] peoplegrade, String[] borrowgrade);
 
 	//编辑产品
 	Map<String,Object> editProduct(QtFinacialProduct qp);

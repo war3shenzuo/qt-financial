@@ -1,12 +1,15 @@
 package com.qtjf.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONArray;
@@ -20,6 +23,8 @@ import com.qtjf.web.service.BorrowService;
 import com.qtjf.web.service.ProductService;
 import com.qtjf.web.service.UserService;
 import com.qtjf.web.util.StringUtil;
+import com.qtjf.web.vo.QtFinacialProductVo;
+import com.qtjf.web.vo.TestVo;
 
 @RestController
 @RequestMapping(value = "data")
@@ -175,9 +180,8 @@ public class DataCol {
 	}
 
 	@RequestMapping(value = "/product/add")
-	public String product_add(QtFinacialProduct qp, Model model) {
-		qp.setId(UUID.randomUUID().toString());
-		productService.addProduct(qp);
+	public String product_add(QtFinacialProductVo qp, @RequestParam(value = "peoplegrade[]") String[] peoplegrade,@RequestParam(value = "borrowgrade[]") String[] borrowgrade) {
+		productService.addProduct(qp,peoplegrade,borrowgrade);
 		return null;
 	}
 
