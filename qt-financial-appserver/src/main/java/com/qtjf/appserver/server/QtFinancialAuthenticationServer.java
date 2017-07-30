@@ -1,5 +1,7 @@
 package com.qtjf.appserver.server;
 
+import com.qtjf.common.bean.QtFinancialAuthentication;
+
 public interface QtFinancialAuthenticationServer {
 
 	void saveTaobaoQrMsg(String string, String userId);
@@ -8,5 +10,6 @@ public interface QtFinancialAuthenticationServer {
 
 	String getTaobaoQRMsg(String userId);
 
+    void insert(QtFinancialAuthentication record) throws Exception;
 
 }

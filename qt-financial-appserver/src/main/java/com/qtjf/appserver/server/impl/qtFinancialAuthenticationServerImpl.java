@@ -3,6 +3,7 @@ package com.qtjf.appserver.server.impl;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.qtjf.appserver.dao.QtFinancialAuthenticationMapper;
 import com.qtjf.appserver.server.QtFinancialAuthenticationServer;
+import com.qtjf.common.bean.QtFinancialAuthentication;
 
 @Service
 @Transactional
@@ -50,6 +52,19 @@ public class qtFinancialAuthenticationServerImpl implements QtFinancialAuthentic
 		}
 
 		return null;
+	}
+
+	@Override
+	public void insert(QtFinancialAuthentication record) throws Exception{
+		
+		record.setCreatedat(new Date());
+		record.setUpdatedat(new Date());
+		record.setCreatedby(record.getUserid());
+		record.setUpdatedby(record.getUserid());
+		record.setId(UUID.randomUUID().toString());
+		
+		
+		qtFinancialAuthenticationMapper.insert(record);
 	}
 
 }
