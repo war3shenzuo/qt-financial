@@ -3,17 +3,20 @@ package com.qtjf.web.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qtjf.web.mapper.QtFinanicalBannerMapper;
 import com.qtjf.common.bean.QtFinacialProduct;
+import com.qtjf.common.bean.QtFinancialProductUserLevel;
 import com.qtjf.common.bean.QtFinancialUser;
 import com.qtjf.common.bean.QtFinanicalBanner;
 import com.qtjf.web.mapper.QtFinacialProductMapper;
 import com.qtjf.web.service.ProductService;
 import com.qtjf.web.util.StringUtil;
+import com.qtjf.web.vo.QtFinacialProductVo;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -41,8 +44,22 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Map<String, Object> addProduct(QtFinacialProduct qp) {
+	public Map<String, Object> addProduct(QtFinacialProductVo qp ,String[] peoplegrade, String[] borrowgrade) {
+		String id = UUID.randomUUID().toString();
+		qp.setId(id);
 		qtFinacialProductMapper.insert(qp);
+		
+		// TODO  插入可借、可见记录
+//		for(String people:peoplegrade){
+//			QtFinancialProductUserLevel qpul = new QtFinancialProductUserLevel();
+//			qpul.setProductId(id);
+//			qpul.setUserLevelId(Integer.parseInt(people));
+//			qpul.setType(1);
+//		}
+		
+		// TODO 插入还款计划、延期计划
+		
+		
 		return null;
 	}
 
