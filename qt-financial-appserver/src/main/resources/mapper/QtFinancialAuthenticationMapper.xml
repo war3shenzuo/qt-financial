@@ -20,16 +20,12 @@
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialAuthentication">
-		<selectKey resultType="java.lang.Integer" keyProperty="id"
-			order="BEFORE">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
 		insert into qt_financial_authentication (id, userId, authType,
 		authStatus, authenticationId, createdAt,
 		createdBy, updatedAt,
 		updatedBy
 		)
-		values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=VARCHAR},
+		values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR},
 		#{authtype,jdbcType=VARCHAR},
 		#{authstatus,jdbcType=VARCHAR},
 		#{authenticationid,jdbcType=INTEGER},
