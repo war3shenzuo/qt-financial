@@ -29,4 +29,18 @@
 	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney">
 		update qt_financial_borrow_money set status = #{status} where id = #{id}
 	</update>
+	<select id="selectManageAll" parameterType="java.util.Map" resultType="com.qtjf.common.bean.QtFinancialBorrowMoney">
+		select id, productId, couponId, userId, amount, daynum, status,
+		arriveAmount, auditCost,manageCost, reductionExemption,
+		applyAt,createdAt
+		from
+		qt_financial_borrow_money
+		where status = "3r" or status = "3e" limit #{start},#{end};
+	</select>
+	<select id="selectAllByPageCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select count(1)
+		from qt_financial_borrow_money
+		where status = "3r" or status = "3e"
+	</select>
 </mapper>

@@ -95,6 +95,41 @@ public class DataCol {
 	public Map<String, Object> borrowInfo(Integer id) {
 		return null;
 	}
+	
+	// 经理的审核记录
+	@RequestMapping(value = "/borrow/all")
+	public String borrowAll(String aoData) {
+		JSONArray jsonarray = JSONArray.parseArray(aoData);
+		String sEcho = null;// 对比数据
+		int iDisplayStart = 0; // 起始索引
+		int iDisplayLength = 0; // 每页显示的行数
+		String search = "";
+		for (int i = 0; i < jsonarray.size(); i++) {
+			JSONObject obj = (JSONObject) jsonarray.get(i);
+			if (obj.get("name").equals("sEcho"))
+				sEcho = obj.get("value").toString();
+
+			if (obj.get("name").equals("iDisplayStart"))
+				iDisplayStart = obj.getIntValue("value");
+
+			if (obj.get("name").equals("iDisplayLength"))
+				iDisplayLength = obj.getIntValue("value");
+
+			if (obj.get("name").equals("sSearch"))
+				search = obj.get("value").toString();
+		}
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("search", search);
+		paramMap.put("start", iDisplayStart);
+		paramMap.put("end", iDisplayLength);
+		Map<String, Object> map = borrowService.selectManageAll(paramMap);
+		JSONObject getObj = new JSONObject();
+		getObj.put("sEcho", sEcho);// 防止数据请求串线
+		getObj.put("iTotalRecords", map.get(StringUtil.pageCount));// 实际的行数
+		getObj.put("iTotalDisplayRecords", map.get(StringUtil.pageCount));//
+		getObj.put("aaData", map.get(StringUtil.pageData));// 要以JSON格式返回
+		return getObj.toString();
+	}
 
 	/**
 	 * 根据用户的id来获取用户基本信息
