@@ -1,13 +1,9 @@
 package com.qtjf.web;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,13 +14,11 @@ import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
 import com.qtjf.common.bean.QtFinancialUserLevel;
 import com.qtjf.common.bean.QtFinanicalBanner;
-import com.qtjf.common.emus.borrowStatus;
 import com.qtjf.web.service.BorrowService;
 import com.qtjf.web.service.ProductService;
 import com.qtjf.web.service.UserService;
 import com.qtjf.web.util.StringUtil;
 import com.qtjf.web.vo.QtFinacialProductVo;
-import com.qtjf.web.vo.TestVo;
 
 @RestController
 @RequestMapping(value = "data")
@@ -297,5 +291,16 @@ public class DataCol {
 		getObj.put("iTotalDisplayRecords", map.get(StringUtil.pageCount));//
 		getObj.put("aaData", map.get(StringUtil.pageData));// 要以JSON格式返回
 		return getObj.toString();
+	}
+	
+	
+	@RequestMapping(value = "/group/all")
+	public Map<String, Object> groups() {
+		return userService.getGroups();
+	}
+	
+	@RequestMapping(value = "/group/info")
+	public Map<String, Object> getGroup(Integer id) {
+		return userService.getGroup(id);
 	}
 }

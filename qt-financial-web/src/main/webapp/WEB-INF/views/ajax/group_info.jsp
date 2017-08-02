@@ -29,40 +29,40 @@
 							<th>操作</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="content">
 						<tr>
 							<td>拒绝客户</td>
 							<td>直接拒绝</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
+							<td><a href="javascript:void(0)"
+								onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
 							</td>
 						</tr>
 						<tr>
 							<td>黑名单</td>
 							<td>直接拒绝</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
+							<td><a href="javascript:void(0)"
+								onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
 							</td>
 						</tr>
 						<tr>
 							<td>普通客户</td>
 							<td>该类客户正常审核即可</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
+							<td><a href="javascript:void(0)"
+								onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
 							</td>
 						</tr>
 						<tr>
 							<td>特约客户</td>
 							<td></td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
+							<td><a href="javascript:void(0)"
+								onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
 							</td>
 						</tr>
 						<tr>
 							<td>可以发展为特约客户的分组</td>
 							<td></td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
+							<td><a href="javascript:void(0)"
+								onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/group_edit', 'wrapper');">编辑</a>
 							</td>
 						</tr>
 					</tbody>
@@ -85,12 +85,30 @@
 <script type="text/javascript"
 	src="${ctx}/common/js/data-tables/DT_bootstrap.js"></script>
 
-<!--dynamic table initialization -->
-<script src="${ctx}/common/js/dynamic_table_init.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
-		
+		var url = "${pageContext.request.contextPath}/data/group/all";
+		LoadAjaxData(url, loadGroupInfo);
 	});
+	function loadGroupInfo(data){
+		try{
+			console.log(data);
+			var htmlStr = "";
+			var list = data.objList;
+			for(var i = 0;i<list.length;i++){
+				htmlStr += '<tr>'
+					+'<td>'+list[i].name+'</td>'
+					+'<td>'+list[i].description+'</td>'
+					+'<td>'
+					+'<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/group_edit?id='+list[i].id+'\', \'wrapper\');">编辑</a>'
+					+'</td>'
+					+'</tr>';
+			}
+			$('#dynamic-table').dataTable();
+		} catch(arr){
+			console.log(arr);
+		}
+	}
 	
 </script>

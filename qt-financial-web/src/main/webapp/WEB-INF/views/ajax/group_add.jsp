@@ -18,13 +18,13 @@
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">客户分组：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="group_title" id="group_title"> 
+							<input type="text" class="form-control" name="name" id="group_title"> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">分组说明：</label>
 						<div class="col-sm-6">
-							<textarea name="group_explain" class="form-control" rows="6"></textarea>
+							<textarea name="description" class="form-control" rows="6"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -65,14 +65,14 @@
 			},
 			message : 'This value is not valid',
 			fields : {
-				group_title : {
+				name : {
 					validators : {
 						notEmpty : {
 							message : '客户分组不能为空'
 						}
 					}
 				},
-				group__explain : {
+				description : {
 					validators : {
 						notEmpty : {
 							message : '分组说明不能为空'
