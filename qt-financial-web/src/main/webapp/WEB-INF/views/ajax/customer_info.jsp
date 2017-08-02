@@ -26,44 +26,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>赵某某</td>
-							<td>15945678932</td>
-							<td>白银</td>
-							<td>未认证客户</td>
-							<td>在借中</td>
-							<td>有逾期记录</td>
-							<td>
-								<a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/customer_detail', 'wrapper');">客户信息</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" onclick="showBorrowList()">借款记录</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" onclick="customer_edit()">客户设置</a>
-							</td>
-						</tr>
-						<tr>
-							<td>钱某某</td>
-							<td>15945678932</td>
-							<td>黄金</td>
-							<td>认证客户</td>
-							<td>逾期</td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>孙某某</td>
-							<td>15945678932</td>
-							<td>钻石</td>
-							<td>高级客户</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>李某某</td>
-							<td>15945678932</td>
-							<td></td>
-							<td>高危客户</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
