@@ -11,15 +11,12 @@ public class QtFinancialAuthentication {
 
     private String authstatus;
 
-    private Integer authenticationid;
+    private String authenticationid;
 
     private Date createdat;
 
-    private String createdby;
-
     private Date updatedat;
 
-    private String updatedby;
 
 
     public String getId() {
@@ -54,28 +51,12 @@ public class QtFinancialAuthentication {
         this.authstatus = authstatus;
     }
 
-    public Integer getAuthenticationid() {
-        return authenticationid;
-    }
-
-    public void setAuthenticationid(Integer authenticationid) {
-        this.authenticationid = authenticationid;
-    }
-
     public Date getCreatedat() {
         return createdat;
     }
 
     public void setCreatedat(Date createdat) {
         this.createdat = createdat;
-    }
-
-    public String getCreatedby() {
-        return createdby;
-    }
-
-    public void setCreatedby(String createdby) {
-        this.createdby = createdby;
     }
 
     public Date getUpdatedat() {
@@ -86,11 +67,14 @@ public class QtFinancialAuthentication {
         this.updatedat = updatedat;
     }
 
-    public String getUpdatedby() {
-        return updatedby;
-    }
+	public String getAuthenticationid() {
+		return authenticationid;
+	}
 
-    public void setUpdatedby(String updatedby) {
-        this.updatedby = updatedby;
-    }
+	public void setAuthenticationid(String authenticationid) {
+		this.authenticationid = authenticationid;
+	}
+    
+    
+
 }
