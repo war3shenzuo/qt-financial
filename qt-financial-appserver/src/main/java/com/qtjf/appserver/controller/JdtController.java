@@ -1,9 +1,14 @@
 package com.qtjf.appserver.controller;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSONObject;
+import com.qtjf.appserver.server.AuthenticationServer;
+import com.qtjf.common.vo.ResultCode;
 import com.qtjf.tpa.jdt.bean.UserInfo;
 import com.qtjf.tpa.jdt.server.GenerateServer;
 
@@ -18,6 +23,10 @@ public class JdtController {
 	
 	@Autowired
 	private GenerateServer jdtServer;
+	
+	@Autowired
+ AuthenticationServer authenticationServer;
+	
 
 	/**
 	 * 获取认证token
@@ -42,8 +51,15 @@ public class JdtController {
 	 * @return
 	 */
 	@RequestMapping(value = "submitMobile")
-	public String submitMobile(String dk ,String token,String password,String captcha) {
-		return jdtServer.submitMobile( dk, token,password,captcha);
+	public ResultCode submitMobile(String dk ,String token,String password,String captcha,String userId,String mobile) {
+		
+		String result = jdtServer.submitMobile( dk, token,password,captcha);
+		JSONObject json = JSONObject.parseObject(result);
+		if(Objects.equals(json.get("status_code"), 10008)){
+			authenticationServer.saveMobile(userId,mobile,password);
+			return ResultCode.getSuccess("申请验证成功");
+		}
+		return new ResultCode((int )json.get("status_code"),(String)json.get("message"),null);
 	}
 	
 	/**

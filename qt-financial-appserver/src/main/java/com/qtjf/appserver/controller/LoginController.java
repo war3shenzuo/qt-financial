@@ -2,6 +2,7 @@ package com.qtjf.appserver.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qtjf.appserver.server.BannerServer;
+import com.qtjf.appserver.server.LoginService;
 import com.qtjf.common.vo.ResultCode;
 import com.qtjf.jwt.entity.AccessToken;
 import com.qtjf.jwt.entity.JwtConfig;
@@ -23,6 +25,9 @@ public class LoginController {
 
 	@Autowired
 	private BannerServer bannerserver;
+
+	@Autowired
+	private LoginService loginService;
 
 	/**
 	 * 登录
@@ -54,9 +59,24 @@ public class LoginController {
 		return token;
 	}
 
-	@RequestMapping(value = "/getBanners", method = RequestMethod.GET)
+	@RequestMapping(value = "/getBanners")
 	public ResultCode getBanners() throws Exception {
-		return ResultCode.getSuccess("获取banner成功",bannerserver.getBanner());
+		return ResultCode.getSuccess("获取banner成功", bannerserver.getBanner());
+
+	}
+
+	@RequestMapping(value = "/sendRegisterSmsCode")
+	public ResultCode sendRegisterSmsCode(String mobile) throws Exception {
+		String result = loginService.sendRegisterSmsCode(mobile);
+		if (Objects.equals(result, "fail")) {
+			return ResultCode.getFail("短信发送失败");
+		}
+
+		if (Integer.valueOf(result) <= 0) {
+			ResultCode.getError(result);
+		}
+		
+		return ResultCode.getSuccess("发送成功");
 
 	}
 

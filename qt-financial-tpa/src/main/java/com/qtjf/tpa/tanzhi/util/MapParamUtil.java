@@ -19,7 +19,7 @@ public class MapParamUtil {
 		
 		//jdk8 及以上版本的排序
 //		params.keySet().stream().sorted()
-//		.filter(k -> !"sign".equalsIgnoreCase(k)&&params.get(k)!=null)
+//		.filter(k -> !"sign".equalsIgnoreCase(k)&&params.get(k)!=null&&!params.get(k).toString().isEmpty())
 //		.forEach(k -> sb.append(k).append("=").append(params.get(k)).append("&"));
 //		return sb.length()>1?sb.substring(0, sb.length()-1):null;
 		

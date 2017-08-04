@@ -23,7 +23,7 @@ public class JdtGenerateServer implements GenerateServer {
 	 * @param host 远程地址
 	 * @param template 自定义模版对象
 	 */
-	public JdtGenerateServer(String host, RestTemplate template) {
+	private JdtGenerateServer(String host, RestTemplate template) {
 		this.template = template;
 		this.host = host;
 	}

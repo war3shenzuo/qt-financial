@@ -3,6 +3,7 @@ package com.qtjf.appserver.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.qtjf.common.bean.QtFinacialAuthenticationBank;
 import com.qtjf.common.bean.QtFinancialAuthentication;
 
 public interface QtFinancialAuthenticationMapper {
@@ -34,4 +35,10 @@ public interface QtFinancialAuthenticationMapper {
 	 * @return
 	 */
 	Map<String, Object> getQRMsg(String userId);
+	
+	/**
+	 * 新增银行卡认证信息
+	 * @param bank
+	 */
+	void insertAuthenticationBank(QtFinacialAuthenticationBank bank);
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
-import com.qtjf.appserver.server.QtFinancialAuthenticationServer;
+import com.qtjf.appserver.server.AuthenticationServer;
 import com.qtjf.common.emus.SysStatus;
 import com.qtjf.common.vo.ResultCode;
 import com.qtjf.tpa.tanzhi.server.TaobaoApiQrClient;
@@ -25,7 +25,7 @@ import com.qtjf.tpa.tanzhi.server.TaobaoApiQrClient;
 public class TanzhiController {
 	
 	@Autowired
-	QtFinancialAuthenticationServer qtFinancialAuthenticationServer;
+	AuthenticationServer authenticationServer;
 	
 	/**
 	 * 申请淘宝二维码 
@@ -44,12 +44,12 @@ public class TanzhiController {
 					code = json.get("code");
 					if ("0012".equals(code)) {
 						//往数据库插入返回的msg
-						qtFinancialAuthenticationServer.saveTaobaoQrMsg(json.getString("msg"),userId);
+						authenticationServer.saveTaobaoQrMsg(json.getString("msg"),userId);
 						Thread.sleep(3000);
 					} else if ("0000".equals(code)) {
 						// 获取结果
 						TaobaoApiQrClient.getResult(token);
-						qtFinancialAuthenticationServer.saveTaobaoInfo(token,userId);
+						authenticationServer.saveTaobaoInfo(token,userId);
 						return ResultCode.getSuccess("认证信息提交成功"); 
 					} else if ("1110".equals(code)) {
 						return ResultCode.getFail("等待扫码超时");
@@ -72,12 +72,24 @@ public class TanzhiController {
 	 */
 	@RequestMapping("getTaobaoQRMsg")
 	public ResultCode getTaobaoQRMsg( @NotNull String userId)  {
-			String msg = qtFinancialAuthenticationServer.getTaobaoQRMsg(userId);
+			String msg = authenticationServer.getTaobaoQRMsg(userId);
 			if(msg!=null && !Objects.equals("", msg)) {
 				return ResultCode.getSuccess("获取淘宝登录二维码信息", msg);
 			}else {
 				return new ResultCode(SysStatus.NO_DATA.getStatus(),"没有查到二维码",null);
 			}
+	}
+	
+	/**
+	 * 提交银行信息
+	 * @param userId 用户Id
+	 * @return 产品集合
+	 * @throws Exception 
+	 */
+	@RequestMapping("saveBankInfo")
+	public ResultCode saveBankInfo( String bankCardNo,String userName,String identityNo,String mobile,String userId) throws Exception  {
+		authenticationServer.saveBankInfo(bankCardNo,userName,identityNo,mobile,userId);
+			return ResultCode.getSuccess("提交成功");
 	}
 	
 	

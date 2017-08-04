@@ -10,12 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qtjf.appserver.dao.QtFinancialAuthenticationMapper;
-import com.qtjf.appserver.server.QtFinancialAuthenticationServer;
+import com.qtjf.appserver.server.AuthenticationServer;
+import com.qtjf.common.bean.QtFinacialAuthenticationBank;
 import com.qtjf.common.bean.QtFinancialAuthentication;
+import com.qtjf.common.emus.Authentication;
 
 @Service
 @Transactional
-public class qtFinancialAuthenticationServerImpl implements QtFinancialAuthenticationServer {
+public class AuthenticationServerImpl implements AuthenticationServer {
 
 	@Autowired
 	QtFinancialAuthenticationMapper qtFinancialAuthenticationMapper;
@@ -58,13 +60,37 @@ public class qtFinancialAuthenticationServerImpl implements QtFinancialAuthentic
 	public void insert(QtFinancialAuthentication record) throws Exception{
 		
 		record.setCreatedat(new Date());
-		record.setUpdatedat(new Date());
-		record.setCreatedby(record.getUserid());
-		record.setUpdatedby(record.getUserid());
+		record.setUpdatedat(new Date());		
 		record.setId(UUID.randomUUID().toString());
 		
-		
 		qtFinancialAuthenticationMapper.insert(record);
+	}
+
+	@Override
+	public void saveBankInfo(String bankCardNo, String name, String identityNo, String mobile,String userId)  throws Exception{
+		
+		QtFinacialAuthenticationBank bank = new QtFinacialAuthenticationBank();
+		bank.setId(UUID.randomUUID().toString());
+		bank.setIdentityNo(identityNo);
+		bank.setMobile(mobile);
+		bank.setUserName(name);
+		bank.setBankCardNo(bankCardNo);
+		
+		qtFinancialAuthenticationMapper.insertAuthenticationBank(bank);
+		
+		QtFinancialAuthentication record = new QtFinancialAuthentication();
+		record.setAuthenticationid(bank.getId());
+		record.setAuthstatus(Authentication.STATUS_APPLY.getStatus());
+		record.setAuthtype(Authentication.TYPE_BANK.getStatus());
+		record.setUserid(userId);
+		
+		insert(record);
+	}
+
+	@Override
+	public void saveMobile(String userId, String mobile, String password) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

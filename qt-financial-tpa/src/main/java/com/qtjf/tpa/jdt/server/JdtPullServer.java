@@ -16,7 +16,7 @@ public class JdtPullServer implements PullServer {
 	 * @param template
 	 *            自定义模版对象
 	 */
-	public JdtPullServer(String host, RestTemplate template) {
+	private JdtPullServer(String host, RestTemplate template) {
 
 		this.template = template;
 

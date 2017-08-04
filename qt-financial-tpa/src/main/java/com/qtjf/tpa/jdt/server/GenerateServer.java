@@ -3,7 +3,7 @@ package com.qtjf.tpa.jdt.server;
 import com.qtjf.tpa.jdt.bean.UserInfo;
 
 public interface GenerateServer {
-
+	
 	/**
 	 * 返回token
 	 * 
