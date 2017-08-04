@@ -15,16 +15,17 @@
 			<div class="panel-body">
 				<form class="cmxform form-horizontal adminex-form" role="form"
 					method="POST" id="groupForm" action="">
+					<input id="id" name="id" value="${param.id}" type="hidden">
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">客户分组：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="group_title" id="group_title"> 
+							<input type="text" class="form-control" name="name" id="group_title"> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">分组说明：</label>
 						<div class="col-sm-6">
-							<textarea name="group_explain" class="form-control" rows="6"></textarea>
+							<textarea name="description" class="form-control" rows="6" id="description"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -57,7 +58,24 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
+		var url = "${pageContext.request.contextPath}/data/group/info?id="+$("#id").val();
+		LoadAjaxData(url,function(data){
+			try{
+				$("input[name='name']").val(data.obj.name);
+				$("#description").text(data.obj.description);
+			} catch(arr){
+				console.log(arr);
+			}
+		});
 		$('#groupForm').bootstrapValidator({
+			submitHandler : function(validator, form,
+					submitButton) {
+				var url = "${pageContext.request.contextPath}/data/group/edit";//或form.attr('action')
+				var param = form.serialize();//或者form.serialize()
+				submitAjaxData(url, param, function(data) {
+					LoadAjaxContent('group_info','wrapper');
+				});
+			},
 			feedbackIcons : {
 				valid : 'fa fa-check',
 				invalid : 'fa fa-times',

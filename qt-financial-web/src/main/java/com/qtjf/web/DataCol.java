@@ -12,6 +12,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
+import com.qtjf.common.bean.QtFinancialGroup;
 import com.qtjf.common.bean.QtFinancialUserLevel;
 import com.qtjf.common.bean.QtFinanicalBanner;
 import com.qtjf.web.service.BorrowService;
@@ -302,5 +303,20 @@ public class DataCol {
 	@RequestMapping(value = "/group/info")
 	public Map<String, Object> getGroup(Integer id) {
 		return userService.getGroup(id);
+	}
+	
+	@RequestMapping(value = "/group/add")
+	public Map<String, Object> addGroup(QtFinancialGroup qg) {
+		return userService.saveGroup(qg);
+	}
+	
+	@RequestMapping(value = "/group/edit")
+	public Map<String, Object> editGroup(QtFinancialGroup qg) {
+		return userService.editGroup(qg);
+	}
+	
+	@RequestMapping(value = "/group/delete")
+	public Map<String, Object> deleteGroup(Integer id) {
+		return userService.deleteGroup(id);
 	}
 }

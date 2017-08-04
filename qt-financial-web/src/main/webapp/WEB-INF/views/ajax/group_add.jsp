@@ -58,6 +58,14 @@
 	$(document).ready(function() {
 		scrollTo(0,0);
 		$('#groupForm').bootstrapValidator({
+			submitHandler : function(validator, form,
+					submitButton) {
+				var url = "${pageContext.request.contextPath}/data/group/add";//或form.attr('action')
+				var param = form.serialize();//或者form.serialize()
+				submitAjaxData(url, param, function(data) {
+					LoadAjaxContent('group_info','wrapper');
+				});
+			},
 			feedbackIcons : {
 				valid : 'fa fa-check',
 				invalid : 'fa fa-times',
