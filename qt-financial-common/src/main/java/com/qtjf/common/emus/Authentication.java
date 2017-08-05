@@ -6,6 +6,8 @@ public enum Authentication {
 	STATUS_PASS("2","通过认证"),
 	STATUS_PAST("3","过期"),
 	
+	
+	TYPE_BASE("0","基本认证"),
 	TYPE_PHONE("0","手机认证"),
 	TYPE_PERSONAL("1","个人信息认证"),
 	TYPE_CID("2","身份认证"),

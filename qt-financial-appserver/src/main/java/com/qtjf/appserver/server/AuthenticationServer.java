@@ -1,5 +1,6 @@
 package com.qtjf.appserver.server;
 
+import com.qtjf.common.bean.QtFinacialAuthenticationBase;
 import com.qtjf.common.bean.QtFinancialAuthentication;
 
 public interface AuthenticationServer {
@@ -14,6 +15,14 @@ public interface AuthenticationServer {
 
 	void saveBankInfo(String bankCardNo, String name, String identityNo, String mobile, String userId) throws Exception;
 
-	void saveMobile(String userId, String mobile, String password);
+	void saveMobile(String userId, String mobile, String password)  throws Exception;
+	
+	/**
+	 * 上传用户基本信息
+	 * @param userBase
+	 * @return
+	 * @throws Exception
+	 */
+	void submitUserBase(QtFinacialAuthenticationBase userBase)  throws Exception;
 
 }

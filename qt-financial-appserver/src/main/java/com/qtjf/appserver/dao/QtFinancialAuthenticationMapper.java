@@ -13,7 +13,8 @@ public interface QtFinancialAuthenticationMapper {
 
     QtFinancialAuthentication selectByPrimaryKey(Integer id);
 
-    List<QtFinancialAuthentication> selectAll();
+	List<QtFinancialAuthentication> selectAll(QtFinancialAuthentication query);
+
 
     int updateByPrimaryKey(QtFinancialAuthentication record);
     
@@ -41,4 +42,6 @@ public interface QtFinancialAuthenticationMapper {
 	 * @param bank
 	 */
 	void insertAuthenticationBank(QtFinacialAuthenticationBank bank);
+
+	
 }

@@ -1,7 +1,7 @@
 package com.qtjf.common.bean;
 
 public class QtFinacialAuthenticationBase {
-    private Integer userId;
+    private String userId;
 
     private String education;
 
@@ -19,15 +19,16 @@ public class QtFinacialAuthenticationBase {
 
     private String email;
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+    public String getUserId() {
+		return userId;
+	}
 
-    public String getEducation() {
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getEducation() {
         return education;
     }
 

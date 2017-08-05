@@ -3,73 +3,69 @@
 <mapper namespace="com.qtjf.appserver.dao.QtFinancialAuthenticationMapper">
 	<resultMap id="BaseResultMap"
 		type="com.qtjf.common.bean.QtFinancialAuthentication">
-		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="userId" property="userid" jdbcType="VARCHAR" />
 		<result column="authType" property="authtype" jdbcType="VARCHAR" />
 		<result column="authStatus" property="authstatus" jdbcType="VARCHAR" />
 		<result column="authenticationId" property="authenticationid"
 			jdbcType="INTEGER" />
 		<result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
-		<result column="createdBy" property="createdby" jdbcType="VARCHAR" />
 		<result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
-		<result column="updatedBy" property="updatedby" jdbcType="VARCHAR" />
 	</resultMap>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+	
+	<delete id="deleteByPrimaryKey" parameterType="String">
 		delete from
 		qt_financial_authentication
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
+	
 	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialAuthentication">
 		insert into qt_financial_authentication (id, userId, authType,
 		authStatus, authenticationId, createdAt,
-		createdBy, updatedAt,
-		updatedBy
+		updatedAt
 		)
 		values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR},
 		#{authtype,jdbcType=VARCHAR},
 		#{authstatus,jdbcType=VARCHAR},
 		#{authenticationid,jdbcType=INTEGER},
 		#{createdat,jdbcType=TIMESTAMP},
-		#{createdby,jdbcType=VARCHAR}, #{updatedat,jdbcType=TIMESTAMP},
-		#{updatedby,jdbcType=VARCHAR}
+	    #{updatedat,jdbcType=TIMESTAMP}
+		
 		)
 	</insert>
+	
 	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialAuthentication">
 		update
 		qt_financial_authentication
-		set userId = #{userid,jdbcType=VARCHAR},
-		authType = #{authtype,jdbcType=VARCHAR},
-		authStatus =
-		#{authstatus,jdbcType=VARCHAR},
-		authenticationId =
-		#{authenticationid,jdbcType=INTEGER},
-		createdAt =
-		#{createdat,jdbcType=TIMESTAMP},
-		createdBy =
-		#{createdby,jdbcType=VARCHAR},
-		updatedAt =
-		#{updatedat,jdbcType=TIMESTAMP},
-		updatedBy =
-		#{updatedby,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=INTEGER}
+		set authStatus = #{authstatus,jdbcType=VARCHAR}
+		where userId = #{userid,jdbcType=INTEGER}
+		and authType = #{authtype,jdbcType=VARCHAR}
 	</update>
+	
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select id, userId, authType, authStatus,
-		authenticationId, createdAt,
-		createdBy,
-		updatedAt, updatedBy
+		authenticationId, createdAt,updatedAt
 		from
 		qt_financial_authentication
 		where id = #{id,jdbcType=INTEGER}
 	</select>
-	<select id="selectAll" resultMap="BaseResultMap">
+	
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="com.qtjf.common.bean.QtFinancialAuthentication">
 		select id, userId, authType,
-		authStatus, authenticationId, createdAt,
-		createdBy,
-		updatedAt, updatedBy
+		authStatus, authenticationId, createdAt,updatedAt
 		from qt_financial_authentication
+			<where>
+			<if test="userId!=null and userId!=''">
+				and userId = #{userId}
+			</if>
+			<if test="authType!=null and authType!=''">
+				and authType = #{authType}
+			</if>
+		</where>
+		
 	</select>
+	
 
 	<select id="saveTaobaoQrMsg" parameterType="Map">
 		insert into

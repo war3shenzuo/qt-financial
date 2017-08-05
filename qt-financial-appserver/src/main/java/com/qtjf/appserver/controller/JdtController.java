@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alibaba.fastjson.JSONObject;
 import com.qtjf.appserver.server.AuthenticationServer;
+import com.qtjf.common.bean.QtFinacialAuthenticationBase;
 import com.qtjf.common.vo.ResultCode;
 import com.qtjf.tpa.jdt.bean.UserInfo;
 import com.qtjf.tpa.jdt.server.GenerateServer;
@@ -25,7 +26,7 @@ public class JdtController {
 	private GenerateServer jdtServer;
 	
 	@Autowired
- AuthenticationServer authenticationServer;
+	AuthenticationServer authenticationServer;
 	
 
 	/**
@@ -49,9 +50,10 @@ public class JdtController {
 	/**
 	 * 用户手机验证
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "submitMobile")
-	public ResultCode submitMobile(String dk ,String token,String password,String captcha,String userId,String mobile) {
+	public ResultCode submitMobile(String dk ,String token,String password,String captcha,String userId,String mobile) throws Exception {
 		
 		String result = jdtServer.submitMobile( dk, token,password,captcha);
 		JSONObject json = JSONObject.parseObject(result);
@@ -69,6 +71,17 @@ public class JdtController {
 	@RequestMapping(value = "finishApplication")
 	public String finishApplication(String dk ,String token,Integer DurationNumber,Integer LovDurationType,Integer RequestAmount) {
 		return jdtServer.finishApplication( dk, token,DurationNumber,LovDurationType,RequestAmount);
+	}
+	
+	/**
+	 * 上传用户基本信息
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "submitUserBase")
+	public ResultCode submitUserBase(QtFinacialAuthenticationBase userBase) throws Exception {
+		 authenticationServer.submitUserBase(userBase);
+		 return ResultCode.getSuccess("基本信息提交成");
 	}
 
 }
