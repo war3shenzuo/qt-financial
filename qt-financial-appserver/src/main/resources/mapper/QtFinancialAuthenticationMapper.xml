@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qtjf.appserver.dao.QtFinancialAuthenticationMapper">
-	<resultMap id="BaseResultMap"
-		type="com.qtjf.common.bean.QtFinancialAuthentication">
-		<id column="id" property="id" jdbcType="VARCHAR" />
-		<result column="userId" property="userid" jdbcType="VARCHAR" />
-		<result column="authType" property="authtype" jdbcType="VARCHAR" />
-		<result column="authStatus" property="authstatus" jdbcType="VARCHAR" />
-		<result column="authenticationId" property="authenticationid"
-			jdbcType="INTEGER" />
-		<result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
-		<result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
-	</resultMap>
 	
 	<delete id="deleteByPrimaryKey" parameterType="String">
 		delete from
@@ -24,12 +13,12 @@
 		authStatus, authenticationId, createdAt,
 		updatedAt
 		)
-		values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR},
-		#{authtype,jdbcType=VARCHAR},
-		#{authstatus,jdbcType=VARCHAR},
-		#{authenticationid,jdbcType=INTEGER},
-		#{createdat,jdbcType=TIMESTAMP},
-	    #{updatedat,jdbcType=TIMESTAMP}
+		values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+		#{authType,jdbcType=VARCHAR},
+		#{authStatus,jdbcType=VARCHAR},
+		#{authenticationId,jdbcType=INTEGER},
+		#{createdAt,jdbcType=TIMESTAMP},
+	    #{updatedAt,jdbcType=TIMESTAMP}
 		
 		)
 	</insert>
@@ -37,13 +26,13 @@
 	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialAuthentication">
 		update
 		qt_financial_authentication
-		set authStatus = #{authstatus,jdbcType=VARCHAR}
-		where userId = #{userid,jdbcType=INTEGER}
-		and authType = #{authtype,jdbcType=VARCHAR}
+		set authStatus = #{authStatus,jdbcType=VARCHAR}
+		where userId = #{userId,jdbcType=INTEGER}
+		and authType = #{authType,jdbcType=VARCHAR}
 	</update>
 	
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Integer">
+	<select id="selectByPrimaryKey" resultType="com.qtjf.common.bean.QtFinancialAuthentication"
+		parameterType="String">
 		select id, userId, authType, authStatus,
 		authenticationId, createdAt,updatedAt
 		from
@@ -51,7 +40,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	
-	<select id="selectAll" resultMap="BaseResultMap" parameterType="com.qtjf.common.bean.QtFinancialAuthentication">
+	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinancialAuthentication" parameterType="com.qtjf.common.bean.QtFinancialAuthentication">
 		select id, userId, authType,
 		authStatus, authenticationId, createdAt,updatedAt
 		from qt_financial_authentication
@@ -79,7 +68,7 @@
 		where userId = #{value}
 	</delete>
 
-	<select id="getQRMsg" resultType="Map" parameterType="String">
+	<select id="getQRMsg" resultType="com.qtjf.common.bean.QtFinancialAuthentication" parameterType="String">
 		select *
 		from
 		qt_financial_taobao_qr

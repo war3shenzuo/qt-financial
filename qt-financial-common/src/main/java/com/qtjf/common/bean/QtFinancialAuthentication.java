@@ -5,21 +5,19 @@ import java.util.Date;
 public class QtFinancialAuthentication {
     private String id;
 
-    private String userid;
+    private String userId;
 
-    private String authtype;
+    private String authType;
 
-    private String authstatus;
+    private String authStatus;
 
-    private String authenticationid;
+    private String authenticationId;
 
-    private Date createdat;
+    private Date createdAt;
 
-    private Date updatedat;
+    private Date updatedAt;
 
-
-
-    public String getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -27,54 +25,56 @@ public class QtFinancialAuthentication {
 		this.id = id;
 	}
 
-	public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-    public String getAuthtype() {
-        return authtype;
-    }
-
-    public void setAuthtype(String authtype) {
-        this.authtype = authtype;
-    }
-
-    public String getAuthstatus() {
-        return authstatus;
-    }
-
-    public void setAuthstatus(String authstatus) {
-        this.authstatus = authstatus;
-    }
-
-    public Date getCreatedat() {
-        return createdat;
-    }
-
-    public void setCreatedat(Date createdat) {
-        this.createdat = createdat;
-    }
-
-    public Date getUpdatedat() {
-        return updatedat;
-    }
-
-    public void setUpdatedat(Date updatedat) {
-        this.updatedat = updatedat;
-    }
-
-	public String getAuthenticationid() {
-		return authenticationid;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setAuthenticationid(String authenticationid) {
-		this.authenticationid = authenticationid;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-    
+
+	public String getAuthType() {
+		return authType;
+	}
+
+	public void setAuthType(String authType) {
+		this.authType = authType;
+	}
+
+	public String getAuthStatus() {
+		return authStatus;
+	}
+
+	public void setAuthStatus(String authStatus) {
+		this.authStatus = authStatus;
+	}
+
+	public String getAuthenticationId() {
+		return authenticationId;
+	}
+
+	public void setAuthenticationId(String authenticationId) {
+		this.authenticationId = authenticationId;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
+
+
     
 
 }

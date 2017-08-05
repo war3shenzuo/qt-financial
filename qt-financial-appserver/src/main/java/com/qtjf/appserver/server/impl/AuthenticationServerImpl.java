@@ -66,8 +66,8 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 	@Override
 	public void insert(QtFinancialAuthentication record) throws Exception {
 
-		record.setCreatedat(new Date());
-		record.setUpdatedat(new Date());
+		record.setCreatedAt(new Date());
+		record.setUpdatedAt(new Date());
 		record.setId(UUID.randomUUID().toString());
 
 		qtFinancialAuthenticationMapper.insert(record);
@@ -87,10 +87,10 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 		qtFinancialAuthenticationMapper.insertAuthenticationBank(bank);
 
 		QtFinancialAuthentication record = new QtFinancialAuthentication();
-		record.setAuthenticationid(bank.getId());
-		record.setAuthstatus(Authentication.STATUS_APPLY.getStatus());
-		record.setAuthtype(Authentication.TYPE_BANK.getStatus());
-		record.setUserid(userId);
+		record.setAuthenticationId(bank.getId());
+		record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+		record.setAuthType(Authentication.TYPE_BANK.getStatus());
+		record.setUserId(userId);
 
 		insert(record);
 	}
@@ -112,23 +112,23 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 		
 		//查询是否有数据如果有就修改没有就新增
 		QtFinancialAuthentication query = new QtFinancialAuthentication();
-		query.setAuthtype(Authentication.TYPE_BASE.getStatus());
-		query.setUserid(userBase.getUserId());
+		query.setAuthType(Authentication.TYPE_BASE.getStatus());
+		query.setUserId(userBase.getUserId());
 		List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(query);
 		
 		if (!Objects.isNull(list) && list.size() > 0) {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
-			record.setAuthstatus(Authentication.STATUS_APPLY.getStatus());
-			record.setAuthtype(Authentication.TYPE_BASE.getStatus());
-			record.setUserid(userBase.getUserId());
+			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+			record.setAuthType(Authentication.TYPE_BASE.getStatus());
+			record.setUserId(userBase.getUserId());
 			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
 		} else {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
-			record.setAuthenticationid(userBase.getUserId());
-			record.setAuthstatus(Authentication.STATUS_APPLY.getStatus());
-			record.setAuthtype(Authentication.TYPE_BASE.getStatus());
-			record.setUserid(userBase.getUserId());
-			qtFinancialAuthenticationMapper.insert(record);
+			record.setAuthenticationId(userBase.getUserId());
+			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+			record.setAuthType(Authentication.TYPE_BASE.getStatus());
+			record.setUserId(userBase.getUserId());
+			insert(record);
 		}
 
 	}
