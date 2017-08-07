@@ -32,7 +32,7 @@
 		province_id = #{provinceId,jdbcType=VARCHAR},
 		city_id = #{cityId,jdbcType=INTEGER},
 		domain = #{domain,jdbcType=VARCHAR},
-		company_phone =#{companyPhone,jdbcType=VARCHAR},
+		company_phone =#{companyPhone,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
 </mapper>
