@@ -1,7 +1,7 @@
 package com.qtjf.common.bean;
 
 public class QtFinacialAuthenticationEmergencyContact {
-    private Integer userId;
+    private String id;
 
     private String relationship;
 
@@ -11,15 +11,16 @@ public class QtFinacialAuthenticationEmergencyContact {
 
     private String socialPhone;
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+    public String getId() {
+		return id;
+	}
 
-    public String getRelationship() {
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getRelationship() {
         return relationship;
     }
 

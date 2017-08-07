@@ -9,13 +9,14 @@ public enum Authentication {
 	
 	TYPE_BASE("0","基本认证"),
 	TYPE_PROFESSION("1","单位认证"),
-	TYPE_PHONE("2","手机认证"),
-	TYPE_PERSONAL("3","个人信息认证"),
-	TYPE_CID("4","身份认证"),
-	TYPE_BANK("5","银行/工资卡认证"),
-	TYPE_WECHAT("6","微信认证"),
-	TYPE_ADDBOOK("7","通讯录授权"),
-	TYPE_ZHIMAXINYONG("8","获取芝麻信用分");
+	TYPE_MERGENCY("2","紧急联系人"),
+	TYPE_PHONE("3","手机认证"),
+	TYPE_PERSONAL("4","个人信息认证"),
+	TYPE_CID("5","身份认证"),
+	TYPE_BANK("6","银行/工资卡认证"),
+	TYPE_WECHAT("7","微信认证"),
+	TYPE_ADDBOOK("8","通讯录授权"),
+	TYPE_ZHIMAXINYONG("9","获取芝麻信用分");
 
 	/** 返回状态码*/
 	private String status ;

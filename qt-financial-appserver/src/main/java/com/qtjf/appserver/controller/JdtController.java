@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 import com.qtjf.appserver.server.AuthenticationServer;
 import com.qtjf.common.bean.QtFinacialAuthenticationBase;
+import com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact;
 import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
 import com.qtjf.common.vo.ResultCode;
 import com.qtjf.tpa.jdt.bean.UserInfo;
@@ -95,5 +96,17 @@ public class JdtController {
 		 authenticationServer.submitProfession(profession,userId);
 		 return ResultCode.getSuccess("单位信息提交成");
 	}
+	
+	/**
+	 * 上传紧急联系人信息
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "submitEmergencyContract")
+	public ResultCode submitEmergencyContract(QtFinacialAuthenticationEmergencyContact emergencyContact,String userId) throws Exception {
+		 authenticationServer.submitEmergencyContract(emergencyContact,userId);
+		 return ResultCode.getSuccess("紧急联系人信息");
+	}
+	
 
 }
