@@ -19,7 +19,7 @@
 	
 	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
 		update
-		qt_finacial_authentication_base
+		qt_finacial_authentication_emergency_contact
 		set
 		relationship =#{relationship,jdbcType=VARCHAR},
 		relationship_phone =#{relationshipPhone,jdbcType=VARCHAR},
