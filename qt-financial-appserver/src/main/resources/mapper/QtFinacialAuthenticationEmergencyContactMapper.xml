@@ -24,7 +24,7 @@
 		relationship =#{relationship,jdbcType=VARCHAR},
 		relationship_phone =#{relationshipPhone,jdbcType=VARCHAR},
 		social =#{social,jdbcType=VARCHAR},
-		social_phone = #{socialPhone,jdbcType=VARCHAR},
+		social_phone = #{socialPhone,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
 	
