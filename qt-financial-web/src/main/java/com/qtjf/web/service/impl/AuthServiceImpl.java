@@ -24,7 +24,7 @@ public class AuthServiceImpl implements AuthService {
 		Map<String,Object> map = new HashMap<>();
 		try{
 			QtFinancialAuthentication qa = new QtFinancialAuthentication();
-			qa.setUserid(userId);
+			qa.setUserId(userId);
 			List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(qa);
 			map.put(StringUtil.responseCode, StringUtil.responseOk);
 			map.put(StringUtil.responseObjList, list);
@@ -38,7 +38,7 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public Map<String, Object> getAuthInfo(QtFinancialAuthentication qa) {
-		switch (qa.getAuthtype()) {
+		switch (qa.getAuthType()) {
 			case "PHONE":
 				
 				break;

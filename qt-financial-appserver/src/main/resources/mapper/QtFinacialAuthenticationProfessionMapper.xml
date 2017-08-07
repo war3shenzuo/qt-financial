@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.appserver.dao.QtFinacialAuthenticationProfessionMapper">
+	<insert id="insert"
+		parameterType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
+		insert into qt_finacial_authentication_profession (id, income,
+		company,
+		province_id, city_id, domain,
+		company_phone)
+		values (#{id,jdbcType=VARCHAR}, #{income,jdbcType=VARCHAR},
+		#{company,jdbcType=VARCHAR},
+		#{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{domain,jdbcType=VARCHAR},
+		#{companyPhone,jdbcType=VARCHAR})
+	</insert>
+	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
+		select user_id, income, company, province_id, city_id, domain, company_phone
+		from qt_finacial_authentication_profession
+	</select>
+	
+	<select id="selectById" parameterType="java.lang.String" resultType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
+		select user_id, income, company, province_id, city_id, domain, company_phone
+		from qt_finacial_authentication_profession
+		where user_id = #{_parameter}
+	</select>
+	
+	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
+		update
+		qt_finacial_authentication_profession
+		set
+		income = #{income,jdbcType=VARCHAR},
+		company = #{company,jdbcType=VARCHAR},
+		province_id = #{provinceId,jdbcType=VARCHAR},
+		city_id = #{cityId,jdbcType=INTEGER},
+		domain = #{domain,jdbcType=VARCHAR},
+		company_phone =#{companyPhone,jdbcType=VARCHAR},
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

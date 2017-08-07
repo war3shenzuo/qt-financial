@@ -9,7 +9,7 @@ public interface QtFinacialAuthenticationBaseMapper {
 
     List<QtFinacialAuthenticationBase> selectAll();
     
-    QtFinacialAuthenticationBase selectByUserId(String userId);
-
 	void update(QtFinacialAuthenticationBase userBase);
+
+	QtFinacialAuthenticationBase selectById(String id);
 }

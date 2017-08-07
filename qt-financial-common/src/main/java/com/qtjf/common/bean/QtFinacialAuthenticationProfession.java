@@ -1,7 +1,7 @@
 package com.qtjf.common.bean;
 
 public class QtFinacialAuthenticationProfession {
-    private Integer userId;
+    private String id;
 
     private String income;
 
@@ -15,15 +15,16 @@ public class QtFinacialAuthenticationProfession {
 
     private String companyPhone;
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+    public String getId() {
+		return id;
+	}
 
-    public String getIncome() {
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getIncome() {
         return income;
     }
 

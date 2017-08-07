@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qtjf.appserver.dao.QtFinacialAuthenticationBaseMapper;
+import com.qtjf.appserver.dao.QtFinacialAuthenticationProfessionMapper;
 import com.qtjf.appserver.dao.QtFinancialAuthenticationMapper;
 import com.qtjf.appserver.server.AuthenticationServer;
 import com.qtjf.common.bean.QtFinacialAuthenticationBank;
 import com.qtjf.common.bean.QtFinacialAuthenticationBase;
+import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
 import com.qtjf.common.bean.QtFinancialAuthentication;
 import com.qtjf.common.emus.Authentication;
 
@@ -28,6 +30,9 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 
 	@Autowired
 	QtFinacialAuthenticationBaseMapper qtFinacialAuthenticationBaseMapper;
+
+	@Autowired
+	QtFinacialAuthenticationProfessionMapper qtFinacialAuthenticationProfessionMapper;
 
 	@Override
 	public void saveTaobaoQrMsg(String msg, String userId) {
@@ -102,33 +107,62 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 	}
 
 	@Override
-	public void submitUserBase(QtFinacialAuthenticationBase userBase) throws Exception {
+	public synchronized void submitUserBase(QtFinacialAuthenticationBase userBase, String userId) throws Exception {
 
-		if (Objects.isNull(qtFinacialAuthenticationBaseMapper.selectByUserId(userBase.getUserId()))) {
-			qtFinacialAuthenticationBaseMapper.insert(userBase);
-		} else {
-			qtFinacialAuthenticationBaseMapper.update(userBase);
-		}
-		
-		//查询是否有数据如果有就修改没有就新增
+		// 查询是否有数据如果有就修改没有就新增
 		QtFinancialAuthentication query = new QtFinancialAuthentication();
 		query.setAuthType(Authentication.TYPE_BASE.getStatus());
-		query.setUserId(userBase.getUserId());
+		query.setUserId(userId);
 		List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(query);
-		
-		if (!Objects.isNull(list) && list.size() > 0) {
+
+		if (!Objects.isNull(list) || list.size() == 0) {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
 			record.setAuthType(Authentication.TYPE_BASE.getStatus());
-			record.setUserId(userBase.getUserId());
+			record.setUserId(userId);
 			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
+			userBase.setId(list.get(0).getAuthenticationId());
+			qtFinacialAuthenticationBaseMapper.update(userBase);
+		} else {
+			userBase.setId(UUID.randomUUID().toString());
+			QtFinancialAuthentication record = new QtFinancialAuthentication();
+			record.setAuthenticationId(userBase.getId());
+			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+			record.setAuthType(Authentication.TYPE_BASE.getStatus());
+			record.setUserId(userId);
+			insert(record);
+			qtFinacialAuthenticationBaseMapper.insert(userBase);
+		}
+
+	}
+
+	@Override
+	public synchronized void submitProfession(QtFinacialAuthenticationProfession profeesion, String userId)
+			throws Exception {
+
+		// 查询是否有数据如果有就修改没有就新增
+		QtFinancialAuthentication query = new QtFinancialAuthentication();
+		query.setAuthType(Authentication.TYPE_PROFESSION.getStatus());
+		query.setUserId(userId);
+		List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(query);
+
+		if (Objects.isNull(list) || list.size() == 0) {
+			profeesion.setId(UUID.randomUUID().toString());
+			QtFinancialAuthentication record = new QtFinancialAuthentication();
+			record.setAuthenticationId(profeesion.getId());
+			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+			record.setAuthType(Authentication.TYPE_PROFESSION.getStatus());
+			record.setUserId(userId);
+			insert(record);
+			qtFinacialAuthenticationProfessionMapper.insert(profeesion);
 		} else {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
-			record.setAuthenticationId(userBase.getUserId());
 			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
-			record.setAuthType(Authentication.TYPE_BASE.getStatus());
-			record.setUserId(userBase.getUserId());
-			insert(record);
+			record.setAuthType(Authentication.TYPE_PROFESSION.getStatus());
+			record.setUserId(userId);
+			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
+			profeesion.setId(list.get(0).getAuthenticationId());
+			qtFinacialAuthenticationProfessionMapper.update(profeesion);
 		}
 
 	}

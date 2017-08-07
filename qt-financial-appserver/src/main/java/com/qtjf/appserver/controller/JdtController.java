@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONObject;
 import com.qtjf.appserver.server.AuthenticationServer;
 import com.qtjf.common.bean.QtFinacialAuthenticationBase;
+import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
 import com.qtjf.common.vo.ResultCode;
 import com.qtjf.tpa.jdt.bean.UserInfo;
 import com.qtjf.tpa.jdt.server.GenerateServer;
@@ -79,9 +80,20 @@ public class JdtController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "submitUserBase")
-	public ResultCode submitUserBase(QtFinacialAuthenticationBase userBase) throws Exception {
-		 authenticationServer.submitUserBase(userBase);
+	public ResultCode submitUserBase(QtFinacialAuthenticationBase userBase,String userId) throws Exception {
+		 authenticationServer.submitUserBase(userBase,userId);
 		 return ResultCode.getSuccess("基本信息提交成");
+	}
+	
+	/**
+	 * 上传单位信息
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "submitProfession")
+	public ResultCode submitProfession(QtFinacialAuthenticationProfession profession,String userId) throws Exception {
+		 authenticationServer.submitProfession(profession,userId);
+		 return ResultCode.getSuccess("单位信息提交成");
 	}
 
 }

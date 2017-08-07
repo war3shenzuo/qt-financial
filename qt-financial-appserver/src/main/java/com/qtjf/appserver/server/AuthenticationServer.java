@@ -1,6 +1,7 @@
 package com.qtjf.appserver.server;
 
 import com.qtjf.common.bean.QtFinacialAuthenticationBase;
+import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
 import com.qtjf.common.bean.QtFinancialAuthentication;
 
 public interface AuthenticationServer {
@@ -23,6 +24,13 @@ public interface AuthenticationServer {
 	 * @return
 	 * @throws Exception
 	 */
-	void submitUserBase(QtFinacialAuthenticationBase userBase)  throws Exception;
+	void submitUserBase(QtFinacialAuthenticationBase userBase, String userId) throws Exception;
+	/**
+	 * 上传用户单位信息
+	 * @param userBase
+	 */
+	void submitProfession(QtFinacialAuthenticationProfession profeesion, String userId) throws Exception;
+
+
 
 }

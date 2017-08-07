@@ -1,63 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qtjf.appserver.dao.QtFinacialAuthenticationBaseMapper">
-	<resultMap id="BaseResultMap"
-		type="com.qtjf.common.bean.QtFinacialAuthenticationBase">
-		<result column="user_id" property="userId" jdbcType="INTEGER" />
-		<result column="education" property="education" jdbcType="VARCHAR" />
-		<result column="marriage" property="marriage" jdbcType="VARCHAR" />
-		<result column="children" property="children" jdbcType="INTEGER" />
-		<result column="province_id" property="provinceId" jdbcType="INTEGER" />
-		<result column="city_id" property="cityId" jdbcType="INTEGER" />
-		<result column="domain" property="domain" jdbcType="VARCHAR" />
-		<result column="qq" property="qq" jdbcType="VARCHAR" />
-		<result column="email" property="email" jdbcType="VARCHAR" />
-	</resultMap>
 	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
 		insert into
-		qt_finacial_authentication_base (user_id, education,
+		qt_finacial_authentication_base (id, education,
 		marriage,
 		children, province_id, city_id,
-		domain, qq, email)
+		domain, qq, email,liveTime)
 		values
-		(#{userId,jdbcType=INTEGER}, #{education,jdbcType=VARCHAR},
+		(#{id,jdbcType=INTEGER}, #{education,jdbcType=VARCHAR},
 		#{marriage,jdbcType=VARCHAR},
 		#{children,jdbcType=INTEGER},
 		#{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER},
 		#{domain,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR},
 		#{email,jdbcType=VARCHAR})
+		#{liveTime,jdbcType=VARCHAR})
 	</insert>
-	<select id="selectAll" resultMap="BaseResultMap">
-		select user_id, education,
-		marriage, children, province_id, city_id, domain,
+	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
+		select id, education,
+		marriage, children, province_id, city_id, domain,liveTime
 		qq,
 		email
 		from
 		qt_finacial_authentication_base
 	</select>
 	<select id="selectByUserId" parameterType="java.lang.String"
-		resultMap="BaseResultMap">
-		select user_id, education, marriage, children, province_id,
+		resultType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
+		select id, education, marriage, children,
+		province_id,liveTime
 		city_id, domain,
 		qq,
 		email
-		from qt_finacial_authentication_base where
+		from
+		qt_finacial_authentication_base where
 		user_id = #{_parameter}
 	</select>
 
 
 	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
-		update qt_finacial_authentication_base
-		set 
+		update
+		qt_finacial_authentication_base
+		set
 		education =#{education,jdbcType=VARCHAR},
-		marriage = #{marriage,jdbcType=VARCHAR},
+		marriage =#{marriage,jdbcType=VARCHAR},
 		children =#{children,jdbcType=INTEGER},
 		province_id = #{provinceId,jdbcType=INTEGER},
-		city_id = #{cityId,jdbcType=INTEGER},
+		city_id =#{cityId,jdbcType=INTEGER},
 		domain = #{domain,jdbcType=VARCHAR},
-		qq = #{qq,jdbcType=VARCHAR},
-		email = #{email,jdbcType=VARCHAR}
-		where user_id = #{userId,jdbcType=VARCHAR}
-		
+		qq =#{qq,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		liveTime =#{liveTime}
+		where id = #{id,jdbcType=VARCHAR}
 	</update>
 </mapper>
