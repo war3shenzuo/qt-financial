@@ -9,7 +9,8 @@ public interface QtFinacialAuthenticationProfessionMapper {
 
     List<QtFinacialAuthenticationProfession> selectAll();
     
-	QtFinacialAuthenticationProfession selectById(String userId);
+	QtFinacialAuthenticationProfession selectById(String id);
 
 	void update(QtFinacialAuthenticationProfession profeesion);
+
 }

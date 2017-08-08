@@ -9,7 +9,7 @@ public interface QtFinacialAuthenticationEmergencyContactMapper {
 
     List<QtFinacialAuthenticationEmergencyContact> selectAll();
     
-    QtFinacialAuthenticationEmergencyContact selectByUserId(String userId);
-
 	void update(QtFinacialAuthenticationEmergencyContact emergencyContact);
+
+	QtFinacialAuthenticationEmergencyContact selectById(String id);
 }

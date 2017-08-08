@@ -12,4 +12,5 @@ public interface QtFinacialAuthenticationBaseMapper {
 	void update(QtFinacialAuthenticationBase userBase);
 
 	QtFinacialAuthenticationBase selectById(String id);
+
 }

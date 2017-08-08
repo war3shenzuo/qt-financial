@@ -1,5 +1,7 @@
 package com.qtjf.appserver.server;
 
+import java.util.List;
+
 import com.qtjf.common.bean.QtFinacialAuthenticationBase;
 import com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact;
 import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
@@ -39,7 +41,20 @@ public interface AuthenticationServer {
 	 * @throws Exception
 	 */
 	void submitEmergencyContract(QtFinacialAuthenticationEmergencyContact emergencyContact, String userId)throws Exception;
-
+	/**
+	 * 查询用户认证信息
+	 * @param userId
+	 * @return
+	 */
+	List<QtFinancialAuthentication> getAuthenticationList(String userId);
+	
+	/**
+	 * 根据类型查询认证详细信息
+	 * @param userId
+	 * @return
+	 */
+	Object getAuthenticationInfoType(String id,String type);
+	
 
 
 }

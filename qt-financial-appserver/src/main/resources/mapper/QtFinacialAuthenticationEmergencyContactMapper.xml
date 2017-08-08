@@ -28,5 +28,11 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
 	
-	
+	<select id="selectByUserId" parameterType="java.lang.String"
+		resultType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
+		select *
+		from
+		qt_finacial_authentication_emergency_contact where
+		id = #{value}
+	</select>
 </mapper>

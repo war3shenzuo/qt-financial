@@ -7,11 +7,11 @@ public class QtFinacialAuthenticationBase {
 
     private String marriage;
 
-    private Integer children;
+    private int children;
 
-    private Integer provinceId;
+    private String provinceId;
 
-    private Integer cityId;
+    private String cityId;
 
     private String domain;
     
@@ -47,31 +47,31 @@ public class QtFinacialAuthenticationBase {
         this.marriage = marriage;
     }
 
-    public Integer getChildren() {
-        return children;
-    }
+	public int getChildren() {
+		return children;
+	}
 
-    public void setChildren(Integer children) {
-        this.children = children;
-    }
+	public void setChildren(int children) {
+		this.children = children;
+	}
 
-    public Integer getProvinceId() {
-        return provinceId;
-    }
+	public String getProvinceId() {
+		return provinceId;
+	}
 
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
-    }
+	public void setProvinceId(String provinceId) {
+		this.provinceId = provinceId;
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public String getCityId() {
+		return cityId;
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
 
-    public String getDomain() {
+	public String getDomain() {
         return domain;
     }
 

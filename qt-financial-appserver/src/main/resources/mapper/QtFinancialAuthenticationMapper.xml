@@ -52,7 +52,6 @@
 				and authType = #{authType}
 			</if>
 		</where>
-		
 	</select>
 	
 

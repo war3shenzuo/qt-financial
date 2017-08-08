@@ -9,18 +9,18 @@
 		company_phone)
 		values (#{id,jdbcType=VARCHAR}, #{income,jdbcType=VARCHAR},
 		#{company,jdbcType=VARCHAR},
-		#{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{domain,jdbcType=VARCHAR},
+		#{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, #{domain,jdbcType=VARCHAR},
 		#{companyPhone,jdbcType=VARCHAR})
 	</insert>
 	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
-		select user_id, income, company, province_id, city_id, domain, company_phone
+		select id, income, company, province_id, city_id, domain, company_phone
 		from qt_finacial_authentication_profession
 	</select>
 	
 	<select id="selectById" parameterType="java.lang.String" resultType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
-		select user_id, income, company, province_id, city_id, domain, company_phone
+		select id, income, company, province_id, city_id, domain, company_phone
 		from qt_finacial_authentication_profession
-		where user_id = #{_parameter}
+		where id = #{value}
 	</select>
 	
 	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
@@ -30,7 +30,7 @@
 		income = #{income,jdbcType=VARCHAR},
 		company = #{company,jdbcType=VARCHAR},
 		province_id = #{provinceId,jdbcType=VARCHAR},
-		city_id = #{cityId,jdbcType=INTEGER},
+		city_id = #{cityId,jdbcType=VARCHAR},
 		domain = #{domain,jdbcType=VARCHAR},
 		company_phone =#{companyPhone,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=VARCHAR}

@@ -11,7 +11,7 @@
 		(#{id,jdbcType=INTEGER}, #{education,jdbcType=VARCHAR},
 		#{marriage,jdbcType=VARCHAR},
 		#{children,jdbcType=INTEGER},
-		#{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER},
+		#{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR},
 		#{domain,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR},
 		#{email,jdbcType=VARCHAR})
 		#{liveTime,jdbcType=VARCHAR})
@@ -24,7 +24,7 @@
 		from
 		qt_finacial_authentication_base
 	</select>
-	<select id="selectByUserId" parameterType="java.lang.String"
+	<select id="selectById" parameterType="java.lang.String"
 		resultType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
 		select id, education, marriage, children,
 		province_id,liveTime
@@ -33,7 +33,7 @@
 		email
 		from
 		qt_finacial_authentication_base where
-		user_id = #{_parameter}
+		id = #{value}
 	</select>
 
 
@@ -44,8 +44,8 @@
 		education =#{education,jdbcType=VARCHAR},
 		marriage =#{marriage,jdbcType=VARCHAR},
 		children =#{children,jdbcType=INTEGER},
-		province_id = #{provinceId,jdbcType=INTEGER},
-		city_id =#{cityId,jdbcType=INTEGER},
+		province_id = #{provinceId,jdbcType=VARCHAR},
+		city_id =#{cityId,jdbcType=VARCHAR},
 		domain = #{domain,jdbcType=VARCHAR},
 		qq =#{qq,jdbcType=VARCHAR},
 		email = #{email,jdbcType=VARCHAR},

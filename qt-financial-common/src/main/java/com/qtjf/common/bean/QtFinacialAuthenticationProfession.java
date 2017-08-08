@@ -7,9 +7,9 @@ public class QtFinacialAuthenticationProfession {
 
     private String company;
 
-    private Integer provinceId;
+    private String provinceId;
 
-    private Integer cityId;
+    private String cityId;
 
     private String domain;
 
@@ -40,23 +40,23 @@ public class QtFinacialAuthenticationProfession {
         this.company = company;
     }
 
-    public Integer getProvinceId() {
-        return provinceId;
-    }
+    public String getProvinceId() {
+		return provinceId;
+	}
 
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
-    }
+	public void setProvinceId(String provinceId) {
+		this.provinceId = provinceId;
+	}
 
-    public Integer getCityId() {
-        return cityId;
-    }
+	public String getCityId() {
+		return cityId;
+	}
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
+	public void setCityId(String cityId) {
+		this.cityId = cityId;
+	}
 
-    public String getDomain() {
+	public String getDomain() {
         return domain;
     }
 

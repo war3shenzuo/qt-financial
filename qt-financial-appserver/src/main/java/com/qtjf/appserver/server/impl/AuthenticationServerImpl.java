@@ -216,4 +216,30 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 
 	}
 
+	@Override
+	public List<QtFinancialAuthentication> getAuthenticationList(String userId) {
+		QtFinancialAuthentication param = new QtFinancialAuthentication();
+		param.setUserId(userId);
+		return qtFinancialAuthenticationMapper.selectAll(param);
+	}
+
+	@Override
+	public Object getAuthenticationInfoType(String id, String type) {
+		
+		Object result = null;
+		
+		if(Objects.equals(type, "0")){
+			result = qtFinacialAuthenticationBaseMapper.selectById(id);
+		}else if(Objects.equals(type, "1")){
+			result = qtFinacialAuthenticationProfessionMapper.selectById(id);
+		}else if(Objects.equals(type, "2")){
+			result = qtFinacialAuthenticationEmergencyContactMapper.selectById(id);
+		}else{
+			result = null;
+		}
+		
+		return  result;
+	}
+
+
 }

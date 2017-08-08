@@ -1,5 +1,6 @@
 package com.qtjf.appserver.controller;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.qtjf.appserver.server.AuthenticationServer;
 import com.qtjf.common.bean.QtFinacialAuthenticationBase;
 import com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact;
 import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
+import com.qtjf.common.bean.QtFinancialAuthentication;
 import com.qtjf.common.vo.ResultCode;
 import com.qtjf.tpa.jdt.bean.UserInfo;
 import com.qtjf.tpa.jdt.server.GenerateServer;
@@ -75,6 +77,28 @@ public class JdtController {
 		return jdtServer.finishApplication( dk, token,DurationNumber,LovDurationType,RequestAmount);
 	}
 	
+	
+	/**
+	 * 查询认证信息
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "getAuthenticationList")
+	public ResultCode getAuthenticationList(String userId) throws Exception {
+		 List<QtFinancialAuthentication> list = authenticationServer.getAuthenticationList(userId);
+		 return ResultCode.getSuccess("查询认证信息成功",list);
+	}
+	
+	/**
+	 * 查询认证信息
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value = "getAuthenticationInfo")
+	public ResultCode getAuthenticationInfo(String id,String type) throws Exception {
+		 return ResultCode.getSuccess("查询认证详细信息成功",authenticationServer.getAuthenticationInfoType(id, type));
+	}
+	
 	/**
 	 * 上传用户基本信息
 	 * @return
@@ -83,7 +107,7 @@ public class JdtController {
 	@RequestMapping(value = "submitUserBase")
 	public ResultCode submitUserBase(QtFinacialAuthenticationBase userBase,String userId) throws Exception {
 		 authenticationServer.submitUserBase(userBase,userId);
-		 return ResultCode.getSuccess("基本信息提交成");
+		 return ResultCode.getSuccess("上传基本信息提交成功");
 	}
 	
 	/**
@@ -94,7 +118,7 @@ public class JdtController {
 	@RequestMapping(value = "submitProfession")
 	public ResultCode submitProfession(QtFinacialAuthenticationProfession profession,String userId) throws Exception {
 		 authenticationServer.submitProfession(profession,userId);
-		 return ResultCode.getSuccess("单位信息提交成");
+		 return ResultCode.getSuccess("上传单位信息提交成功");
 	}
 	
 	/**
@@ -105,7 +129,7 @@ public class JdtController {
 	@RequestMapping(value = "submitEmergencyContract")
 	public ResultCode submitEmergencyContract(QtFinacialAuthenticationEmergencyContact emergencyContact,String userId) throws Exception {
 		 authenticationServer.submitEmergencyContract(emergencyContact,userId);
-		 return ResultCode.getSuccess("紧急联系人信息");
+		 return ResultCode.getSuccess("上传紧急联系人成功");
 	}
 	
 
