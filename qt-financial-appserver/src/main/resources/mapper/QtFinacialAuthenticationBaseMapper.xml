@@ -10,7 +10,7 @@
 		values
 		(#{id,jdbcType=INTEGER}, #{education,jdbcType=VARCHAR},
 		#{marriage,jdbcType=VARCHAR},
-		#{children,jdbcType=INTEGER},
+		#{children,jdbcType=VARCHAR},
 		#{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR},
 		#{domain,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR},
 		#{email,jdbcType=VARCHAR},
@@ -43,7 +43,7 @@
 		set
 		education =#{education,jdbcType=VARCHAR},
 		marriage =#{marriage,jdbcType=VARCHAR},
-		children =#{children,jdbcType=INTEGER},
+		children =#{children,jdbcType=VARCHAR},
 		province_id = #{provinceId,jdbcType=VARCHAR},
 		city_id =#{cityId,jdbcType=VARCHAR},
 		domain = #{domain,jdbcType=VARCHAR},

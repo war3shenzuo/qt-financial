@@ -7,7 +7,7 @@ public class QtFinacialAuthenticationBase {
 
     private String marriage;
 
-    private int children;
+    private String children;
 
     private String provinceId;
 
@@ -47,11 +47,12 @@ public class QtFinacialAuthenticationBase {
         this.marriage = marriage;
     }
 
-	public int getChildren() {
+
+	public String getChildren() {
 		return children;
 	}
 
-	public void setChildren(int children) {
+	public void setChildren(String children) {
 		this.children = children;
 	}
 
