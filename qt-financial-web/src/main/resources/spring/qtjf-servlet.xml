@@ -52,10 +52,10 @@
 	<mvc:resources location="/common/" mapping="/common/**"></mvc:resources>
 
 	<!--拦截器 -->
-<!-- 	<mvc:interceptors> -->
-<!-- 		<mvc:interceptor> -->
-<!-- 			<mvc:mapping path="/view/**" /> -->
-<!-- 			<bean class="com.qtjf.web.filter.LoginInterceptor"></bean> -->
-<!-- 		</mvc:interceptor> -->
-<!-- 	</mvc:interceptors> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/view/**" />
+			<bean class="com.qtjf.web.filter.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

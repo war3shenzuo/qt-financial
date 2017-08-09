@@ -51,7 +51,7 @@ function LoadAjaxData(url, callback) {
 			console.log(errorThrown);
 		},
 		dataType : "json",
-		async : true
+		async : false
 	});
 }
 
@@ -137,44 +137,6 @@ function FloatDiv(arg1, arg2) {
 		r2 = Number(arg2.toString().replace(".", ""));
 		return (r1 / r2) * pow(10, t2 - t1);
 	}
-}
-// 打印区域
-function printit(MyDiv) {
-	// if (confirm('确定打印吗？')) {
-	var newstr = document.getElementById(MyDiv).innerHTML;
-	console.log(newstr);
-	var headerStr = ''
-			+ ' <!DOCTYPE html>'
-			+ ' <html lang="en">'
-			+ ' <head>'
-			+ ' <meta charset="utf-8">'
-			+ ' <title>慢病管理系统</title>'
-			+ ' <meta name="description" content="description">'
-			+ ' <meta name="author" content="mlnx">'
-			+ ' <meta name="viewport" content="width=device-width, initial-scale=1">'
-			+ '<link href="/community-doctor-web/common/img/favicon.ico" rel="shortcut icon" media="print">'
-			+ '<link href="/community-doctor-web/common/js/advanced-datatable/css/demo_page.css" rel="stylesheet" media="print"/>'
-			+ '<link href="/community-doctor-web/common/js/advanced-datatable/css/demo_table.css" rel="stylesheet" media="print"/>'
-			+ '<link href="/community-doctor-web/common/js/data-tables/DT_bootstrap.css" rel="stylesheet" media="print"/>'
-			+ '<link href="/community-doctor-web/common/js/gritter/css/jquery.gritter.css" rel="stylesheet" media="print"/>'
-			+ '<link href="/community-doctor-web/common/css/style.css"  rel="stylesheet" media="print">'
-			+ '<link href="/community-doctor-web/common/css/style-responsive.css" rel="stylesheet" media="print">'
-			+ '<link href="/community-doctor-web/common/css/radio-checkbox.css" rel="stylesheet" media="print">'
-			+ '<link href="/community-doctor-web/common/css/admin/heart_new.css" rel="stylesheet" media="print">'
-			+ ' </head>' + ' <body>';
-	var str = headerStr + newstr + '</body></html>';
-	var reg = new RegExp("(<button.*?>[\\s|\\S]*?<\/button>)", "g"); // 创建正则RegExp对象
-	var printStr = str.replace(reg, "");
-	var pwin = window.open("", "pwin"); // 如果是本地测试，需要先新建Print.htm，如果是在域中使用，则不需要
-	pwin.document.write(printStr);
-	pwin.document.close(); // 这句很重要，没有就无法实现
-	setTimeout(function() {
-		pwin.print();
-		pwin.close();
-	}, 500);
-
-	return false;
-	// }
 }
 // format日期
 function formatDate(strTime) {

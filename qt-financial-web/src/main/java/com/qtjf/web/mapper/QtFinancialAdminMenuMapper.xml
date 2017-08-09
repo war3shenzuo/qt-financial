@@ -1,38 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qtjf.web.mapper.QtFinancialAdminMenuMapper" >
-  <resultMap id="BaseResultMap" type="com.qtjf.web.entity.QtFinancialAdminMenu" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="url" property="url" jdbcType="VARCHAR" />
-    <result column="onclick" property="onclick" jdbcType="VARCHAR" />
-    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
-  </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from qt_financial_admin_menu
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.qtjf.web.entity.QtFinancialAdminMenu" >
-    insert into qt_financial_admin_menu (id, name, url, 
-      onclick, parent_id)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{onclick,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER})
-  </insert>
-  <update id="updateByPrimaryKey" parameterType="com.qtjf.web.entity.QtFinancialAdminMenu" >
-    update qt_financial_admin_menu
-    set name = #{name,jdbcType=VARCHAR},
-      url = #{url,jdbcType=VARCHAR},
-      onclick = #{onclick,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, name, url, onclick, parent_id
-    from qt_financial_admin_menu
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select id, name, url, onclick, parent_id
-    from qt_financial_admin_menu
-  </select>
+<mapper namespace="com.qtjf.web.mapper.QtFinancialAdminMenuMapper">
+	<resultMap id="BaseResultMap" type="com.qtjf.web.entity.QtFinancialAdminMenu">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+		<result column="onclick" property="onclick" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap type="com.qtjf.web.vo.MenuVo" id="MenuVoResultMap"
+		extends="BaseResultMap">
+		<collection property="list"
+			ofType="com.qtjf.web.entity.QtFinancialAdminMenu">
+			<id column="salve_id" property="id" jdbcType="INTEGER" />
+			<result column="salve_name" property="name" jdbcType="VARCHAR" />
+			<result column="salve_url" property="url" jdbcType="VARCHAR" />
+			<result column="salve_onclick" property="onclick" jdbcType="VARCHAR" />
+			<result column="salve_parent_id" property="parentId" jdbcType="INTEGER" />
+		</collection>
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from qt_financial_admin_menu
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.qtjf.web.entity.QtFinancialAdminMenu">
+		insert into qt_financial_admin_menu (id, name, url,
+		onclick, parent_id)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{url,jdbcType=VARCHAR},
+		#{onclick,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.qtjf.web.entity.QtFinancialAdminMenu">
+		update qt_financial_admin_menu
+		set name = #{name,jdbcType=VARCHAR},
+		url = #{url,jdbcType=VARCHAR},
+		onclick = #{onclick,jdbcType=VARCHAR},
+		parent_id = #{parentId,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, name, url, onclick, parent_id
+		from qt_financial_admin_menu
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, name, url, onclick, parent_id
+		from qt_financial_admin_menu
+	</select>
+	<select id="selectByUserId" resultMap="MenuVoResultMap"
+		parameterType="java.lang.Integer">
+		select qt_master.*,
+		qt_salve.id salve_id,
+		qt_salve.name salve_name,
+		qt_salve.url salve_url,
+		qt_salve.onclick salve_onclick, 
+		qt_salve.parent_id salve_parent_id
+		from qt_financial_admin_menu qt_master
+		left outer join qt_financial_admin_menu qt_salve on qt_master.id =
+		qt_salve.parent_id
+		where qt_master.parent_id = 0 and qt_master.id in (select rm.menu_id from
+		qt_financial_admin_role_menu rm where rm.role_id = (select r.role_id
+		from qt_financial_admin_user_role r where r.admin_user_id = #{userId})
+		);
+	</select>
 </mapper>

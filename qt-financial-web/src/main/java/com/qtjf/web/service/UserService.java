@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.qtjf.common.bean.QtFinancialGroup;
 import com.qtjf.common.bean.QtFinancialUserLevel;
+import com.qtjf.web.entity.QtFinancialAdminUser;
 
 public interface UserService {
 	
@@ -33,5 +34,8 @@ public interface UserService {
 	
 	//删除组
 	Map<String, Object> deleteGroup(Integer id);
+
+	//查找登入用户
+	QtFinancialAdminUser selectUserByName(String username);
 	
 }

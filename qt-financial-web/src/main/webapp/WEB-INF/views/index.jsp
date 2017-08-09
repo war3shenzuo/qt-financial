@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <title>清投金服</title>
-<meta name="keywords" content="mlnx">
+<meta name="keywords" content="qingtou">
 <meta name="description" content="description">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--favicon-->
@@ -65,13 +65,16 @@
     </div>
     <!-- main content end-->
 </section>
+
+
 <!-- Placed js at the end of the document so the pages load faster -->
-<script src="${ctx}/common/js/jquery-1.10.2.min.js"></script>
+
 <script src="${ctx}/common/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="${ctx}/common/js/jquery-migrate-1.2.1.min.js"></script>
 <script src="${ctx}/common/js/bootstrap.min.js"></script>
 <script src="${ctx}/common/js/modernizr.min.js"></script>
 <script src="${ctx}/common/js/jquery.nicescroll.js"></script>
+
 
 <!--dynamic table-->
 <script type="text/javascript" language="javascript" src="${ctx}/common/js/advanced-datatable/js/jquery.dataTables.js"></script>
@@ -104,5 +107,6 @@ $(document).ready(function() {
 	LoadAjaxContent('${pageContext.request.contextPath}/view/index_info','wrapper');
 });
 </script>
+
 </body>
 </html>
