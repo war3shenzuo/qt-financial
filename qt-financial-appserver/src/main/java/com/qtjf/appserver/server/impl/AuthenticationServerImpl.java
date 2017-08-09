@@ -126,22 +126,22 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 		List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(query);
 
 		if (!Objects.isNull(list) || list.size() == 0) {
+			userBase.setId(UUID.randomUUID().toString());
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
 			record.setAuthType(Authentication.TYPE_BASE.getStatus());
 			record.setUserId(userId);
-			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
-			userBase.setId(list.get(0).getAuthenticationId());
-			qtFinacialAuthenticationBaseMapper.update(userBase);
-		} else if(list.size()==1)  {
-			userBase.setId(UUID.randomUUID().toString());
-			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthenticationId(userBase.getId());
+			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
+			qtFinacialAuthenticationBaseMapper.insert(userBase);
+		} else if(list.size()==1)  {
+			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
 			record.setAuthType(Authentication.TYPE_BASE.getStatus());
 			record.setUserId(userId);
 			insert(record);
-			qtFinacialAuthenticationBaseMapper.insert(userBase);
+			userBase.setId(list.get(0).getAuthenticationId());
+			qtFinacialAuthenticationBaseMapper.update(userBase);
 		}else{
 			logger.error("用户："+userId+"的<"+Authentication.TYPE_BASE.getMsg()+">认证大于两条");
 			throw new RuntimeException("数据异常");
