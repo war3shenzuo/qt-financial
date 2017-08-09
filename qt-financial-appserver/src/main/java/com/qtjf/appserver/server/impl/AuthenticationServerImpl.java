@@ -132,14 +132,14 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 			record.setAuthType(Authentication.TYPE_BASE.getStatus());
 			record.setUserId(userId);
 			record.setAuthenticationId(userBase.getId());
-			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
+			insert(record);
 			qtFinacialAuthenticationBaseMapper.insert(userBase);
 		} else if(list.size()==1)  {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
 			record.setAuthType(Authentication.TYPE_BASE.getStatus());
 			record.setUserId(userId);
-			insert(record);
+			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
 			userBase.setId(list.get(0).getAuthenticationId());
 			qtFinacialAuthenticationBaseMapper.update(userBase);
 		}else{
