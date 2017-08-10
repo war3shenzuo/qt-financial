@@ -28,7 +28,7 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
 	
-	<select id="selectByUserId" parameterType="java.lang.String"
+	<select id="selectById" parameterType="java.lang.String"
 		resultType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
 		select *
 		from

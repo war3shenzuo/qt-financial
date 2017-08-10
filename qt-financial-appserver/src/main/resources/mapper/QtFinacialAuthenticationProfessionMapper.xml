@@ -3,27 +3,27 @@
 <mapper namespace="com.qtjf.appserver.dao.QtFinacialAuthenticationProfessionMapper">
 	<insert id="insert"
 		parameterType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
-		insert into qt_finacial_authentication_profession (id, income,
+		insert into qt_finacial_authentication_profession (id, income,profession,
 		company,
 		province_id, city_id, domain,
 		company_phone)
-		values (#{id,jdbcType=VARCHAR}, #{income,jdbcType=VARCHAR},
+		values (#{id,jdbcType=VARCHAR}, #{income,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR},
 		#{company,jdbcType=VARCHAR},
 		#{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, #{domain,jdbcType=VARCHAR},
 		#{companyPhone,jdbcType=VARCHAR})
 	</insert>
 	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
-		select id, income, company, province_id, city_id, domain, company_phone
+		select *
 		from qt_finacial_authentication_profession
 	</select>
 	
 	<select id="selectById" parameterType="java.lang.String" resultType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
-		select id, income, company, province_id, city_id, domain, company_phone
+		select *
 		from qt_finacial_authentication_profession
 		where id = #{value}
 	</select>
 	
-	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
+	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
 		update
 		qt_finacial_authentication_profession
 		set
@@ -32,7 +32,8 @@
 		province_id = #{provinceId,jdbcType=VARCHAR},
 		city_id = #{cityId,jdbcType=VARCHAR},
 		domain = #{domain,jdbcType=VARCHAR},
-		company_phone =#{companyPhone,jdbcType=VARCHAR}
+		company_phone =#{companyPhone,jdbcType=VARCHAR},
+		profession =#{profession,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
 </mapper>

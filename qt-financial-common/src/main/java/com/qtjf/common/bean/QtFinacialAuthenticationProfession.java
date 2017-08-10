@@ -14,6 +14,8 @@ public class QtFinacialAuthenticationProfession {
     private String domain;
 
     private String companyPhone;
+    
+    private String profession;
 
 
     public String getId() {
@@ -71,4 +73,14 @@ public class QtFinacialAuthenticationProfession {
     public void setCompanyPhone(String companyPhone) {
         this.companyPhone = companyPhone;
     }
+
+	public String getProfession() {
+		return profession;
+	}
+
+	public void setProfession(String profession) {
+		this.profession = profession;
+	}
+    
+    
 }
