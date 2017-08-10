@@ -14,4 +14,6 @@ public interface QtFinancialAdminUserMapper {
     List<QtFinancialAdminUser> selectAll();
 
     int updateByPrimaryKey(QtFinancialAdminUser record);
+
+	QtFinancialAdminUser selectByName(String name);
 }

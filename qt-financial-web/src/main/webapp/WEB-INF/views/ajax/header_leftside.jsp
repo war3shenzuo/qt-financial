@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
+<input type="hidden" value="${adminLogin.id}" id="userId" /> 
 <div class="left-side sticky-left-side">
 
 	<!--logo and iconic logo start-->
@@ -17,58 +18,58 @@
 	<div class="left-side-inner">
 
 		<!--sidebar nav start 左侧导航栏-->
-		<ul class="nav nav-pills nav-stacked custom-nav">
+		<ul class="nav nav-pills nav-stacked custom-nav" id="qt_menu">
 			<!--审核员后台 start-->
-			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('index_info','wrapper')"><i class="fa fa-money"></i> <span>借款审核</span></a></li>
-			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('customer_info','wrapper')"><i class="fa fa-users"></i> <span>客户管理</span></a></li>
-			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('activity_info','wrapper')"><i class="fa fa-tags"></i> <span>活动管理</span></a></li>
-			<!--审核员后台 start-->
+<!-- 			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('index_info','wrapper')"><i class="fa fa-money"></i> <span>借款审核</span></a></li> -->
+<!-- 			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('customer_info','wrapper')"><i class="fa fa-users"></i> <span>客户管理</span></a></li> -->
+<!-- 			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('activity_info','wrapper')"><i class="fa fa-tags"></i> <span>活动管理</span></a></li> -->
+<!-- 			<!--审核员后台 start--> -->
 			
-			<!--经理后台 start-->
-			<li class="menu-list"><a href=""><i class="fa fa-money"></i> <span>借款审核</span></a>
-	    		<ul class="sub-menu-list">
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('examine_info','wrapper')">等待复审</a></li>
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('record_info','wrapper')">审核记录</a></li>
-	            </ul>
-	    	</li>
-			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('customer_info','wrapper')"><i class="fa fa-users"></i> <span>客户管理</span></a></li>
-			<!--经理后台 start-->
+<!-- 			<!--经理后台 start--> -->
+<!-- 			<li class="menu-list"><a href=""><i class="fa fa-money"></i> <span>借款审核</span></a> -->
+<!-- 	    		<ul class="sub-menu-list"> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('examine_info','wrapper')">等待复审</a></li> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('record_info','wrapper')">审核记录</a></li> -->
+<!-- 	            </ul> -->
+<!-- 	    	</li> -->
+<!-- 			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('customer_info','wrapper')"><i class="fa fa-users"></i> <span>客户管理</span></a></li> -->
+<!-- 			<!--经理后台 start--> -->
 			
-			<!--打款员后台 start-->
-			<li class="menu-list"><a href=""><i class="fa fa-money"></i> <span>打款处理</span></a>
-	    		<ul class="sub-menu-list">
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('playmoney_info','wrapper')">等待打款</a></li>
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('playrecond_info','wrapper')">打款记录</a></li>
-	            </ul>
-	    	</li>
-			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('customer_info','wrapper')"><i class="fa fa-users"></i> <span>客户管理</span></a></li>
-			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('activity_info','wrapper')"><i class="fa fa-tags"></i> <span>活动管理</span></a></li>
-			<!--打款员后台 start-->
+<!-- 			<!--打款员后台 start--> -->
+<!-- 			<li class="menu-list"><a href=""><i class="fa fa-money"></i> <span>打款处理</span></a> -->
+<!-- 	    		<ul class="sub-menu-list"> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('playmoney_info','wrapper')">等待打款</a></li> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('playrecond_info','wrapper')">打款记录</a></li> -->
+<!-- 	            </ul> -->
+<!-- 	    	</li> -->
+<!-- 			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('customer_info','wrapper')"><i class="fa fa-users"></i> <span>客户管理</span></a></li> -->
+<!-- 			<li><a href="javascript:void(0)" onclick="LoadAjaxContent('activity_info','wrapper')"><i class="fa fa-tags"></i> <span>活动管理</span></a></li> -->
+<!-- 			<!--打款员后台 start--> -->
 			
-			<!--管理员后台 start-->
-			<li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>系统管理</span></a>
-	    		<ul class="sub-menu-list">
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('product_info','wrapper')">产品管理</a></li>
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('upgrade_info','wrapper')">升级策略管理</a></li>
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('banner_info','wrapper')">banner管理</a></li>
-	            </ul>
-	    	</li>
-	    	<li class="menu-list"><a href=""><i class="fa fa-group"></i> <span>客户管理</span></a>
-	    		<ul class="sub-menu-list">
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('customer_info','wrapper')">客户管理</a></li>
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('group_info','wrapper')">客户分组管理</a></li>
-	            </ul>
-	    	</li>
-	    	<li class="menu-list"><a href=""><i class="fa fa-th"></i> <span>事务管理</span></a>
-	    		<ul class="sub-menu-list">
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('invitation_info','wrapper')">邀请码管理</a></li>
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('event_info','wrapper')">活动管理</a></li>
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('coupon_info','wrapper')">优惠券管理</a></li>
-	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('message_info','wrapper')">CEO留言管理</a></li>
-	            </ul>
-	    	</li>
-	    	<li><a href="javascript:void(0)" onclick="LoadAjaxContent('data_info','wrapper')"><i class="fa fa-list-alt"></i> <span>数据管理</span></a></li>
-	    	<li><a href="javascript:void(0)" onclick="LoadAjaxContent('edition_info','wrapper')"><i class="fa fa-arrow-circle-o-up"></i> <span>版本管理</span></a></li>
+<!-- 			<!--管理员后台 start--> -->
+<!-- 			<li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>系统管理</span></a> -->
+<!-- 	    		<ul class="sub-menu-list"> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('product_info','wrapper')">产品管理</a></li> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('upgrade_info','wrapper')">升级策略管理</a></li> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('banner_info','wrapper')">banner管理</a></li> -->
+<!-- 	            </ul> -->
+<!-- 	    	</li> -->
+<!-- 	    	<li class="menu-list"><a href=""><i class="fa fa-group"></i> <span>客户管理</span></a> -->
+<!-- 	    		<ul class="sub-menu-list"> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('customer_info','wrapper')">客户管理</a></li> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('group_info','wrapper')">客户分组管理</a></li> -->
+<!-- 	            </ul> -->
+<!-- 	    	</li> -->
+<!-- 	    	<li class="menu-list"><a href=""><i class="fa fa-th"></i> <span>事务管理</span></a> -->
+<!-- 	    		<ul class="sub-menu-list"> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('invitation_info','wrapper')">邀请码管理</a></li> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('event_info','wrapper')">活动管理</a></li> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('coupon_info','wrapper')">优惠券管理</a></li> -->
+<!-- 	                <li><a href="javascript:void(0)" onclick="LoadAjaxContent('message_info','wrapper')">CEO留言管理</a></li> -->
+<!-- 	            </ul> -->
+<!-- 	    	</li> -->
+<!-- 	    	<li><a href="javascript:void(0)" onclick="LoadAjaxContent('data_info','wrapper')"><i class="fa fa-list-alt"></i> <span>数据管理</span></a></li> -->
+<!-- 	    	<li><a href="javascript:void(0)" onclick="LoadAjaxContent('edition_info','wrapper')"><i class="fa fa-arrow-circle-o-up"></i> <span>版本管理</span></a></li> -->
 	    	<!--管理员后台 end-->
 	    </ul>
 	    <!--sidebar nav end 左侧导航栏-->
@@ -94,3 +95,31 @@
     </div>
 </div>
 <!-- modal-提示框 -->
+<script src="${ctx}/common/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {		
+	var userId = $("#userId").val();
+	LoadAjaxData('${pageContext.request.contextPath}/data/menu?userId='+userId,function(data){
+		try{
+			var htmlStr = '';
+			var list = data.objList;
+			for(var i = 0 ;i < list.length; i ++){
+				if(list[i].list.length==0){
+					htmlStr += '<li><a href="javascript:void(0)" onclick="'+list[i].onclick+'"><i class="fa fa-money"></i> <span>'+list[i].name+'</span></a></li>';
+				} else {
+					htmlStr += '<li class="menu-list"><a href="javascript:void(0)"><i class="fa fa-money"></i> <span>'+list[i].name+'</span></a>'
+			    		+'<ul class="sub-menu-list">';
+			    	for(var j=0;j<list[i].list.length;j++){
+			    		htmlStr += '<li><a href="javascript:void(0)" onclick="'+list[i].list[j].onclick+'">'+list[i].list[j].name+'</a></li>';
+			    	}
+			    	htmlStr +='</ul></li>';
+				}
+			}		
+			$("#qt_menu").html(htmlStr);
+		} catch(arr){
+			console.log(arr);
+		}
+	
+	});
+});
+</script>

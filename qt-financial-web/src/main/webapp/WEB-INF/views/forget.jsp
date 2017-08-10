@@ -6,8 +6,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>慢病mlnx专用</title>
-<meta name="keywords" content="mlnx">
+<title>清投金服</title>
+<meta name="keywords" content="qingtou">
 <meta name="description" content="description">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--favicon-->
@@ -92,7 +92,7 @@
 <!-- 					</div> -->
 				</div>
 				<div class="form-group text-center">
-					<a href="${ctx }/mlnx/login">已有账号？快去登录</a>
+					<a href="${ctx }/view/login">已有账号？快去登录</a>
 				</div>
 
 			</form>

@@ -3,6 +3,8 @@ package com.qtjf.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +17,9 @@ import com.qtjf.common.bean.QtFinancialBorrowMoney;
 import com.qtjf.common.bean.QtFinancialGroup;
 import com.qtjf.common.bean.QtFinancialUserLevel;
 import com.qtjf.common.bean.QtFinanicalBanner;
+import com.qtjf.web.entity.QtFinancialAdminUser;
 import com.qtjf.web.service.BorrowService;
+import com.qtjf.web.service.MenuService;
 import com.qtjf.web.service.ProductService;
 import com.qtjf.web.service.UserService;
 import com.qtjf.web.util.StringUtil;
@@ -33,7 +37,26 @@ public class DataCol {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private MenuService menuService;
+	
+	@RequestMapping(value = "/login")
+	public Map<String, Object> login(String username, String password,HttpSession session) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put(StringUtil.responseCode, StringUtil.responseOk);
+		QtFinancialAdminUser user = userService.selectUserByName(username);
+		if(password!=null && password.equals(user.getPassword())){
+			session.setAttribute(StringUtil.adminLogin, user);
+		}
+		return map;
+	}
 
+	@RequestMapping(value = "/menu")
+	public Map<String, Object> menu(Integer userId) {
+		return menuService.getMenuByUserId(userId);
+	}
+	
 	/**
 	 * 分页获取审核数据，类型分审核中和审核完毕的
 	 * 

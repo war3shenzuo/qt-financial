@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.qtjf.common.bean.QtFinancialGroup;
 import com.qtjf.common.bean.QtFinancialUser;
 import com.qtjf.common.bean.QtFinancialUserLevel;
+import com.qtjf.web.entity.QtFinancialAdminUser;
+import com.qtjf.web.mapper.QtFinancialAdminUserMapper;
 import com.qtjf.web.mapper.QtFinancialGroupMapper;
 import com.qtjf.web.mapper.QtFinancialUserLevelMapper;
 import com.qtjf.web.mapper.QtFinancialUserMapper;
@@ -27,6 +29,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private QtFinancialGroupMapper qtFinancialGroupMapper;
+	
+	@Autowired
+	private QtFinancialAdminUserMapper qtFinancialAdminUserMapper;
 
 	@Override
 	public Map<String, Object> selectAllByPage(Map<String, Object> paramMap) {
@@ -150,6 +155,12 @@ public class UserServiceImpl implements UserService {
 			map.put(StringUtil.responseCode, StringUtil.resposeError);
 		}
 		return map;
+	}
+
+	@Override
+	public QtFinancialAdminUser selectUserByName(String username) {
+		QtFinancialAdminUser u = qtFinancialAdminUserMapper.selectByName(username);
+		return u;
 	}
 
 }

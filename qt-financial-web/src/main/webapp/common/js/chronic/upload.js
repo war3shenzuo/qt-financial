@@ -1,7 +1,4 @@
 function uploadInit(dir, selectfilebtn, container, ossfile, postfile, fileValue, preview) {
-//	accessid = 'TWTxeXi6d2VQ6Yc9';
-//	accesskey = 'pvxZ0w8m46Q105nb5oavdMdyKRTK6L';
-//	host = 'http://mlnx-test.oss-cn-shanghai.aliyuncs.com';
 
 	accessid = 'LTAIPvn9pI0IgTHc';
 	accesskey = 'p8tGL8YpUi5Q8hMICTlygkUz9jmT4l';
@@ -151,7 +148,7 @@ function uploadInit(dir, selectfilebtn, container, ossfile, postfile, fileValue,
 							document.getElementById(file.id)
 									.getElementsByTagName('b')[0].innerHTML = '上传成功';
 							document.getElementById(fileValue).value = get_uploaded_object_name(file.name);
-							var src = "http://mlnx-test.oss-cn-shanghai.aliyuncs.com/"
+							var src = "http://tonghangimg.oss-cn-shanghai.aliyuncs.com/"
 									+ get_uploaded_object_name(file.name)
 									+ "?x-oss-process=image/resize,w_200";
 							document.getElementById(preview).src = src;
