@@ -55,6 +55,16 @@ public interface AuthenticationServer {
 	 */
 	Object getAuthenticationInfoType(String id,String type);
 	
+	/**
+	 * 学信认证
+	 * @param chsiCode
+	 * @param chsiPass
+	 * @param userId
+	 * @return
+	 * @throws Exception 
+	 */
+	boolean sumbitChsi(String chsiCode, String chsiPass, String userId) throws Exception;
+	
 
 
 }

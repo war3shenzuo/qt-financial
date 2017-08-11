@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.qtjf.appserver.dao.QtFinacialAuthenticationBaseMapper;
+import com.qtjf.appserver.dao.QtFinacialAuthenticationChsiMapper;
 import com.qtjf.appserver.dao.QtFinacialAuthenticationEmergencyContactMapper;
 import com.qtjf.appserver.dao.QtFinacialAuthenticationProfessionMapper;
 import com.qtjf.appserver.dao.QtFinancialAuthenticationMapper;
@@ -23,6 +24,7 @@ import com.qtjf.common.bean.QtFinacialAuthenticationBase;
 import com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact;
 import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
 import com.qtjf.common.bean.QtFinancialAuthentication;
+import com.qtjf.common.bean.qtFinacialAuthenticationChsi;
 import com.qtjf.common.emus.Authentication;
 
 @Service
@@ -31,7 +33,6 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	
 	@Autowired
 	QtFinancialAuthenticationMapper qtFinancialAuthenticationMapper;
 
@@ -40,9 +41,12 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 
 	@Autowired
 	QtFinacialAuthenticationProfessionMapper qtFinacialAuthenticationProfessionMapper;
-	
+
 	@Autowired
 	QtFinacialAuthenticationEmergencyContactMapper qtFinacialAuthenticationEmergencyContactMapper;
+	
+	@Autowired
+	QtFinacialAuthenticationChsiMapper qtFinacialAuthenticationChsiMapper;
 
 	@Override
 	public void saveTaobaoQrMsg(String msg, String userId) {
@@ -134,7 +138,7 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 			record.setAuthenticationId(userBase.getId());
 			insert(record);
 			qtFinacialAuthenticationBaseMapper.insert(userBase);
-		} else if(list.size()==1)  {
+		} else if (list.size() == 1) {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
 			record.setAuthType(Authentication.TYPE_BASE.getStatus());
@@ -142,8 +146,8 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
 			userBase.setId(list.get(0).getAuthenticationId());
 			qtFinacialAuthenticationBaseMapper.update(userBase);
-		}else{
-			logger.error("用户："+userId+"的<"+Authentication.TYPE_BASE.getMsg()+">认证大于两条");
+		} else {
+			logger.error("用户：" + userId + "的<" + Authentication.TYPE_BASE.getMsg() + ">认证大于两条");
 			throw new RuntimeException("数据异常");
 		}
 
@@ -168,7 +172,7 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 			record.setUserId(userId);
 			insert(record);
 			qtFinacialAuthenticationProfessionMapper.insert(profeesion);
-		} else if(list.size()==1) {
+		} else if (list.size() == 1) {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
 			record.setAuthType(Authentication.TYPE_PROFESSION.getStatus());
@@ -176,8 +180,8 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
 			profeesion.setId(list.get(0).getAuthenticationId());
 			qtFinacialAuthenticationProfessionMapper.update(profeesion);
-		}else{
-			logger.error("用户："+userId+"的<"+Authentication.TYPE_PROFESSION.getMsg()+">认证大于两条");
+		} else {
+			logger.error("用户：" + userId + "的<" + Authentication.TYPE_PROFESSION.getMsg() + ">认证大于两条");
 			throw new RuntimeException("数据异常");
 		}
 
@@ -201,7 +205,7 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 			record.setUserId(userId);
 			insert(record);
 			qtFinacialAuthenticationEmergencyContactMapper.insert(emergencyContact);
-		} else if(list.size()==1){
+		} else if (list.size() == 1) {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
 			record.setAuthType(Authentication.TYPE_MERGENCY.getStatus());
@@ -209,8 +213,8 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
 			emergencyContact.setId(list.get(0).getAuthenticationId());
 			qtFinacialAuthenticationEmergencyContactMapper.update(emergencyContact);
-		}else{
-			logger.error("用户："+userId+"的<"+Authentication.TYPE_MERGENCY.getMsg()+">认证大于两条");
+		} else {
+			logger.error("用户：" + userId + "的<" + Authentication.TYPE_MERGENCY.getMsg() + ">认证大于两条");
 			throw new RuntimeException("数据异常");
 		}
 
@@ -225,21 +229,60 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 
 	@Override
 	public Object getAuthenticationInfoType(String id, String type) {
-		
+
 		Object result = null;
-		
-		if(Objects.equals(type, "0")){
+
+		if (Objects.equals(type, "0")) {
 			result = qtFinacialAuthenticationBaseMapper.selectById(id);
-		}else if(Objects.equals(type, "1")){
+		} else if (Objects.equals(type, "1")) {
 			result = qtFinacialAuthenticationProfessionMapper.selectById(id);
-		}else if(Objects.equals(type, "2")){
+		} else if (Objects.equals(type, "2")) {
 			result = qtFinacialAuthenticationEmergencyContactMapper.selectById(id);
-		}else{
+		} else {
 			result = null;
 		}
-		
-		return  result;
+
+		return result;
 	}
 
+	@Override
+	public boolean sumbitChsi(String chsiCode, String chsiPass, String userId) throws Exception {
+		// 查询是否有数据如果有就修改没有就新增
+		QtFinancialAuthentication query = new QtFinancialAuthentication();
+		query.setAuthType(Authentication.TYPE_CHSI.getStatus());
+		query.setUserId(userId);
+		List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(query);
+
+		if (Objects.isNull(list) || list.size() == 0) {
+			
+			qtFinacialAuthenticationChsi chsi = new qtFinacialAuthenticationChsi();
+			chsi.setId(UUID.randomUUID().toString());
+			chsi.setChsiCode(chsiCode);
+			chsi.setChsiPass(chsiPass);
+			QtFinancialAuthentication record = new QtFinancialAuthentication();
+			record.setAuthenticationId(chsi.getId());
+			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+			record.setAuthType(Authentication.TYPE_MERGENCY.getStatus());
+			record.setUserId(userId);
+			insert(record);
+	
+			qtFinacialAuthenticationChsiMapper.insert(chsi);
+		} else if (list.size() == 1) {
+			QtFinancialAuthentication record = new QtFinancialAuthentication();
+			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+			record.setAuthType(Authentication.TYPE_MERGENCY.getStatus());
+			record.setUserId(userId);
+			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
+			qtFinacialAuthenticationChsi chsi = new qtFinacialAuthenticationChsi();
+			chsi.setId(list.get(0).getAuthenticationId());
+			chsi.setChsiCode(chsiCode);
+			chsi.setChsiPass(chsiPass);
+			qtFinacialAuthenticationChsiMapper.update(chsi);
+		} else {
+			logger.error("用户：" + userId + "的<" + Authentication.TYPE_MERGENCY.getMsg() + ">认证大于两条");
+			throw new RuntimeException("数据异常");
+		}
+		return true;
+	}
 
 }

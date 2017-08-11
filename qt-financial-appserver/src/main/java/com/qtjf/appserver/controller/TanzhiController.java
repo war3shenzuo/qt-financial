@@ -92,6 +92,22 @@ public class TanzhiController {
 			return ResultCode.getSuccess("提交成功");
 	}
 	
+	/**
+	 * 提交学信
+	 * @param userId 用户Id
+	 * @return 产品集合
+	 * @throws Exception 
+	 */
+	@RequestMapping("sumbitChsi")
+	public ResultCode sumbitChsi( String chsiCode,String chsiPass,String userId) throws Exception  {
+			if(authenticationServer.sumbitChsi(chsiCode,chsiPass,userId)){
+				return ResultCode.getSuccess("学信认证成提交成功");
+			}else{
+				return ResultCode.getError("学信认证验证失败");
+			}
+		
+	}
+	
 	
 
 }

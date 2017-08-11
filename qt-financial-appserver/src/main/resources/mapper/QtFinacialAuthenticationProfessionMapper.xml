@@ -1,39 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.qtjf.appserver.dao.QtFinacialAuthenticationProfessionMapper">
+<mapper namespace="com.qtjf.appserver.dao.QtFinacialAuthenticationChsiMapper">
 	<insert id="insert"
-		parameterType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
-		insert into qt_finacial_authentication_profession (id, income,profession,
-		company,
-		province_id, city_id, domain,
-		company_phone)
-		values (#{id,jdbcType=VARCHAR}, #{income,jdbcType=VARCHAR}, #{profession,jdbcType=VARCHAR},
-		#{company,jdbcType=VARCHAR},
-		#{provinceId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, #{domain,jdbcType=VARCHAR},
-		#{companyPhone,jdbcType=VARCHAR})
+		parameterType="com.qtjf.common.bean.QtFinacialAuthenticationChsi">
+		insert into qt_finacial_authentication_Chsi (id, chsiCode,chsiPass)
+		values (#{id,jdbcType=VARCHAR}, #{chsiCode,jdbcType=VARCHAR}, #{chsiPass,jdbcType=VARCHAR})
 	</insert>
-	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
-		select *
-		from qt_finacial_authentication_profession
-	</select>
 	
-	<select id="selectById" parameterType="java.lang.String" resultType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
-		select *
-		from qt_finacial_authentication_profession
-		where id = #{value}
-	</select>
 	
-	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationProfession">
+	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationChsi">
 		update
-		qt_finacial_authentication_profession
+		qt_finacial_authentication_Chsi
 		set
-		income = #{income,jdbcType=VARCHAR},
-		company = #{company,jdbcType=VARCHAR},
-		province_id = #{provinceId,jdbcType=VARCHAR},
-		city_id = #{cityId,jdbcType=VARCHAR},
-		domain = #{domain,jdbcType=VARCHAR},
-		company_phone =#{companyPhone,jdbcType=VARCHAR},
-		profession =#{profession,jdbcType=VARCHAR}
+		chsiPass = #{chsiPass,jdbcType=VARCHAR},
+		chsiCode = #{chsiCode,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
 </mapper>

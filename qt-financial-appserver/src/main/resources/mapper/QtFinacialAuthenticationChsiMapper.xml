@@ -2,47 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper
 	namespace="com.qtjf.appserver.dao.QtFinacialAuthenticationEmergencyContactMapper">
-
+	
 	<insert id="insert"
 		parameterType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
-		insert into qt_finacial_authentication_emergency_contact
-		(id,
+		insert into qt_finacial_authentication_emergency_contact (id,
 		relationship, relationship_phone,
 		social, social_phone)
-		values
-		(#{id,jdbcType=INTEGER}, #{relationship,jdbcType=VARCHAR},
+		values (#{id,jdbcType=INTEGER}, #{relationship,jdbcType=VARCHAR},
 		#{relationshipPhone,jdbcType=VARCHAR},
-		#{social,jdbcType=VARCHAR},
-		#{socialPhone,jdbcType=VARCHAR})
+		#{social,jdbcType=VARCHAR}, #{socialPhone,jdbcType=VARCHAR})
 	</insert>
-	<select id="selectAll"
-		resultType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
-		select id, relationship, relationship_phone, social,
-		social_phone
+	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
+		select id, relationship, relationship_phone, social, social_phone
 		from qt_finacial_authentication_emergency_contact
 	</select>
-
-	<update id="update"
-		parameterType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
+	
+	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
 		update
 		qt_finacial_authentication_emergency_contact
 		set
 		relationship =#{relationship,jdbcType=VARCHAR},
-		relationship_phone
-		=#{relationshipPhone,jdbcType=VARCHAR},
-		social
-		=#{social,jdbcType=VARCHAR},
-		social_phone =
-		#{socialPhone,jdbcType=VARCHAR}
+		relationship_phone =#{relationshipPhone,jdbcType=VARCHAR},
+		social =#{social,jdbcType=VARCHAR},
+		social_phone = #{socialPhone,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
-
+	
 	<select id="selectById" parameterType="java.lang.String"
-		resultType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
+		resultType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
 		select *
 		from
-		qt_finacial_authentication_emergency_contact
-		where
+		qt_finacial_authentication_emergency_contact where
 		id = #{value}
 	</select>
 </mapper>
