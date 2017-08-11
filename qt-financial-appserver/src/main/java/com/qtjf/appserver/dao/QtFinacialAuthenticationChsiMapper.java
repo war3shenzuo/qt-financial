@@ -1,11 +1,11 @@
 package com.qtjf.appserver.dao;
 
-import com.qtjf.common.bean.qtFinacialAuthenticationChsi;
+import com.qtjf.common.bean.QtFinacialAuthenticationChsi;
 
 public interface QtFinacialAuthenticationChsiMapper {
 
-	void insert(qtFinacialAuthenticationChsi chsi);
+	void insert(QtFinacialAuthenticationChsi chsi);
 
-	void update(qtFinacialAuthenticationChsi chsi);
+	void update(QtFinacialAuthenticationChsi chsi);
 
 }

@@ -24,7 +24,7 @@ import com.qtjf.common.bean.QtFinacialAuthenticationBase;
 import com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact;
 import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
 import com.qtjf.common.bean.QtFinancialAuthentication;
-import com.qtjf.common.bean.qtFinacialAuthenticationChsi;
+import com.qtjf.common.bean.QtFinacialAuthenticationChsi;
 import com.qtjf.common.emus.Authentication;
 
 @Service
@@ -255,13 +255,13 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 
 		if (Objects.isNull(list) || list.size() == 0) {
 			
-			qtFinacialAuthenticationChsi chsi = new qtFinacialAuthenticationChsi();
+			QtFinacialAuthenticationChsi chsi = new QtFinacialAuthenticationChsi();
 			chsi.setId(UUID.randomUUID().toString());
 			chsi.setChsiCode(chsiCode);
 			chsi.setChsiPass(chsiPass);
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthenticationId(chsi.getId());
-			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+			record.setAuthStatus(Authentication.STATUS_PASS.getStatus());
 			record.setAuthType(Authentication.TYPE_MERGENCY.getStatus());
 			record.setUserId(userId);
 			insert(record);
@@ -269,11 +269,11 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 			qtFinacialAuthenticationChsiMapper.insert(chsi);
 		} else if (list.size() == 1) {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
-			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+			record.setAuthStatus(Authentication.STATUS_PASS.getStatus());
 			record.setAuthType(Authentication.TYPE_MERGENCY.getStatus());
 			record.setUserId(userId);
 			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
-			qtFinacialAuthenticationChsi chsi = new qtFinacialAuthenticationChsi();
+			QtFinacialAuthenticationChsi chsi = new QtFinacialAuthenticationChsi();
 			chsi.setId(list.get(0).getAuthenticationId());
 			chsi.setChsiCode(chsiCode);
 			chsi.setChsiPass(chsiPass);

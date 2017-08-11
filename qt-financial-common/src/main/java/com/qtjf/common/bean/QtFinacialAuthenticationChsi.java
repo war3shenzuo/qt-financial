@@ -1,7 +1,6 @@
 package com.qtjf.common.bean;
 
-public class qtFinacialAuthenticationChsi {
-
+public class QtFinacialAuthenticationChsi {
 	private String id;
 	private String chsiCode;
 	private String chsiPass;
@@ -29,5 +28,4 @@ public class qtFinacialAuthenticationChsi {
 	public void setChsiPass(String chsiPass) {
 		this.chsiPass = chsiPass;
 	}
-
 }

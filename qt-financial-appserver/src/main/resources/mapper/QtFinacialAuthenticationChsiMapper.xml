@@ -1,38 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper
-	namespace="com.qtjf.appserver.dao.QtFinacialAuthenticationEmergencyContactMapper">
-	
+<mapper namespace="com.qtjf.appserver.dao.QtFinacialAuthenticationChsiMapper">
 	<insert id="insert"
-		parameterType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
-		insert into qt_finacial_authentication_emergency_contact (id,
-		relationship, relationship_phone,
-		social, social_phone)
-		values (#{id,jdbcType=INTEGER}, #{relationship,jdbcType=VARCHAR},
-		#{relationshipPhone,jdbcType=VARCHAR},
-		#{social,jdbcType=VARCHAR}, #{socialPhone,jdbcType=VARCHAR})
+		parameterType="com.qtjf.common.bean.QtFinacialAuthenticationChsi">
+		insert into qt_finacial_authentication_Chsi (id, chsiCode,chsiPass)
+		values (#{id,jdbcType=VARCHAR}, #{chsiCode,jdbcType=VARCHAR}, #{chsiPass,jdbcType=VARCHAR})
 	</insert>
-	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
-		select id, relationship, relationship_phone, social, social_phone
-		from qt_finacial_authentication_emergency_contact
-	</select>
 	
-	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact">
+	
+	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationChsi">
 		update
-		qt_finacial_authentication_emergency_contact
+		qt_finacial_authentication_Chsi
 		set
-		relationship =#{relationship,jdbcType=VARCHAR},
-		relationship_phone =#{relationshipPhone,jdbcType=VARCHAR},
-		social =#{social,jdbcType=VARCHAR},
-		social_phone = #{socialPhone,jdbcType=VARCHAR}
+		chsiPass = #{chsiPass,jdbcType=VARCHAR},
+		chsiCode = #{chsiCode,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
-	
-	<select id="selectById" parameterType="java.lang.String"
-		resultType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
-		select *
-		from
-		qt_finacial_authentication_emergency_contact where
-		id = #{value}
-	</select>
 </mapper>
