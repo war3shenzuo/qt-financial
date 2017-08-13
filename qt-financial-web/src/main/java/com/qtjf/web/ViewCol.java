@@ -1,13 +1,26 @@
 package com.qtjf.web;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.qtjf.web.entity.QtFinancialAdminMenu;
+import com.qtjf.web.entity.QtFinancialAdminUser;
+import com.qtjf.web.service.MenuService;
+import com.qtjf.web.util.StringUtil;
 
 @Controller
 @RequestMapping(value = "view")
 public class ViewCol {
 	
+	@Autowired
+	private MenuService menuService;
+
 	@ModelAttribute("img_url")
 	public String getItemTypes() {
 		return "http://tonghangimg.oss-cn-shanghai.aliyuncs.com/";// 阿里云oss的前缀
@@ -15,7 +28,10 @@ public class ViewCol {
 
 
 	@RequestMapping(value = "/index")
-	public String index() {
+	public String index(HttpSession session) {
+		QtFinancialAdminUser user = (QtFinancialAdminUser)session.getAttribute(StringUtil.adminLogin);
+		Map<String,Object> map = menuService.getMenuByUserId(user.getId());
+		session.setAttribute("menu", map);
 		return "index";
 	}
 
