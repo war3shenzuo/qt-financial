@@ -17,7 +17,8 @@ public enum Authentication {
 	TYPE_WECHAT("7","微信认证"),
 	TYPE_ADDBOOK("8","通讯录授权"),
 	TYPE_ZHIMAXINYONG("9","获取芝麻信用分"),
-	TYPE_CHSI("10","学信");
+	TYPE_CHSI("10","学信"),
+	TYPE_JD("11","京东");
 
 	/** 返回状态码*/
 	private String status ;

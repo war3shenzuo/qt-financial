@@ -65,6 +65,16 @@ public interface AuthenticationServer {
 	 */
 	boolean sumbitChsi(String chsiCode, String chsiPass, String userId) throws Exception;
 	
+	/**
+	 * 京东认证
+	 * @param jdCode
+	 * @param jdPass
+	 * @param userId
+	 * @return
+	 * @throws Exception 
+	 */
+	boolean sumbitJd(String jdCode, String jdPass, String userId) throws Exception;
+	
 
 
 }
