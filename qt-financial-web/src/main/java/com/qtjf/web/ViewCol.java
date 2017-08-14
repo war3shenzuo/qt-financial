@@ -25,7 +25,12 @@ public class ViewCol {
 	public String getItemTypes() {
 		return "http://tonghangimg.oss-cn-shanghai.aliyuncs.com/";// 阿里云oss的前缀
 	}
-
+	
+	@RequestMapping(value = "/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "login";
+	}
 
 	@RequestMapping(value = "/index")
 	public String index(HttpSession session) {

@@ -51,6 +51,7 @@ public class DataCol {
 		}
 		return map;
 	}
+	
 
 	@RequestMapping(value = "/menu")
 	public Map<String, Object> menu(Integer userId) {
