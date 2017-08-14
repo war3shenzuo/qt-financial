@@ -24,7 +24,6 @@ import com.qtjf.common.bean.QtFinacialAuthenticationBase;
 import com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact;
 import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
 import com.qtjf.common.bean.QtFinancialAuthentication;
-import com.qtjf.common.bean.QtFinacialAuthenticationChsi;
 import com.qtjf.common.emus.Authentication;
 
 @Service
@@ -45,9 +44,6 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 	@Autowired
 	QtFinacialAuthenticationEmergencyContactMapper qtFinacialAuthenticationEmergencyContactMapper;
 	
-	@Autowired
-	QtFinacialAuthenticationChsiMapper qtFinacialAuthenticationChsiMapper;
-
 	@Override
 	public void saveTaobaoQrMsg(String msg, String userId) {
 
@@ -254,35 +250,49 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 		List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(query);
 
 		if (Objects.isNull(list) || list.size() == 0) {
-			
-			QtFinacialAuthenticationChsi chsi = new QtFinacialAuthenticationChsi();
-			chsi.setId(UUID.randomUUID().toString());
-			chsi.setChsiCode(chsiCode);
-			chsi.setChsiPass(chsiPass);
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
-			record.setAuthenticationId(chsi.getId());
 			record.setAuthStatus(Authentication.STATUS_PASS.getStatus());
-			record.setAuthType(Authentication.TYPE_MERGENCY.getStatus());
+			record.setAuthType(Authentication.TYPE_CHSI.getStatus());
 			record.setUserId(userId);
 			insert(record);
-	
-			qtFinacialAuthenticationChsiMapper.insert(chsi);
 		} else if (list.size() == 1) {
 			QtFinancialAuthentication record = new QtFinancialAuthentication();
 			record.setAuthStatus(Authentication.STATUS_PASS.getStatus());
-			record.setAuthType(Authentication.TYPE_MERGENCY.getStatus());
+			record.setAuthType(Authentication.TYPE_CHSI.getStatus());
 			record.setUserId(userId);
 			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
-			QtFinacialAuthenticationChsi chsi = new QtFinacialAuthenticationChsi();
-			chsi.setId(list.get(0).getAuthenticationId());
-			chsi.setChsiCode(chsiCode);
-			chsi.setChsiPass(chsiPass);
-			qtFinacialAuthenticationChsiMapper.update(chsi);
 		} else {
 			logger.error("用户：" + userId + "的<" + Authentication.TYPE_MERGENCY.getMsg() + ">认证大于两条");
 			throw new RuntimeException("数据异常");
 		}
 		return true;
+	}
+
+	@Override
+	public boolean sumbitJd(String jdCode, String jdPass, String userId) throws Exception {
+				// 查询是否有数据如果有就修改没有就新增
+				QtFinancialAuthentication query = new QtFinancialAuthentication();
+				query.setAuthType(Authentication.TYPE_JD.getStatus());
+				query.setUserId(userId);
+				List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(query);
+
+				if (Objects.isNull(list) || list.size() == 0) {
+					QtFinancialAuthentication record = new QtFinancialAuthentication();
+					record.setAuthStatus(Authentication.STATUS_PASS.getStatus());
+					record.setAuthType(Authentication.TYPE_JD.getStatus());
+					record.setUserId(userId);
+					insert(record);
+				} else if (list.size() == 1) {
+					QtFinancialAuthentication record = new QtFinancialAuthentication();
+					record.setAuthStatus(Authentication.STATUS_PASS.getStatus());
+					record.setAuthType(Authentication.TYPE_JD.getStatus());
+					record.setUserId(userId);
+					qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
+				} else {
+					logger.error("用户：" + userId + "的<" + Authentication.TYPE_MERGENCY.getMsg() + ">认证大于两条");
+					throw new RuntimeException("数据异常");
+				}
+				return true;
 	}
 
 }

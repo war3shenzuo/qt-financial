@@ -13,6 +13,7 @@ import com.qtjf.appserver.server.AuthenticationServer;
 import com.qtjf.common.emus.SysStatus;
 import com.qtjf.common.vo.ResultCode;
 import com.qtjf.tpa.tanzhi.server.EduClient;
+import com.qtjf.tpa.tanzhi.server.JdClient;
 import com.qtjf.tpa.tanzhi.server.TaobaoApiQrClient;
 
 /**
@@ -112,7 +113,7 @@ public class TanzhiController {
 			String token = json.getString("token");
 			// 轮询任务状态
 			while (true) {
-				json = EduClient.checkStatus(token);
+				json = EduClient.checkStatus(token);  
 				if ("0001".equals(json.get("code"))) {// 0001表示需要短信验证
 					 json = EduClient.sendAuthCode(token, authCode);// 发送短信验证码
 					 if(Objects.equals(json.get("code").toString(), "2008")){
@@ -126,6 +127,44 @@ public class TanzhiController {
 					return ResultCode.getError("学信认证验证失败");
 				} else {
 					// 其他如空字符串或以0开头的code则休息5s后继续请求
+					Thread.sleep(5000);
+				}
+			}
+		}
+		return ResultCode.getError("学信认证验证失败");
+	}
+	
+	/**
+	 * 提交学信
+	 * 
+	 * @param userId
+	 *            用户Id
+	 * @return 产品集合
+	 * @throws Exception
+	 */
+	@RequestMapping("sumbitJd")
+	public ResultCode sumbitJd(String jdCode, String jdPass, String userId,String authCode) throws Exception {
+		JSONObject json = JdClient.submitTask(jdCode,jdPass);//提交一个京东查询任务
+		if("0010".equals(json.get("code"))){
+			String token = json.getString("token");
+			//轮询任务状态
+			while (true) {
+				json = JdClient.checkStatus(token);
+				if("0001".equals(json.get("code"))){//0001表示需要短信验证
+					 json = JdClient.sendAuthCode(token,authCode);// 发送短信验证码
+					 if(Objects.equals(json.get("code").toString(), "2008")){
+						return new ResultCode(SysStatus.PARAM_FAULT.getStatus(),"短信验证码错误");
+					 }
+				}else if("0000".equals(json.get("code"))){
+					//获取结果
+					json = JdClient.getResult(token);
+					authenticationServer.sumbitJd(jdCode, jdPass, userId);
+					return ResultCode.getSuccess("学信认证成提交成功");
+				}else if(!"".equals(json.get("code"))&&!json.get("code").toString().startsWith("0")){
+					//如果轮询状态的状态码不等于空字符串，并且不是以0开头，表示有错误，可以停止轮询
+					return ResultCode.getError("京东认证验证失败");
+				}else{
+					//其他如空字符串或以0开头的code则休息5s后继续请求
 					Thread.sleep(5000);
 				}
 			}
