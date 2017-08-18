@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qtjf.common.bean.QtFinancialAuthentication;
-import com.qtjf.common.emus.AuthType;
 import com.qtjf.web.mapper.QtFinancialAuthenticationMapper;
 import com.qtjf.web.service.AuthService;
 import com.qtjf.web.util.StringUtil;

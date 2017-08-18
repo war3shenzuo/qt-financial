@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.qtjf.common.bean.QtFinacialProduct;
+import com.qtjf.common.bean.QtFinancialActivity;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
 import com.qtjf.common.bean.QtFinancialGroup;
 import com.qtjf.common.bean.QtFinancialUserLevel;
 import com.qtjf.common.bean.QtFinanicalBanner;
 import com.qtjf.web.entity.QtFinancialAdminUser;
+import com.qtjf.web.service.ActivityService;
 import com.qtjf.web.service.BorrowService;
 import com.qtjf.web.service.MenuService;
 import com.qtjf.web.service.ProductService;
@@ -40,6 +42,9 @@ public class DataCol {
 	
 	@Autowired
 	private MenuService menuService;
+	
+	@Autowired
+	private ActivityService activityService;
 	
 	@RequestMapping(value = "/login")
 	public Map<String, Object> login(String username, String password,HttpSession session) {
@@ -342,5 +347,30 @@ public class DataCol {
 	@RequestMapping(value = "/group/delete")
 	public Map<String, Object> deleteGroup(Integer id) {
 		return userService.deleteGroup(id);
+	}
+	
+	@RequestMapping(value = "/activity/all")
+	public Map<String, Object> activities() {
+		return activityService.getActivities();
+	}
+	
+	@RequestMapping(value = "/activity/info")
+	public Map<String, Object> getActivity(Integer id) {
+		return activityService.getActivity(id);
+	}
+	
+	@RequestMapping(value = "/activity/add")
+	public Map<String, Object> addActivity(QtFinancialActivity qg) {
+		return activityService.saveActivity(qg);
+	}
+	
+	@RequestMapping(value = "/activity/edit")
+	public Map<String, Object> editActivity(QtFinancialActivity qg) {
+		return activityService.editActivity(qg);
+	}
+	
+	@RequestMapping(value = "/activity/delete")
+	public Map<String, Object> deleteActivity(Integer id) {
+		return activityService.deleteActivity(id);
 	}
 }

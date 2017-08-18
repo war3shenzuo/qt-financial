@@ -18,7 +18,7 @@
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">活动标题：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="activity_title" id="activity_title">
+							<input type="text" class="form-control" name="name" id="activity_title">
 						</div>
 					</div>
 					<div class="form-group">
@@ -42,13 +42,13 @@
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">活动链接：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="activity_link" id="activity_link">
+							<input type="text" class="form-control" name="url" id="activity_link">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">活动状态：</label>
 						<div class="col-sm-6">
-							<select id="activity_state" name="activity_state">
+							<select id="activity_state" name="activated">
 								<option value="">开启</option>
 								<option value="">关闭</option>
 							</select>
@@ -90,6 +90,15 @@
 		Select2Test();
 		
 		$('#activityForm').bootstrapValidator({
+			submitHandler : function(validator, form,
+					submitButton) {
+				var url = "${pageContext.request.contextPath}/data/activity/add";//或form.attr('action')
+				var param = form.serialize();//或者form.serialize()
+				submitAjaxData(url, param, callback);
+				function callback(data) {
+					LoadAjaxContent('activity_info','wrapper');
+				}
+			},
 			feedbackIcons : {
 				valid : 'fa fa-check',
 				invalid : 'fa fa-times',
@@ -97,14 +106,14 @@
 			},
 			message : 'This value is not valid',
 			fields : {
-				activity_title : {
+				name : {
 					validators : {
 						notEmpty : {
 							message : '活动标题不能为空'
 						}
 					}
 				},
-				activity_link : {
+				url : {
 					validators : {
 						notEmpty : {
 							message : '活动链接不能为空'

@@ -7,7 +7,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qtjf.web.entity.QtFinancialAdminMenu;
 import com.qtjf.web.mapper.QtFinancialAdminMenuMapper;
 import com.qtjf.web.service.MenuService;
 import com.qtjf.web.util.StringUtil;

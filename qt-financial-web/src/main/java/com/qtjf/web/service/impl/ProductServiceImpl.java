@@ -8,12 +8,10 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qtjf.web.mapper.QtFinanicalBannerMapper;
 import com.qtjf.common.bean.QtFinacialProduct;
-import com.qtjf.common.bean.QtFinancialProductUserLevel;
-import com.qtjf.common.bean.QtFinancialUser;
 import com.qtjf.common.bean.QtFinanicalBanner;
 import com.qtjf.web.mapper.QtFinacialProductMapper;
+import com.qtjf.web.mapper.QtFinanicalBannerMapper;
 import com.qtjf.web.service.ProductService;
 import com.qtjf.web.util.StringUtil;
 import com.qtjf.web.vo.QtFinacialProductVo;

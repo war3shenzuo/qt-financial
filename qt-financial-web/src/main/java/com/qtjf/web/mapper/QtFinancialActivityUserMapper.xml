@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.web.mapper.QtFinancialActivityUserMapper" >
+  <resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialActivityUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_level_id" property="userLevelId" jdbcType="INTEGER" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qt_financial_activity_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialActivityUser" >
+    insert into qt_financial_activity_user (id, user_level_id, activity_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{userLevelId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialActivityUser" >
+    update qt_financial_activity_user
+    set user_level_id = #{userLevelId,jdbcType=INTEGER},
+      activity_id = #{activityId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, user_level_id, activity_id
+    from qt_financial_activity_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, user_level_id, activity_id
+    from qt_financial_activity_user
+  </select>
+</mapper>
