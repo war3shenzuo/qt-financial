@@ -71,7 +71,26 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
-		
+		var url ="${pageContext.request.contextPath}/data/coupon/all";
+		LoadAjaxData(url,loadData);
+		function loadData(data){
+			try{
+				console.log(data);
+				var htmlStr = '';
+				for(var i = 0 ;i < data.objList.length;i++){
+					htmlStr+='<tr>'
+						+'<td>'+data.objList[i].name+'</td>'
+						+'<td>'+data.objList[i].activated+'</td>'
+						+'<td>'
+						+'	<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/event_edit?id='+data.objList[i].id+'\', \'wrapper\');">编辑</a>'
+						+'</td>'
+						+'</tr>';
+				}
+				$("#content").html(htmlStr);
+			} catch(arr){
+				console.log(arr);
+			}
+		}
 	});
 	
 </script>

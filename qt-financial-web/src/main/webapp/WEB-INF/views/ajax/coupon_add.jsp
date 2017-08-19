@@ -215,6 +215,15 @@
 	$(document).ready(function() {
 		scrollTo(0,0);
 		$('#couponForm').bootstrapValidator({
+			submitHandler : function(validator, form,
+					submitButton) {
+				var url = "${pageContext.request.contextPath}/data/coupon/add";//或form.attr('action')
+				var param = form.serialize();//或者form.serialize()
+				submitAjaxData(url, param, callback);
+				function callback(data) {
+					LoadAjaxContent('coupon_info','wrapper');
+				}
+			},
 			feedbackIcons : {
 				valid : 'fa fa-check',
 				invalid : 'fa fa-times',

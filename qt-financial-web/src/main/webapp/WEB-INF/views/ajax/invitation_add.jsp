@@ -18,19 +18,19 @@
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">邀请码：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="invitation_code" id="invitation_code"> 
+							<input type="text" class="form-control" name="name" id="invitation_code"> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">邀请码说明：</label>
 						<div class="col-sm-6">
-							<textarea name="invitation_explain" class="form-control" rows="6"></textarea>
+							<textarea name="description" class="form-control" rows="6"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">使用状态：</label>
 						<div class="col-sm-6">
-							<select id="invitation_state" name="invitation_state">
+							<select id="invitation_state" name="activated">
 								<option value="">使用中</option>
 								<option value="">冻结中</option>
 							</select>
@@ -67,6 +67,15 @@
 	$(document).ready(function() {
 		scrollTo(0,0);
 		$('#invitationForm').bootstrapValidator({
+			submitHandler : function(validator, form,
+					submitButton) {
+				var url = "${pageContext.request.contextPath}/data/invite/add";//或form.attr('action')
+				var param = form.serialize();//或者form.serialize()
+				submitAjaxData(url, param, callback);
+				function callback(data) {
+					LoadAjaxContent('invitation_info','wrapper');
+				}
+			},
 			feedbackIcons : {
 				valid : 'fa fa-check',
 				invalid : 'fa fa-times',

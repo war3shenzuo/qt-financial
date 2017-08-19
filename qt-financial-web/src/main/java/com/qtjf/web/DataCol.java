@@ -15,7 +15,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.bean.QtFinancialActivity;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
+import com.qtjf.common.bean.QtFinancialCoupon;
 import com.qtjf.common.bean.QtFinancialGroup;
+import com.qtjf.common.bean.QtFinancialInvite;
 import com.qtjf.common.bean.QtFinancialUserLevel;
 import com.qtjf.common.bean.QtFinanicalBanner;
 import com.qtjf.web.entity.QtFinancialAdminUser;
@@ -371,6 +373,56 @@ public class DataCol {
 	
 	@RequestMapping(value = "/activity/delete")
 	public Map<String, Object> deleteActivity(Integer id) {
+		return activityService.deleteActivity(id);
+	}
+	
+	@RequestMapping(value = "/invite/all")
+	public Map<String, Object> invites() {
+		return activityService.getInvites();
+	}
+	
+	@RequestMapping(value = "/invite/info")
+	public Map<String, Object> getInvite(Integer id) {
+		return activityService.getInvite(id);
+	}
+	
+	@RequestMapping(value = "/invite/add")
+	public Map<String, Object> addInvite(QtFinancialInvite qg) {
+		return activityService.saveInvite(qg);
+	}
+	
+	@RequestMapping(value = "/invite/edit")
+	public Map<String, Object> editInvite(QtFinancialInvite qg) {
+		return activityService.editInvite(qg);
+	}
+	
+	@RequestMapping(value = "/invite/delete")
+	public Map<String, Object> deleteInvite(Integer id) {
+		return activityService.deleteActivity(id);
+	}
+	
+	@RequestMapping(value = "/coupon/all")
+	public Map<String, Object> coupons() {
+		return activityService.getInvites();
+	}
+	
+	@RequestMapping(value = "/coupon/info")
+	public Map<String, Object> getCoupon(Integer id) {
+		return activityService.getInvite(id);
+	}
+	
+	@RequestMapping(value = "/coupon/add")
+	public Map<String, Object> addCoupon(QtFinancialCoupon qg) {
+		return activityService.saveCoupon(qg);
+	}
+	
+	@RequestMapping(value = "/coupon/edit")
+	public Map<String, Object> editCoupon(QtFinancialCoupon qg) {
+		return activityService.editCoupon(qg);
+	}
+	
+	@RequestMapping(value = "/coupon/delete")
+	public Map<String, Object> deleteCoupon(Integer id) {
 		return activityService.deleteActivity(id);
 	}
 }

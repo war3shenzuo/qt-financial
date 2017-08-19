@@ -66,7 +66,34 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
+		var url ="${pageContext.request.contextPath}/data/coupon/info?id="+$("#id").val();
+		LoadAjaxData(url,loadData);
+		function loadData(data){
+			try{
+				var obj = data.obj;
+				$("#activity_title").val(obj.name);
+				$("#pic").val(obj.pic);
+				$("#preview").attr(
+						"src",
+						"${img_url}" + obj.pic
+								+ "?x-oss-process=image/resize,w_200");
+				$("#activity_state").val(obj.activated);
+				$("#activity_state").select2();
+			} catch(arr){
+				console.log(arr);
+			}
+		}
+		
 		$('#invitationForm').bootstrapValidator({
+			submitHandler : function(validator, form,
+					submitButton) {
+				var url = "${pageContext.request.contextPath}/data/invite/edit";//或form.attr('action')
+				var param = form.serialize();//或者form.serialize()
+				submitAjaxData(url, param, callback);
+				function callback(data) {
+					LoadAjaxContent('invitation_info','wrapper');
+				}
+			},
 			feedbackIcons : {
 				valid : 'fa fa-check',
 				invalid : 'fa fa-times',
