@@ -30,7 +30,7 @@
 							<th>操作</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="content">
 						<tr>
 							<td>zcfasfaddvava</td>
 							<td>来自某个渠道</td>
@@ -85,7 +85,7 @@
 						+'<td>'+data.objList[i].description+'</td>'
 						+'<td>'+data.objList[i].activated+'</td>'
 						+'<td>'
-						+'	<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/invite_edit?id='+data.objList[i].id+'\', \'wrapper\');">编辑</a>'
+						+'	<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/invitation_edit?id='+data.objList[i].id+'\', \'wrapper\');">编辑</a>'
 						+'</td>'
 						+'</tr>';
 				}

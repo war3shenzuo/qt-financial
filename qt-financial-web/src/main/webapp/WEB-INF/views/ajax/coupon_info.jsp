@@ -32,7 +32,7 @@
 							<th>操作</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="content">
 						<tr>
 							<td>002</td>
 							<td>-10</td>

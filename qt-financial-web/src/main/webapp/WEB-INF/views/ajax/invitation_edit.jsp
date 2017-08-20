@@ -15,22 +15,23 @@
 			<div class="panel-body">
 				<form class="cmxform form-horizontal adminex-form" role="form"
 					method="POST" id="invitationForm" action="">
+					<input type="hidden" name="id" id="id" value="${param.id}" />
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">邀请码：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="invitation_code" id="invitation_code"> 
+							<input type="text" class="form-control" name="name" id="invitation_code"> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">邀请码说明：</label>
 						<div class="col-sm-6">
-							<textarea name="invitation_explain" class="form-control" rows="6"></textarea>
+							<textarea name="description" class="form-control" rows="6" id="description"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">使用状态：</label>
 						<div class="col-sm-6">
-							<select id="invitation_state" name="invitation_state">
+							<select id="invitation_state" name="activated">
 								<option value="">使用中</option>
 								<option value="">冻结中</option>
 							</select>
@@ -38,7 +39,7 @@
 					</div>
 					<div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
-                        	<button class="btn btn-default" style="padding: 6px 50px; margin-right: 20px;">删除</button>
+                        	<button class="btn btn-default" style="padding: 6px 50px; margin-right: 20px;" onclick="deleteInvite()">删除</button>
 							<button class="btn btn-primary" type="submit" style="padding: 6px 50px;">提交</button>
 						</div>
                     </div>
@@ -66,19 +67,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
-		var url ="${pageContext.request.contextPath}/data/coupon/info?id="+$("#id").val();
+		var url ="${pageContext.request.contextPath}/data/invite/info?id="+$("#id").val();
 		LoadAjaxData(url,loadData);
 		function loadData(data){
 			try{
 				var obj = data.obj;
-				$("#activity_title").val(obj.name);
-				$("#pic").val(obj.pic);
-				$("#preview").attr(
-						"src",
-						"${img_url}" + obj.pic
-								+ "?x-oss-process=image/resize,w_200");
-				$("#activity_state").val(obj.activated);
-				$("#activity_state").select2();
+				$("#invitation_code").val(obj.name);
+				$("#description").val(obj.description);
+				$("#invitation_state").val(obj.activated);
+				$("#invitation_state").select2();
 			} catch(arr){
 				console.log(arr);
 			}
@@ -119,7 +116,10 @@
 		});
 		Select2Test();
 	});
-	function Select2Test() {
-		$("#invitation_state").select2();
+	function deleteInvite(){
+		var url ="${pageContext.request.contextPath}/data/invite/delete?id="+$("#id").val();
+		submitAjaxData(url,null,function(data){
+			LoadAjaxContent('invitation_info','wrapper');
+		});
 	}
 </script>

@@ -398,17 +398,17 @@ public class DataCol {
 	
 	@RequestMapping(value = "/invite/delete")
 	public Map<String, Object> deleteInvite(Integer id) {
-		return activityService.deleteActivity(id);
+		return activityService.deleteInvite(id);
 	}
 	
 	@RequestMapping(value = "/coupon/all")
 	public Map<String, Object> coupons() {
-		return activityService.getInvites();
+		return activityService.getCoupons();
 	}
 	
 	@RequestMapping(value = "/coupon/info")
-	public Map<String, Object> getCoupon(Integer id) {
-		return activityService.getInvite(id);
+	public Map<String, Object> getCoupon(String id) {
+		return activityService.getCoupon(id);
 	}
 	
 	@RequestMapping(value = "/coupon/add")
@@ -422,7 +422,7 @@ public class DataCol {
 	}
 	
 	@RequestMapping(value = "/coupon/delete")
-	public Map<String, Object> deleteCoupon(Integer id) {
-		return activityService.deleteActivity(id);
+	public Map<String, Object> deleteCoupon(String id) {
+		return activityService.deleteCoupon(id);
 	}
 }

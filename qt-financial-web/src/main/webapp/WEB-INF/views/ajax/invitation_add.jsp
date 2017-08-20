@@ -31,8 +31,8 @@
 						<label class="col-sm-4 col-sm-4 control-label">使用状态：</label>
 						<div class="col-sm-6">
 							<select id="invitation_state" name="activated">
-								<option value="">使用中</option>
-								<option value="">冻结中</option>
+								<option value="1">使用中</option>
+								<option value="2">冻结中</option>
 							</select>
 						</div>
 					</div>
