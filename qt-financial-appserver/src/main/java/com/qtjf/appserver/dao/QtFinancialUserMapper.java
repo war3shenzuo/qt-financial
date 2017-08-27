@@ -11,7 +11,7 @@ public interface QtFinancialUserMapper {
 
     QtFinancialUser selectByPrimaryKey(Integer id);
 
-    List<QtFinancialUser> selectAll();
-
     int updateByPrimaryKey(QtFinancialUser record);
+
+	List<QtFinancialUser> selectAll(QtFinancialUser user);
 }

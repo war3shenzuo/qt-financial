@@ -1,6 +1,7 @@
 package com.qtjf.appserver.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qtjf.appserver.server.BannerServer;
 import com.qtjf.appserver.server.LoginService;
+import com.qtjf.appserver.server.UserService;
+import com.qtjf.common.bean.QtFinancialUser;
 import com.qtjf.common.vo.ResultCode;
 import com.qtjf.jwt.entity.AccessToken;
 import com.qtjf.jwt.entity.JwtConfig;
@@ -28,6 +31,9 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
+	
+	@Autowired
+	private UserService userService;
 
 	/**
 	 * 登录
@@ -76,7 +82,11 @@ public class LoginController {
 			ResultCode.getError(result);
 		}
 		
-		return ResultCode.getSuccess("发送成功");
+		QtFinancialUser user = new QtFinancialUser();
+		user.setUsermobile(mobile);
+		List<QtFinancialUser> list = userService.getUserList(user);
+		
+		return ResultCode.getSuccess("发送成功",list.size());
 
 	}
 

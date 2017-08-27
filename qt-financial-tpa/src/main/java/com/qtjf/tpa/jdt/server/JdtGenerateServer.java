@@ -20,8 +20,10 @@ public class JdtGenerateServer implements GenerateServer {
 	private volatile static JdtGenerateServer jdtGenerateServer = null;
 
 	/**
-	 * @param host 远程地址
-	 * @param template 自定义模版对象
+	 * @param host
+	 *            远程地址
+	 * @param template
+	 *            自定义模版对象
 	 */
 	private JdtGenerateServer(String host, RestTemplate template) {
 		this.template = template;
@@ -87,7 +89,6 @@ public class JdtGenerateServer implements GenerateServer {
 		String json = JSONObject.toJSONString(params);
 		return template.postForObject(url, json, String.class);
 	}
-	
 
 	public static JdtGenerateServer getInstance(String host, RestTemplate template) {
 		if (jdtGenerateServer == null) {
