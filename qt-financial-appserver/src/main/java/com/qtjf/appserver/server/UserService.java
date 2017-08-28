@@ -10,5 +10,7 @@ public interface UserService {
 
 	List<QtFinancialUser> getUserList(QtFinancialUser setUsermobile);
 
+	void inset(QtFinancialUser user) throws Exception;
+
 
 }

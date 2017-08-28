@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qtjf.appserver.dao.QtFinancialUserMapper">
 	<resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialUser">
-		<id column="id" property="id" jdbcType="INTEGER" />
+		<id column="id" property="id" jdbcType="VARCHAR" />
 		<result column="userCode" property="usercode" jdbcType="VARCHAR" />
 		<result column="userName" property="username" jdbcType="VARCHAR" />
 		<result column="userMobile" property="usermobile" jdbcType="VARCHAR" />
@@ -19,66 +19,77 @@
 		<result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from qt_financial_user
+		delete from
+		qt_financial_user
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialUser">
-		<selectKey resultType="java.lang.Integer" keyProperty="id"
-			order="BEFORE">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-		insert into qt_financial_user (id, userCode, userName,
-		userMobile, userEmail, userStatus,
-		userLevel, tureName, password,
-		userCID, isCIDValid, isLockedOut,
-		avatarUrl, inviteUser, createdAt
+		insert into qt_financial_user
+		(id,
+		userMobile, userStatus,
+		userLevel,isLockedOut,
+		inviteUser, createdAt
 		)
-		values (#{id,jdbcType=INTEGER}, #{usercode,jdbcType=VARCHAR},
-		#{username,jdbcType=VARCHAR},
-		#{usermobile,jdbcType=VARCHAR}, #{useremail,jdbcType=VARCHAR}, #{userstatus,jdbcType=VARCHAR},
-		#{userlevel,jdbcType=VARCHAR}, #{turename,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR},
-		#{usercid,jdbcType=VARCHAR}, #{iscidvalid,jdbcType=VARCHAR}, #{islockedout,jdbcType=VARCHAR},
-		#{avatarurl,jdbcType=VARCHAR}, #{inviteuser,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=VARCHAR},#{usermobile,jdbcType=VARCHAR},
+		#{userstatus,jdbcType=VARCHAR},
+		#{userlevel,jdbcType=VARCHAR},
+		#{islockedout,jdbcType=VARCHAR},
+		#{inviteuser,jdbcType=VARCHAR},
 		#{createdat,jdbcType=TIMESTAMP}
 		)
 	</insert>
 	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialUser">
-		update qt_financial_user
+		update
+		qt_financial_user
 		set userCode = #{usercode,jdbcType=VARCHAR},
-		userName = #{username,jdbcType=VARCHAR},
-		userMobile = #{usermobile,jdbcType=VARCHAR},
-		userEmail = #{useremail,jdbcType=VARCHAR},
-		userStatus = #{userstatus,jdbcType=VARCHAR},
-		userLevel = #{userlevel,jdbcType=VARCHAR},
+		userName
+		= #{username,jdbcType=VARCHAR},
+		userMobile =
+		#{usermobile,jdbcType=VARCHAR},
+		userEmail =
+		#{useremail,jdbcType=VARCHAR},
+		userStatus =
+		#{userstatus,jdbcType=VARCHAR},
+		userLevel =
+		#{userlevel,jdbcType=VARCHAR},
 		tureName = #{turename,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
-		userCID = #{usercid,jdbcType=VARCHAR},
-		isCIDValid = #{iscidvalid,jdbcType=VARCHAR},
-		isLockedOut = #{islockedout,jdbcType=VARCHAR},
-		avatarUrl = #{avatarurl,jdbcType=VARCHAR},
-		inviteUser = #{inviteuser,jdbcType=VARCHAR},
-		createdAt = #{createdat,jdbcType=TIMESTAMP}
+		userCID =
+		#{usercid,jdbcType=VARCHAR},
+		isCIDValid =
+		#{iscidvalid,jdbcType=VARCHAR},
+		isLockedOut =
+		#{islockedout,jdbcType=VARCHAR},
+		avatarUrl =
+		#{avatarurl,jdbcType=VARCHAR},
+		inviteUser =
+		#{inviteuser,jdbcType=VARCHAR},
+		createdAt =
+		#{createdat,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
-		select id, userCode, userName, userMobile, userEmail, userStatus, userLevel,
+		select id, userCode, userName, userMobile, userEmail,
+		userStatus, userLevel,
 		tureName,
-		password, userCID, isCIDValid, isLockedOut, avatarUrl, inviteUser, createdAt
+		password, userCID, isCIDValid,
+		isLockedOut, avatarUrl, inviteUser, createdAt
 		from qt_financial_user
 		where id = #{id,jdbcType=INTEGER}
 	</select>
-	
+
 	<select id="selectAll" resultMap="BaseResultMap"
 		parameterType="com.qtjf.common.bean.QtFinancialUser">
 		select id, userCode, userName, userMobile, userEmail, userStatus,
 		userLevel, tureName,
-		password, userCID, isCIDValid, isLockedOut, avatarUrl, inviteUser, createdAt
+		password, userCID, isCIDValid, isLockedOut,
+		avatarUrl, inviteUser, createdAt
 		from qt_financial_user
 
 		<where>
-			<if test="userMobile!=null and userMobile!=''">
+			<if test="usermobile!=null and usermobile!=''">
 				and userMobile = #{usermobile}
 			</if>
 

@@ -1,4 +1,5 @@
-package com.qtjf.pay.lianpay.util;
+package com.qtjf.pay.lianpay.conn;
+
 
 /**
  * 

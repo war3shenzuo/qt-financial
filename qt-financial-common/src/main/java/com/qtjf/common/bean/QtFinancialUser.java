@@ -3,7 +3,7 @@ package com.qtjf.common.bean;
 import java.util.Date;
 
 public class QtFinancialUser {
-    private Integer id;
+    private String id;
 
     private String usercode;
 
@@ -33,15 +33,17 @@ public class QtFinancialUser {
 
     private Date createdat;
 
-    public Integer getId() {
-        return id;
-    }
+   
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public String getId() {
+		return id;
+	}
 
-    public String getUsercode() {
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getUsercode() {
         return usercode;
     }
 

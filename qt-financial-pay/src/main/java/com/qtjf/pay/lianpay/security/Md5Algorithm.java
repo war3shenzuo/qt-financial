@@ -1,6 +1,5 @@
-package com.qtjf.pay.lianpay.util;
+package com.qtjf.pay.lianpay.security;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -27,7 +26,7 @@ public class Md5Algorithm {
 	}
 	
 	/**
-	 * 转换字节数组为16进制字串
+	 * 转换字节数组�?6进制字串
 	 * @param b 字节数组
 	 * @return 16进制字串
 	 */
@@ -68,14 +67,5 @@ public class Md5Algorithm {
 			return null;
 		} 
 		return byteArrayToHexString(alg.digest(src));
-	}
-	
-	public static void main(String[] args) {
-		try {
-			System.out.println(Md5Algorithm.getInstance().md5Digest("111111".getBytes("iso8859-1")));
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }

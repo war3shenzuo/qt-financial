@@ -31,7 +31,7 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -40,29 +40,34 @@ public class LoginController {
 	 *
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public AccessToken login(String username, String password, String captcha) throws Exception {
+	@RequestMapping(value = "/login")
+	public ResultCode login(String mobile, String password, String captcha) throws Exception {
 		// 验证码校验
 
 		// 用户名密码验证
-		JwtTokenBuilder jwtTokenBuilder = new JwtTokenBuilder();
+		// JwtTokenBuilder jwtTokenBuilder = new JwtTokenBuilder();
+		//
+		// @SuppressWarnings("rawtypes")
+		// Map map = new HashMap();
+		// map.put("username", username);
+		// String subject = JwtTokenBuilder.buildSubject(map);
+		//
+		// @SuppressWarnings("static-access")
+		// String accessToken = jwtTokenBuilder.buildToken(subject,
+		// jwtConfig.getExpiresSecond(),
+		// jwtConfig.getBase64Secret());
+		//
+		// AccessToken token = new AccessToken();
+		// token.setAccess_token(accessToken);
+		// token.setToken_type(jwtConfig.getTokenType());
+		// token.setExpires_in(jwtConfig.getExpiresSecond());
 
-		@SuppressWarnings("rawtypes")
-		Map map = new HashMap();
-		map.put("username", username);
-		String subject = JwtTokenBuilder.buildSubject(map);
+		if (Objects.equals("888888", captcha)) {
+			return ResultCode.getSuccess("登陆成功");
+		}
 
-		@SuppressWarnings("static-access")
-		String accessToken = jwtTokenBuilder.buildToken(subject, jwtConfig.getExpiresSecond(),
-				jwtConfig.getBase64Secret());
+		return ResultCode.getError("验证码错误");
 
-		AccessToken token = new AccessToken();
-		token.setAccess_token(accessToken);
-		token.setToken_type(jwtConfig.getTokenType());
-		token.setExpires_in(jwtConfig.getExpiresSecond());
-
-		return token;
 	}
 
 	@RequestMapping(value = "/getBanners")
@@ -81,12 +86,26 @@ public class LoginController {
 		if (Integer.valueOf(result) <= 0) {
 			ResultCode.getError(result);
 		}
-		
+
 		QtFinancialUser user = new QtFinancialUser();
 		user.setUsermobile(mobile);
 		List<QtFinancialUser> list = userService.getUserList(user);
-		
-		return ResultCode.getSuccess("发送成功",list.size());
+
+		return ResultCode.getSuccess("发送成功", list.size());
+
+	}
+
+	@RequestMapping(value = "/register")
+	public ResultCode register(String mobile, String captcha, String invite) throws Exception {
+		QtFinancialUser user = new QtFinancialUser();
+
+		if (Objects.equals("888888", captcha)) {
+			user.setUsermobile(mobile);
+			user.setInviteuser("888888");
+			userService.inset(user);
+			return ResultCode.getSuccess("注册成功");
+		}
+		return ResultCode.getError("验证码错误");
 
 	}
 

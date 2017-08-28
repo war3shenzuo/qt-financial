@@ -1,12 +1,10 @@
-package com.qtjf.pay.lianpay.util;
+package com.qtjf.pay.lianpay.security;
 
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-
-import com.alibaba.fastjson.util.Base64;
 /**
  * RSA签名公共类
  * @author shmily

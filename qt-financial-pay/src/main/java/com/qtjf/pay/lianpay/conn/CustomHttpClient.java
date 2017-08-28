@@ -1,4 +1,4 @@
-package com.qtjf.pay.lianpay.util;
+package com.qtjf.pay.lianpay.conn;
 
 /**
  * 
@@ -12,19 +12,14 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.HttpVersion;
 import org.apache.http.client.HttpClient;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.conn.params.ConnManagerParams;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.BasicHttpParams;
+import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
@@ -36,22 +31,17 @@ import org.apache.http.protocol.HTTP;
  * @author linys
  */
 public class CustomHttpClient{
-    private static Log        log      = LogFactory
-                                               .getLog(CustomHttpClient.class);
-    private static HttpClient customHttpClient;
-    private static final int  TIME_OUT = 1000 * 30;
+    private static HttpClient customHttpClient          = httpClientInstance();
+    private static final int  TIME_OUT                  = 1000 * 60;
+    private static final int  MAX_CONNECTIONS_TOTAL     = 200;
+    private static final int  MAX_CONNECTIONS_PER_ROUTE = 50;
 
     private CustomHttpClient()
     {
     }
 
-    public static synchronized HttpClient GetHttpClient()
+    public static HttpClient GetHttpClient()
     {
-
-        if (customHttpClient == null)
-        {
-            return httpClientInstance();
-        }
         return customHttpClient;
     }
 
@@ -69,37 +59,41 @@ public class CustomHttpClient{
                     .setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
         } catch (KeyManagementException e)
         {
-            log.error(e.getMessage(), e);
+            System.out.println(e.getMessage());
         } catch (NoSuchAlgorithmException e)
         {
-            log.error(e.getMessage(), e);
+            System.out.println(e.getMessage());
         } catch (UnrecoverableKeyException e)
         {
-            log.error(e.getMessage(), e);
+            System.out.println(e.getMessage());
         } catch (IOException e)
         {
-            log.error(e.getMessage(), e);
+            System.out.println(e.getMessage());
         } catch (CertificateException e)
         {
-            log.error(e.getMessage(), e);
+            System.out.println(e.getMessage());
         } catch (KeyStoreException e)
         {
-            log.error(e.getMessage(), e);
+            System.out.println(e.getMessage());
         }
-        HttpParams params = new BasicHttpParams();
-        HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
-        HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);
-        ConnManagerParams.setTimeout(params, TIME_OUT);
-        HttpConnectionParams.setConnectionTimeout(params, TIME_OUT);
-        HttpConnectionParams.setSoTimeout(params, TIME_OUT);
+
         SchemeRegistry schReg = new SchemeRegistry();
         schReg.register(new Scheme("http", PlainSocketFactory
                 .getSocketFactory(), 80));
         schReg.register(new Scheme("https", sf, 443));
 
-        ClientConnectionManager conMgr = new ThreadSafeClientConnManager(
-                params, schReg);
-        customHttpClient = new DefaultHttpClient(conMgr, params);
+        PoolingClientConnectionManager conMgr = new PoolingClientConnectionManager(
+                schReg);
+        conMgr.setMaxTotal(MAX_CONNECTIONS_TOTAL);
+        conMgr.setDefaultMaxPerRoute(MAX_CONNECTIONS_PER_ROUTE);
+
+        customHttpClient = new DefaultHttpClient(conMgr);
+
+        HttpParams params = customHttpClient.getParams();
+        HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
+        HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);
+        HttpConnectionParams.setConnectionTimeout(params, TIME_OUT);
+        HttpConnectionParams.setSoTimeout(params, TIME_OUT);
         return customHttpClient;
     }
 
