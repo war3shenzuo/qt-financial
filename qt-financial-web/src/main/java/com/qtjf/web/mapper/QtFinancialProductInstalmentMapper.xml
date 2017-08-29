@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.web.mapper.QtFinancialProductInstalmentMapper" >
+  <resultMap id="BaseResultMap" type="com.qtjf.web.entity.QtFinancialProductInstalment" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="productId" property="productid" jdbcType="VARCHAR" />
+    <result column="instalmentName" property="instalmentname" jdbcType="VARCHAR" />
+    <result column="rank" property="rank" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="repayAt" property="repayat" jdbcType="TIMESTAMP" />
+    <result column="overdueAmount" property="overdueamount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="dayNum" property="daynum" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from qt_financial_product_instalment
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qtjf.web.entity.QtFinancialProductInstalment" >
+    insert into qt_financial_product_instalment (id, productId, instalmentName, 
+      rank, amount, repayAt, 
+      overdueAmount, status, dayNum
+      )
+    values (#{id,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{instalmentname,jdbcType=VARCHAR}, 
+      #{rank,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, #{repayat,jdbcType=TIMESTAMP}, 
+      #{overdueamount,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, #{daynum,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.qtjf.web.entity.QtFinancialProductInstalment" >
+    update qt_financial_product_instalment
+    set productId = #{productid,jdbcType=VARCHAR},
+      instalmentName = #{instalmentname,jdbcType=VARCHAR},
+      rank = #{rank,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      repayAt = #{repayat,jdbcType=TIMESTAMP},
+      overdueAmount = #{overdueamount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=VARCHAR},
+      dayNum = #{daynum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, productId, instalmentName, rank, amount, repayAt, overdueAmount, status, 
+    dayNum
+    from qt_financial_product_instalment
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, productId, instalmentName, rank, amount, repayAt, overdueAmount, status, 
+    dayNum
+    from qt_financial_product_instalment
+  </select>
+</mapper>

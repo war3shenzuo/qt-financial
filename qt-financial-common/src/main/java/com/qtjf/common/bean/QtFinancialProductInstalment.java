@@ -21,6 +21,8 @@ public class QtFinancialProductInstalment {
 	private BigDecimal overdueAmount;
 
 	private String status;
+	
+	private Integer dayNum;
 
 	public String getId() {
 		return id;
@@ -68,6 +70,14 @@ public class QtFinancialProductInstalment {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Integer getDayNum() {
+		return dayNum;
+	}
+
+	public void setDayNum(Integer dayNum) {
+		this.dayNum = dayNum;
 	}
 
 }

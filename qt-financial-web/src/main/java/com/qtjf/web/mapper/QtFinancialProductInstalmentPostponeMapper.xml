@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.web.mapper.QtFinancialProductInstalmentPostponeMapper" >
+  <resultMap id="BaseResultMap" type="com.qtjf.web.entity.QtFinancialProductInstalmentPostpone" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="productId" property="productid" jdbcType="VARCHAR" />
+    <result column="instalmentId" property="instalmentid" jdbcType="VARCHAR" />
+    <result column="daynum" property="daynum" jdbcType="VARCHAR" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="rank" property="rank" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from qt_financial_product_instalment_postpone
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qtjf.web.entity.QtFinancialProductInstalmentPostpone" >
+    insert into qt_financial_product_instalment_postpone (id, productId, instalmentId, 
+      daynum, amount, rank
+      )
+    values (#{id,jdbcType=VARCHAR}, #{productid,jdbcType=VARCHAR}, #{instalmentid,jdbcType=VARCHAR}, 
+      #{daynum,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{rank,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.qtjf.web.entity.QtFinancialProductInstalmentPostpone" >
+    update qt_financial_product_instalment_postpone
+    set productId = #{productid,jdbcType=VARCHAR},
+      instalmentId = #{instalmentid,jdbcType=VARCHAR},
+      daynum = #{daynum,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=DECIMAL},
+      rank = #{rank,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select id, productId, instalmentId, daynum, amount, rank
+    from qt_financial_product_instalment_postpone
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, productId, instalmentId, daynum, amount, rank
+    from qt_financial_product_instalment_postpone
+  </select>
+</mapper>
