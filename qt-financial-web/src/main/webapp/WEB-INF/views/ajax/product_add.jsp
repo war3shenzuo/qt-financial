@@ -184,7 +184,7 @@
 						</div>
 						<label class="col-sm-2 control-label">逾期费用（元/天）：</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="daynum" id="money4">
+							<input type="text" class="form-control" name="dayAmount" id="money4">
 						</div>
 					</div>
 					<div class="form-group">
@@ -206,8 +206,6 @@
 <!-- 								<div class="col-sm-6 deferral_plan_box">延期金额</div> -->
 <!-- 								<div class="col-sm-6 deferral_plan_box">延期时长/天</div> -->
 <!-- 							</div> -->
-							
-							
 <!-- 						</div> -->
 					</div>
 					<div class="form-group">

@@ -35,6 +35,9 @@ public interface ProductService {
 	//删除banner
 	Map<String,Object> deleteBanner(Integer id);
 
+	//获取产品可见可借等级
+	Map<String, Object> getProductUserLevel(String id);
+
 
 
 	

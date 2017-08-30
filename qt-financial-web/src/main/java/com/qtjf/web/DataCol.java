@@ -239,6 +239,11 @@ public class DataCol {
 	public Map<String, Object> product_get(String id) {
 		return productService.getProduct(id);
 	}
+	
+	@RequestMapping(value = "/product/getUserLevel")
+	public Map<String, Object> product_getUserLevel(String id) {
+		return productService.getProductUserLevel(id);
+	}
 
 	@RequestMapping(value = "/product/add")
 	public String product_add(QtFinacialProductVo qp, @RequestParam(value = "peoplegrade[]") String[] peoplegrade,@RequestParam(value = "borrowgrade[]") String[] borrowgrade) {

@@ -33,4 +33,9 @@
     select id, product_id, user_level_id, type
     from qt_financial_product_user_level
   </select>
+  <select id="selectByProductId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select id, product_id, user_level_id, type
+    from qt_financial_product_user_level 
+    where product_id =  #{_parameter}
+  </select>
 </mapper>

@@ -36,6 +36,8 @@ public class QtFinacialProduct {
     
     private String usable;
     
+    private Integer dayAmount;//逾期费用  元/天
+    
     private List<QtFinancialProductInstalment> instalments;
 
     
@@ -174,7 +176,13 @@ public class QtFinacialProduct {
 	public void setInstalments(List<QtFinancialProductInstalment> instalments) {
 		this.instalments = instalments;
 	}
-    
-    
+
+	public Integer getDayAmount() {
+		return dayAmount;
+	}
+
+	public void setDayAmount(Integer dayAmount) {
+		this.dayAmount = dayAmount;
+	}
     
 }

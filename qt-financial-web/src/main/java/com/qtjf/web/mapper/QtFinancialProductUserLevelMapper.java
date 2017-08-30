@@ -14,4 +14,6 @@ public interface QtFinancialProductUserLevelMapper {
     List<QtFinancialProductUserLevel> selectAll();
 
     int updateByPrimaryKey(QtFinancialProductUserLevel record);
+
+	List<QtFinancialProductUserLevel> selectByProductId(String id);//根据产品id获取可见可借等级
 }

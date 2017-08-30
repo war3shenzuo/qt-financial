@@ -61,55 +61,55 @@
 							<input type="text" class="form-control" name="manageCost" id="money3">
 						</div>
 					</div>
-					<div class="form-group">
+						<div class="form-group">
 						<label class="col-sm-2 control-label">可见等级：</label>
 						<div class="col-sm-10">
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">青铜会员<i
+									<label> <input name="peoplegrade[]" type="checkbox"
+										class="type3" id="" value="1">青铜会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">白银会员<i
+									<label> <input name="peoplegrade[]" type="checkbox"
+										class="type3" id="" value="2">白银会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">黄金会员<i
+									<label> <input name="peoplegrade[]" type="checkbox"
+										class="type3" id="" value="3">黄金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">铂金会员<i
+									<label> <input name="peoplegrade[]" type="checkbox"
+										class="type3" id="" value="4">铂金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">钻石会员<i
+									<label> <input name="peoplegrade[]" type="checkbox"
+										class="type3" id="" value="5">钻石会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">荣耀会员<i
+									<label> <input name="peoplegrade[]" type="checkbox"
+										class="type3" id="" value="6">荣耀会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">特约会员<i
+									<label> <input name="peoplegrade[]" type="checkbox"
+										class="type3" id="" value="7">特约会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
@@ -120,50 +120,50 @@
 						<div class="col-sm-10">
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="borrowgrade" type="checkbox"
-										class="type3" id="" value="s">青铜会员<i
+									<label> <input name="borrowgrade[]" type="checkbox"
+										class="type3" id="" value="1">青铜会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="borrowgrade" type="checkbox"
-										class="type3" id="" value="">白银会员<i
+									<label> <input name="borrowgrade[]" type="checkbox"
+										class="type3" id="" value="2">白银会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="borrowgrade" type="checkbox"
-										class="type3" id="" value="">黄金会员<i
+									<label> <input name="borrowgrade[]" type="checkbox"
+										class="type3" id="" value="3">黄金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="borrowgrade" type="checkbox"
-										class="type3" id="" value="">铂金会员<i
+									<label> <input name="borrowgrade[]" type="checkbox"
+										class="type3" id="" value="4">铂金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="borrowgrade" type="checkbox"
-										class="type3" id="" value="">钻石会员<i
+									<label> <input name="borrowgrade[]" type="checkbox"
+										class="type3" id="" value="5">钻石会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="borrowgrade" type="checkbox"
-										class="type3" id="" value="">荣耀会员<i
+									<label> <input name="borrowgrade[]" type="checkbox"
+										class="type3" id="" value="6">荣耀会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-2">
 								<div class="checkbox-inline">
-									<label> <input name="borrowgrade" type="checkbox"
-										class="type3" id="" value="">特约会员<i
+									<label> <input name="borrowgrade[]" type="checkbox"
+										class="type3" id="" value="7">特约会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
@@ -180,28 +180,29 @@
 						</div>
 						<label class="col-sm-2 control-label">逾期费用（元/天）：</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="money4" id="money4">
+							<input type="text" class="form-control" name="dayAmount" id="money4">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-2 control-label">还款计划：</label>
-						<div class="col-sm-3">
+						<div class="col-sm-10">
 							<div id="repayment_plan">
-								<div class="col-sm-6 repayment_plan_box">还款金额</div>
-								<div class="col-sm-6 repayment_plan_box">还款日（/日后）</div>
+								<div class="col-sm-2 repayment_plan_box">还款金额</div>
+								<div class="col-sm-2 repayment_plan_box">还款日（/日后）</div>
+								<div class="col-sm-2 repayment_plan_box">操作</div>
+								<div class="col-sm-2 repayment_plan_box">延期金额</div>
+								<div class="col-sm-2 repayment_plan_box">延期时长/天</div>
+								<div class="col-sm-2 repayment_plan_box">操作</div>
 							</div>
-							
 							<a class="btn btn-success" onclick="repaymentAdd()" style="margin-top: 20px;">新增还款计划 <i class="fa fa-plus"></i></a>
 						</div>
-						<label class="col-sm-2 control-label">延期计划：</label>
-						<div class="col-sm-3">
-							<div id="deferral_plan">
-								<div class="col-sm-6 deferral_plan_box">延期金额</div>
-								<div class="col-sm-6 deferral_plan_box">延期时长/天</div>
-							</div>
-							
-							<a class="btn btn-success" onclick="deferralAdd()" style="margin-top: 20px;">新增延期计划 <i class="fa fa-plus"></i></a>
-						</div>
+<!-- 						<label class="col-sm-2 control-label">延期计划：</label> -->
+<!-- 						<div class="col-sm-3"> -->
+<!-- 							<div id="deferral_plan"> -->
+<!-- 								<div class="col-sm-6 deferral_plan_box">延期金额</div> -->
+<!-- 								<div class="col-sm-6 deferral_plan_box">延期时长/天</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 					</div>
 					<div class="form-group">
 						<div class="col-lg-offset-6 col-lg-10">
@@ -294,20 +295,35 @@
 		Select2Test();
 		
 		var url ="${pageContext.request.contextPath}/data/product/get?id="+$("#id").val();
-		LoadAjaxData(url,loadData);
-		function loadData(data){
+		LoadAjaxData(url,function(data){
 			try{
-				console.log(data);
 				$("input[name=productCode]").val(data.obj.productCode);
 				$("input[name=productName]").val(data.obj.productName);
 				$("input[name=amount]").val(data.obj.amount);
 				$("input[name=daynum]").val(data.obj.daynum);
 				$("input[name=auditCost]").val(data.obj.auditCost);
 				$("input[name=manageCost]").val(data.obj.manageCost);
+				$("input[name=dayAmount]").val(data.obj.dayAmount);
 			} catch(arr){
 				console.log(arr);
 			}
-		}
+		});
+		
+		var url2 ="${pageContext.request.contextPath}/data/product/getUserLevel?id="+$("#id").val();
+		LoadAjaxData(url2,function(data){
+			try{
+				var list = data.objList;
+				for(var i = 0;i<list.length;i++){
+					if(list[i].type==1){//可见
+						$("input[name='peoplegrade[]'][value='"+list[i].userLevelId+"']").attr('checked','true');
+					}else {//可借
+						$("input[name='borrowgrade[]'][value='"+list[i].userLevelId+"']").attr('checked','true');
+					}
+				}
+			} catch(arr){
+				console.log(arr);
+			}
+		});
 		
 		$('#productForm').bootstrapValidator(
 				{
@@ -339,13 +355,36 @@
 					}
 				});
 	});
-	//新建还款计划
-	function repaymentAdd(){
-		$("#repayment_plan_modal").modal("show");
+	function repayment(){
+		var htmlStr = '<div>'  
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="test['+i+'].amount" value="'+$("#repayment_money").val()+'"/></div>'
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="test['+i+'].day" value="'+$("#repayment_time").val()+'"/></div>'   
+			+'<div class="col-sm-2 repayment_plan_box"><a class="btn btn-success" onclick="deferralAdd('+i+')">延期<i class="fa fa-plus"></i></a></div>'
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="" value=""/></div>'
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="" value=""/></div>'
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="" value=""/></div>'
+			+'</div>';
+			$("#repayment_plan").append(htmlStr);
+			$("#repayment_money").val("");
+			$("#repayment_time").val("");
+			$("#repayment_plan_modal").modal("hide");
+		i++;
+		j=0;
 	}
-	//新建延期计划
-	function deferralAdd(){
-		$("#deferral_plan_modal").modal("show");
+	function deferral(){
+		var htmlStr = '<div>'  
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="" value=""/></div>'
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="" value=""/></div>'   
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="" value=""/></div>'
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="test['+$("#repayIndex").val()+'].delay['+j+'].amount" value="'+$("#deferral_money").val()+'"/></div>'
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="test['+$("#repayIndex").val()+'].delay['+j+'].day" value="'+$("#deferral_time").val()+'"/></div>'
+			+'<div class="col-sm-2 repayment_plan_box"><input class="inline-input" type="text" name="" value=""/></div>'
+			+'</div>';
+			$("#repayment_plan").append(htmlStr);
+			$("#deferral_money").val("");
+			$("#deferral_time").val("");
+			$("#deferral_plan_modal").modal("hide");
+		j++;
 	}
 	function Select2Test() {
 		$("#product_state").select2();

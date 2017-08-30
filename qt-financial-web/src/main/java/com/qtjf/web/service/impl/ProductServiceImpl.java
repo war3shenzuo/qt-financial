@@ -215,4 +215,18 @@ public class ProductServiceImpl implements ProductService {
 		return map;
 	}
 
+	@Override
+	public Map<String, Object> getProductUserLevel(String id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			List<QtFinancialProductUserLevel> list = qtFinancialProductUserLevelMapper.selectByProductId(id);
+			map.put(StringUtil.responseObjList, list);
+			map.put(StringUtil.responseCode, StringUtil.responseOk);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(StringUtil.responseCode, StringUtil.resposeError);
+		}
+		return map;
+	}
+
 }

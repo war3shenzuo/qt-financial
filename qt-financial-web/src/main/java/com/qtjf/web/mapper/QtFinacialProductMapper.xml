@@ -55,6 +55,9 @@
 			<if test="updateby != null and updateby != ''">
 				updateBy = #{updateby,jdbcType=TIMESTAMP},
 			</if>
+			<if test="dayAmount != null and dayAmount != ''">
+				dayAmount = #{dayAmount}
+			</if>
 		</set>
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
@@ -63,7 +66,7 @@
 		parameterType="java.lang.String">
 		select id, productName, productCode, amount,
 		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
-		isActivated, createdAt, createdBy, updatedAt, updateBy
+		isActivated, createdAt, createdBy, updatedAt, updateBy,dayAmount
 		from
 		qt_financial_product
 		where id = #{value}
@@ -74,7 +77,7 @@
 		productCode, amount,
 		factorageCost,auditCost,manageCost, rate, dayNum,
 		userLevel,
-		isActivated, createdAt, createdBy, updatedAt, updateBy
+		isActivated, createdAt, createdBy, updatedAt, updateBy,dayAmount
 		from
 		qt_financial_product
 	</select>
@@ -86,7 +89,7 @@
 		manageCost, dayNum,
 		userLevel, isActivated,
 		createdAt, createdBy, updatedAt,
-		updateBy)
+		updateBy,dayAmount)
 		values
 		(#{id,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR},
 		#{productCode,jdbcType=VARCHAR},
@@ -95,14 +98,14 @@
 		#{userlevel,jdbcType=VARCHAR}, #{isActivated,jdbcType=VARCHAR},
 		#{createdat,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR},
 		#{updatedat,jdbcType=TIMESTAMP},
-		#{updateby,jdbcType=VARCHAR})
+		#{updateby,jdbcType=VARCHAR},#{dayAmount})
 	</insert>
 
 	<select id="selectAllByPage" parameterType="java.util.Map"
 		resultType="com.qtjf.common.bean.QtFinacialProduct">
 		select id, productName, productCode, amount,
 		factorageCost,auditCost,manageCost, rate, dayNum, userLevel,
-		isActivated, createdAt, createdBy, updatedAt, updateBy
+		isActivated, createdAt, createdBy, updatedAt, updateBy,dayAmount
 		from
 		qt_financial_product
 		where id like '%${search}%' or productName like
