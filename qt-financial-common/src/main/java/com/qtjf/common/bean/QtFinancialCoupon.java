@@ -18,11 +18,11 @@ public class QtFinancialCoupon {
 
     private String comment;
 
-    private Date createdAt;
+    private Date createdAt;//有限起始时间  TODO 不知道前段有没有用到这个字段是否会冲突
 
-    private String createdBy;
+    private String createdBy;//是否可用
 
-    private Date updatedAt;
+    private Date updatedAt;//有限结束时间
 
     private String updateBy;
     

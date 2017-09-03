@@ -26,25 +26,25 @@
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">批号：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="coupon_batch" id="coupon_batch"> 
+							<input type="text" class="form-control" name="code" id="coupon_batch"> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">券面金额：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="coupon_money" id="coupon_money"> 
+							<input type="text" class="form-control" name="amount" id="coupon_money"> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">优惠券数量：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="coupon_number" id="coupon_number"> 
+							<input type="text" class="form-control" name="limitAmount" id="coupon_number"> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">优惠券描述：</label>
 						<div class="col-sm-6">
-							<textarea name="coupon_explain" class="form-control" rows="6"></textarea>
+							<textarea name="comment" class="form-control" rows="6"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -52,50 +52,50 @@
 						<div class="col-sm-6">
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">青铜会员<i
+									<label> <input name="limituserLevel" type="checkbox"
+										class="type3" id="" value="1">青铜会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">白银会员<i
+									<label> <input name="limituserLevel" type="checkbox"
+										class="type3" id="" value="2">白银会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">黄金会员<i
+									<label> <input name="limituserLevel" type="checkbox"
+										class="type3" id="" value="3">黄金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">铂金会员<i
+									<label> <input name="limituserLevel" type="checkbox"
+										class="type3" id="" value="4">铂金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">钻石会员<i
+									<label> <input name="limituserLevel" type="checkbox"
+										class="type3" id="" value="5">钻石会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">荣耀会员<i
+									<label> <input name="limituserLevel" type="checkbox"
+										class="type3" id="" value="6">荣耀会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">特约会员<i
+									<label> <input name="limituserLevel" type="checkbox"
+										class="type3" id="" value="7">特约会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
@@ -106,50 +106,50 @@
 						<div class="col-sm-6">
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">青铜会员<i
+									<label> <input name="limitProduct" type="checkbox"
+										class="type3" id="" value="1">青铜会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">白银会员<i
+									<label> <input name="limitProduct" type="checkbox"
+										class="type3" id="" value="2">白银会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">黄金会员<i
+									<label> <input name="limitProduct" type="checkbox"
+										class="type3" id="" value="3">黄金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">铂金会员<i
+									<label> <input name="limitProduct" type="checkbox"
+										class="type3" id="" value="4">铂金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">钻石会员<i
+									<label> <input name="limitProduct" type="checkbox"
+										class="type3" id="" value="5">钻石会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">荣耀会员<i
+									<label> <input name="limitProduct" type="checkbox"
+										class="type3" id="" value="6">荣耀会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
-									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">特约会员<i
+									<label> <input name="limitProduct" type="checkbox"
+										class="type3" id="" value="7">特约会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
@@ -159,18 +159,18 @@
 						<label class="col-sm-4 col-sm-4 control-label">有效期限：</label>
 						<div class="col-sm-6">
 							<div class="input-group input-large custom-date-range" data-date-format="yyyy-mm-dd">
-                                <input type="text" class="form-control dpd1" name="from">
+                                <input type="text" class="form-control dpd1" name="createdAt">
                                 <span class="input-group-addon">To</span>
-                                <input type="text" class="form-control dpd2" name="to">
+                                <input type="text" class="form-control dpd2" name="updatedAt">
                             </div>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">使用状态：</label>
 						<div class="col-sm-6">
-							<select id="coupon_state" name="coupon_state">
-								<option value="">使用中</option>
-								<option value="">冻结中</option>
+							<select id="coupon_state" name="createdBy">
+								<option value="1">使用中</option>
+								<option value="2">冻结中</option>
 							</select>
 						</div>
 					</div>

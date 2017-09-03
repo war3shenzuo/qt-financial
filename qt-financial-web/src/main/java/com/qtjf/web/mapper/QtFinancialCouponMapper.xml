@@ -5,14 +5,14 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="amount" property="amount" jdbcType="DECIMAL" />
-    <result column="limitAmount" property="limitamount" jdbcType="DECIMAL" />
-    <result column="limitUserLevel" property="limituserlevel" jdbcType="VARCHAR" />
-    <result column="limitProduct" property="limitproduct" jdbcType="VARCHAR" />
+    <result column="limitAmount" property="limitAmount" jdbcType="DECIMAL" />
+    <result column="limitUserLevel" property="limituserLevel" jdbcType="VARCHAR" />
+    <result column="limitProduct" property="limitProduct" jdbcType="VARCHAR" />
     <result column="comment" property="comment" jdbcType="VARCHAR" />
-    <result column="createdAt" property="createdat" jdbcType="TIMESTAMP" />
-    <result column="createdBy" property="createdby" jdbcType="VARCHAR" />
-    <result column="updatedAt" property="updatedat" jdbcType="TIMESTAMP" />
-    <result column="updateBy" property="updateby" jdbcType="VARCHAR" />
+    <result column="createdAt" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="createdBy" property="createdBy" jdbcType="VARCHAR" />
+    <result column="updatedAt" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="updateBy" property="updateBy" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from qt_financial_coupon
@@ -24,22 +24,22 @@
       comment, createdAt, createdBy, 
       updatedAt, updateBy)
     values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, 
-      #{limitamount,jdbcType=DECIMAL}, #{limituserlevel,jdbcType=VARCHAR}, #{limitproduct,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{createdat,jdbcType=TIMESTAMP}, #{createdby,jdbcType=VARCHAR}, 
-      #{updatedat,jdbcType=TIMESTAMP}, #{updateby,jdbcType=VARCHAR})
+      #{limitAmount,jdbcType=DECIMAL}, #{limituserLevel,jdbcType=VARCHAR}, #{limitProduct,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialCoupon" >
     update qt_financial_coupon
     set code = #{code,jdbcType=VARCHAR},
       amount = #{amount,jdbcType=DECIMAL},
-      limitAmount = #{limitamount,jdbcType=DECIMAL},
-      limitUserLevel = #{limituserlevel,jdbcType=VARCHAR},
-      limitProduct = #{limitproduct,jdbcType=VARCHAR},
+      limitAmount = #{limitAmount,jdbcType=DECIMAL},
+      limitUserLevel = #{limituserLevel,jdbcType=VARCHAR},
+      limitProduct = #{limitProduct,jdbcType=VARCHAR},
       comment = #{comment,jdbcType=VARCHAR},
-      createdAt = #{createdat,jdbcType=TIMESTAMP},
-      createdBy = #{createdby,jdbcType=VARCHAR},
-      updatedAt = #{updatedat,jdbcType=TIMESTAMP},
-      updateBy = #{updateby,jdbcType=VARCHAR}
+      createdAt = #{createdAt,jdbcType=TIMESTAMP},
+      createdBy = #{createdBy,jdbcType=VARCHAR},
+      updatedAt = #{updatedAt,jdbcType=TIMESTAMP},
+      updateBy = #{updateBy,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >

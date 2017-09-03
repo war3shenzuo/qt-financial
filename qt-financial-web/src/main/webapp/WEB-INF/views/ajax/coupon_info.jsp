@@ -79,9 +79,17 @@
 				var htmlStr = '';
 				for(var i = 0 ;i < data.objList.length;i++){
 					htmlStr+='<tr>'
-						+'<td>'+data.objList[i].name+'</td>'
-						+'<td>'+data.objList[i].activated+'</td>'
-						+'<td>'
+						+'<td>'+data.objList[i].code+'</td>'
+						+'<td>'+data.objList[i].amount+'</td>'
+						+'<td>'+data.objList[i].limitAmount+'</td>'
+						+'<td>'+data.objList[i].comment+'</td>';
+						if(data.objList[i].createdBy == 1){
+							htmlStr += "<td>使用中</td>";
+						} else {
+							htmlStr += "<td>冻结中</td>";
+						}
+						htmlStr +=
+						'<td>'
 						+'	<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/event_edit?id='+data.objList[i].id+'\', \'wrapper\');">编辑</a>'
 						+'</td>'
 						+'</tr>';

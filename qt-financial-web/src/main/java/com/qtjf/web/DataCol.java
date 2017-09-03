@@ -2,6 +2,7 @@ package com.qtjf.web;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -418,6 +419,7 @@ public class DataCol {
 	
 	@RequestMapping(value = "/coupon/add")
 	public Map<String, Object> addCoupon(QtFinancialCoupon qg) {
+		qg.setId(UUID.randomUUID().toString());
 		return activityService.saveCoupon(qg);
 	}
 	
