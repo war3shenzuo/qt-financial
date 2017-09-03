@@ -45,49 +45,49 @@
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
 									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">青铜会员<i
+										class="type3" id="" value="1">青铜会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
 									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">白银会员<i
+										class="type3" id="" value="2">白银会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
 									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">黄金会员<i
+										class="type3" id="" value="3">黄金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
 									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">铂金会员<i
+										class="type3" id="" value="4">铂金会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
 									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">钻石会员<i
+										class="type3" id="" value="5">钻石会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
 									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">荣耀会员<i
+										class="type3" id="" value="6">荣耀会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="checkbox-inline">
 									<label> <input name="peoplegrade" type="checkbox"
-										class="type3" id="" value="">特约会员<i
+										class="type3" id="" value="7">特约会员<i
 										class="fa fa-square-o"></i></label>
 								</div>
 							</div>

@@ -90,6 +90,19 @@
 	$(document).ready(function() {
 		scrollTo(0,0);
 		Select2Test();
+		var url = "${pageContext.request.contextPath}/data/group/all";
+		LoadAjaxData(url,function(data){
+			try{
+				var htmlStr = '';
+				var list = data.objList;
+				for(var i = 0;i<list.length;i++){
+					htmlStr +='<option value="'+list[i].id+'">'+list[i].name+'</option>';
+				}
+				$("#customer_edit").html(htmlStr);
+			} catch(arr){
+				console.log(arr);
+			}
+		});
 		var sAjaxSource = "${pageContext.request.contextPath}/data/user/all";
 		$('#dynamic-table').dataTable({
 			"bProcessing" : true,

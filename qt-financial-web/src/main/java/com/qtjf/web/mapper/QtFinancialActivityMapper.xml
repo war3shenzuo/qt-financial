@@ -7,6 +7,7 @@
     <result column="pic" property="pic" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="activated" property="activated" jdbcType="INTEGER" />
+    <result column="peoplegrade" property="peoplegrade" jdbcType="VARCHAR"/>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from qt_financial_activity
@@ -14,9 +15,9 @@
   </delete>
   <insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialActivity" >
     insert into qt_financial_activity (id, name, url,pic, 
-      activated)
+      activated,peoplegrade)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
-      #{activated,jdbcType=INTEGER})
+      #{activated,jdbcType=INTEGER},#{peoplegrade})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialActivity" >
     update qt_financial_activity
@@ -32,6 +33,9 @@
     	</if>
     	<if test="activated != null and activated != ''">
     		activated = #{activated,jdbcType=VARCHAR},
+    	</if>
+    	<if test="peoplegrade != null and peoplegrade != ''">
+    		peoplegrade = #{peoplegrade,jdbcType=VARCHAR}
     	</if>
     </set>
     where id = #{id,jdbcType=INTEGER}

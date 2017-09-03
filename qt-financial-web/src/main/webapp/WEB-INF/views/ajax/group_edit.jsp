@@ -30,7 +30,7 @@
 					</div>
 					<div class="form-group">
                         <div class="col-lg-offset-4 col-lg-8">
-                        	<button class="btn btn-default" style="padding: 6px 50px; margin-right: 20px;">删除</button>
+                        	<button class="btn btn-default" style="padding: 6px 50px; margin-right: 20px;" onclick="deleteGroup()">删除</button>
 							<button class="btn btn-primary" type="submit" style="padding: 6px 50px;">提交</button>
 						</div>
                     </div>
@@ -56,6 +56,12 @@
 	src="${ctx}/common/js/chronic/picUpdateAndShow.js"></script>
 	
 <script type="text/javascript">
+function deleteGroup(){
+	var url =  "${pageContext.request.contextPath}/data/group/delete?id="+$("#id").val();
+	submitAjaxData(url,null,function(data) {
+		LoadAjaxContent('group_info','wrapper');
+	});
+}
 	$(document).ready(function() {
 		scrollTo(0,0);
 		var url = "${pageContext.request.contextPath}/data/group/info?id="+$("#id").val();

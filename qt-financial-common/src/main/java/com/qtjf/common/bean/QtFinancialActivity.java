@@ -10,6 +10,8 @@ public class QtFinancialActivity {
     private String pic;
 
     private Integer activated;
+    
+    private String peoplegrade;
 
     public Integer getId() {
         return id;
@@ -50,4 +52,14 @@ public class QtFinancialActivity {
     public void setActivated(Integer activated) {
         this.activated = activated;
     }
+
+	public String getPeoplegrade() {
+		return peoplegrade;
+	}
+
+	public void setPeoplegrade(String peoplegrade) {
+		this.peoplegrade = peoplegrade;
+	}
+    
+    
 }
