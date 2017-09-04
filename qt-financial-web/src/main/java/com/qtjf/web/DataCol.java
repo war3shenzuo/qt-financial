@@ -21,11 +21,13 @@ import com.qtjf.common.bean.QtFinancialGroup;
 import com.qtjf.common.bean.QtFinancialInvite;
 import com.qtjf.common.bean.QtFinancialUserLevel;
 import com.qtjf.common.bean.QtFinanicalBanner;
+import com.qtjf.common.bean.QtFinanicalEdition;
 import com.qtjf.web.entity.QtFinancialAdminUser;
 import com.qtjf.web.service.ActivityService;
 import com.qtjf.web.service.BorrowService;
 import com.qtjf.web.service.MenuService;
 import com.qtjf.web.service.ProductService;
+import com.qtjf.web.service.SysService;
 import com.qtjf.web.service.UserService;
 import com.qtjf.web.util.StringUtil;
 import com.qtjf.web.vo.QtFinacialProductVo;
@@ -48,6 +50,9 @@ public class DataCol {
 	
 	@Autowired
 	private ActivityService activityService;
+	
+	@Autowired
+	private SysService sysService;
 	
 	@RequestMapping(value = "/login")
 	public Map<String, Object> login(String username, String password,HttpSession session) {
@@ -431,5 +436,30 @@ public class DataCol {
 	@RequestMapping(value = "/coupon/delete")
 	public Map<String, Object> deleteCoupon(String id) {
 		return activityService.deleteCoupon(id);
+	}
+	
+	@RequestMapping(value = "/edition/all")
+	public Map<String, Object> editions() {
+		return sysService.getEditions();
+	}
+	
+	@RequestMapping(value = "/edition/info")
+	public Map<String, Object> getEdition(Integer id) {
+		return sysService.getEdition(id);
+	}
+	
+	@RequestMapping(value = "/edition/add")
+	public Map<String, Object> addEdition(QtFinanicalEdition qg) {
+		return sysService.saveEdition(qg);
+	}
+	
+	@RequestMapping(value = "/edition/edit")
+	public Map<String, Object> editEdition(QtFinanicalEdition qg) {
+		return sysService.editEdition(qg);
+	}
+	
+	@RequestMapping(value = "/edition/delete")
+	public Map<String, Object> deleteEdition(Integer id) {
+		return sysService.deleteEdition(id);
 	}
 }

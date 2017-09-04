@@ -18,38 +18,38 @@
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">平台：</label>
 						<div class="col-sm-6">
-							<select id="edition_platform" name="edition_platform">
-								<option value="">iOS</option>
-								<option value="">android</option>
+							<select id="edition_platform" name="platform">
+								<option value="iOS">iOS</option>
+								<option value="android">android</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">版本号：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="edition_number" id="edition_number"> 
+							<input type="text" class="form-control" name="edition" id="edition_number"> 
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">更新提醒：</label>
 						<div class="col-sm-6">
-							<select id="edition_update" name="edition_update">
-								<option value="">强制更新</option>
-								<option value="">提醒更新</option>
-								<option value="">无更新提醒</option>
+							<select id="edition_update" name="remind">
+								<option value="强制更新">强制更新</option>
+								<option value="提醒更新">提醒更新</option>
+								<option value="无更新提醒">无更新提醒</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">更新说明：</label>
 						<div class="col-sm-6">
-							<textarea name="update_explain" class="form-control" rows="6"></textarea>
+							<textarea name="description" class="form-control" rows="6"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-4 col-sm-4 control-label">版本描述：</label>
+						<label class="col-sm-4 col-sm-4 control-label">更新网址：</label>
 						<div class="col-sm-6">
-							<textarea name="edition_explain" class="form-control" rows="6"></textarea>
+							<textarea name="url" class="form-control" rows="6"></textarea>
 						</div>
 					</div>
 					<div class="form-group">
@@ -68,6 +68,15 @@
 	$(document).ready(function() {
 		scrollTo(0,0);
 		$('#editionForm').bootstrapValidator({
+			submitHandler : function(validator, form,
+					submitButton) {
+				var url = "${pageContext.request.contextPath}/data/edition/add";//或form.attr('action')
+				var param = form.serialize();//或者form.serialize()
+				submitAjaxData(url, param, callback);
+				function callback(data) {
+					LoadAjaxContent('edition_info','wrapper');
+				}
+			},
 			feedbackIcons : {
 				valid : 'fa fa-check',
 				invalid : 'fa fa-times',

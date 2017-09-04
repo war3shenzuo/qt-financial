@@ -33,7 +33,7 @@
 							<th>操作</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="content">
 						<tr>
 							<td>iOS</td>
 							<td>1.0.0</td>
@@ -96,7 +96,30 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
-		
+		var url ="${pageContext.request.contextPath}/data/edition/all";
+		LoadAjaxData(url,loadData);
+		function loadData(data){
+			try{
+				console.log(data);
+				var htmlStr = '';
+				for(var i = 0 ;i < data.objList.length;i++){
+					htmlStr+='<tr>'
+						+'<td>'+data.objList[i].platform+'</td>'
+						+'<td>'+data.objList[i].edition+'</td>'
+						+'<td>'+data.objList[i].remind+'</td>'
+						+'<td>'+data.objList[i].description+'</td>'
+						+'<td>'+data.objList[i].url+'</td>'
+						+'<td>'+data.objList[i].createAt+'</td>'
+						+'<td>'
+						+'	<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/edition_edit?id='+data.objList[i].id+'\', \'wrapper\');">编辑</a>'
+						+'</td>'
+						+'</tr>';
+				}
+				$("#content").html(htmlStr);
+			} catch(arr){
+				console.log(arr);
+			}
+		}
 	});
 	
 </script>
