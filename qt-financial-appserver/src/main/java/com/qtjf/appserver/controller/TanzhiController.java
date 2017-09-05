@@ -91,7 +91,7 @@ public class TanzhiController {
 	 * @return 产品集合
 	 * @throws Exception
 	 */
-	@RequestMapping("saveBankInfo")
+	@RequestMapping("sumbitBank")
 	public ResultCode saveBankInfo(String bankCardNo, String userName, String identityNo, String mobile, String userId)
 			throws Exception {
 		authenticationServer.saveBankInfo(bankCardNo, userName, identityNo, mobile, userId);
