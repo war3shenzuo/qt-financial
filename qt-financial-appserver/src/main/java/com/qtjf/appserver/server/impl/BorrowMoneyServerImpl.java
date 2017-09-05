@@ -86,9 +86,7 @@ public class BorrowMoneyServerImpl implements BorrowMoneyServer {
 	}
 
 	@Override
-	public List<QtFinancialBorrowMoney> getBorrowMoneys(String userId) {
-		QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
-		bm.setUserId(userId);
+	public List<QtFinancialBorrowMoney> getBorrowMoneys(QtFinancialBorrowMoney bm) {
 		return bmdao.selectAll(bm);
 	}
 

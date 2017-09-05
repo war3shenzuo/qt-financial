@@ -109,4 +109,17 @@ public class LoginController {
 
 	}
 
+	/**
+	 * 获取版本
+	 * @param editionType 机器类型
+	 * @param editionCode 版本号码
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getedition")
+	public ResultCode getEdition(String editionType, String editionCode) throws Exception {
+		Map<String,String> m = loginService.getEdition( editionType,  editionCode);
+		return ResultCode.getSuccess("版本信息获取成功",m);
+	}
+
 }

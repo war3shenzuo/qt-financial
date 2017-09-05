@@ -37,7 +37,9 @@ public class BorrowMoneyController {
 	 */
 	@RequestMapping(value = "getBorrowMoneys")
 	public ResultCode getBorrowMoneys(@NotNull @RequestParam String userId) {
-		List<QtFinancialBorrowMoney> list = borrowMoneytserver.getBorrowMoneys(userId);
+		QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
+		bm.setUserId(userId);
+		List<QtFinancialBorrowMoney> list = borrowMoneytserver.getBorrowMoneys(bm);
 		return ResultCode.getSuccess("获取用户订单成功", list);
 
 	}

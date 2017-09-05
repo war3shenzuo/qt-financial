@@ -25,7 +25,7 @@ public interface BorrowMoneyServer {
 	 * @param userId
 	 * @return
 	 */
-	List<QtFinancialBorrowMoney> getBorrowMoneys(String userId);
+	List<QtFinancialBorrowMoney> getBorrowMoneys(QtFinancialBorrowMoney bm);
 	
 	/**
 	 * 查询订单详细信息
@@ -65,6 +65,7 @@ public interface BorrowMoneyServer {
 	 * @param id
 	 */
 	void deleteBorrowmoney(String id) throws Exception;
+
 	
 
 }
