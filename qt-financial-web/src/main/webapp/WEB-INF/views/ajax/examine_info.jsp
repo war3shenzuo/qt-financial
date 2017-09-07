@@ -144,7 +144,7 @@
 		var url = "${pageContext.request.contextPath}/data/borrow/agree";
 		var param = "id="+id+"&type=3r";
 		submitAjaxData(url,param,function(data){
-			LoadAjaxContent('${pageContext.request.contextPath}/view/index_info','wrapper');
+			LoadAjaxContent('${pageContext.request.contextPath}/view/examine_info','wrapper');
 		});
 	}
 </script>

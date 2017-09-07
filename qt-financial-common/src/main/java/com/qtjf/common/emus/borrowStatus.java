@@ -63,5 +63,12 @@ public enum borrowStatus {
 		this.msg = msg ;
 	}
 	
-	
+	public static borrowStatus getByStatus(String status){
+		for(borrowStatus bs : borrowStatus.values()){
+			if(bs.getStatus().equals(status)){
+				return bs;
+			}
+		}
+		return null;
+	}
 }

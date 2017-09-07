@@ -29,7 +29,7 @@
 							<th>操作</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="content">
 						<tr>
 							<td>2017-07-30</td>
 							<td>124154635478</td>
@@ -78,7 +78,38 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
-		
+		var url = "${pageContext.request.contextPath}/data/all?borrowType=3r";
+		LoadAjaxData(url, loadBorrowList);
 	});
-	
+	function loadBorrowList(data){
+		try{
+			console.log(data);
+			var list = data.objList;
+			var htmlStr = "";
+			for(var i= 0;i<list.length;i++){
+				htmlStr += '<tr><td>2017-07-30</td>'
+				+'<td>'+list[i].id+'</td>'
+				+'<td>'+list[i].userId+'</td>'
+				+'<td>15768731245</td>'
+				+'<td>白银</td>'
+				+'<td>正常</td>'
+				+'<td>同意</td>'
+				+'<td>同意</td>'
+				+'<td>同意</td>'
+				+'<td>未打款</td>'
+				+'<td><a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/playmoney_detail\', \'wrapper\');">订单情况</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" onclick="">终审</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" onclick="payMoney(\''+list[i].id+'\')">打款</a></td></tr>'
+				;
+			}
+			$("#content").html(htmlStr);
+		} catch(arr){
+			console.log(data);
+		}
+	}
+	function payMoney(id){
+		var url = "${pageContext.request.contextPath}/data/borrow/agree";
+		var param = "id="+id+"&type=4r";
+		submitAjaxData(url,param,function(data){
+			LoadAjaxContent('${pageContext.request.contextPath}/view/playmoney_info','wrapper');
+		});
+	}
 </script>
