@@ -23,6 +23,12 @@
 			<artifactId>qt-financial-tpa</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		
+			<dependency>
+			<groupId>com.qtjf</groupId>
+			<artifactId>qt-financial-pay</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.qtjf</groupId>

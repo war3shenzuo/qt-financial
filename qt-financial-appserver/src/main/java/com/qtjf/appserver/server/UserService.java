@@ -12,5 +12,7 @@ public interface UserService {
 
 	void inset(QtFinancialUser user) throws Exception;
 
+	void sumbitVerifyCrad(String mobile, String idcrad, String realName);
+
 
 }

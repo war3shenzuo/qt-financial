@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +20,9 @@ import com.qtjf.common.vo.ResultCode;
 import com.qtjf.jwt.entity.AccessToken;
 import com.qtjf.jwt.entity.JwtConfig;
 import com.qtjf.jwt.token.JwtTokenBuilder;
+import com.qtjf.pay.lianpay.pay.ToPayServlet;
+import com.qtjf.pay.lianpay.utils.LLPayUtil;
+import com.qtjf.pay.lianpay.vo.OrderInfo;
 
 @RestController
 @RequestMapping(value = "/index")
@@ -111,15 +116,40 @@ public class LoginController {
 
 	/**
 	 * 获取版本
-	 * @param editionType 机器类型
-	 * @param editionCode 版本号码
+	 * 
+	 * @param editionType
+	 *            机器类型
+	 * @param editionCode
+	 *            版本号码
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/getedition")
 	public ResultCode getEdition(String editionType, String editionCode) throws Exception {
-		Map<String,String> m = loginService.getEdition( editionType,  editionCode);
-		return ResultCode.getSuccess("版本信息获取成功",m);
+		Map<String, String> m = loginService.getEdition(editionType, editionCode);
+		return ResultCode.getSuccess("版本信息获取成功", m);
+	}
+
+	/**
+	 * 获取版本
+	 * 
+	 * @param editionType
+	 *            机器类型
+	 * @param editionCode
+	 *            版本号码
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/pay")
+	public ResultCode pay(HttpServletRequest req) throws Exception {
+		OrderInfo order = new OrderInfo();
+		order.setNo_order(LLPayUtil.getCurrentDateTimeStr());
+		order.setDt_order(LLPayUtil.getCurrentDateTimeStr());
+		order.setMoney_order("1000");
+		order.setName_goods("日本爱情动作片");
+		order.setInfo_order("用户购买日本爱情动作片");
+		ToPayServlet.prepositPay(req, order);
+		return ResultCode.getSuccess("支付成功成功");
 	}
 
 }

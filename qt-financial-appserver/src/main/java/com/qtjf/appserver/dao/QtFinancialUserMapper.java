@@ -14,4 +14,6 @@ public interface QtFinancialUserMapper {
     int updateByPrimaryKey(QtFinancialUser record);
 
 	List<QtFinancialUser> selectAll(QtFinancialUser user);
+
+	void sumbitVerifyCrad(QtFinancialUser user);
 }

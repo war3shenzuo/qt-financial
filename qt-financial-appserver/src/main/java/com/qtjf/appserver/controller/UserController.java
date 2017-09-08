@@ -54,5 +54,17 @@ public class UserController {
 		List<QtFinancialAuthentication> list = authenticationServer.getAuthenticationList(userId);
 		return ResultCode.getSuccess("获取认证成功", list);
 	}
+	
+	/**
+	 * 保存已认证的身份证
+	 * @param userId
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("sumbitVerifyCrad")
+	public ResultCode sumbitVerifyCrad(@NotNull String Mobile,String idcrad,String realName ) throws Exception {
+		userService.sumbitVerifyCrad(Mobile,idcrad,realName);
+		return ResultCode.getSuccess("保存成功");
+	}
 
 }

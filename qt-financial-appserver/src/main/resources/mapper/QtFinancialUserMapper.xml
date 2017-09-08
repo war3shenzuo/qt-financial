@@ -95,4 +95,14 @@
 
 		</where>
 	</select>
+	
+	
+	<update id="sumbitVerifyCrad" parameterType="com.qtjf.common.bean.QtFinancialUser">
+		update
+		qt_financial_user set
+		tureName = #{turename,jdbcType=VARCHAR},
+		userCID =#{usercid,jdbcType=VARCHAR},
+		isCIDValid =#{iscidvalid,jdbcType=VARCHAR}	
+		where userMobile = #{usermobile,jdbcType=VARCHAR}
+	</update>
 </mapper>

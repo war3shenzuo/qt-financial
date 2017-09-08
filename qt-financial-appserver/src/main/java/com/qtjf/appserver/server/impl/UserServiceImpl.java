@@ -38,4 +38,16 @@ public class UserServiceImpl implements UserService{
 		qtFinancialUserMapper.insert(user);
 	}
 
+	@Override
+	public void sumbitVerifyCrad(String mobile, String idcrad, String realName) {
+		
+		QtFinancialUser user = new QtFinancialUser();
+		user.setIscidvalid("1");
+		user.setUsercid(idcrad);
+		user.setUsermobile(mobile);
+		user.setTurename(realName);
+		
+		qtFinancialUserMapper.sumbitVerifyCrad(user);	
+	}
+
 }
