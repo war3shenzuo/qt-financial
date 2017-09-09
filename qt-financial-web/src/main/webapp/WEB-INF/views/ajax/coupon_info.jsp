@@ -26,7 +26,7 @@
 						<tr>
 							<th>批号</th>
 							<th>券面金额</th>
-							<th>优惠券数量</th>
+							<th>优惠码数量</th>
 							<th>优惠券描述</th>
 							<th>状态</th>
 							<th>操作</th>
@@ -48,7 +48,7 @@
 						<tr>
 							<th>批号</th>
 							<th>券面金额</th>
-							<th>优惠券数量</th>
+							<th>优惠码数量</th>
 							<th>优惠券描述</th>
 							<th>状态</th>
 							<th>操作</th>
@@ -90,7 +90,8 @@
 						}
 						htmlStr +=
 						'<td>'
-						+'	<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/event_edit?id='+data.objList[i].id+'\', \'wrapper\');">编辑</a>'
+						+'	<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/couponcode_info?id='+data.objList[i].id+'\', \'wrapper\');">查看优惠码</a>&nbsp;&nbsp;|&nbsp;&nbsp;'
+						+'	<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/coupon_edit?id='+data.objList[i].id+'\', \'wrapper\');">编辑</a>'
 						+'</td>'
 						+'</tr>';
 				}

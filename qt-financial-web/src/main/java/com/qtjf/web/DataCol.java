@@ -424,7 +424,6 @@ public class DataCol {
 	
 	@RequestMapping(value = "/coupon/add")
 	public Map<String, Object> addCoupon(QtFinancialCoupon qg) {
-		qg.setId(UUID.randomUUID().toString());
 		return activityService.saveCoupon(qg);
 	}
 	
@@ -437,6 +436,42 @@ public class DataCol {
 	public Map<String, Object> deleteCoupon(String id) {
 		return activityService.deleteCoupon(id);
 	}
+	
+	@RequestMapping(value = "/coupon/code/all")
+	public String couponcode(String aoData,String couponId) {
+		JSONArray jsonarray = JSONArray.parseArray(aoData);
+		String sEcho = null;// 对比数据
+		int iDisplayStart = 0; // 起始索引
+		int iDisplayLength = 0; // 每页显示的行数
+		String search = "";
+		for (int i = 0; i < jsonarray.size(); i++) {
+			JSONObject obj = (JSONObject) jsonarray.get(i);
+			if (obj.get("name").equals("sEcho"))
+				sEcho = obj.get("value").toString();
+
+			if (obj.get("name").equals("iDisplayStart"))
+				iDisplayStart = obj.getIntValue("value");
+
+			if (obj.get("name").equals("iDisplayLength"))
+				iDisplayLength = obj.getIntValue("value");
+
+			if (obj.get("name").equals("sSearch"))
+				search = obj.get("value").toString();
+		}
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("search", search);
+		paramMap.put("start", iDisplayStart);
+		paramMap.put("end", iDisplayLength);
+		paramMap.put("couponId", couponId);
+		Map<String, Object> map = activityService.selectCouponCodeAll(paramMap);
+		JSONObject getObj = new JSONObject();
+		getObj.put("sEcho", sEcho);// 防止数据请求串线
+		getObj.put("iTotalRecords", map.get(StringUtil.pageCount));// 实际的行数
+		getObj.put("iTotalDisplayRecords", map.get(StringUtil.pageCount));//
+		getObj.put("aaData", map.get(StringUtil.pageData));// 要以JSON格式返回
+		return getObj.toString();
+	}
+	
 	
 	@RequestMapping(value = "/edition/all")
 	public Map<String, Object> editions() {

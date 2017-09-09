@@ -37,4 +37,6 @@ public interface ActivityService {
 	Map<String, Object> editCoupon(QtFinancialCoupon qg);
 
 	Map<String, Object> deleteCoupon(String id);
+
+	Map<String, Object> selectCouponCodeAll(Map<String, Object> paramMap);//获取所有码体
 }

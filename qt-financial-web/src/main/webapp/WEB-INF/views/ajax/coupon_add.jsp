@@ -4,16 +4,22 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <!--pickers css-->
-<link rel="stylesheet" type="text/css" href="${ctx}/common/js/bootstrap-datepicker/css/datepicker-custom.css" />
-<link rel="stylesheet" type="text/css" href="${ctx}/common/js/bootstrap-timepicker/css/timepicker.css" />
-<link rel="stylesheet" type="text/css" href="${ctx}/common/js/bootstrap-colorpicker/css/colorpicker.css" />
-<link rel="stylesheet" type="text/css" href="${ctx}/common/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
-<link rel="stylesheet" type="text/css" href="${ctx}/common/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/common/js/bootstrap-datepicker/css/datepicker-custom.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/common/js/bootstrap-timepicker/css/timepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/common/js/bootstrap-colorpicker/css/colorpicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/common/js/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+<link rel="stylesheet" type="text/css"
+	href="${ctx}/common/js/bootstrap-datetimepicker/css/datetimepicker-custom.css" />
 
 <ul class="breadcrumb panel">
 	<li><a href="index"><i class="fa fa-home"></i>清投金服</a></li>
-	<li><a href="javascript:void(0)" onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/coupon_info', 'wrapper');">优惠券管理</a></li>
-	<li class="active">新增优惠券 </li>
+	<li><a href="javascript:void(0)"
+		onclick="LoadAjaxContent('${pageContext.request.contextPath}/view/coupon_info', 'wrapper');">优惠券管理</a></li>
+	<li class="active">新增优惠券</li>
 </ul>
 <div class="row">
 	<div class="col-md-12">
@@ -26,19 +32,22 @@
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">批号：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="code" id="coupon_batch"> 
+							<input type="text" class="form-control" name="code"
+								id="coupon_batch">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">券面金额：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="amount" id="coupon_money"> 
+							<input type="text" class="form-control" name="amount"
+								id="coupon_money">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">优惠券数量：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="limitAmount" id="coupon_number"> 
+							<input type="text" class="form-control" name="limitAmount"
+								id="coupon_number">
 						</div>
 					</div>
 					<div class="form-group">
@@ -158,11 +167,12 @@
 					<div class="form-group">
 						<label class="col-sm-4 col-sm-4 control-label">有效期限：</label>
 						<div class="col-sm-6">
-							<div class="input-group input-large custom-date-range" data-date-format="yyyy-mm-dd">
-                                <input type="text" class="form-control dpd1" name="createdAt">
-                                <span class="input-group-addon">To</span>
-                                <input type="text" class="form-control dpd2" name="updatedAt">
-                            </div>
+							<div class="input-group input-large custom-date-range"
+								data-date-format="yyyy-mm-dd">
+								<input type="text" class="form-control dpd1" name="createdAt">
+								<span class="input-group-addon">To</span> <input type="text"
+									class="form-control dpd2" name="updatedAt">
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
@@ -175,11 +185,13 @@
 						</div>
 					</div>
 					<div class="form-group">
-                        <div class="col-lg-offset-4 col-lg-8">
-                        	<button class="btn btn-default" data-dismiss="modal" style="padding: 6px 50px; margin-right: 20px;">取消</button>
-							<button class="btn btn-primary" type="submit" style="padding: 6px 50px;">提交</button>
+						<div class="col-lg-offset-4 col-lg-8">
+							<button class="btn btn-default" data-dismiss="modal"
+								style="padding: 6px 50px; margin-right: 20px;">取消</button>
+							<button class="btn btn-primary" type="submit"
+								style="padding: 6px 50px;">提交</button>
 						</div>
-                    </div>
+					</div>
 				</form>
 			</div>
 		</section>
@@ -187,12 +199,18 @@
 </div>
 
 <!--datepicker pickers plugins-->
-<script type="text/javascript" src="${ctx}/common/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="${ctx}/common/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
-<script type="text/javascript" src="${ctx}/common/js/bootstrap-daterangepicker/moment.min.js"></script>
-<script type="text/javascript" src="${ctx}/common/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script type="text/javascript" src="${ctx}/common/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
-<script type="text/javascript" src="${ctx}/common/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script type="text/javascript"
+	src="${ctx}/common/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript"
+	src="${ctx}/common/js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript"
+	src="${ctx}/common/js/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript"
+	src="${ctx}/common/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript"
+	src="${ctx}/common/js/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript"
+	src="${ctx}/common/js/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
 <!--pickers initialization-->
 <script src="${ctx}/common/js/pickers-init.js"></script>
 
@@ -210,18 +228,17 @@
 <script type="text/javascript" src="${ctx}/common/js/chronic/upload.js"></script>
 <script type="text/javascript"
 	src="${ctx}/common/js/chronic/picUpdateAndShow.js"></script>
-	
+
 <script type="text/javascript">
 	$(document).ready(function() {
-		scrollTo(0,0);
+		scrollTo(0, 0);
 		$('#couponForm').bootstrapValidator({
-			submitHandler : function(validator, form,
-					submitButton) {
+			submitHandler : function(validator, form, submitButton) {
 				var url = "${pageContext.request.contextPath}/data/coupon/add";//或form.attr('action')
 				var param = form.serialize();//或者form.serialize()
 				submitAjaxData(url, param, callback);
 				function callback(data) {
-					LoadAjaxContent('coupon_info','wrapper');
+					LoadAjaxContent('coupon_info', 'wrapper');
 				}
 			},
 			feedbackIcons : {
@@ -231,24 +248,45 @@
 			},
 			message : 'This value is not valid',
 			fields : {
-				coupon_batch : {
+				code : {
 					validators : {
 						notEmpty : {
 							message : '批号不能为空'
+						},
+						regexp : {/* 只需加此键值对，包含正则表达式，和提示 */
+							regexp : /^[a-z0-9]{5}$/,
+							message : '只能是五位，数字0-9或字母a-z'
 						}
 					}
 				},
-				coupon_money : {
+				amount : {
 					validators : {
 						notEmpty : {
 							message : '券面金额不能为空'
+						},
+						regexp : {/* 只需加此键值对，包含正则表达式，和提示 */
+							regexp : /^[0-9]+$/,
+							message : '只能是数字0-9'
 						}
 					}
 				},
-				coupon_number : {
+				limitAmount : {
 					validators : {
 						notEmpty : {
-							message : '优惠券数量不能为空'
+							message : '优惠码数量不能为空'
+						},
+						regexp : {/* 只需加此键值对，包含正则表达式，和提示 */
+							regexp : /^[0-9]+$/,
+							message : '只能是数字0-9'
+						},
+						lessThan : {
+							value : 10000,
+							message : '可见码体数量最大数量10000'
+						},
+						greaterThan : {
+							value : 1,
+							inclusive : false,
+							message : '可见码体数量最小数量1'
 						}
 					}
 				},

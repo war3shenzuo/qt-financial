@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qtjf.web.mapper.QtFinancialCouponChildMapper">
+	<resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialCouponChild">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="user_id" property="userId" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="user_state" property="userState" jdbcType="VARCHAR" />
+		<result column="coupon_id" property="couponId" jdbcType="VARCHAR" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		qt_financial_coupon_child
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinancialCouponChild">
+		insert into
+		qt_financial_coupon_child (id, code, user_id,
+		state, user_state,
+		coupon_id
+		)
+		values (#{id,jdbcType=INTEGER}, #{code}, #{userId},
+		#{state}, #{userState}, #{couponId}
+		)
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialCouponChild">
+		update
+		qt_financial_coupon_child
+		set code = #{code},
+		user_id = #{userId},
+		state
+		= #{state},
+		user_state = #{userState},
+		coupon_id = #{couponId}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, code, user_id, state, user_state, coupon_id
+		from qt_financial_coupon_child
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, code, user_id,
+		state, user_state, coupon_id
+		from qt_financial_coupon_child
+	</select>
+	<insert id="addBatch" parameterType="java.util.List">
+		insert into qt_financial_coupon_child ( code, user_id,
+		state,
+		user_state, coupon_id
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			( #{item.code}, #{item.userId},
+			#{item.state},
+			#{item.userState}, #{item.couponId}
+			)
+		</foreach>
+	</insert>
+	<select id="selectAllByPage"  parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select *
+		from qt_financial_coupon_child
+		where coupon_id = #{couponId} limit #{start},#{end}
+	</select>
+	<select id="selectAllByPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		select count(1)
+		from qt_financial_coupon_child
+		where coupon_id = #{couponId}
+	</select>
+</mapper>
