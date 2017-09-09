@@ -79,6 +79,17 @@
 		from qt_financial_user
 		where id = #{id,jdbcType=INTEGER}
 	</select>
+	
+	<select id="selectByPrimaryMobile" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select id, userCode, userName, userMobile, userEmail,
+		userStatus, userLevel,
+		tureName,
+		password, userCID, isCIDValid,
+		isLockedOut, avatarUrl, inviteUser, createdAt
+		from qt_financial_user
+		where userMobile = #{value}
+	</select>
 
 	<select id="selectAll" resultMap="BaseResultMap"
 		parameterType="com.qtjf.common.bean.QtFinancialUser">

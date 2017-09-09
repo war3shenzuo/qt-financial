@@ -17,7 +17,6 @@ public interface AuthenticationServer {
 
     void insert(QtFinancialAuthentication record) throws Exception;
 
-	void saveBankInfo(String bankCardNo, String name, String identityNo, String mobile, String userId) throws Exception;
 
 	void saveMobile(String userId, String mobile, String password)  throws Exception;
 	
@@ -74,6 +73,8 @@ public interface AuthenticationServer {
 	 * @throws Exception 
 	 */
 	boolean sumbitJd(String jdCode, String jdPass, String userId) throws Exception;
+
+	void saveBankInfo(String bankName, String region, String bankCardNo, String mobile, String userMobile)throws Exception;
 	
 
 

@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	public ResultCode exception(Exception e) {
 		logger.error(e.getMessage(), e);
-		return ResultCode.getFail("操作失败！请联系管理员");
+		return ResultCode.getFail("操作失败！请联系管理员---"+e.getMessage());
 	}
 
 	@ExceptionHandler(BindException.class)

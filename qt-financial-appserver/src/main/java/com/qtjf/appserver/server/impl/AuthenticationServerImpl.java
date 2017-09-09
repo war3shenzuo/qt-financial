@@ -19,12 +19,14 @@ import com.qtjf.appserver.dao.QtFinacialAuthenticationChsiMapper;
 import com.qtjf.appserver.dao.QtFinacialAuthenticationEmergencyContactMapper;
 import com.qtjf.appserver.dao.QtFinacialAuthenticationProfessionMapper;
 import com.qtjf.appserver.dao.QtFinancialAuthenticationMapper;
+import com.qtjf.appserver.dao.QtFinancialUserMapper;
 import com.qtjf.appserver.server.AuthenticationServer;
 import com.qtjf.common.bean.QtFinacialAuthenticationBank;
 import com.qtjf.common.bean.QtFinacialAuthenticationBase;
 import com.qtjf.common.bean.QtFinacialAuthenticationEmergencyContact;
 import com.qtjf.common.bean.QtFinacialAuthenticationProfession;
 import com.qtjf.common.bean.QtFinancialAuthentication;
+import com.qtjf.common.bean.QtFinancialUser;
 import com.qtjf.common.emus.Authentication;
 
 @Service
@@ -47,6 +49,9 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 
 	@Autowired
 	QtFinacialAuthenticationBankMapper qtFinacialAuthenticationBankMapper;
+
+	@Autowired
+	QtFinancialUserMapper qtFinancialUserMapper;
 
 	@Override
 	public void saveTaobaoQrMsg(String msg, String userId) {
@@ -93,42 +98,52 @@ public class AuthenticationServerImpl implements AuthenticationServer {
 	}
 
 	@Override
-	public void saveBankInfo(String bankCardNo, String name, String identityNo, String mobile, String userId)
+	public void saveBankInfo(String bankName, String region, String bankCardNo, String mobile, String userMobile)
 			throws Exception {
 
-		QtFinacialAuthenticationBank bank = new QtFinacialAuthenticationBank();
-		bank.setIdentityNo(identityNo);
-		bank.setMobile(mobile);
-		bank.setUserName(name);
-		bank.setBankCardNo(bankCardNo);
+		QtFinancialUser user = qtFinancialUserMapper.selectByPrimaryMobile(userMobile);
 
-		// 查询是否有数据如果有就修改没有就新增
-		QtFinancialAuthentication query = new QtFinancialAuthentication();
-		query.setAuthType(Authentication.TYPE_BANK.getStatus());
-		query.setUserId(userId);
-		List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(query);
+		if (user != null && "1".equals(user.getIscidvalid())) {
 
-		if (!Objects.isNull(list) || list.size() == 0) {
-			bank.setId(UUID.randomUUID().toString());
-			QtFinancialAuthentication record = new QtFinancialAuthentication();
-			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
-			record.setAuthType(Authentication.TYPE_BANK.getStatus());
-			record.setUserId(userId);
-			record.setAuthenticationId(bank.getId());
-			insert(record);
-			qtFinacialAuthenticationBankMapper.insert(bank);
+			QtFinacialAuthenticationBank bank = new QtFinacialAuthenticationBank();
+			bank.setIdentityNo(user.getUsercid());
+			bank.setMobile(mobile);
+			bank.setUserName(user.getTurename());
+			bank.setBankCardNo(bankCardNo);
+			bank.setBankName(bankName);
+			bank.setRegion(region);
+			
+			// 查询是否有数据如果有就修改没有就新增
+			QtFinancialAuthentication query = new QtFinancialAuthentication();
+			String userId =user.getId();
+			query.setAuthType(Authentication.TYPE_BANK.getStatus());
+			query.setUserId(userId);
+			List<QtFinancialAuthentication> list = qtFinancialAuthenticationMapper.selectAll(query);
 
-		} else if (list.size() == 1) {
-			QtFinancialAuthentication record = new QtFinancialAuthentication();
-			record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
-			record.setAuthType(Authentication.TYPE_BANK.getStatus());
-			record.setUserId(userId);
-			qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
-			bank.setId(list.get(0).getAuthenticationId());
-			qtFinacialAuthenticationBankMapper.update(bank);
-		} else {
-			logger.error("用户：" + userId + "的<" + Authentication.TYPE_BANK.getMsg() + ">认证大于两条");
-			throw new RuntimeException("数据异常");
+			if (!Objects.isNull(list) || list.size() == 0) {
+				bank.setId(UUID.randomUUID().toString());
+				QtFinancialAuthentication record = new QtFinancialAuthentication();
+				record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+				record.setAuthType(Authentication.TYPE_BANK.getStatus());
+				record.setUserId(userId);
+				record.setAuthenticationId(bank.getId());
+				insert(record);
+				qtFinacialAuthenticationBankMapper.insert(bank);
+
+			} else if (list.size() == 1) {
+				QtFinancialAuthentication record = new QtFinancialAuthentication();
+				record.setAuthStatus(Authentication.STATUS_APPLY.getStatus());
+				record.setAuthType(Authentication.TYPE_BANK.getStatus());
+				record.setUserId(userId);
+				qtFinancialAuthenticationMapper.updateByPrimaryKey(record);
+				bank.setId(list.get(0).getAuthenticationId());
+				qtFinacialAuthenticationBankMapper.update(bank);
+			} else {
+				logger.error("用户：" + userId + "的<" + Authentication.TYPE_BANK.getMsg() + ">认证大于两条");
+				throw new RuntimeException("数据异常");
+			}
+		}else{
+			throw new RuntimeException("用户找不到或者没有权限");
 		}
 
 	}

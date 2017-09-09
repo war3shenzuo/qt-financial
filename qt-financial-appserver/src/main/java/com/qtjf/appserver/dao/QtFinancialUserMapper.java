@@ -10,10 +10,13 @@ public interface QtFinancialUserMapper {
     int insert(QtFinancialUser record);
 
     QtFinancialUser selectByPrimaryKey(Integer id);
+    
+    QtFinancialUser selectByPrimaryMobile(String userMobile);
 
     int updateByPrimaryKey(QtFinancialUser record);
 
 	List<QtFinancialUser> selectAll(QtFinancialUser user);
 
 	void sumbitVerifyCrad(QtFinancialUser user);
+
 }

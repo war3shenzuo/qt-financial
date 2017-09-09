@@ -7,6 +7,8 @@ public class QtFinacialAuthenticationBank {
 	private String userName;
 	private String identityNo;
 	private String mobile;
+	private String region;
+	private String bankName;
 	public String getId() {
 		return id;
 	}
@@ -36,6 +38,18 @@ public class QtFinacialAuthenticationBank {
 	}
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+	public String getRegion() {
+		return region;
+	}
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	public String getBankName() {
+		return bankName;
+	}
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
 	}
 	
 	

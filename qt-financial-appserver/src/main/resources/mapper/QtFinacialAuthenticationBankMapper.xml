@@ -4,12 +4,15 @@
 	<insert id="insert" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationBank">
 		insert into
 		qt_finacial_authentication_bank (id,bankCardNo, userName,
-		identityNo,mobile)
+		identityNo,mobile,bankName,region)
 		values
 		(#{id,jdbcType=VARCHAR}, #{bankCardNo,jdbcType=VARCHAR},
 		#{userName,jdbcType=VARCHAR},
 		#{identityNo,jdbcType=VARCHAR},
-		#{mobile,jdbcType=VARCHAR})
+		#{mobile,jdbcType=VARCHAR},
+		#{bankName,jdbcType=VARCHAR},
+		#{region,jdbcType=VARCHAR})
+		
 	</insert>
 	
 	<update id="update" parameterType="com.qtjf.common.bean.QtFinacialAuthenticationBank">
@@ -23,26 +26,5 @@
 		where id = #{id,jdbcType=VARCHAR}
 	</update>
 	
-	<select id="selectAll" resultType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
-		select id, education,
-		marriage, children, province_id, city_id, domain,liveTime
-		qq,
-		email
-		from
-		qt_finacial_authentication_base
-	</select>
-	
-	<select id="selectById" parameterType="java.lang.String"
-		resultType="com.qtjf.common.bean.QtFinacialAuthenticationBase">
-		select id, education, marriage, children,
-		province_id,liveTime
-		city_id, domain,
-		qq,
-		email
-		from
-		qt_finacial_authentication_base where
-		id = #{value}
-	</select>
-
 
 </mapper>
