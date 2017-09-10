@@ -39,6 +39,10 @@ public class UserController {
 	@RequestMapping("getUserInfo")
 	public ResultCode getUserInfo(@NotNull String mobile) throws Exception {
 		QtFinancialUser user = userService.getUserInfoByMobile(mobile);
+		if(user==null) {
+			return ResultCode.getFail("未找到用户");
+		}
+		user.setIswxvalid("0");
 		return ResultCode.getSuccess("获取认证成功", user);
 	}
 

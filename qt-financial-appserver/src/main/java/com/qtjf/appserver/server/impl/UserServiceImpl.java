@@ -19,8 +19,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public QtFinancialUser getUserInfoByMobile(String mobile) {
-		// TODO Auto-generated method stub
-		return null;
+			
+		return qtFinancialUserMapper.selectByPrimaryMobile(mobile);	
 	}
 
 	@Override

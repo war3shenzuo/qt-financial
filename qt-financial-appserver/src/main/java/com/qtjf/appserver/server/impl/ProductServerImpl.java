@@ -46,6 +46,10 @@ public class ProductServerImpl implements ProductServer {
 	public QtFinacialProduct getProduct(String id)  throws Exception{
 
 		QtFinacialProduct product = qtFinacialProductMapper.selectByPrimaryKey(id);
+		
+		if(product==null) {
+			throw new RuntimeException("找不到产品");
+		}
 		//计算实际到账的钱
 		product.setArriveAmount(product.getAmount().subtract(product.getAuditCost()).subtract(product.getManageCost()));
 		//获取分期

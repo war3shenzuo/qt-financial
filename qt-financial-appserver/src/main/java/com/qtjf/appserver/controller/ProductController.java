@@ -11,15 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.qtjf.appserver.server.BorrowMoneyServer;
 import com.qtjf.appserver.server.ProductServer;
+import com.qtjf.appserver.server.UserService;
 import com.qtjf.common.bean.QtFinacialProduct;
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
+import com.qtjf.common.bean.QtFinancialUser;
 import com.qtjf.common.emus.borrowStatus;
 import com.qtjf.common.vo.ResultCode;
 
 /**
  * 产品Controller类
- * @author 史贤杰
- * 2017/07/01
+ * 
+ * @author 史贤杰 2017/07/01
  */
 @RestController
 @RequestMapping("/products")
@@ -27,11 +29,13 @@ public class ProductController {
 
 	@Autowired
 	ProductServer productserver;
-	
 
 	@Autowired
 	BorrowMoneyServer borrowMoneytserver;
-	
+
+	@Autowired
+	UserService userService;
+
 	/**
 	 * 获取所有产品及用户信息(次数，是否可以申请)
 	 * 
@@ -41,11 +45,18 @@ public class ProductController {
 	 * @throws Exception
 	 */
 	@RequestMapping("getProducts")
-	public ResultCode getProducts( @NotNull String userId) throws Exception {
-			List<QtFinacialProduct> list = productserver.getProducts(userId);
-			return ResultCode.getSuccess("获取用户产品成功", list);
+	public ResultCode getProducts(@NotNull String usermobile) throws Exception {
+
+		QtFinancialUser user = userService.getUserInfoByMobile(usermobile);
+
+		if (user == null) {
+			return ResultCode.getFail("找不到用户");
+		}
+
+		List<QtFinacialProduct> list = productserver.getProducts(user.getId());
+		return ResultCode.getSuccess("获取用户产品成功", list);
 	}
-	
+
 	/**
 	 * 获取产品详情
 	 * 
@@ -55,24 +66,30 @@ public class ProductController {
 	 * @throws Exception
 	 */
 	@RequestMapping("getProductInfo")
-	public ResultCode getProductInfo( @NotNull(message = "产品id不能为空")  @RequestParam String id,@RequestParam String userId) throws Exception {
-			
-			QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
-			bm.setStatus(borrowStatus.BORROW_FINISH.getStatus());
-			bm.setUserId(userId);
-			List<QtFinancialBorrowMoney> list = borrowMoneytserver.getBorrowMoneys(bm);
-			if(list.size()>0){
-				return ResultCode.getError("您已经借款1笔，还款之后才可再次借款");
-			}
-			
-			QtFinacialProduct product = productserver.getProduct(id);
-			
-			if(false){
-				return ResultCode.getError("您的会员等级不够，请提升会员等级哦!");
-			}
-			
-			return ResultCode.getSuccess("获取产品详情成功", product);
+	public ResultCode getProductInfo(@NotNull(message = "产品id不能为空") @RequestParam String id,
+			@RequestParam String usermobile) throws Exception {
+
+		QtFinancialUser user = userService.getUserInfoByMobile(usermobile);
+
+		if (user == null) {
+			return ResultCode.getFail("找不到用户");
+		}
+
+		QtFinancialBorrowMoney bm = new QtFinancialBorrowMoney();
+		bm.setStatus(borrowStatus.BORROW_FINISH.getStatus());
+		bm.setUserId(user.getId());
+		List<QtFinancialBorrowMoney> list = borrowMoneytserver.getBorrowMoneys(bm);
+		if (list.size() > 0) {
+			return ResultCode.getError("您已经借款1笔，还款之后才可再次借款");
+		}
+
+		QtFinacialProduct product = productserver.getProduct(id);
+
+		if (false) {
+			return ResultCode.getError("您的会员等级不够，请提升会员等级哦!");
+		}
+
+		return ResultCode.getSuccess("获取产品详情成功", product);
 	}
-	
 
 }

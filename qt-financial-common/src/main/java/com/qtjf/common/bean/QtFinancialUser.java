@@ -34,6 +34,8 @@ public class QtFinancialUser {
 	private Date createdat;
 
 	private String isBorrowMoney;
+	
+	private String iswxvalid;
 
 	public String getId() {
 		return id;
@@ -162,5 +164,15 @@ public class QtFinancialUser {
 	public void setIsBorrowMoney(String isBorrowMoney) {
 		this.isBorrowMoney = isBorrowMoney;
 	}
+
+	public String getIswxvalid() {
+		return iswxvalid;
+	}
+
+	public void setIswxvalid(String iswxvalid) {
+		this.iswxvalid = iswxvalid;
+	}
+	
+	
 
 }
