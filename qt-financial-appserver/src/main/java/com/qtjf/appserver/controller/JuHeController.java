@@ -37,7 +37,7 @@ public class JuHeController {
 	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "idCardAuth")
-	public static String idCardAuth( String idcard,String realname) throws Exception {
+	public  String idCardAuth( String idcard,String realname) throws Exception {
 		HttpURLConnection conn = null;
 		BufferedReader reader = null;
 		String rs = null;

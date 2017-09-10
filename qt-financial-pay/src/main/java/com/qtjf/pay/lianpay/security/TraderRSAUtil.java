@@ -45,7 +45,7 @@ public class TraderRSAUtil{
             signet.initSign(myprikey);
             signet.update(sign_str.getBytes("UTF-8"));
             byte[] signed = signet.sign(); // 对信息的数字签名
-            return new String(org.apache.commons.codec.binary.Base64.encodeBase64(signed));
+            return new String(Base64.getBASE64(signed));
         } catch (java.lang.Exception e)
         {
             e.printStackTrace();

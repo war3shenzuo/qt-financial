@@ -148,7 +148,7 @@ public class LoginController {
 		order.setMoney_order("1000");
 		order.setName_goods("日本爱情动作片");
 		order.setInfo_order("用户购买日本爱情动作片");
-		ToPayServlet.prepositPay(req, order);
+		//ToPayServlet.prepositPay(req, order);
 		return ResultCode.getSuccess("支付成功成功");
 	}
 
