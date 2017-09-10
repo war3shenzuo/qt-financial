@@ -37,9 +37,9 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@RequestMapping("getUserInfo")
-	public ResultCode getUserInfo(@NotNull String mobile) throws Exception {
-		QtFinancialUser user = userService.getUserInfoByMobile(mobile);
-		if(user==null) {
+	public ResultCode getUserInfo(@NotNull String usermobile) throws Exception {
+		QtFinancialUser user = userService.getUserInfoByMobile(usermobile);
+		if (user == null) {
 			return ResultCode.getFail("未找到用户");
 		}
 		user.setIswxvalid("0");
@@ -54,20 +54,27 @@ public class UserController {
 	 * @throws Exception
 	 */
 	@RequestMapping("getUserAuthInfo")
-	public ResultCode getUserAuthInfo(@NotNull String userId) throws Exception {
-		List<QtFinancialAuthentication> list = authenticationServer.getAuthenticationList(userId);
+	public ResultCode getUserAuthInfo(@NotNull String usermobile) throws Exception {
+		QtFinancialUser user = userService.getUserInfoByMobile(usermobile);
+
+		if (user == null) {
+			return ResultCode.getFail("找不到用户");
+		}
+
+		List<QtFinancialAuthentication> list = authenticationServer.getAuthenticationList(user.getId());
 		return ResultCode.getSuccess("获取认证成功", list);
 	}
-	
+
 	/**
 	 * 保存已认证的身份证
+	 * 
 	 * @param userId
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping("sumbitVerifyCrad")
-	public ResultCode sumbitVerifyCrad(@NotNull String Mobile,String idcrad,String realName ) throws Exception {
-		userService.sumbitVerifyCrad(Mobile,idcrad,realName);
+	public ResultCode sumbitVerifyCrad(@NotNull String Mobile, String idcrad, String realName) throws Exception {
+		userService.sumbitVerifyCrad(Mobile, idcrad, realName);
 		return ResultCode.getSuccess("保存成功");
 	}
 
