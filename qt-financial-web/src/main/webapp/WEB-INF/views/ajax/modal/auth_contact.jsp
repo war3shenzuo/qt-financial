@@ -11,14 +11,24 @@ caption {
 }
 </style>
 <!-- 手机认证模态框（Modal） -->
-<div aria-hidden="false" aria-labelledby="authContactLabel" role="dialog"
-	tabindex="-1" id="authContact" class="modal fade">
+<div aria-hidden="false" aria-labelledby="authContactLabel"
+	role="dialog" tabindex="-1" id="authContact" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button aria-hidden="true" data-dismiss="modal" class="close"
 					type="button">关闭</button>
-				<h4 class="modal-title">通讯录授权</h4>
+				<div class="col-sm-3">
+					<h3 class="modal-title">通讯录授权</h3>
+				</div>
+				<div class="col-sm-3">
+					<select id="check_contact" name="examine_choice_people">
+						<option value="">审核信息</option>
+						<option value="">审核通过</option>
+						<option value="">审核未通过</option>
+					</select>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 			<div class="modal-body">
 				<table class="table table-bordered">
@@ -64,3 +74,6 @@ caption {
 	</div>
 </div>
 <!-- 模态框（Modal） -->
+<script>
+	$("#check_contact").select2();
+</script>

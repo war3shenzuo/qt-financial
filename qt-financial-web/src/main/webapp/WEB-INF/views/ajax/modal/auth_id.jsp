@@ -18,7 +18,17 @@ caption {
 			<div class="modal-header">
 				<button aria-hidden="true" data-dismiss="modal" class="close"
 					type="button">关闭</button>
-				<h4 class="modal-title">身份证认证</h4>
+				<div class="col-sm-3">
+					<h3 class="modal-title">身份证认证</h3>
+				</div>
+				<div class="col-sm-3">
+					<select id="check_id" name="examine_choice_people">
+						<option value="">审核信息</option>
+						<option value="">审核通过</option>
+						<option value="">审核未通过</option>
+					</select>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 			<div class="modal-body">
 				<table class="table table-bordered">
@@ -32,7 +42,7 @@ caption {
 							<td>人脸</td>
 							<td>图</td>
 						</tr>
-							<tr>
+						<tr>
 							<td>提交时间</td>
 							<td>207-06-26 14:11</td>
 						</tr>
@@ -42,7 +52,7 @@ caption {
 						</tr>
 					</tbody>
 				</table>
-					<table class="table table-bordered">
+				<table class="table table-bordered">
 					<caption>人工审核</caption>
 					<tbody>
 						<tr>
@@ -53,7 +63,7 @@ caption {
 							<td>人脸</td>
 							<td>图</td>
 						</tr>
-							<tr>
+						<tr>
 							<td>提交时间</td>
 							<td>207-06-26 14:11</td>
 						</tr>
@@ -72,3 +82,6 @@ caption {
 	</div>
 </div>
 <!-- 模态框（Modal） -->
+<script>
+	$("#check_id").select2();
+</script>

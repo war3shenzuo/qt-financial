@@ -23,13 +23,21 @@
 			<div class="modal-header">
 				<button aria-hidden="true" data-dismiss="modal" class="close"
 					type="button">关闭</button>
-				<h4 class="modal-title">个人信息</h4>
+				<div class="col-sm-3">
+					<h3 class="modal-title">个人信息</h3>
+				</div>
+				<div class="col-sm-3">
+					<select id="check_base" name="examine_choice_people">
+						<option value="">审核信息</option>
+						<option value="">审核通过</option>
+						<option value="">审核未通过</option>
+					</select>
+				</div>
+				 <div class="clearfix"></div>
 			</div>
 			<div class="modal-body">
 				<div class="div div-bordered">
-					<div class="table-caption">
-						个人信息
-					</div>
+					<div class="table-caption">个人信息</div>
 					<div class="col-sm-4">学历</div>
 					<div class="col-sm-8">本科</div>
 
@@ -61,9 +69,7 @@
 				</div>
 				<div class="clearfix"></div>
 				<div class="div div-bordered">
-					<div class="table-caption">
-						职业信息
-					</div>
+					<div class="table-caption">职业信息</div>
 					<div class="col-sm-4">职业</div>
 					<div class="col-sm-8">设计师</div>
 
@@ -84,8 +90,7 @@
 				</div>
 				<div class="clearfix"></div>
 				<div class="div div-bordered">
-					<div class="table-caption">紧急联系人
-					</div>
+					<div class="table-caption">紧急联系人</div>
 
 					<div class="col-sm-4">亲属关系</div>
 					<div class="col-sm-8">兄弟姐妹</div>
@@ -101,9 +106,7 @@
 				</div>
 				<div class="clearfix"></div>
 				<div class="div div-bordered">
-					<div class="table-caption">
-						认证时间
-					</div>
+					<div class="table-caption">认证时间</div>
 
 					<div class="col-sm-4">提交时间</div>
 					<div class="col-sm-8">2017-06-26 14:11</div>
@@ -114,9 +117,12 @@
 					<div class="col-sm-4">操作人</div>
 					<div class="col-sm-8">王丽</div>
 				</div>
-					<div class="clearfix"></div>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- 模态框（Modal） -->
+<script>
+	$("#check_base").select2();
+</script>

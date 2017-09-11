@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
+import com.qtjf.web.vo.QtFinancialBorrowMoneyAndUser;
 
 public interface QtFinancialBorrowMoneyMapper {
     int deleteByPrimaryKey(Integer id);
@@ -19,4 +20,6 @@ public interface QtFinancialBorrowMoneyMapper {
 	List<QtFinancialBorrowMoney> selectManageAll(Map<String, Object> paramMap);
 
 	int selectAllByPageCount(Map<String, Object> paramMap);
+
+	List<QtFinancialBorrowMoneyAndUser> selectAllAndUser(QtFinancialBorrowMoney qm);
 }
