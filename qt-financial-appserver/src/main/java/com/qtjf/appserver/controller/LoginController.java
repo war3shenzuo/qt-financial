@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.alibaba.fastjson.JSONObject;
 import com.qtjf.common.bean.QtFinancialUserSmsCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -151,17 +152,24 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value = "/verifySmsCode")
-    public ResultCode verifySmsCode(String mobile, String type,String authCode) throws Exception {
+    @RequestMapping(value = "/verifySmsCodeJsonp")
+    public String verifySmsCode(String mobile, String type, String authCode, String jsonp) throws Exception {
 
-        QtFinancialUserSmsCode smsCode = new QtFinancialUserSmsCode();
-        smsCode.setSmsCode(Integer.valueOf(authCode));
-        smsCode.setType(type);
-        smsCode.setMobile(mobile);
+        try {
 
-        userService.verifySmsCode(smsCode);
+            QtFinancialUserSmsCode smsCode = new QtFinancialUserSmsCode();
+            smsCode.setSmsCode(Integer.valueOf(authCode));
+            smsCode.setType(type);
+            smsCode.setMobile(mobile);
 
-        return ResultCode.getSuccess("验证成功");
+            userService.verifySmsCode(smsCode);
+
+        } catch (Exception e) {
+
+            return jsonp + "(" + JSONObject.toJSONString(ResultCode.getFail(e.getMessage())) + ");";
+        }
+
+        return jsonp + "(" + JSONObject.toJSONString(ResultCode.getSuccess("验证成功")) + ");";
 
     }
 
