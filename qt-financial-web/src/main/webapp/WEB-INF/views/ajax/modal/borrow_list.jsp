@@ -18,7 +18,13 @@ caption {
 			<div class="modal-header">
 				<button aria-hidden="true" data-dismiss="modal" class="close"
 					type="button">关闭</button>
-				<h4 class="modal-title">借款记录</h4>
+				<span class="modal-title">借款记录</span>
+				<select
+					id="examine_choice_people" name="examine_choice_people">
+					<option value="">审核信息</option>
+					<option value="">审核通过</option>
+					<option value="">审核未通过</option>
+				</select>
 			</div>
 			<div class="modal-body">
 				<table class="table table-bordered">

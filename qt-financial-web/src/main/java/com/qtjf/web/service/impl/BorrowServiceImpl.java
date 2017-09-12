@@ -17,6 +17,7 @@ import com.qtjf.web.mapper.QtFinancialBorrowMoneyMapper;
 import com.qtjf.web.service.BorrowService;
 import com.qtjf.web.util.StringUtil;
 import com.qtjf.web.util.ThreadUtil;
+import com.qtjf.web.vo.QtFinancialBorrowMoneyAndUser;
 
 @Service
 public class BorrowServiceImpl implements BorrowService {
@@ -31,7 +32,7 @@ public class BorrowServiceImpl implements BorrowService {
 	public Map<String, Object> getBorrows(QtFinancialBorrowMoney qm) {
 		Map<String,Object> map = new HashMap<>();
 		try{
-			List<QtFinancialBorrowMoney> list = qtFinancialBorrowMoneyMapper.selectAll(qm);
+			List<QtFinancialBorrowMoneyAndUser> list = qtFinancialBorrowMoneyMapper.selectAllAndUser(qm);
 			map.put(StringUtil.responseCode, StringUtil.responseOk);
 			map.put(StringUtil.responseObjList, list);
 		} catch(Exception e){

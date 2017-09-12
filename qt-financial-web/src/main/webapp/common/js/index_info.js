@@ -1,18 +1,24 @@
-function showAuthPhone() {
+function showAuthPhone(id) {
+	console.log(id);
 	$("#authPhone").modal("show");
 }
-function showAuthBase() {
+function showAuthBase(id) {
+	console.log(id);
 	$("#authBase").modal("show");
 }
-function showAuthId() {
+function showAuthId(id) {
+	console.log(id);
 	$("#authId").modal("show");
 }
-function showAuthWx() {
+function showAuthWx(id) {
+	console.log(id);
 	$("#authWx").modal("show");
 }
-function showAuthContact() {
+function showAuthContact(id) {
+	console.log(id);
 	$("#authContact").modal("show");
 }
-function showBorrowList() {
+function showBorrowList(id) {
+	console.log(id);
 	$("#borrowList").modal("show");
 }

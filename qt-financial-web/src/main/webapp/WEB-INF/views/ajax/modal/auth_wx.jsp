@@ -18,7 +18,17 @@ caption {
 			<div class="modal-header">
 				<button aria-hidden="true" data-dismiss="modal" class="close"
 					type="button">关闭</button>
-				<h4 class="modal-title">微信认证</h4>
+				<div class="col-sm-3">
+					<h3 class="modal-title">微信认证</h3>
+				</div>
+				<div class="col-sm-3">
+					<select id="check_wx" name="examine_choice_people">
+						<option value="">审核信息</option>
+						<option value="">审核通过</option>
+						<option value="">审核未通过</option>
+					</select>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 			<div class="modal-body">
 				<table class="table table-bordered">
@@ -52,3 +62,6 @@ caption {
 	</div>
 </div>
 <!-- 模态框（Modal） -->
+<script>
+	$("#check_wx").select2();
+</script>

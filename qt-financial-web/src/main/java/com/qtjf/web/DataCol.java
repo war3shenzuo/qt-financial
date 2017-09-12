@@ -2,7 +2,6 @@ package com.qtjf.web;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
