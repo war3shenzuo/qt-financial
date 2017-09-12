@@ -97,11 +97,8 @@ public class DataCol {
 	 * @return
 	 */
 	@RequestMapping(value = "/borrow/agree")
-	public Map<String, Object> borrowAgree(String id, String type) {
-		QtFinancialBorrowMoney qm = new QtFinancialBorrowMoney();
-		qm.setId(id);
-		qm.setStatus(type);
-		return borrowService.updateBorrows(qm);
+	public Map<String, Object> borrowAgree(String id, String type,String comment) {
+		return borrowService.updateBorrows(id,type,comment);
 	}
 
 	/**

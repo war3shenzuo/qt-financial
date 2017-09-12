@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.qtjf.common.bean.QtFinancialBorrowMoney;
 import com.qtjf.common.bean.QtFinancialBorrowMoneyFlow;
-import com.qtjf.common.emus.borrowStatus;
 import com.qtjf.web.mapper.QtFinancialBorrowMoneyFlowMapper;
 import com.qtjf.web.mapper.QtFinancialBorrowMoneyMapper;
 import com.qtjf.web.service.BorrowService;
@@ -43,9 +42,12 @@ public class BorrowServiceImpl implements BorrowService {
 	}
 
 	@Override
-	public Map<String, Object> updateBorrows(QtFinancialBorrowMoney qm) {
+	public Map<String, Object> updateBorrows(String id, String type,String comment) {
 		Map<String,Object> map = new HashMap<>();
 		try{
+			QtFinancialBorrowMoney qm = new QtFinancialBorrowMoney();
+			qm.setId(id);
+			qm.setStatus(type);
 			qtFinancialBorrowMoneyMapper.updateByPrimaryKey(qm);
 			
 			ThreadUtil.execute(new Runnable() {
@@ -53,10 +55,10 @@ public class BorrowServiceImpl implements BorrowService {
 				public void run() {
 					QtFinancialBorrowMoneyFlow qbf = new QtFinancialBorrowMoneyFlow();
 					qbf.setId(UUID.randomUUID().toString());
-					qbf.setBorrowId(qm.getId());
+					qbf.setBorrowId(id);
 					qbf.setUpdatedAt(new Date());
-					qbf.setStatus(qm.getStatus());
-					qbf.setComment(borrowStatus.getByStatus(qm.getStatus()).getMsg());
+					qbf.setStatus(type);
+					qbf.setComment(comment);
 					qtFinancialBorrowMoneyFlowMapper.insert(qbf);
 				}
 			});

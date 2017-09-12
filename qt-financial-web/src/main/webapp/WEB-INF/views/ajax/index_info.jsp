@@ -167,7 +167,7 @@
 					+'<div class="form-group">'
 					+' <label class="col-sm-2 text-left control-label" style="line-height: 34px;">审核评语：</label>'
 					+'<div class="col-sm-7" style="padding: 0px;">'
-					+'   <input type="text" class="form-control">'
+					+'   <input type="text" class="form-control" id="'+list[i].id+'">'
 					+'</div>'
 					+'<div class="col-sm-3">'
 					+'	<button type="button" class="btn btn-default btn-danger"'
@@ -200,7 +200,7 @@
 	}
 	function agreeBorrow(id){
 		var url = "${pageContext.request.contextPath}/data/borrow/agree";
-		var param = "id="+id+"&type=2r";
+		var param = "id="+id+"&type=2r"+"&comment="+$("#"+id).val();
 		submitAjaxData(url,param,function(data){
 			LoadAjaxContent('${pageContext.request.contextPath}/view/index_info','wrapper');
 		});
