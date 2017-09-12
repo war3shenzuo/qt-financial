@@ -3,6 +3,7 @@ package com.qtjf.appserver.server;
 import java.util.List;
 
 import com.qtjf.common.bean.QtFinancialUser;
+import com.qtjf.common.bean.QtFinancialUserSmsCode;
 
 public interface UserService {
 
@@ -14,5 +15,7 @@ public interface UserService {
 
 	void sumbitVerifyCrad(String mobile, String idcrad, String realName);
 
+    void saveSmsCode(QtFinancialUserSmsCode smsCode);
 
+    void verifySmsCode(QtFinancialUserSmsCode smsCode);
 }

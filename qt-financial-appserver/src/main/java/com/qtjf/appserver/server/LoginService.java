@@ -4,7 +4,7 @@ import java.util.Map;
 
 public interface LoginService {
 
-	String sendRegisterSmsCode(String mobile) throws Exception;
+	String sendRegisterSmsCode(String mobile,String authCode) throws Exception;
 	
 	/**
 	 * 获取版本

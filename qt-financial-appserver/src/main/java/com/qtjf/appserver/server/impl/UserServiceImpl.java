@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.qtjf.common.bean.QtFinancialUserSmsCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +50,26 @@ public class UserServiceImpl implements UserService{
 		
 		qtFinancialUserMapper.sumbitVerifyCrad(user);	
 	}
+
+    @Override
+    public void saveSmsCode(QtFinancialUserSmsCode smsCode) {
+        qtFinancialUserMapper.saveSmsCode(smsCode);
+    }
+
+    @Override
+    public void verifySmsCode(QtFinancialUserSmsCode smsCode) {
+
+        QtFinancialUserSmsCode  q = qtFinancialUserMapper.selectSmsCode(smsCode);
+
+        if(q==null){
+            throw new RuntimeException("验证失败");
+        }
+
+        Long ispass = q.getPassAt() - new Date().getTime();
+        if(ispass<=0) {
+            throw new RuntimeException("验证码过期");
+        }
+
+    }
 
 }

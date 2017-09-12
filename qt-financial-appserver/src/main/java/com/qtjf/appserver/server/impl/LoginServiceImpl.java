@@ -19,8 +19,8 @@ public class LoginServiceImpl implements LoginService {
 	LoginMapper loginMapper;
 	
 	@Override
-	public String  sendRegisterSmsCode(String mobile) throws Exception {
-		return SmsUtil.loginAuthCode(mobile, "888888");
+	public String  sendRegisterSmsCode(String mobile,String authCode) throws Exception {
+		return SmsUtil.loginAuthCode(mobile, authCode);
 	}
 
 	@Override
