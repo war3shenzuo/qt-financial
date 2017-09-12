@@ -8,7 +8,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.qtjf.common.bean.QtFinancialUserSmsCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qtjf.appserver.server.BannerServer;
@@ -16,10 +15,6 @@ import com.qtjf.appserver.server.LoginService;
 import com.qtjf.appserver.server.UserService;
 import com.qtjf.common.bean.QtFinancialUser;
 import com.qtjf.common.vo.ResultCode;
-import com.qtjf.jwt.entity.AccessToken;
-import com.qtjf.jwt.entity.JwtConfig;
-import com.qtjf.jwt.token.JwtTokenBuilder;
-import com.qtjf.pay.lianpay.pay.ToPayServlet;
 import com.qtjf.pay.lianpay.utils.LLPayUtil;
 import com.qtjf.pay.lianpay.vo.OrderInfo;
 
@@ -27,8 +22,6 @@ import com.qtjf.pay.lianpay.vo.OrderInfo;
 @RequestMapping(value = "/index")
 public class LoginController {
 
-    @Autowired
-    private JwtConfig jwtConfig;
 
     @Autowired
     private BannerServer bannerserver;
@@ -45,33 +38,10 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value = "/login")
-    public ResultCode login(String mobile, String password, String captcha) throws Exception {
-        // 验证码校验
-
-        // 用户名密码验证
-        // JwtTokenBuilder jwtTokenBuilder = new JwtTokenBuilder();
-        //
-        // @SuppressWarnings("rawtypes")
-        // Map map = new HashMap();
-        // map.put("username", username);
-        // String subject = JwtTokenBuilder.buildSubject(map);
-        //
-        // @SuppressWarnings("static-access")
-        // String accessToken = jwtTokenBuilder.buildToken(subject,
-        // jwtConfig.getExpiresSecond(),
-        // jwtConfig.getBase64Secret());
-        //
-        // AccessToken token = new AccessToken();
-        // token.setAccess_token(accessToken);
-        // token.setToken_type(jwtConfig.getTokenType());
-        // token.setExpires_in(jwtConfig.getExpiresSecond());
-
-        if (Objects.equals("888888", captcha)) {
-            return ResultCode.getSuccess("登陆成功");
-        }
-
-        return ResultCode.getError("验证码错误");
-
+    public ResultCode login(String usermobile, String type, String authCode) throws Exception {
+        verify(authCode, type, usermobile);
+        QtFinancialUser user = userService.getUserInfoByMobile(usermobile);
+        return ResultCode.getSuccess("登陆成功",user);
     }
 
     @RequestMapping(value = "/getBanners")
@@ -81,16 +51,17 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/register")
-    public ResultCode register(String mobile, String captcha, String invite) throws Exception {
-        QtFinancialUser user = new QtFinancialUser();
+    public ResultCode register(String usermobile, String authCode, String invite, String type) throws Exception {
 
-        if (Objects.equals("888888", captcha)) {
-            user.setUsermobile(mobile);
-            user.setInviteuser("888888");
-            userService.inset(user);
-            return ResultCode.getSuccess("注册成功");
-        }
-        return ResultCode.getError("验证码错误");
+        verify(authCode, type, usermobile);
+        //保存用户
+        QtFinancialUser user = new QtFinancialUser();
+        user.setUsermobile(usermobile);
+        user.setInviteuser(invite);
+        userService.inset(user);
+        return ResultCode.getSuccess("注册成功");
+
+
     }
 
     /**
@@ -98,7 +69,7 @@ public class LoginController {
      *
      * @param editionType 机器类型
      * @param editionCode 版本号码
-     * @return
+     * @return ResultCode
      * @throws Exception
      */
     @RequestMapping(value = "/getedition")
@@ -110,7 +81,7 @@ public class LoginController {
     /**
      * 支付
      *
-     * @return
+     * @return ResultCode
      * @throws Exception
      */
     @RequestMapping(value = "/pay")
@@ -144,33 +115,38 @@ public class LoginController {
         smsCode.setMobile(mobile);
         smsCode.setType(type);
         smsCode.setSmsCode(authCode);
-
         userService.saveSmsCode(smsCode);
 
-        return ResultCode.getSuccess("发送成功");
+        //查询是否有这个用户
+        QtFinancialUser user = userService.getUserInfoByMobile(mobile);
+        if (user == null) {
+            return ResultCode.getSuccess("发送成功", "");
+        } else {
+            return ResultCode.getSuccess("发送成功", user);
+        }
+
 
     }
 
 
     @RequestMapping(value = "/verifySmsCodeJsonp")
-    public String verifySmsCode(String mobile, String type, String authCode, String jsonp) throws Exception {
+    public String verifySmsCode(String usermobile, String type, String authCode, String jsonp) throws Exception {
 
         try {
-
-            QtFinancialUserSmsCode smsCode = new QtFinancialUserSmsCode();
-            smsCode.setSmsCode(Integer.valueOf(authCode));
-            smsCode.setType(type);
-            smsCode.setMobile(mobile);
-
-            userService.verifySmsCode(smsCode);
+            verify(authCode, type, usermobile);
 
         } catch (Exception e) {
-
             return jsonp + "(" + JSONObject.toJSONString(ResultCode.getFail(e.getMessage())) + ");";
         }
 
         return jsonp + "(" + JSONObject.toJSONString(ResultCode.getSuccess("验证成功")) + ");";
-
     }
 
+    private void verify(String authCode, String type, String mobile) {
+        QtFinancialUserSmsCode smsCode = new QtFinancialUserSmsCode();
+        smsCode.setSmsCode(Integer.valueOf(authCode));
+        smsCode.setType(type);
+        smsCode.setMobile(mobile);
+        userService.verifySmsCode(smsCode);
+    }
 }
