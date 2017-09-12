@@ -135,13 +135,13 @@
 
 
     <select id="selectSmsCode" resultType="com.qtjf.common.bean.QtFinancialUserSmsCode"
-            parameterType="com.qtjf.common.bean.QtFinancialUserSmsCode ">
-            select * from qt_financial_user_sms us
-            where us.mobile=#{mobile}
-            and us.smsCode=#{smsCode}
-            and us.type=#{type}
-            order by us.createdAt DESC
-            limit 0,1
+            parameterType="com.qtjf.common.bean.QtFinancialUserSmsCode">
+        select * from qt_financial_user_sms us
+        where us.mobile=#{mobile}
+        and us.smsCode=#{smsCode}
+        and us.type=#{type}
+        order by us.createdAt DESC
+        limit 0,1
 
     </select>
 
