@@ -9,89 +9,109 @@ public class QtFinancialUserCoupon {
 
     private String couponId;
 
-    private Date validstartTime;
+    private Date endDate;
 
-    private Date validendTime;
+    private Date startDate;
 
     private String status;
 
     private Date createdAt;
 
     private String source;
-    
-    private QtFinancialCoupon coupon;
 
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    private Long limitAmount;
 
-	public String getUserId() {
-		return userId;
-	}
+    private String limitUserLevel;
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    private String limitProduct;
 
-	public String getCouponId() {
-		return couponId;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setCouponId(String couponId) {
-		this.couponId = couponId;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public Date getValidstartTime() {
-		return validstartTime;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public void setValidstartTime(Date validstartTime) {
-		this.validstartTime = validstartTime;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public Date getValidendTime() {
-		return validendTime;
-	}
 
-	public void setValidendTime(Date validendTime) {
-		this.validendTime = validendTime;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+    public String getSource() {
+        return source;
+    }
 
-	public String getSource() {
-		return source;
-	}
+    public void setSource(String source) {
+        this.source = source;
+    }
 
-	public void setSource(String source) {
-		this.source = source;
-	}
+    public String getCouponId() {
+        return couponId;
+    }
 
-	public QtFinancialCoupon getCoupon() {
-		return coupon;
-	}
+    public void setCouponId(String couponId) {
+        this.couponId = couponId;
+    }
 
-	public void setCoupon(QtFinancialCoupon coupon) {
-		this.coupon = coupon;
-	}
-	
- 
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Long getLimitAmount() {
+        return limitAmount;
+    }
+
+    public void setLimitAmount(Long limitAmount) {
+        this.limitAmount = limitAmount;
+    }
+
+    public String getLimitUserLevel() {
+        return limitUserLevel;
+    }
+
+    public void setLimitUserLevel(String limitUserLevel) {
+        this.limitUserLevel = limitUserLevel;
+    }
+
+    public String getLimitProduct() {
+        return limitProduct;
+    }
+
+    public void setLimitProduct(String limitProduct) {
+        this.limitProduct = limitProduct;
+    }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qtjf.appserver.dao.QtFinancialUserCouponMapper" >
+
   <resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialUserCoupon" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="userId" property="userId" jdbcType="VARCHAR" />
@@ -49,4 +50,27 @@
    <select id="selectCouponInfo" parameterType="com.qtjf.common.bean.QtFinancialCoupon" >
     select * from qt_financial_coupon
   </select>
+
+
+    <select id="selectAllAndCouponInfo" resultType="Map" parameterType="com.qtjf.common.bean.QtFinancialCoupon">
+        select uc.*,c.code,c.`amount`,c.`limitAmount`,c.`limitProduct`,c.`limitUserLevel`,c.`comment` from qt_financial_coupon_child uc
+        left join `qt_financial_coupon` c on c.id = uc.`coupon_id`
+        <where>
+            <if test="userId!=null and userId!=''">
+                and uc.user_id = #{userId}
+            </if>
+            <if test="limitAmount!=null and limitAmount!=''">
+                and c.limitAmount = #{limitAmount}
+            </if>
+            <if test="limitProduct!=null and limitProduct!=''">
+                and c.limitProduct = #{limitProduct}
+            </if>
+            <if test="limitUserLevel!=null and limitUserLevel!=''">
+                and c.limitUserLevel = #{limitUserLevel}
+            </if>
+            <if test="status!=null and status!=''">
+                and  uc.user_state = #{status}
+            </if>
+        </where>
+    </select>
 </mapper>

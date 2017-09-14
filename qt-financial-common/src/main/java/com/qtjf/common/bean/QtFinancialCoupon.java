@@ -25,8 +25,10 @@ public class QtFinancialCoupon {
     private Date updatedAt;//有限结束时间
 
     private String updateBy;
-    
+
     private String userId;
+
+    private String status;
 
     public String getId() {
         return id;
@@ -53,30 +55,30 @@ public class QtFinancialCoupon {
     }
 
     public Long getLimitAmount() {
-		return limitAmount;
-	}
+        return limitAmount;
+    }
 
-	public void setLimitAmount(Long limitAmount) {
-		this.limitAmount = limitAmount;
-	}
+    public void setLimitAmount(Long limitAmount) {
+        this.limitAmount = limitAmount;
+    }
 
-	public String getLimituserLevel() {
-		return limituserLevel;
-	}
+    public String getLimituserLevel() {
+        return limituserLevel;
+    }
 
-	public void setLimituserLevel(String limituserLevel) {
-		this.limituserLevel = limituserLevel;
-	}
+    public void setLimituserLevel(String limituserLevel) {
+        this.limituserLevel = limituserLevel;
+    }
 
-	public String getLimitProduct() {
-		return limitProduct;
-	}
+    public String getLimitProduct() {
+        return limitProduct;
+    }
 
-	public void setLimitProduct(String limitProduct) {
-		this.limitProduct = limitProduct;
-	}
+    public void setLimitProduct(String limitProduct) {
+        this.limitProduct = limitProduct;
+    }
 
-	public String getComment() {
+    public String getComment() {
         return comment;
     }
 
@@ -84,45 +86,52 @@ public class QtFinancialCoupon {
         this.comment = comment;
     }
 
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+    public Date getCreatedAt() {
+        return createdAt;
+    }
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
-	public String getCreatedBy() {
-		return createdBy;
-	}
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
 
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
-	public String getUpdateBy() {
-		return updateBy;
-	}
+    public String getUpdateBy() {
+        return updateBy;
+    }
 
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
+    }
 
-	public String getUserId() {
-		return userId;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
