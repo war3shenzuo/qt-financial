@@ -104,7 +104,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {		
-	LoadAjaxContent('${pageContext.request.contextPath}/view/index_info','wrapper');
+	$("#click0").click();
 });
 </script>
 

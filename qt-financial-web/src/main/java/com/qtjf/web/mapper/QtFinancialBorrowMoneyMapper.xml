@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qtjf.web.mapper.QtFinancialBorrowMoneyMapper">
-  <resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialBorrowMoney" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
-    <result column="productId" property="productId" jdbcType="VARCHAR" />
-    <result column="couponId" property="couponId" jdbcType="VARCHAR" />
-    <result column="userId" property="userId" jdbcType="VARCHAR" />
-    <result column="amount" property="amount" jdbcType="DECIMAL" />
-    <result column="daynum" property="daynum" jdbcType="VARCHAR" />
-    <result column="status" property="status" jdbcType="VARCHAR" />
-    <result column="arriveAmount" property="arriveAmount" jdbcType="DECIMAL" />
-    <result column="auditCost" property="auditCost" jdbcType="DECIMAL" />
-    <result column="manageCost" property="manageCost" jdbcType="DECIMAL" />
-    <result column="reductionExemption" property="reductionExemption" jdbcType="DECIMAL" />
-    <result column="applyAt" property="applyAt" jdbcType="BIGINT" />
-    <result column="createdAt" property="createdAt" jdbcType="BIGINT" />
-  </resultMap>
-  <resultMap type="com.qtjf.web.vo.QtFinancialBorrowMoneyAndUser" id="AndUserResultMap" extends="BaseResultMap">
-  	<association property="user" javaType="com.qtjf.common.bean.QtFinancialUser">
-  		<id property="id" column="user_id"/>  
-		<result property="username" column="user_name"/>  
-		<result property="usermobile" column="user_phone"/>  
-  	</association>
-  </resultMap>
+	<resultMap id="BaseResultMap" type="com.qtjf.common.bean.QtFinancialBorrowMoney">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="productId" property="productId" jdbcType="VARCHAR" />
+		<result column="couponId" property="couponId" jdbcType="VARCHAR" />
+		<result column="userId" property="userId" jdbcType="VARCHAR" />
+		<result column="amount" property="amount" jdbcType="DECIMAL" />
+		<result column="daynum" property="daynum" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="arriveAmount" property="arriveAmount" jdbcType="DECIMAL" />
+		<result column="auditCost" property="auditCost" jdbcType="DECIMAL" />
+		<result column="manageCost" property="manageCost" jdbcType="DECIMAL" />
+		<result column="reductionExemption" property="reductionExemption"
+			jdbcType="DECIMAL" />
+		<result column="applyAt" property="applyAt" jdbcType="BIGINT" />
+		<result column="createdAt" property="createdAt" jdbcType="BIGINT" />
+	</resultMap>
+	<resultMap type="com.qtjf.web.vo.QtFinancialBorrowMoneyAndUser"
+		id="AndUserResultMap" extends="BaseResultMap">
+		<association property="user"
+			javaType="com.qtjf.common.bean.QtFinancialUser">
+			<id property="id" column="user_id" />
+			<result property="username" column="user_name" />
+			<result property="usermobile" column="user_phone" />
+		</association>
+		<collection property="borrowMoneyFlow"
+			ofType="com.qtjf.common.bean.QtFinancialBorrowMoneyFlow">
+			<id column="flow_id" property="id" jdbcType="INTEGER" />
+			<result column="flow_borrowId" property="borrowId" jdbcType="VARCHAR" />
+			<result column="flow_status" property="status" jdbcType="VARCHAR" />
+			<result column="flow_comment" property="comment" jdbcType="VARCHAR" />
+			<result column="flow_updatedAt" property="updatedAt" jdbcType="TIMESTAMP" />
+		</collection>
+	</resultMap>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		qt_financial_borrow_money
@@ -44,32 +55,44 @@
 				and userId = #{userId}
 			</if>
 			<if test="status != null and status != ''">
-				and  status = #{status}
+				and status = #{status}
 			</if>
 		</where>
 	</select>
 	<update id="updateByPrimaryKey" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney">
-		update qt_financial_borrow_money set status = #{status} where id = #{id}
+		update
+		qt_financial_borrow_money set status = #{status} where id = #{id}
 	</update>
-	<select id="selectManageAll" parameterType="java.util.Map" resultType="com.qtjf.common.bean.QtFinancialBorrowMoney">
-		select id, productId, couponId, userId, amount, daynum, status,
+	<select id="selectManageAll" parameterType="java.util.Map"
+		resultType="com.qtjf.common.bean.QtFinancialBorrowMoney">
+		select id, productId, couponId, userId, amount, daynum,
+		status,
 		arriveAmount, auditCost,manageCost, reductionExemption,
 		applyAt,createdAt
 		from
 		qt_financial_borrow_money
-		where status = "3r" or status = "3e" limit #{start},#{end};
+		where status = "3r" or
+		status = "3e" limit #{start},#{end};
 	</select>
 	<select id="selectAllByPageCount" parameterType="java.util.Map"
 		resultType="java.lang.Integer">
 		select count(1)
 		from qt_financial_borrow_money
-		where status = "3r" or status = "3e"
+		where status =
+		"3r" or status = "3e"
 	</select>
-	<select id="selectAllAndUser" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney" resultMap="AndUserResultMap">
-	select money.*,user.id user_id,user.userName user_name,user.userMobile user_phone
+	<select id="selectAllAndUser" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney"
+		resultMap="AndUserResultMap">
+		select money.*,user.id user_id,user.userName user_name,user.userMobile
+		user_phone,flow.id flow_id,flow.borrowId flow_borrowId,flow.status
+		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt
 		from
 		qt_financial_borrow_money money
-		left outer join qt_financial_user user on user.id = money.userId
+		left outer join
+		qt_financial_user
+		user on user.id = money.userId
+		left outer join
+		qt_financial_borrow_money_flow flow on flow.borrowId = money.id
 		<where>
 			<if test="productId!=null and productId!=''">
 				and money.productId = #{productId}
@@ -78,7 +101,7 @@
 				and money.userId = #{userId}
 			</if>
 			<if test="status != null and status != ''">
-				and  money.status = #{status}
+				and money.status = #{status}
 			</if>
 		</where>
 	</select>

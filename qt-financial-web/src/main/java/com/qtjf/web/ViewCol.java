@@ -153,9 +153,9 @@ public class ViewCol {
 	}
 
 	// 打款记录
-	@RequestMapping(value = "/playrecond_info")
+	@RequestMapping(value = "/playrecord_info")
 	public String playrecond_info() {
-		return "ajax/playrecond_info";
+		return "ajax/playrecord_info";
 	}
 
 	// 产品管理

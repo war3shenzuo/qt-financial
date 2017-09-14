@@ -22,16 +22,16 @@
 			<c:forEach items="${menu.objList}" var="menu">
 				<c:if test="${menu.list.size() == 0}">
 					<li><a href="javascript:void(0)"
-						onclick="${menu.onclick}"><i
+						onclick="${menu.onclick}" id="click0"><i
 							class="fa fa-money"></i> <span>${menu.name}</span></a></li>
 				</c:if>
 				<c:if test="${menu.list.size() > 0}">
 					<li class="menu-list"><a href=""><i class="fa fa-money"></i>
 							<span>${menu.name}</span></a>
 						<ul class="sub-menu-list">
-							<c:forEach items="${menu.list}" var="subMenu">
+							<c:forEach items="${menu.list}" var="subMenu" varStatus="status">
 								<li><a href="javascript:void(0)"
-									onclick="${subMenu.onclick}">${subMenu.name}</a></li>
+									onclick="${subMenu.onclick}" id="click${status.index}">${subMenu.name}</a></li>
 							</c:forEach>
 						</ul></li>
 				</c:if>
