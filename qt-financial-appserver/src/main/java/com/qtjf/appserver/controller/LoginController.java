@@ -2,7 +2,6 @@ package com.qtjf.appserver.controller;
 
 import java.util.*;
 
-import javax.servlet.http.HttpServletRequest;
 
 import com.alibaba.fastjson.JSONObject;
 import com.qtjf.common.bean.QtFinancialUserSmsCode;
@@ -15,8 +14,6 @@ import com.qtjf.appserver.server.LoginService;
 import com.qtjf.appserver.server.UserService;
 import com.qtjf.common.bean.QtFinancialUser;
 import com.qtjf.common.vo.ResultCode;
-import com.qtjf.pay.lianpay.utils.LLPayUtil;
-import com.qtjf.pay.lianpay.vo.OrderInfo;
 
 @RestController
 @RequestMapping(value = "/index")
@@ -78,23 +75,6 @@ public class LoginController {
         return ResultCode.getSuccess("版本信息获取成功", m);
     }
 
-    /**
-     * 支付
-     *
-     * @return ResultCode
-     * @throws Exception
-     */
-    @RequestMapping(value = "/pay")
-    public ResultCode pay(HttpServletRequest req) throws Exception {
-        OrderInfo order = new OrderInfo();
-        order.setNo_order(LLPayUtil.getCurrentDateTimeStr());
-        order.setDt_order(LLPayUtil.getCurrentDateTimeStr());
-        order.setMoney_order("1000");
-        order.setName_goods("日本爱情动作片");
-        order.setInfo_order("用户购买日本爱情动作片");
-        //ToPayServlet.prepositPay(req, order);
-        return ResultCode.getSuccess("支付成功成功");
-    }
 
     @RequestMapping(value = "/sendSmsCode")
     public ResultCode sendSmsCode(String mobile, String type) throws Exception {
@@ -130,10 +110,10 @@ public class LoginController {
 
 
     @RequestMapping(value = "/verifySmsCodeJsonp")
-    public String verifySmsCode(String usermobile, String type, String authCode, String jsonp) throws Exception {
+    public String verifySmsCode(String mobile, String type, String authCode, String jsonp) throws Exception {
 
         try {
-            verify(authCode, type, usermobile);
+            verify(authCode, type, mobile);
 
         } catch (Exception e) {
             return jsonp + "(" + JSONObject.toJSONString(ResultCode.getFail(e.getMessage())) + ");";

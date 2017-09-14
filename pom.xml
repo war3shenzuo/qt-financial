@@ -48,7 +48,6 @@
 		<module>qt-financial-common</module>
 		<module>qt-financial-appserver</module>
 		<module>qt-financial-web</module>
-		<module>qt-financial-pay</module>
 		<module>qt-financial-tpa</module>
 		<module>qt-financial-jwt</module>
 	</modules>
