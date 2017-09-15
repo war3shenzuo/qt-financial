@@ -20,21 +20,21 @@
 					</div>
 					<div class="col-sm-2">
 						<select id="examine_choice_first" name="examine_choice_first">
-							<option value="">选择初审审核结果</option>
+							<option value="">选择初审结果</option>
 							<option value="">同意</option>
 							<option value="">拒绝</option>
 						</select>
 					</div>
 					<div class="col-sm-2">
 						<select id="examine_choice_second" name="examine_choice_second">
-							<option value="">选择复审审核结果</option>
+							<option value="">选择复审结果</option>
 							<option value="">同意</option>
 							<option value="">拒绝</option>
 						</select>
 					</div>
 					<div class="col-sm-2">
 						<select id="examine_choice_grade" name="examine_choice_grade">
-							<option value="">选择客户等级</option>
+							<option value="">选择终审结果</option>
 							<option value="">白银</option>
 							<option value="">黄金</option>
 							<option value="">钻石</option>
@@ -42,7 +42,7 @@
 					</div>
 					<div class="col-sm-2">
 						<select id="examine_choice_time" name="examine_choice_time">
-							<option value="">时间选择</option>
+							<option value="">选择打款结果</option>
 							<option value="">昨天</option>
 							<option value="">三天内</option>
 							<option value="">一周内</option>
@@ -57,14 +57,13 @@
 					<thead>
 						<tr>
 							<th>订单编号</th>
-							<th>客户名称</th>
+							<th>订单时间</th>
+							<th>客户姓名</th>
 							<th>客户手机</th>
-							<th>客户等级</th>
-							<th>客户状态</th>
 							<th>初审结果</th>
 							<th>复审结果</th>
-							<th>复审评语</th>
-							<th>复审时间</th>
+							<th>终审结果</th>
+							<th>打款情况</th>
 							<th>操作</th>
 						</tr>
 					</thead>
@@ -87,14 +86,13 @@
 					<tfoot>
 						<tr>
 							<th>订单编号</th>
-							<th>客户名称</th>
+							<th>订单时间</th>
+							<th>客户姓名</th>
 							<th>客户手机</th>
-							<th>客户等级</th>
-							<th>客户状态</th>
 							<th>初审结果</th>
 							<th>复审结果</th>
-							<th>复审评语</th>
-							<th>复审时间</th>
+							<th>终审结果</th>
+							<th>打款情况</th>
 							<th>操作</th>
 						</tr>
 					</tfoot>
@@ -128,50 +126,88 @@
 			"aoColumns" : [ {
 				"mData" : "id"
 			}, {
-				"mData" : "userId"
-			}, {
-				"mData" : "userId",
-				"mRender" : function(data, type, full) {
-					var str = "hehe";
-					return str;
-				}
-			}, {
-				"mData" : "userId"
-			}, {
-				"mData" : "userId"
-			}, {
-				"mData" : "userId",
-				"mRender" : function(data, type, full) {
-					var str = "同意";
-					return str;
-				}
-			}, {
-				"mData" : "status",
-				"mRender" : function(data, type, full) {
-					var str = "";
-					if (data == "3r") {
-						str = "同意";
-					} else {
-						str = "拒绝";
-					}
-					return str;
-				}
-			}, {
-				"mData" : "userId",
-				"mRender" : function(data, type, full) {
-					var str = "无";
-					return str;
-				}
-			}, {
-				"mData" : "createdAt",
+				"mData" : "applyAt",
 				"mRender" : function(data, type, full) {
 					var str = formatDatetime(data);
 					return str;
 				}
-			} , {
+			}, {
+				"mData" : "user",
+				"mRender" : function(data, type, full) {
+					if(data==null){
+						return "未填写";
+					}
+					var str = data.truename;
+					return str;
+				}
+			}, {
+				"mData" : "user",
+				"mRender" : function(data, type, full) {
+					if(data==null){
+						return "未填写";
+					}
+					var str = data.usermobile;
+					return str;
+				}
+			}, {
+				"mData" : "borrowMoneyFlow",
+				"mRender" : function(data, type, full) {
+					for(var i=0;i<data.length;i++){
+						if(data[i].status == '2r'){
+							return "初审通过";
+						}
+						if(data[i].status == '2e'){
+							return "初审拒绝";
+						}
+					}
+					return "无";
+				}
+			}, 
+			 {
+				"mData" : "borrowMoneyFlow",
+				"mRender" : function(data, type, full) {
+					for(var i=0;i<data.length;i++){
+						if(data[i].status == '3r'){
+							return "复审通过";
+						}
+						if(data[i].status == '3e'){
+							return "复审拒绝";
+						}
+					}
+					return "无";
+				}
+			},
+			 {
+				"mData" : "borrowMoneyFlow",
+				"mRender" : function(data, type, full) {
+					for(var i=0;i<data.length;i++){
+						if(data[i].status == '4r'){
+							return "终审通过";
+						}
+						if(data[i].status == '4e'){
+							return "终审拒绝";
+						}
+					}
+					return "无";
+				}
+			},
+			 {
+				"mData" : "borrowMoneyFlow",
+				"mRender" : function(data, type, full) {
+					for(var i=0;i<data.length;i++){
+						if(data[i].status == '5r'){
+							return "已打款";
+						}
+						if(data[i].status == '5e'){
+							return "未打款";
+						}
+					}
+					return "无";
+				}
+			},{
 				"mData" : "id",
 				"mRender" : function(data, type, full) {
-					var str = '<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/record_detail\', \'wrapper\');">查看订单</a>';
+					var str = '<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/record_detail?id='+data+'\', \'wrapper\');">查看订单</a>';
 					return str;
 				}
 			}]

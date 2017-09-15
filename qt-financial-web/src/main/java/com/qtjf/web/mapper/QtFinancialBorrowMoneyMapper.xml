@@ -23,6 +23,7 @@
 			javaType="com.qtjf.common.bean.QtFinancialUser">
 			<id property="id" column="user_id" />
 			<result property="username" column="user_name" />
+			<result property="truename" column="user_truename" />
 			<result property="usermobile" column="user_phone" />
 		</association>
 		<collection property="borrowMoneyFlow"
@@ -64,27 +65,28 @@
 		qt_financial_borrow_money set status = #{status} where id = #{id}
 	</update>
 	<select id="selectManageAll" parameterType="java.util.Map"
-		resultType="com.qtjf.common.bean.QtFinancialBorrowMoney">
-		select id, productId, couponId, userId, amount, daynum,
-		status,
-		arriveAmount, auditCost,manageCost, reductionExemption,
-		applyAt,createdAt
+		resultMap="AndUserResultMap">
+		select money.*,user.id user_id,user.userName user_name,user.userMobile
+		user_phone,user.tureName user_truename,flow.id flow_id,flow.borrowId flow_borrowId,flow.status
+		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt
 		from
-		qt_financial_borrow_money
-		where status = "3r" or
-		status = "3e" limit #{start},#{end};
+		qt_financial_borrow_money money
+		left outer join
+		qt_financial_user
+		user on user.id = money.userId
+		left outer join
+		qt_financial_borrow_money_flow flow on flow.borrowId = money.id
+		limit #{start},#{end};
 	</select>
 	<select id="selectAllByPageCount" parameterType="java.util.Map"
 		resultType="java.lang.Integer">
 		select count(1)
 		from qt_financial_borrow_money
-		where status =
-		"3r" or status = "3e"
 	</select>
 	<select id="selectAllAndUser" parameterType="com.qtjf.common.bean.QtFinancialBorrowMoney"
 		resultMap="AndUserResultMap">
 		select money.*,user.id user_id,user.userName user_name,user.userMobile
-		user_phone,flow.id flow_id,flow.borrowId flow_borrowId,flow.status
+		user_phone, user.tureName user_truename,flow.id flow_id,flow.borrowId flow_borrowId,flow.status
 		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt
 		from
 		qt_financial_borrow_money money
@@ -104,5 +106,18 @@
 				and money.status = #{status}
 			</if>
 		</where>
+	</select>
+	<select id="selectBorrowInfo" parameterType="java.lang.String" resultMap="AndUserResultMap">
+		select money.*,user.id user_id,user.userName user_name,user.userMobile
+		user_phone, user.tureName user_truename,flow.id flow_id,flow.borrowId flow_borrowId,flow.status
+		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt
+		from
+		qt_financial_borrow_money money
+		left outer join
+		qt_financial_user
+		user on user.id = money.userId
+		left outer join
+		qt_financial_borrow_money_flow flow on flow.borrowId = money.id
+		where money.id = '${_parameter}'
 	</select>
 </mapper>

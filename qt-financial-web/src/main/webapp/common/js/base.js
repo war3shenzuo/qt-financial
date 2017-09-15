@@ -152,6 +152,14 @@ function formatDatetime(strTime) {
 			+ date.getDate() + " " + date.getHours() + ":" + date.getMinutes()
 			+ ":" + date.getSeconds();
 }
+
+//format日期时间
+function formatBorrowDatetime(strTime) {
+	var date = new Date(strTime);
+	return date.getFullYear() + "-" + (date.getMonth() + 1) + "-"
+			+ date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+}
+
 // format时间
 function formatTime(strTime) {
 	var date = new Date(strTime);

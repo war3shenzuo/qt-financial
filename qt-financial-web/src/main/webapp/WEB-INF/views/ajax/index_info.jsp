@@ -13,12 +13,8 @@
 	<div class="col-md-12">
 		<!--notification start-->
 		<section class="panel">
-			<header class="panel-heading">借款审核 </header>
+			<header class="panel-heading">等待初审 </header>
 			<div class="panel-body">
-				<div class="btn-group btn-group-lg">
-                    <button class="btn btn-default btn-info examine-state" type="button" onclick="getBorrow('1',this)">审核中</button>
-                    <button class="btn btn-default examine-state" type="button" onclick="getBorrow('2',this)">审核完毕</button>
-                </div>
                 <div class="examine-content" id="borrowContent">
                 	
                 </div>
@@ -109,11 +105,12 @@
 					+'<div class="col-sm-8">'
 					+'<div class="row examine-news">'
 					+'	<span>ID:</span><span>'+list[i].id+'</span>'
+					+'<span>'+list[i].user.truename+'</span>'
 					+'<span>电话：</span><span>'+list[i].user.usermobile+'</span>'
 					+'	<span>普通客户</span><span>|</span><a href="#" onclick="showBorrowList()">查看借款记录</a>'
 					+'</div>'
 					+'<div class="row examine-news">'
-					+'	<span>申请借款：</span><span class="loan-amount">'+list[i].amount+'元</span><span>申请时间：</span><span>'+formatDatetime(list[i].applyAt)+'</span>'
+					+'	<span>申请借款：</span><span class="loan-amount">'+list[i].amount+'元</span><span>申请时间：</span><span>'+formatBorrowDatetime(list[i].applyAt)+'</span>'
 					+'</div>'
 					+'</div>'
 					+'<div class="col-sm-3">'
@@ -125,7 +122,7 @@
 					+'<div class="row">'
 					+'	<button type="button" class="btn btn-default btn-success"'
 					+'		onclick="showAuthPhone(\''+list[i].user.id+'\')">手机认证</button>'
-					+'	<button type="button" class="btn btn-default btn-warning"'
+					+'	<button type="button" class="btn btn-default btn-success"'
 					+'		onclick="showAuthBase(\''+list[i].user.id+'\')">个人信息</button>'
 					+'	<button type="button" class="btn btn-default btn-success" onclick="showAuthId('+list[i].user.id+')">身份证认证</button>'
 					+'	<button type="button" class="btn btn-default btn-success">银行卡认证</button>'
@@ -139,10 +136,10 @@
 					+'	<button type="button" class="btn btn-default btn-info" onclick="showAuthWx(\''+list[i].user.id+'\')">微信认证</button>'
 					+'	<button type="button" class="btn btn-default btn-info"'
 					+'		onclick="showAuthContact(\''+list[i].user.id+'\')">授权通讯录</button>'
-					+'	<button type="button" class="btn btn-default btn-info">支付宝认证</button>'
-					+'	<button type="button" class="btn btn-default btn-info">京东认证</button>'
 					+'	<button type="button" class="btn btn-default btn-info">问卷认证</button>'
+					+'	<button type="button" class="btn btn-default btn-info">淘宝认证</button>'
 					+'	<button type="button" class="btn btn-default btn-info">学信认证</button>'
+					+'	<button type="button" class="btn btn-default btn-info">京东认证</button>'
 					+'</div>'
 					+'</div>'
 					+'</div>'
@@ -176,13 +173,6 @@
 		}
 		
 		$("#borrowContent").html(htmlStr);
-	}
-	function getBorrow(data,obj) {
-		if(data == 1){
-			LoadAjaxContent('${pageContext.request.contextPath}/view/index_info?borrowType=1r','wrapper');
-		} else {
-			LoadAjaxContent('${pageContext.request.contextPath}/view/index_info_2?borrowType=2r','wrapper');
-		}
 	}
 	function AgainApply(){
 		$("#apply_again").modal("show");

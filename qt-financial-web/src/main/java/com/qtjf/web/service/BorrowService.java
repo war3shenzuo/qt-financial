@@ -12,6 +12,9 @@ public interface BorrowService {
 	//更新借款状态
 	Map<String,Object> updateBorrows(String id, String type,String comment);
 
-	// 经理审核的记录
+	// 订单记录
 	Map<String, Object> selectManageAll(Map<String, Object> paramMap);
+
+	//获取订单详情
+	Map<String, Object> getBorrowInfo(String id);
 }

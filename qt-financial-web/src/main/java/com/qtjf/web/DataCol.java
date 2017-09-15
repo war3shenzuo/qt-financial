@@ -113,18 +113,18 @@ public class DataCol {
 	}
 
 	/**
-	 * 查看借款详情
+	 * 查看订单详情
 	 * 
 	 * @param id
 	 *            订单id
 	 * @return
 	 */
 	@RequestMapping(value = "/borrow/info")
-	public Map<String, Object> borrowInfo(Integer id) {
-		return null;
+	public Map<String, Object> borrowInfo(String id) {
+		return borrowService.getBorrowInfo(id);
 	}
 	
-	// 经理的审核记录
+	// 订单记录
 	@RequestMapping(value = "/borrow/all")
 	public String borrowAll(String aoData) {
 		JSONArray jsonarray = JSONArray.parseArray(aoData);

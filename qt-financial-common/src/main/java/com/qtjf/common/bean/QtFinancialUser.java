@@ -17,7 +17,9 @@ public class QtFinancialUser {
 
 	private String userlevel;
 
-	private String turename;
+	private String turename;//TODO 有用到？没用到删了吧
+	
+	private String truename;
 
 	private String password;
 
@@ -172,7 +174,13 @@ public class QtFinancialUser {
 	public void setIswxvalid(String iswxvalid) {
 		this.iswxvalid = iswxvalid;
 	}
-	
-	
 
+	public String getTruename() {
+		return truename;
+	}
+
+	public void setTruename(String truename) {
+		this.truename = truename;
+	}
+	
 }
