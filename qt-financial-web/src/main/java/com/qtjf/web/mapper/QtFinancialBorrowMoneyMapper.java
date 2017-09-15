@@ -24,4 +24,8 @@ public interface QtFinancialBorrowMoneyMapper {
 	List<QtFinancialBorrowMoneyAndUser> selectAllAndUser(QtFinancialBorrowMoney qm);
 
 	QtFinancialBorrowMoneyAndUser selectBorrowInfo(String id);
+
+	List<QtFinancialBorrowMoneyAndUser> selectPayAll(Map<String, Object> paramMap);
+
+	int selectPayAllCount(Map<String, Object> paramMap);
 }

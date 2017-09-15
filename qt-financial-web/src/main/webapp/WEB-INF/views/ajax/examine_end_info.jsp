@@ -12,7 +12,7 @@
 	<div class="col-md-12">
 		<!--notification start-->
 		<section class="panel">
-			<header class="panel-heading">等待复审 </header>
+			<header class="panel-heading">等待终审 </header>
 			<div class="panel-body">
                 <div class="examine-content" id="borrowContent">
                 </div>
@@ -46,7 +46,7 @@
 		LoadAjaxContent(url, "borrow_list");
 		
 		
-		var url = "${pageContext.request.contextPath}/data/all?borrowType=2r";
+		var url = "${pageContext.request.contextPath}/data/all?borrowType=3r";
 		LoadAjaxData(url, loadBorrowList);
 		
 		Select2Test();
@@ -127,7 +127,15 @@
 					+'</div>'
 					+'<div class="row" style="margin-top: 15px;">'
 					+'<div class="form-group">'
-					+' <label class="col-sm-2 text-left control-label" style="line-height: 34px;">审核评语：</label>'
+					+' <label class="col-sm-2 text-left control-label" style="line-height: 34px;">复审评语：</label>'
+					+'<div class="col-sm-7" style="padding: 0px;">'
+					+'   <div style="line-height: 34px;">'+list[i].borrowMoneyFlow[1].comment+'</div>'
+					+'</div>'
+					+' </div>'
+					+'</div>'
+					+'<div class="row" style="margin-top: 15px;">'
+					+'<div class="form-group">'
+					+' <label class="col-sm-2 text-left control-label" style="line-height: 34px;">终审评语：</label>'
 					+'<div class="col-sm-7" style="padding: 0px;">'
 					+'   <input type="text" class="form-control" id="'+list[i].id+'">'
 					+'</div>'
@@ -144,21 +152,20 @@
 		} catch(arr){
 			console.log(arr);
 		}
-		
 		$("#borrowContent").html(htmlStr);
 	}
 	function agreeBorrow(id){
 		var url = "${pageContext.request.contextPath}/data/borrow/agree";
-		var param = "id="+id+"&type=3r"+"&comment="+$("#"+id).val();
+		var param = "id="+id+"&type=4r"+"&comment="+$("#"+id).val();
 		submitAjaxData(url,param,function(data){
-			LoadAjaxContent('${pageContext.request.contextPath}/view/examine_info','wrapper');
+			LoadAjaxContent('${pageContext.request.contextPath}/view/examine_end_info','wrapper');
 		});
 	}
 	function noBorrow(id){
 		var url = "${pageContext.request.contextPath}/data/borrow/agree";
-		var param = "id="+id+"&type=3e"+"&comment="+$("#"+id).val();
+		var param = "id="+id+"&type=4e"+"&comment="+$("#"+id).val();
 		submitAjaxData(url,param,function(data){
-			LoadAjaxContent('${pageContext.request.contextPath}/view/examine_info','wrapper');
+			LoadAjaxContent('${pageContext.request.contextPath}/view/examine_end_info','wrapper');
 		});
 	}
 </script>

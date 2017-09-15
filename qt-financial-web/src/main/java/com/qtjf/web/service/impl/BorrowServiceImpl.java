@@ -101,4 +101,20 @@ public class BorrowServiceImpl implements BorrowService {
 		return map;
 	}
 
+	@Override
+	public Map<String, Object> selectPayAll(Map<String, Object> paramMap) {
+		Map<String,Object> map = new HashMap<>();
+		try{
+			List<QtFinancialBorrowMoneyAndUser> list = qtFinancialBorrowMoneyMapper.selectPayAll(paramMap);
+			int count = qtFinancialBorrowMoneyMapper.selectPayAllCount(paramMap);
+			map.put(StringUtil.responseCode, StringUtil.responseOk);
+			map.put(StringUtil.pageData, list);
+			map.put(StringUtil.pageCount, count);
+		} catch(Exception e){
+			map.put(StringUtil.responseCode, StringUtil.resposeError);
+			e.printStackTrace();
+		}
+		return map;
+	}
+
 }

@@ -17,4 +17,7 @@ public interface BorrowService {
 
 	//获取订单详情
 	Map<String, Object> getBorrowInfo(String id);
+
+	//等待打款
+	Map<String, Object> selectPayAll(Map<String, Object> paramMap);
 }

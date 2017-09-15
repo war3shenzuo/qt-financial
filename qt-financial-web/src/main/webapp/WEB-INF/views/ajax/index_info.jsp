@@ -160,7 +160,7 @@
 					+'</div>'
 					+'<div class="col-sm-3">'
 					+'	<button type="button" class="btn btn-default btn-danger"'
-					+'		style="float: right; margin-left: 15px;">拒绝申请</button>'
+					+'		style="float: right; margin-left: 15px;" onclick="noBorrow(\''+list[i].id+'\')">拒绝申请</button>'
 					+'	<button type="button" class="btn btn-default btn-success"'
 					+'		style="float: right; margin-left: 15px;" onclick="agreeBorrow(\''+list[i].id+'\')">同意申请</button>'
 					+'</div>'
@@ -183,6 +183,13 @@
 	function agreeBorrow(id){
 		var url = "${pageContext.request.contextPath}/data/borrow/agree";
 		var param = "id="+id+"&type=2r"+"&comment="+$("#"+id).val();
+		submitAjaxData(url,param,function(data){
+			LoadAjaxContent('${pageContext.request.contextPath}/view/index_info','wrapper');
+		});
+	}
+	function noBorrow(id){
+		var url = "${pageContext.request.contextPath}/data/borrow/agree";
+		var param = "id="+id+"&type=2e"+"&comment="+$("#"+id).val();
 		submitAjaxData(url,param,function(data){
 			LoadAjaxContent('${pageContext.request.contextPath}/view/index_info','wrapper');
 		});

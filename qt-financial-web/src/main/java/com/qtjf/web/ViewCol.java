@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.qtjf.web.entity.QtFinancialAdminMenu;
 import com.qtjf.web.entity.QtFinancialAdminUser;
 import com.qtjf.web.service.MenuService;
 import com.qtjf.web.util.StringUtil;
@@ -85,6 +84,12 @@ public class ViewCol {
 	public String borrow_list() {
 		return "ajax/modal/borrow_list";
 	}
+	
+	// 查看借款记录
+	@RequestMapping(value = "/modal/pay")
+	public String pay() {
+		return "ajax/modal/pay";
+	}
 
 	// 查看借款详情
 	@RequestMapping(value = "/borrow_info")
@@ -126,6 +131,12 @@ public class ViewCol {
 	@RequestMapping(value = "/examine_info")
 	public String examine_info() {
 		return "ajax/examine_info";
+	}
+	
+	// 等待终审
+	@RequestMapping(value = "/examine_end_info")
+	public String examine_end_info() {
+		return "ajax/examine_end_info";
 	}
 
 	// 审核记录
