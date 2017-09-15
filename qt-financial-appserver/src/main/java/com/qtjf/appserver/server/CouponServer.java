@@ -10,5 +10,4 @@ public interface CouponServer {
 
 	List<Map<String,Object>> getCoupons(QtFinancialUserCoupon userCoupon);
 
-
 }

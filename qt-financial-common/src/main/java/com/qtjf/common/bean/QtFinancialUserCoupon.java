@@ -1,5 +1,6 @@
 package com.qtjf.common.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class QtFinancialUserCoupon {
@@ -20,7 +21,7 @@ public class QtFinancialUserCoupon {
     private String source;
 
 
-    private Long limitAmount;
+    private BigDecimal limitAmount;
 
     private String limitUserLevel;
 
@@ -91,11 +92,11 @@ public class QtFinancialUserCoupon {
         this.startDate = startDate;
     }
 
-    public Long getLimitAmount() {
+    public BigDecimal getLimitAmount() {
         return limitAmount;
     }
 
-    public void setLimitAmount(Long limitAmount) {
+    public void setLimitAmount(BigDecimal limitAmount) {
         this.limitAmount = limitAmount;
     }
 

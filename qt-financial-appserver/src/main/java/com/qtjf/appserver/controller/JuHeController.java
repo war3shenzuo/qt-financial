@@ -29,9 +29,6 @@ public class JuHeController {
 
 	/**
 	 *	身份证二要素验证
-	 * @param strUrl 请求地址
-	 * @param params 请求参数
-	 * @param method 请求方法
 	 * @return 网络请求字符串
 	 * @throws Exception
 	 */

@@ -110,7 +110,7 @@ public class LoginController {
 
 
     @RequestMapping(value = "/verifySmsCodeJsonp")
-    public String verifySmsCode(String mobile, String type, String authCode, String jsonp) throws Exception {
+    public String verifySmsCodeJsonp(String mobile, String type, String authCode, String jsonp) throws Exception {
 
         try {
             verify(authCode, type, mobile);
@@ -122,6 +122,20 @@ public class LoginController {
         return jsonp + "(" + JSONObject.toJSONString(ResultCode.getSuccess("验证成功")) + ");";
     }
 
+
+    @RequestMapping(value = "/verifySmsCode")
+    public String verifySmsCode(String mobile, String type, String authCode) throws Exception {
+
+        try {
+            verify(authCode, type, mobile);
+
+        } catch (Exception e) {
+            return JSONObject.toJSONString(ResultCode.getFail(e.getMessage())) ;
+        }
+
+        return JSONObject.toJSONString(ResultCode.getSuccess("验证成功"));
+    }
+
     private void verify(String authCode, String type, String mobile) {
         QtFinancialUserSmsCode smsCode = new QtFinancialUserSmsCode();
         smsCode.setSmsCode(Integer.valueOf(authCode));
@@ -129,4 +143,7 @@ public class LoginController {
         smsCode.setMobile(mobile);
         userService.verifySmsCode(smsCode);
     }
+
+
+
 }

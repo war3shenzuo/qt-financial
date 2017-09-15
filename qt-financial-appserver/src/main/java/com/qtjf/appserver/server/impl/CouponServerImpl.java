@@ -3,6 +3,9 @@ package com.qtjf.appserver.server.impl;
 
 
 
+import com.qtjf.appserver.dao.QtFinacialProductMapper;
+import com.qtjf.common.bean.QtFinacialProduct;
+import com.qtjf.common.bean.QtFinancialProductInstalment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,9 +24,10 @@ public class CouponServerImpl implements CouponServer {
 	@Autowired
 	QtFinancialUserCouponMapper qtFinancialUserCouponMapper;
 
-
     @Override
     public List<Map<String, Object>> getCoupons(QtFinancialUserCoupon userCoupon) {
         return qtFinancialUserCouponMapper.selectAllAndCouponInfo(userCoupon);
     }
+
+
 }
