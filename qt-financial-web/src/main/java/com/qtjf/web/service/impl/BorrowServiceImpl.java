@@ -75,8 +75,38 @@ public class BorrowServiceImpl implements BorrowService {
 	public Map<String, Object> selectManageAll(Map<String, Object> paramMap) {
 		Map<String,Object> map = new HashMap<>();
 		try{
-			List<QtFinancialBorrowMoney> list = qtFinancialBorrowMoneyMapper.selectManageAll(paramMap);
+			List<QtFinancialBorrowMoneyAndUser> list = qtFinancialBorrowMoneyMapper.selectManageAll(paramMap);
 			int count = qtFinancialBorrowMoneyMapper.selectAllByPageCount(paramMap);
+			map.put(StringUtil.responseCode, StringUtil.responseOk);
+			map.put(StringUtil.pageData, list);
+			map.put(StringUtil.pageCount, count);
+		} catch(Exception e){
+			map.put(StringUtil.responseCode, StringUtil.resposeError);
+			e.printStackTrace();
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> getBorrowInfo(String id) {
+		Map<String,Object> map = new HashMap<>();
+		try{
+			QtFinancialBorrowMoneyAndUser obj = qtFinancialBorrowMoneyMapper.selectBorrowInfo(id);
+			map.put(StringUtil.responseCode, StringUtil.responseOk);
+			map.put(StringUtil.responseObj, obj);
+		} catch(Exception e){
+			e.printStackTrace();
+			map.put(StringUtil.responseCode, StringUtil.resposeError);
+		}
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> selectPayAll(Map<String, Object> paramMap) {
+		Map<String,Object> map = new HashMap<>();
+		try{
+			List<QtFinancialBorrowMoneyAndUser> list = qtFinancialBorrowMoneyMapper.selectPayAll(paramMap);
+			int count = qtFinancialBorrowMoneyMapper.selectPayAllCount(paramMap);
 			map.put(StringUtil.responseCode, StringUtil.responseOk);
 			map.put(StringUtil.pageData, list);
 			map.put(StringUtil.pageCount, count);

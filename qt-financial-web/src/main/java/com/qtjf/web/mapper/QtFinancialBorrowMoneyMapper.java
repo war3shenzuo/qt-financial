@@ -17,9 +17,15 @@ public interface QtFinancialBorrowMoneyMapper {
 
     int updateByPrimaryKey(QtFinancialBorrowMoney record);
 
-	List<QtFinancialBorrowMoney> selectManageAll(Map<String, Object> paramMap);
+	List<QtFinancialBorrowMoneyAndUser> selectManageAll(Map<String, Object> paramMap);
 
 	int selectAllByPageCount(Map<String, Object> paramMap);
 
 	List<QtFinancialBorrowMoneyAndUser> selectAllAndUser(QtFinancialBorrowMoney qm);
+
+	QtFinancialBorrowMoneyAndUser selectBorrowInfo(String id);
+
+	List<QtFinancialBorrowMoneyAndUser> selectPayAll(Map<String, Object> paramMap);
+
+	int selectPayAllCount(Map<String, Object> paramMap);
 }

@@ -2,6 +2,20 @@ package com.qtjf.common.emus;
 
 public enum borrowStatus {
 	
+	/**
+	 * 数据库 借款表和借款后续表  status 目前用法
+	 * 
+	 * 1r 表示审核员需要审核                   
+	 * 
+	 * 2r 审核员通过、  2e 审核员拒绝    admin1
+	 * 
+	 * 3r 复审通过、  3e 复审拒绝           admin2
+	 * 
+	 * 4r 终审通过 、   4e 终审拒绝   	admin3
+	 * 
+	 * 5r 已打款 、    5e 未打款            admin3
+	 */
+	
 	/** 借款状态 */
 	//提交申请
 	BORROW_APPLY("1r","请等待客服人员进行审核"),
