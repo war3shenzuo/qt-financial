@@ -50,9 +50,15 @@ public class LoginController {
     @RequestMapping(value = "/register")
     public ResultCode register(String usermobile, String authCode, String invite, String type) throws Exception {
 
+        //查询是否有这个用户
+        QtFinancialUser user = userService.getUserInfoByMobile(usermobile);
+        if (user != null) {
+            return ResultCode.getFail("用户已注册");
+        }
+
         verify(authCode, type, usermobile);
         //保存用户
-        QtFinancialUser user = new QtFinancialUser();
+        user = new QtFinancialUser();
         user.setUsermobile(usermobile);
         user.setInviteuser(invite);
         userService.inset(user);
