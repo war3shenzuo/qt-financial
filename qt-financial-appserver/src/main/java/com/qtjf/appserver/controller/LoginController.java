@@ -77,10 +77,10 @@ public class LoginController {
 
 
     @RequestMapping(value = "/sendSmsCode")
-    public ResultCode sendSmsCode(String mobile, String type) throws Exception {
+    public ResultCode sendSmsCode(String usermobile, String type) throws Exception {
 
         int authCode = (int) ((Math.random() * 9 + 1) * 100000);
-        String result = loginService.sendRegisterSmsCode(mobile, String.valueOf(authCode));
+        String result = loginService.sendRegisterSmsCode(usermobile, String.valueOf(authCode));
         if (Objects.equals(result, "fail")) {
             return ResultCode.getFail("短信发送失败");
         }
@@ -92,13 +92,13 @@ public class LoginController {
         QtFinancialUserSmsCode smsCode = new QtFinancialUserSmsCode();
         smsCode.setCreatedAt(new Date().getTime());
         smsCode.setPassAt(smsCode.getCreatedAt() + 600 * 1000);
-        smsCode.setMobile(mobile);
+        smsCode.setMobile(usermobile);
         smsCode.setType(type);
         smsCode.setSmsCode(authCode);
         userService.saveSmsCode(smsCode);
 
         //查询是否有这个用户
-        QtFinancialUser user = userService.getUserInfoByMobile(mobile);
+        QtFinancialUser user = userService.getUserInfoByMobile(usermobile);
         if (user == null) {
             return ResultCode.getSuccess("发送成功", "");
         } else {
@@ -110,10 +110,10 @@ public class LoginController {
 
 
     @RequestMapping(value = "/verifySmsCodeJsonp")
-    public String verifySmsCodeJsonp(String mobile, String type, String authCode, String jsonp) throws Exception {
+    public String verifySmsCodeJsonp(String usermobile, String type, String authCode, String jsonp) throws Exception {
 
         try {
-            verify(authCode, type, mobile);
+            verify(authCode, type, usermobile);
 
         } catch (Exception e) {
             return jsonp + "(" + JSONObject.toJSONString(ResultCode.getFail(e.getMessage())) + ");";
@@ -124,10 +124,10 @@ public class LoginController {
 
 
     @RequestMapping(value = "/verifySmsCode")
-    public String verifySmsCode(String mobile, String type, String authCode) throws Exception {
+    public String verifySmsCode(String usermobile, String type, String authCode) throws Exception {
 
         try {
-            verify(authCode, type, mobile);
+            verify(authCode, type, usermobile);
 
         } catch (Exception e) {
             return JSONObject.toJSONString(ResultCode.getFail(e.getMessage())) ;
