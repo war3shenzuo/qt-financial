@@ -109,110 +109,139 @@
 	src="${ctx}/common/js/data-tables/DT_bootstrap.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		scrollTo(0, 0);
-		Select2Test();
-		var sAjaxSource = "${pageContext.request.contextPath}/data/borrow/all";
-		$('#dynamic-table').dataTable({
-			"bProcessing" : true,
-			"bServerSide" : true,
-			"aaSorting" : [ [ 4, "desc" ] ],
-			"sAjaxSource" : sAjaxSource,
-			"fnServerData" : retrieveData, // 获取数据的处理函数, 
-			"oLanguage" : {
-				"sPlaceholder" : ""
-			},
-			//列表表头字段
-			"aoColumns" : [ {
-				"mData" : "id"
-			}, {
-				"mData" : "applyAt",
-				"mRender" : function(data, type, full) {
-					var str = formatDatetime(data);
-					return str;
-				}
-			}, {
-				"mData" : "user",
-				"mRender" : function(data, type, full) {
-					if(data==null){
-						return "未填写";
-					}
-					var str = data.truename;
-					return str;
-				}
-			}, {
-				"mData" : "user",
-				"mRender" : function(data, type, full) {
-					if(data==null){
-						return "未填写";
-					}
-					var str = data.usermobile;
-					return str;
-				}
-			}, {
-				"mData" : "borrowMoneyFlow",
-				"mRender" : function(data, type, full) {
-					for(var i=0;i<data.length;i++){
-						if(data[i].status == '2r'){
-							return "初审通过";
-						}
-						if(data[i].status == '2e'){
-							return "初审拒绝";
-						}
-					}
-					return "无";
-				}
-			}, 
-			 {
-				"mData" : "borrowMoneyFlow",
-				"mRender" : function(data, type, full) {
-					for(var i=0;i<data.length;i++){
-						if(data[i].status == '3r'){
-							return "复审通过";
-						}
-						if(data[i].status == '3e'){
-							return "复审拒绝";
-						}
-					}
-					return "无";
-				}
-			},
-			 {
-				"mData" : "borrowMoneyFlow",
-				"mRender" : function(data, type, full) {
-					for(var i=0;i<data.length;i++){
-						if(data[i].status == '4r'){
-							return "终审通过";
-						}
-						if(data[i].status == '4e'){
-							return "终审拒绝";
-						}
-					}
-					return "无";
-				}
-			},
-			 {
-				"mData" : "borrowMoneyFlow",
-				"mRender" : function(data, type, full) {
-					for(var i=0;i<data.length;i++){
-						if(data[i].status == '5r'){
-							return "已打款";
-						}
-						if(data[i].status == '5e'){
-							return "未打款";
-						}
-					}
-					return "无";
-				}
-			},{
-				"mData" : "id",
-				"mRender" : function(data, type, full) {
-					var str = '<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/record_detail?id='+data+'\', \'wrapper\');">查看订单</a>';
-					return str;
-				}
-			}]
-		});
-	});
+	$(document)
+			.ready(
+					function() {
+						scrollTo(0, 0);
+						Select2Test();
+						var sAjaxSource = "${pageContext.request.contextPath}/data/borrow/all";
+						$('#dynamic-table')
+								.dataTable(
+										{
+											"bProcessing" : true,
+											"bServerSide" : true,
+											"bAutoWidth" : false,
+											"aaSorting" : [ [ 4, "desc" ] ],
+											"sAjaxSource" : sAjaxSource,
+											"fnServerData" : retrieveData, // 获取数据的处理函数, 
+											"oLanguage" : {
+												"sPlaceholder" : ""
+											},
+											//列表表头字段
+											"aoColumns" : [
+													{
+														"mData" : "id"
+													},
+													{
+														"mData" : "applyAt",
+														"mRender" : function(
+																data, type,
+																full) {
+															var str = formatDatetime(data);
+															return str;
+														}
+													},
+													{
+														"mData" : "user",
+														"mRender" : function(
+																data, type,
+																full) {
+															if (data == null) {
+																return "未填写";
+															}
+															var str = data.truename;
+															return str;
+														}
+													},
+													{
+														"mData" : "user",
+														"mRender" : function(
+																data, type,
+																full) {
+															if (data == null) {
+																return "未填写";
+															}
+															var str = data.usermobile;
+															return str;
+														}
+													},
+													{
+														"mData" : "borrowMoneyFlow",
+														"mRender" : function(
+																data, type,
+																full) {
+															for (var i = 0; i < data.length; i++) {
+																if (data[i].status == '2r') {
+																	return "初审通过";
+																}
+																if (data[i].status == '2e') {
+																	return "初审拒绝";
+																}
+															}
+															return "无";
+														}
+													},
+													{
+														"mData" : "borrowMoneyFlow",
+														"mRender" : function(
+																data, type,
+																full) {
+															for (var i = 0; i < data.length; i++) {
+																if (data[i].status == '3r') {
+																	return "复审通过";
+																}
+																if (data[i].status == '3e') {
+																	return "复审拒绝";
+																}
+															}
+															return "无";
+														}
+													},
+													{
+														"mData" : "borrowMoneyFlow",
+														"mRender" : function(
+																data, type,
+																full) {
+															for (var i = 0; i < data.length; i++) {
+																if (data[i].status == '4r') {
+																	return "终审通过";
+																}
+																if (data[i].status == '4e') {
+																	return "终审拒绝";
+																}
+															}
+															return "无";
+														}
+													},
+													{
+														"mData" : "borrowMoneyFlow",
+														"mRender" : function(
+																data, type,
+																full) {
+															for (var i = 0; i < data.length; i++) {
+																if (data[i].status == '5r') {
+																	return "已打款";
+																}
+																if (data[i].status == '5e') {
+																	return "未打款";
+																}
+															}
+															return "无";
+														}
+													},
+													{
+														"mData" : "id",
+														"mRender" : function(
+																data, type,
+																full) {
+															var str = '<a href="javascript:void(0)" onclick="LoadAjaxContent(\'${pageContext.request.contextPath}/view/record_detail?id='
+																	+ data
+																	+ '\', \'wrapper\');">查看订单</a>';
+															return str;
+														}
+													} ]
+										});
+					});
 
 	// 3个参数的名字可以随便命名,但必须是3个参数,少一个都不行
 	function retrieveData(sSource, aoData, fnCallback) {
