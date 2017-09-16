@@ -57,12 +57,12 @@ public class JdtController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "submitMobile")
-	public ResultCode submitMobile(String dk ,String token,String password,String captcha,String userId,String mobile) throws Exception {
+	public ResultCode submitMobile(String dk ,String token,String password,String captcha,String userId) throws Exception {
 		
 		String result = jdtServer.submitMobile( dk, token,password,captcha);
 		JSONObject json = JSONObject.parseObject(result);
 		if(Objects.equals(json.get("status_code"), 10008)){
-			authenticationServer.saveMobile(userId,mobile,password);
+			authenticationServer.saveMobile(userId);
 			return ResultCode.getSuccess("申请验证成功");
 		}
 		return new ResultCode((int )json.get("status_code"),(String)json.get("message"),null);
