@@ -139,7 +139,7 @@
 		$("#examine_choice_time").select2();
 	}
 	function showPay(id){
+		$("#borrowId").val(id);
 		$("#payModal").modal("show");
-		console.log(id);
 	}
 </script>
