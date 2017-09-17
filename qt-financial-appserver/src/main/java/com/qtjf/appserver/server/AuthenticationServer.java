@@ -18,7 +18,7 @@ public interface AuthenticationServer {
     void insert(QtFinancialAuthentication record) throws Exception;
 
 
-	void saveMobile(String userId, String mobile, String password)  throws Exception;
+	void saveMobile(String userId)  throws Exception;
 	
 	/**
 	 * 上传用户基本信息
