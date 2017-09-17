@@ -31,52 +31,53 @@ caption {
 				<div class="clearfix"></div>
 			</div>
 			<div class="modal-body">
-				<table class="table table-bordered">
-					<caption>自动认证</caption>
-					<tbody>
-						<tr>
-							<td>身份证</td>
-							<td>图</td>
-						</tr>
-						<tr>
-							<td>人脸</td>
-							<td>图</td>
-						</tr>
-						<tr>
-							<td>提交时间</td>
-							<td>207-06-26 14:11</td>
-						</tr>
-						<tr>
-							<td>通过时间</td>
-							<td>207-06-26 14:11</td>
-						</tr>
-					</tbody>
-				</table>
-				<table class="table table-bordered">
-					<caption>人工审核</caption>
-					<tbody>
-						<tr>
-							<td>身份证</td>
-							<td>图</td>
-						</tr>
-						<tr>
-							<td>人脸</td>
-							<td>图</td>
-						</tr>
-						<tr>
-							<td>提交时间</td>
-							<td>207-06-26 14:11</td>
-						</tr>
-						<tr>
-							<td>通过时间</td>
-							<td>207-06-26 14:11</td>
-						</tr>
-						<tr>
-							<td>操作人</td>
-							<td>王丽</td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="div div-bordered">
+					<div class="table-caption">人工审核</div>
+					<div class="col-sm-4">姓名</div>
+					<div class="col-sm-8">王XX</div>
+
+					<div class="col-sm-4">身份证号</div>
+					<div class="col-sm-8">xxxxxxxxxxx</div>
+
+					<div class="col-sm-4">提交时间</div>
+					<div class="col-sm-8">2017-09-17 09:11</div>
+				</div>
+				<div class="clearfix"></div>
+				
+				<div class="div div-bordered">
+					<div class="table-caption">人工审核</div>
+					<div class="col-sm-4">身份证</div>
+					<div class="col-sm-8">王XX</div>
+
+					<div class="col-sm-4">手持身份证照</div>
+					<div class="col-sm-8">xxxxxxxxxxx</div>
+					
+					<div class="col-sm-4">识别到的信息</div>
+					<div class="col-sm-8">xxxxxxxxxxx</div>
+
+					<div class="col-sm-4">提交时间</div>
+					<div class="col-sm-8">2017-09-17 09:11</div>
+				</div>
+				<div class="clearfix"></div>
+				
+					<div class="div div-bordered">
+					<div class="table-caption">自动认证</div>
+					<div class="col-sm-4">身份证</div>
+					<div class="col-sm-8">王XX</div>
+
+					<div class="col-sm-4">人脸</div>
+					<div class="col-sm-8">xxxxxxxxxxx</div>
+					
+					<div class="col-sm-4">识别身份证号</div>
+					<div class="col-sm-8">xxxxxxxxxxx</div>
+					
+					<div class="col-sm-4">识别姓名</div>
+					<div class="col-sm-8">王XX</div>
+
+					<div class="col-sm-4">提交时间</div>
+					<div class="col-sm-8">2017-09-17 09:11</div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>

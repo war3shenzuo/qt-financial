@@ -33,9 +33,21 @@
 						<option value="">审核未通过</option>
 					</select>
 				</div>
-				 <div class="clearfix"></div>
+				<div class="clearfix"></div>
 			</div>
 			<div class="modal-body">
+				<div class="div div-bordered">
+					<div class="table-caption">身份信息</div>
+					<div class="col-sm-4">姓名</div>
+					<div class="col-sm-8">王XX</div>
+
+					<div class="col-sm-4">身份证号</div>
+					<div class="col-sm-8">xxxxxxxxxxx</div>
+
+					<div class="col-sm-4">提交时间</div>
+					<div class="col-sm-8">2017-09-17 09:11</div>
+				</div>
+				<div class="clearfix"></div>
 				<div class="div div-bordered">
 					<div class="table-caption">个人信息</div>
 					<div class="col-sm-4">学历</div>
@@ -66,6 +78,9 @@
 
 					<div class="col-sm-4">电子邮箱</div>
 					<div class="col-sm-8">64617##！@qq.com</div>
+					
+					<div class="col-sm-4">提交时间</div>
+					<div class="col-sm-8">2017-09-17 09:11</div>
 				</div>
 				<div class="clearfix"></div>
 				<div class="div div-bordered">
@@ -80,13 +95,16 @@
 					<div class="col-sm-8">xxx</div>
 
 					<div class="col-sm-4">所在省市</div>
-					<div class="col-sm-8">浙江绍兴</div>
+					<div class="col-sm-8">浙江绍兴</div>  
 
 					<div class="col-sm-4">单位地址</div>
 					<div class="col-sm-8">xx</div>
 
 					<div class="col-sm-4">单位电话</div>
 					<div class="col-sm-8">xx</div>
+					
+					<div class="col-sm-4">提交时间</div>
+					<div class="col-sm-8">2017-09-17 09:11</div>
 				</div>
 				<div class="clearfix"></div>
 				<div class="div div-bordered">
@@ -103,21 +121,10 @@
 
 					<div class="col-sm-4">联系方式</div>
 					<div class="col-sm-8">13123411234</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="div div-bordered">
-					<div class="table-caption">认证时间</div>
-
+					
 					<div class="col-sm-4">提交时间</div>
-					<div class="col-sm-8">2017-06-26 14:11</div>
-
-					<div class="col-sm-4">通过时间</div>
-					<div class="col-sm-8">2017-06-26 14:11</div>
-
-					<div class="col-sm-4">操作人</div>
-					<div class="col-sm-8">王丽</div>
+					<div class="col-sm-8">2017-09-17 09:11</div>
 				</div>
-				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>

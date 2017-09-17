@@ -38,6 +38,10 @@ caption {
 							<td>手机号</td>
 							<td>13711232145</td>
 						</tr>
+						<tr>
+							<td>运营商密码</td>
+							<td>12313</td>
+						</tr>
 					</tbody>
 				</table>
 				<table class="table table-bordered">
@@ -50,10 +54,6 @@ caption {
 						<tr>
 							<td>通过时间</td>
 							<td>2017-06-26 14:11</td>
-						</tr>
-						<tr>
-							<td>操作人</td>
-							<td>无</td>
 						</tr>
 					</tbody>
 				</table>
