@@ -2,8 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
-<!--index_info-->
-<link href="${ctx}/common/css/index_info.css" rel="stylesheet">
+
 <ul class="breadcrumb panel">
 	<li><a href="index"><i class="fa fa-home"></i>清投金服</a></li>
 	<li class="active">借款审核</li>
@@ -72,26 +71,17 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		scrollTo(0,0);
-		var url = "${pageContext.request.contextPath}/view/modal/auth_phone";
-		LoadAjaxContent(url, "auth_phone");
-		var url = "${pageContext.request.contextPath}/view/modal/auth_base";
-		LoadAjaxContent(url, "auth_base");
-		var url = "${pageContext.request.contextPath}/view/modal/auth_id";
-		LoadAjaxContent(url, "auth_id");
-		var url = "${pageContext.request.contextPath}/view/modal/auth_wx";
-		LoadAjaxContent(url, "auth_wx");
-		var url = "${pageContext.request.contextPath}/view/modal/auth_contact";
-		LoadAjaxContent(url, "auth_contact");
-		var url = "${pageContext.request.contextPath}/view/modal/borrow_list";
-		LoadAjaxContent(url, "borrow_list");
-		
-		var url = "${pageContext.request.contextPath}/data/all?borrowType=1r";
-		LoadAjaxData(url, loadBorrowList);
+		LoadAjaxContent("${pageContext.request.contextPath}/view/modal/auth_phone", "auth_phone");
+		LoadAjaxContent("${pageContext.request.contextPath}/view/modal/auth_base", "auth_base");
+		LoadAjaxContent("${pageContext.request.contextPath}/view/modal/auth_id", "auth_id");
+		LoadAjaxContent("${pageContext.request.contextPath}/view/modal/auth_wx", "auth_wx");
+		LoadAjaxContent("${pageContext.request.contextPath}/view/modal/auth_contact", "auth_contact");
+		LoadAjaxContent("${pageContext.request.contextPath}/view/modal/borrow_list", "borrow_list");
+		LoadAjaxData("${pageContext.request.contextPath}/data/all?borrowType=1r", loadBorrowList);
 		Select2Test();
 	});
 	
 	function loadBorrowList(data){
-		console.log(data);
 		try{
 			var list = data.objList;
 			var htmlStr = "";
@@ -133,13 +123,13 @@
 					+'<div class="col-sm-2 text-left" style="line-height: 34px;">选择认证：</div>'
 					+'<div class="col-sm-10">'
 					+'<div class="row">'
-					+'	<button type="button" class="btn btn-default btn-info" onclick="showAuthWx(\''+list[i].user.id+'\')">微信认证</button>'
-					+'	<button type="button" class="btn btn-default btn-info"'
+					+'	<button type="button" class="btn btn-default btn-disabled" disabled onclick="showAuthWx(\''+list[i].user.id+'\')">微信认证</button>'
+					+'	<button type="button" class="btn btn-default btn-disabled" disabled' 
 					+'		onclick="showAuthContact(\''+list[i].user.id+'\')">授权通讯录</button>'
-					+'	<button type="button" class="btn btn-default btn-info">问卷认证</button>'
-					+'	<button type="button" class="btn btn-default btn-info">淘宝认证</button>'
-					+'	<button type="button" class="btn btn-default btn-info">学信认证</button>'
-					+'	<button type="button" class="btn btn-default btn-info">京东认证</button>'
+					+'	<button type="button" class="btn btn-default btn-disabled" disabled>问卷认证</button>'
+					+'	<button type="button" class="btn btn-default btn-disabled" disabled>淘宝认证</button>'
+					+'	<button type="button" class="btn btn-default btn-disabled" disabled>学信认证</button>'
+					+'	<button type="button" class="btn btn-default btn-disabled" disabled>京东认证</button>'
 					+'</div>'
 					+'</div>'
 					+'</div>'

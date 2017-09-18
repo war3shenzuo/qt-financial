@@ -41,7 +41,8 @@
 <script src="${ctx}/common/js/html5shiv.js"></script>
 <script src="${ctx}/common/js/respond.min.js"></script>
 <![endif]-->
-
+<!--index_info-->
+<link href="${ctx}/common/css/index_info.css" rel="stylesheet">
 </head>
 <body class="sticky-header">
 <input type="hidden" value="${img_url}" id="img_url" />

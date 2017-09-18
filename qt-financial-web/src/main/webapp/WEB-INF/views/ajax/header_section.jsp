@@ -13,8 +13,7 @@
 	    <ul class="notification-menu">
 	        <li>
 	             <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-	                <img src="${ctx}/common/img/photos/user-avatar.png" alt="" />
-	                John Doe
+	                ${adminLogin.name}
 	                <span class="caret"></span>
 	            </a>
 	            <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
