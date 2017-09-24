@@ -85,39 +85,116 @@
 					+'<div class="col-sm-2 text-left" style="line-height: 34px;">必要认证：</div>'
 					+'<div class="col-sm-10">'
 					+'<div class="row">'
-					+'	<button type="button" class="btn btn-default btn-success"'
-					+'		onclick="showAuthPhone(\''+list[i].user.id+'\')">手机认证</button>'
-					+'	<button type="button" class="btn btn-default btn-success"'
-					+'		onclick="showAuthBase(\''+list[i].user.id+'\')">个人信息</button>'
-					+'	<button type="button" class="btn btn-default btn-success" onclick="showAuthId('+list[i].user.id+')">身份证认证</button>'
-					+'	<button type="button" class="btn btn-default btn-success">银行卡认证</button>'
-					+'</div>'
-					+'</div>'
-					+'</div>'
-					+'<div class="row" style="margin-top: 15px;">'
-					+'<div class="col-sm-2 text-left" style="line-height: 34px;">选择认证：</div>'
-					+'<div class="col-sm-10">'
-					+'<div class="row">'
-					+'	<button type="button" class="btn btn-default btn-info" onclick="showAuthWx(\''+list[i].user.id+'\')">微信认证</button>'
-					+'	<button type="button" class="btn btn-default btn-info"'
-					+'		onclick="showAuthContact(\''+list[i].user.id+'\')">授权通讯录</button>'
-					+'	<button type="button" class="btn btn-default btn-info">问卷认证</button>'
-					+'	<button type="button" class="btn btn-default btn-info">淘宝认证</button>'
-					+'	<button type="button" class="btn btn-default btn-info">学信认证</button>'
-					+'	<button type="button" class="btn btn-default btn-info">京东认证</button>'
-					+'</div>'
-					+'</div>'
-					+'</div>'
-					+'<div class="row" style="margin-top: 15px;">'
-					+'<div class="col-sm-2 text-left" style="line-height: 34px;">相关数据：</div>'
-					+'<div class="col-sm-10">'
-					+'<div class="row" >'
-					+'<button type="button" class="btn btn-default" style="margin-right: 15px;">查看琥珀资信报告</button>'
-					+'<button type="button" class="btn btn-default" >查看资信报告</button>'
-					+'</div>'
-					+'</div>'
-					+'</div>'
-					+'<div class="row" style="margin-top: 15px;">'
+					var auths = list[i].auths;
+					var phoneHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>手机认证</button>';
+					var baseHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>个人信息</button>';
+					var idHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>身份证认证</button>';
+					var bankHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>银行卡认证</button>';
+					var wxHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>微信认证</button>';
+					var contactHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>通讯录授权</button>';
+					var askHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>问卷认证</button>';
+					var taobaoHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>淘宝认证</button>';
+					var xuexinkHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>学信认证</button>';
+					var jingdongHtml = '	<button type="button" class="btn btn-default btn-disabled" disabled>京东认证</button>';
+					for (var j = 0; j < auths.length; j++) {
+						switch (auths[j].authType) {
+						case '1':
+							if (auths[j].authStatus == 1) {
+								phoneHtml = '<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthPhone(\''
+										+ auths[j].authenticationId
+										+ '\')">手机认证</button>';
+							}
+							break;
+						case '2':
+							if (auths[j].authStatus == 1) {
+								baseHtml = '<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthBase(\''
+										+ auths[j].authenticationId
+										+ '\')">个人信息</button>';
+							}
+							break;
+						case '3':
+							if (auths[j].authStatus == 1) {
+								idHtml = '<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthId(\''
+										+ auths[j].authenticationId
+										+ '\')">身份证认证</button>';
+							}
+							break;
+						case '4':
+							if (auths[j].authStatus == 1) {
+								bankHtml = '<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthPhone(\''
+										+ auths[j].authenticationId
+										+ '\')">手机认证</button>';
+							}
+							break;
+						case '5':
+							if (auths[j].authStatus == 1) {
+								wxHtml = '<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthPhone(\''
+										+ auths[j].authenticationId
+										+ '\')">微信认证</button>';
+							}
+							break;
+						case '6':
+							if (auths[j].authStatus == 1) {
+								contactHtml = '	<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthPhone(\''
+										+ auths[j].authenticationId
+										+ '\')">授权通讯录</button>';
+							}
+							break;
+						case '7':
+							if (auths[j].authStatus == 1) {
+								askHtml = '	<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthPhone(\''
+										+ auths[j].authenticationId
+										+ '\')">问卷认证</button>';
+							}
+							break;
+						case '8':
+							if (auths[j].authStatus == 1) {
+								taobaoHtml = '	<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthPhone(\''
+										+ auths[j].authenticationId
+										+ '\')">淘宝认证</button>';
+							}
+							break;
+						case '9':
+							if (auths[j].authStatus == 1) {
+								xuexinkHtml = '	<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthPhone(\''
+										+ auths[j].authenticationId
+										+ '\')">学信认证</button>';
+							}
+							break;
+						case '10':
+							if (auths[j].authStatus == 1) {
+								jingdongHtml = '	<button type="button" class="btn btn-default btn-success"'
+										+ '		onclick="showAuthPhone(\''
+										+ auths[j].authenticationId
+										+ '\')">京东认证</button>';
+							}
+							break;
+
+						}
+					}
+					htmlStr += phoneHtml
+							+ baseHtml
+							+ idHtml
+							+ bankHtml
+							+ '</div>'
+							+ '</div>'
+							+ '</div>'
+							+ '<div class="row" style="margin-top: 15px;">'
+							+ '<div class="col-sm-2 text-left" style="line-height: 34px;">选择认证：</div>'
+							+ '<div class="col-sm-10">' + '<div class="row">'
+							+ wxHtml + contactHtml + askHtml + taobaoHtml
+							+ xuexinkHtml + jingdongHtml + '</div>' + '</div>'
+							+ '</div>';
+				htmlStr +='<div class="row" style="margin-top: 15px;">'
 					+'<div class="form-group">'
 					+' <label class="col-sm-2 text-left control-label" style="line-height: 34px;">初审评语：</label>'
 					+'<div class="col-sm-7" style="padding: 0px;">'

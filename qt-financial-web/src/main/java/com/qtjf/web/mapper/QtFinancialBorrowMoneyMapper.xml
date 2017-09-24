@@ -34,6 +34,13 @@
 			<result column="flow_comment" property="comment" jdbcType="VARCHAR" />
 			<result column="flow_updatedAt" property="updatedAt" jdbcType="TIMESTAMP" />
 		</collection>
+		<collection property="auths"
+			ofType="com.qtjf.common.bean.QtFinancialAuthentication">
+			<id column="auth_id" property="id" jdbcType="INTEGER" />
+			<result column="auth_authType" property="authType" jdbcType="VARCHAR" />
+			<result column="auth_authStatus" property="authStatus" jdbcType="VARCHAR" />
+			<result column="auth_authenticationId" property="authenticationId" jdbcType="VARCHAR" />
+		</collection>
 	</resultMap>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
@@ -68,7 +75,7 @@
 		resultMap="AndUserResultMap">
 		select money.*,user.id user_id,user.userName user_name,user.userMobile
 		user_phone,user.tureName user_truename,flow.id flow_id,flow.borrowId flow_borrowId,flow.status
-		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt
+		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt,qta.id auth_id,qta.authType auth_authType,qta.authStatus auth_authStatus,qta.authenticationId auth_authenticationId
 		from
 		qt_financial_borrow_money money
 		left outer join
@@ -76,6 +83,8 @@
 		user on user.id = money.userId
 		left outer join
 		qt_financial_borrow_money_flow flow on flow.borrowId = money.id
+		left outer join 
+		qt_financial_authentication qta on qta.userId = money.userId
 		limit #{start},#{end};
 	</select>
 	<select id="selectAllByPageCount" parameterType="java.util.Map"
@@ -87,7 +96,7 @@
 		resultMap="AndUserResultMap">
 		select money.*,user.id user_id,user.userName user_name,user.userMobile
 		user_phone, user.tureName user_truename,flow.id flow_id,flow.borrowId flow_borrowId,flow.status
-		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt
+		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt,qta.id auth_id,qta.authType auth_authType,qta.authStatus auth_authStatus,qta.authenticationId auth_authenticationId
 		from
 		qt_financial_borrow_money money
 		left outer join
@@ -95,6 +104,8 @@
 		user on user.id = money.userId
 		left outer join
 		qt_financial_borrow_money_flow flow on flow.borrowId = money.id
+		left outer join 
+		qt_financial_authentication qta on qta.userId = money.userId
 		<where>
 			<if test="productId!=null and productId!=''">
 				and money.productId = #{productId}
@@ -111,7 +122,7 @@
 	<select id="selectBorrowInfo" parameterType="java.lang.String" resultMap="AndUserResultMap">
 		select money.*,user.id user_id,user.userName user_name,user.userMobile
 		user_phone, user.tureName user_truename,flow.id flow_id,flow.borrowId flow_borrowId,flow.status
-		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt
+		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt,qta.id auth_id,qta.authType auth_authType,qta.authStatus auth_authStatus,qta.authenticationId auth_authenticationId
 		from
 		qt_financial_borrow_money money
 		left outer join
@@ -119,6 +130,8 @@
 		user on user.id = money.userId
 		left outer join
 		qt_financial_borrow_money_flow flow on flow.borrowId = money.id
+		left outer join 
+		qt_financial_authentication qta on qta.userId = money.userId
 		where money.id = '${_parameter}' order by flow.status
 	</select>
 	
@@ -126,7 +139,7 @@
 		resultMap="AndUserResultMap">
 		select money.*,user.id user_id,user.userName user_name,user.userMobile
 		user_phone,user.tureName user_truename,flow.id flow_id,flow.borrowId flow_borrowId,flow.status
-		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt
+		flow_status,flow.comment flow_comment,flow.updatedAt flow_updatedAt,qta.id auth_id,qta.authType auth_authType,qta.authStatus auth_authStatus,qta.authenticationId auth_authenticationId
 		from
 		qt_financial_borrow_money money
 		left outer join
@@ -134,6 +147,8 @@
 		user on user.id = money.userId
 		left outer join
 		qt_financial_borrow_money_flow flow on flow.borrowId = money.id
+		left outer join 
+		qt_financial_authentication qta on qta.userId = money.userId
 		where money.status = '4r'
 		limit #{start},#{end};
 	</select>
